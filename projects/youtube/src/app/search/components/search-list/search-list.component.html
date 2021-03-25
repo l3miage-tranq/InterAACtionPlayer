@@ -2,26 +2,29 @@
   <div class="column" *ngFor="let video of videos">
     <div class="ui card">
       <div class="image">
-        <img [src]="video.thumbnail">
+        <img [src]="video.thumbnail" [alt]="video.title">
       </div>
       <div class="content">
-        <a class="header" style="margin: 1em 0 1em 0;">{{ video.title }}</a>
+        <a class="header">{{ video.title }}</a>
         <div class="meta">
-          <span class="date" style="font-weight: bolder;">
-            <a [href]="video.channelUrl" target="_blank">{{ video.channelTitle }}</a>
+          <span class="date">
+            {{ video.channelTitle }}
           </span>
-          <span class="ui right floated date" style="font-weight: bolder;">{{ video.publishedAt | date:'mediumDate' }}</span>
+          <span class="ui right floated date">{{ video.publishedAt | date:'mediumDate' }}</span>
         </div>
         <div class="description">
           {{ video.description?.slice(0,50) }}...
         </div>
       </div>
-      <a [href]="video.videoUrl" target="_blank" class="extra content">
-        <button class="ui right floated tiny red right labeled icon button">
-          <i class="external alternate icon"></i>
-          Watch
-        </button>
-      </a>
+      <button *ngIf="!videoAlreadyAddToPlaylist(this.video)"
+              class="ui right floated tiny green right labeled icon button" (click)="addVideoToPlaylist(this.video)">
+        Add to Playlist
+      </button>
+      <button *ngIf="videoAlreadyAddToPlaylist(this.video)"
+              class="ui right floated tiny red right labeled icon button" (click)="deleteVideoToPlaylist(this.video)">
+        Delete to Playlist
+      </button>
     </div>
   </div>
 </div>
+<notifier-container></notifier-container>

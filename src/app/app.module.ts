@@ -29,6 +29,13 @@ const customNotifierOptions: NotifierOptions = {
     overlap: 150 }
 };
 
+/**
+ * Import module Sub-Application
+ */
+
+import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +50,10 @@ const customNotifierOptions: NotifierOptions = {
     RouterModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+      {path: 'playlist', component: PlaylistComponent},
+      {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
     ]),
+    YoutubeSharedModule.forRoot(),
   ],
   providers: [
     PlaylistService

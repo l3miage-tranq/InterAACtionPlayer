@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class SearchService {
 
   private API_URL = 'https://www.googleapis.com/youtube/v3/search';
-  private API_TOKEN = 'API_TOKEN';
+  private API_TOKEN = 'AIzaSyAmLmgM_a0-mENqVa9YGJlYs-ampbTxDKc';
 
   constructor(private http: HttpClient) {}
 
