@@ -34,6 +34,7 @@ const customNotifierOptions: NotifierOptions = {
  */
 
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
+import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 
 
 @NgModule({
@@ -48,12 +49,14 @@ import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
     NotifierModule.withConfig(customNotifierOptions),
     MatDialogModule,
     RouterModule,
+    YoutubeSharedModule.forRoot(),
+    SpotifySharedModule.forRoot(),
     RouterModule.forRoot([
-      {path: '', redirectTo: 'playlist', pathMatch: 'full'},
       {path: 'playlist', component: PlaylistComponent},
       {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+      {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+      {path: '**', redirectTo: 'playlist', pathMatch: 'full'},
     ]),
-    YoutubeSharedModule.forRoot(),
   ],
   providers: [
     PlaylistService

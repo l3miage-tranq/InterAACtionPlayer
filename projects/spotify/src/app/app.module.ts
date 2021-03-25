@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -20,6 +20,10 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
+const providers = [
+  GlobalService,
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,12 +41,20 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [
-    GlobalService,
-  ],
+  providers: providers,
   bootstrap: [
     AppComponent
   ]
 })
 
 export class AppModule { }
+
+@NgModule({})
+export class SpotifySharedModule{
+  static forRoot(): ModuleWithProviders<any> {
+    return {
+      ngModule: AppModule,
+      providers: providers,
+    }
+  }
+}
