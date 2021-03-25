@@ -105,12 +105,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   goPrevious() {
-    if (this.PlayList.length > 2){
+    if (this.PlayList.length > 1){
       for (let i = 0; i < (this.PlayList.length - 1); i++){
         if (this.PlayList[i].videoUrl == this.currentElem.videoUrl){
           if (this.currentElem == this.PlayList[0]){
-            this.UrlVideoLaunch = this.PlayList[this.PlayList.length-2].videoId;
-            this.currentElem = this.PlayList[this.PlayList.length-2];
+            this.UrlVideoLaunch = this.PlayList[this.PlayList.length-1].videoId;
+            this.currentElem = this.PlayList[this.PlayList.length-1];
             i = this.PlayList.length;
           }else {
             this.UrlVideoLaunch = this.PlayList[i - 1].videoId;
