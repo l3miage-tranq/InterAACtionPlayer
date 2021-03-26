@@ -237,11 +237,7 @@
     },
     "spotify": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "projects/spotify",
       "sourceRoot": "projects/spotify/src",
       "prefix": "app",
@@ -260,7 +256,7 @@
               "projects/spotify/src/assets"
             ],
             "styles": [
-              "projects/spotify/src/styles.scss"
+              "projects/spotify/src/styles.css"
             ],
             "scripts": []
           },

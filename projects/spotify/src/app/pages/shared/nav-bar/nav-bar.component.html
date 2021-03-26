@@ -1,58 +1,34 @@
-<aside class="aside">
-  <div class="aside__title">
-    <img class="aside__img" src="assets/spotify-icon.png" alt="spotify image">
+<div class="ui vertical fluid tabular menu">
+  <a class="item">
+    <img class="ui mini spaced image" src="assets/banner-ico.png" alt="logo spotify">
     Spotify
-  </div>
-  <div class="aside__language-btn-container">
-    <button class="btn-template aside__language-btn"
-            (click)="seeLanguages()">
-      <span class="fas fa-angle-down aside__language-arrow-icon"></span>Languages
-    </button>
-  </div>
-  <div class="aside__language-container"
-       [ngClass]="moreLanguages ? 'show' : 'hide'">
-    <button class="btn-template aside__language-btn" [ngClass]="{'active': activeLanguage == 'de'}" (click)="switchLanguage('de')">
-      Deutsch <img class="aside__btn-icon" src="assets/german.svg" alt="German flag">
-    </button>
-    <button class="btn-template aside__language-btn" [ngClass]="{'active': activeLanguage == 'en'}" (click)="switchLanguage('en')">
-      English <img class="aside__btn-icon" src="assets/usa.svg" alt="Usa flag">
-    </button>
-    <button class="btn-template aside__language-btn" [ngClass]="{'active': activeLanguage == 'es'}" (click)="switchLanguage('es')">
-      Spanish <img class="aside__btn-icon" src="assets/spain.svg" alt="Spain flag">
-    </button>
-  </div>
-  <div class="aside__list-container">
-    <ul class="aside__list">
-      <li class="aside__list-item" routerLinkActive="active">
-        <a class="aside__list-anchor aside__list-anchor-home" routerLink="home">{{ 'nav-bar.home-text' | translate }}</a>
-      </li>
-      <li class="aside__list-item" routerLinkActive="active">
-        <a class="aside__list-anchor aside__list-anchor-search" routerLink="search">{{ 'nav-bar.search-text' | translate }}</a>
-      </li>
-    </ul>
-  </div>
-</aside>
-
-<div class="side-bar-btn">
-  <div class="side-bar-btn__img-container">
-    <img class="side-bar-btn__img" src="assets/spotify-icon.png" alt="spotify image">
-    Spotify
-  </div>
-  <div class="side-bar-btn__btn-container">
-    <button class="side-bar-btn__btn" (click)="openOrCloseNav()">☰</button>
-  </div>
-</div>
-
-<!--Display side bar if openSideBar is true-->
-<div class="side-bar animated fadeIn" [ngClass]="openSideBar ? 'side-bar--visible' : 'side-bar--hide'">
-  <div>
-    <ul>
-      <li class="side-bar__list-item" routerLinkActive="active">
-        <a class="side-bar__anchor" routerLink="home">Home</a>
-      </li>
-      <li class="side-bar__list-item" routerLinkActive="active">
-        <a class="side-bar__anchor" routerLink="search">Search</a>
-      </li>
-    </ul>
-  </div>
+  </a>
+  <a class="item" (click)="seeLanguages()">
+    Languages
+    <i class="dropdown icon"></i>
+  </a>
+  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'en'}" (click)="switchLanguage('en')">
+    English
+    <img class="ui mini spaced image" src="assets/usa.svg" alt="Usa flag">
+  </a>
+  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'de'}" (click)="switchLanguage('de')">
+    Deutsch
+    <img class="ui mini spaced image" src="assets/german.svg" alt="German flag">
+  </a>
+  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'es'}" (click)="switchLanguage('es')">
+    Spanish
+    <img class="ui mini spaced image" src="assets/spain.svg" alt="Spain flag">
+  </a>
+  <a class="item" routerLink="home" routerLinkActive="active">
+    <i class="home icon"></i>
+    {{ 'nav-bar.home-text' | translate }}
+  </a>
+  <a class="item" routerLink="search" routerLinkActive="active">
+    <i class="search icon"></i>
+    {{ 'nav-bar.search-text' | translate }}
+  </a>
+  <a class="item" routerLink="/playlist" routerLinkActive="active">
+    <i class="arrow left icon"></i>
+    {{ 'nav-bar.playlist-text' | translate }}
+  </a>
 </div>

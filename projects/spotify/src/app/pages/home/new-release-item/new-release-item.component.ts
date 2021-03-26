@@ -7,14 +7,14 @@ import { NewReleasesItem} from '../models/new-releases-model';
 @Component({
   selector: 'app-new-release-item',
   templateUrl: './new-release-item.component.html',
-  styleUrls: ['./new-release-item.component.scss']
+  styleUrls: ['./new-release-item.component.css']
 })
 export class NewReleaseItemComponent implements OnInit {
   @Input() newRelease: NewReleasesItem;
 
-  constructor(private router: Router) { /*empty*/ }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void { /*empty*/ }
+  ngOnInit(): void {}
 
   public navigate(newRelease: any): void {
     let newReleaseId: number = 0;
@@ -23,7 +23,6 @@ export class NewReleaseItemComponent implements OnInit {
     console.log('new release type:', newRelease.type);
     console.log('New Release Id:', newReleaseId);
 
-    this.router.navigate(['/artist', newReleaseId]);
-    this.router.navigate(['/album', newReleaseId]);
+    this.router.navigate(['/spotify/album', newReleaseId]);
   }
 }

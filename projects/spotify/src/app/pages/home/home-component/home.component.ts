@@ -1,30 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 // Models
 import { NewReleasesItem } from '../models/new-releases-model';
 
 // Services
 import { NewReleasesService } from '../services/new-releases.service';
-import { GlobalService} from '../../../services/global.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   public newReleases: NewReleasesItem[] = [];
   // public activeLanguage: string = 'en';
 
-  constructor(
-    private newReleasesService: NewReleasesService,
-    private globalService: GlobalService,
-    private translate: TranslateService
-  ){ /*empty*/ }
+  constructor(private newReleasesService: NewReleasesService){}
 
   ngOnInit(): void {
-    // this.setLanguage();
     this.getNewReleases();
   }
 
@@ -45,10 +38,4 @@ export class HomeComponent implements OnInit {
   public scrollTo(elementId: string): void {
     document.getElementById(elementId).scrollIntoView();
   }
-
-  // set language
-  // public setLanguage(): void {
-  //   this.activeLanguage = this.globalService.getGlobalLanguage();
-  //   this.translate.use(this.activeLanguage);
-  // }
 }
