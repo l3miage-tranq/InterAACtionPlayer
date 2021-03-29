@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-artist-top-track',
   templateUrl: './artist-top-track.component.html',
-  styleUrls: ['./artist-top-track.component.scss']
+  styleUrls: ['./artist-top-track.component.css']
 })
 export class ArtistTopTrackComponent implements OnInit {
   @Input() topTrack: any;

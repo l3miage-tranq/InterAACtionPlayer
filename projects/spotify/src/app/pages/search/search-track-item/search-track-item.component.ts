@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-search-track-item',
   templateUrl: './search-track-item.component.html',
-  styleUrls: ['./search-track-item.component.scss']
+  styleUrls: ['./search-track-item.component.css']
 })
 export class SearchTrackItemComponent implements OnInit {
   @Input() track: any;
@@ -16,7 +16,7 @@ export class SearchTrackItemComponent implements OnInit {
   // navigates to album
   public navigate(track: any): void {
     console.log('id', track.album.id);
-    this.router.navigate(['/album', track.album.id]);
+    this.router.navigate(['/spotify//album', track.album.id]);
   }
 
 }

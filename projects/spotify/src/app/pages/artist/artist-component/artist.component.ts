@@ -9,7 +9,7 @@ import { GlobalService} from '../../../services/global.service';
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
-  styleUrls: ['./artist.component.scss']
+  styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
   public artistId: string = '';

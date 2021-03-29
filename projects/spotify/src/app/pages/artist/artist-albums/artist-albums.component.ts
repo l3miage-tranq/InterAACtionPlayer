@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-artist-albums',
   templateUrl: './artist-albums.component.html',
-  styleUrls: ['./artist-albums.component.scss']
+  styleUrls: ['./artist-albums.component.css']
 })
 export class ArtistAlbumsComponent implements OnInit {
   @Input() album: any;
@@ -14,6 +14,6 @@ export class ArtistAlbumsComponent implements OnInit {
   ngOnInit(): void { /*empty*/ }
 
   public seeAlbum(album: any): void {
-    this.router.navigate(['/album', album.id]);
+    this.router.navigate(['/spotify/album', album.id]);
   }
 }

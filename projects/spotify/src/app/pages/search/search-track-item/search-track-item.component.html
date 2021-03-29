@@ -1,13 +1,15 @@
-<div class="search-track-item animated fadeIn" *ngIf="track" (click)="navigate(track)">
-  <div class="search-track-item__img-container">
-    <img class="search-track-item__img" [src]="track.album.images | errorImage" [alt]="track.name">
-  </div>
-  <div class="search-track-item__title-container">
-    <h4 class="search-track-item__title">{{ track.name }}</h4>
-  </div>
-  <div class="search-track-item__bottom-container">
-    <div class="search-track-item__tracks-container" *ngFor="let track of track.artists">
-      <span class="search-track-item__track">{{ track.name }}</span>
+<div class="column" *ngIf="track" (click)="navigate(track)">
+  <div id="space" class="ui card">
+    <div class="image">
+      <img [src]="track.album.images | errorImage" [alt]="track.name">
+    </div>
+    <div class="content">
+      <a class="header">{{ track.name }}</a>
+      <div class="meta" *ngFor="let track of track.artists">
+        <span>
+          {{ track.name }}
+        </span>
+      </div>
     </div>
   </div>
 </div>

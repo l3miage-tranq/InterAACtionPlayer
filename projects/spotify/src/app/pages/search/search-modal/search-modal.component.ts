@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
-  styleUrls: ['./search-modal.component.scss']
+  styleUrls: ['./search-modal.component.css']
 })
 export class SearchModalComponent implements OnInit {
   @Input() public showModal: boolean = false;

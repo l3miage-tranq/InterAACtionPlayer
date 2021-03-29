@@ -3,6 +3,6 @@
     <img class="album-item__img" [src]="album.images | errorImage" alt="{{ album.name }}">
   </div>
   <div class="album-item__name-container">
-    <a class="album-item__name" [routerLink]="['/album', album.id]">{{ album.name }}</a>
+    <a class="album-item__name" [routerLink]="['/spotify/album', album.id]">{{ album.name }}</a>
   </div>
 </div>

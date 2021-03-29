@@ -9,13 +9,13 @@ export class ErrorImagePipe implements PipeTransform {
   transform(images: any[]): string {
     if (!images) {
       console.log('!images');
-      return 'assets/img/no-image.png';
+      return './assets/no-image.png';
     }
 
     if (images.length > 0) {
       return images[0].url;
     } else {
-      return 'assets/img/no-image.png';
+      return './assets/no-image.png';
     }
   }
 
