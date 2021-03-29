@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 // Modules and Components
-import { PipesModule} from '../../pipes/pipes.module';
+import { PipesModule } from '../../pipes/pipes.module';
 import { ArtistRoutingModule } from './artist-routing.module';
 import { ArtistComponent } from './artist-component/artist.component';
 import { ArtistTopTrackComponent } from './artist-top-track/artist-top-track.component';

@@ -1,8 +1,10 @@
-<div class="album-item" *ngIf="album" (click)="seeAlbum(album)">
-  <div class="album-item__img-container">
-    <img class="album-item__img" [src]="album.images | errorImage" alt="{{ album.name }}">
-  </div>
-  <div class="album-item__name-container">
-    <a class="album-item__name" [routerLink]="['/spotify/album', album.id]">{{ album.name }}</a>
+<div class="column" *ngIf="album" (click)="seeAlbum(album)">
+  <div id="space" class="ui card">
+    <div class="image">
+      <img [src]="album.images | errorImage" alt="{{ album.name }}">
+    </div>
+    <div class="content">
+      <a class="header" [routerLink]="['/spotify/album', album.id]">{{ album.name }}</a>
+    </div>
   </div>
 </div>
