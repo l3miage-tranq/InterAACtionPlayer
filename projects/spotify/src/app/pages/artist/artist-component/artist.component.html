@@ -2,6 +2,10 @@
   <img class="ui small centered circular image" [src]="artist.images | errorImage" [alt]="artist.name">
   <h2 class="ui center aligned header">{{ artist.name }}</h2>
   <h3 class="ui center aligned header">{{ artist.followers.total }} {{ "artist.followers" | translate }}</h3>
+  <button class="ui button" [routerLink]="['/spotify/search']">
+    <i class="left arrow icon"></i>
+    Back to Search
+  </button>
   <h2>Albums</h2>
   <div class="ui four column grid" *ngIf="albums.length > 0">
     <app-artist-albums [album]="album" *ngFor="let album of albums"></app-artist-albums>

@@ -3,6 +3,10 @@
     <img class="ui small centered image" [src]="album.images | errorImage" [alt]="album.name">
     <h6 class="ui centered aligned header">{{ album.type | uppercase}}</h6>
     <h2 class="ui centered aligned header">{{ album.name }}</h2>
+    <button class="ui button" (click)="goBack()">
+      <i class="left arrow icon"></i>
+      Back to Artist
+    </button>
   </div>
   <div class="onCenter">
     <iframe [src]="album.uri | uri" width="600" height="600" frameborsrcder="0" allowtransparency="true" allow="encrypted-media"></iframe>

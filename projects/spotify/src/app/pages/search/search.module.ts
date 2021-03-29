@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search-component/search.component';
 import { SearchArtistItemComponent } from './search-artist-item/search-artist-item.component';
 import { SearchTrackItemComponent } from './search-track-item/search-track-item.component';
-import { SearchModalComponent } from './search-modal/search-modal.component';
 import { SearchRoutingModule } from './search-routing.module';
 import { SharedTranslate } from '../shared/translate/sharedTranslate.module';
 
@@ -21,7 +20,6 @@ import { PipesModule } from '../../pipes/pipes.module';
     SearchComponent,
     SearchArtistItemComponent,
     SearchTrackItemComponent,
-    SearchModalComponent,
   ],
   imports: [
     CommonModule,

@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ArtistRoutingModule } from './artist-routing.module';
 import { ArtistComponent } from './artist-component/artist.component';
-import { ArtistTopTrackComponent } from './artist-top-track/artist-top-track.component';
 import { ArtistAlbumsComponent } from './artist-albums/artist-albums.component';
 import { SharedTranslate } from '../shared/translate/sharedTranslate.module';
 
@@ -18,7 +17,6 @@ import { ArtistService } from './services/artist.service';
 @NgModule({
   declarations: [
     ArtistComponent,
-    ArtistTopTrackComponent,
     ArtistAlbumsComponent
   ],
   imports: [
