@@ -55,6 +55,7 @@ export class AlbumComponent implements OnInit {
   }
 
   public addToPlaylist(item: Item){
+    this.playlistService.addSongToPlaylist(item);
     this.notifier.notify('success', 'Song add to playlist');
   }
 
