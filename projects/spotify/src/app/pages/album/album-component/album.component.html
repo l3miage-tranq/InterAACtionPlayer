@@ -8,7 +8,9 @@
       Back to Artist
     </button>
   </div>
-  <div class="onCenter">
-    <iframe [src]="album.uri | uri" width="600" height="600" frameborsrcder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <div *ngFor="let nbTrack of album.tracks.items; let i = index">
+    <iframe [src]="album.tracks.items[i].uri | uri" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <button id="alignement" class="right attached ui green button" (click)="addToPlaylist(album.tracks.items[i])">Add to Playlist</button>
   </div>
 </div>
+<notifier-container></notifier-container>

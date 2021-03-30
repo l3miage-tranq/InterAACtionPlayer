@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { NotifierService } from 'angular-notifier';
 
 // Services
 import { AlbumService } from '../services/album.service';
+import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
 
 // Models
-import { APIAlbums } from '../models/album-model';
+import {APIAlbums, Item} from '../models/album-model';
+
 
 @Component({
   selector: 'app-album',
@@ -21,6 +24,8 @@ export class AlbumComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private albumService: AlbumService,
     private location: Location,
+    private notifier: NotifierService,
+    private playlistService: PlaylistService,
   ) { /*empty*/ }
 
   ngOnInit(): void {
@@ -47,6 +52,10 @@ export class AlbumComponent implements OnInit {
     }, () => {
       console.log('Album Complete!');
     });
+  }
+
+  public addToPlaylist(item: Item){
+    this.notifier.notify('success', 'Song add to playlist');
   }
 
   // go back to the previous URL
