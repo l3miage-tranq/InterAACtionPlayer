@@ -22,7 +22,9 @@ export class SearchComponent implements OnInit {
   constructor( private searchService: SearchService, private router: Router ) { /*empty*/ }
 
   ngOnInit(): void {
+    this.search('');
     this.onSearch = false;
+    this.showModal = false;
   }
 
   // search both artist and track
