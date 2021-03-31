@@ -64,9 +64,9 @@ export class PlaylistComponent implements OnInit {
 
   goLaunch(elem: Types) {
     this.fullScreen = false;
-    if (elem.videoUrl != null){
+    if (elem.title != null){
       this.currentElem = elem;
-      this.UrlVideoLaunch = elem.videoId;
+      this.UrlVideoLaunch = elem.id;
       this.launch = true;
     }
   }
@@ -89,13 +89,13 @@ export class PlaylistComponent implements OnInit {
       this.PlayList.forEach(elem => {
         if (find){
           find = false;
-          if (elem.videoUrl != null){
+          if (elem.title != null){
             nextElem = elem;
           }else {
             nextElem = this.PlayList[0];
           }
         }
-        if (elem.videoUrl == this.currentElem.videoUrl){
+        if (elem.title == this.currentElem.videoUrl){
           find = true;
         }
       });
@@ -107,13 +107,13 @@ export class PlaylistComponent implements OnInit {
   goPrevious() {
     if (this.PlayList.length > 1){
       for (let i = 0; i < (this.PlayList.length - 1); i++){
-        if (this.PlayList[i].videoUrl == this.currentElem.videoUrl){
+        if (this.PlayList[i].title == this.currentElem.videoUrl){
           if (this.currentElem == this.PlayList[0]){
-            this.UrlVideoLaunch = this.PlayList[this.PlayList.length-1].videoId;
+            this.UrlVideoLaunch = this.PlayList[this.PlayList.length-1].id;
             this.currentElem = this.PlayList[this.PlayList.length-1];
             i = this.PlayList.length;
           }else {
-            this.UrlVideoLaunch = this.PlayList[i - 1].videoId;
+            this.UrlVideoLaunch = this.PlayList[i - 1].id;
             this.currentElem = this.PlayList[i - 1];
           }
         }

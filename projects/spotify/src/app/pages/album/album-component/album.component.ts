@@ -9,6 +9,7 @@ import { PlaylistService } from '../../../../../../../src/app/playlist/services/
 
 // Models
 import {APIAlbums, Item} from '../models/album-model';
+import {Video} from '../../../../../../youtube/src/app/shared/models/search.interface';
 
 
 @Component({
@@ -57,6 +58,15 @@ export class AlbumComponent implements OnInit {
   public addToPlaylist(item: Item){
     this.playlistService.addSongToPlaylist(item);
     this.notifier.notify('success', 'Song add to playlist');
+  }
+
+  public deleteToPlaylist(item: Item){
+    this.playlistService.deleteSongSpotifyToPlaylist(item);
+    this.notifier.notify('success', 'Song delete to playlist');
+  }
+
+  public songAlreadyAddToPlaylist(item: Item){
+    return this.playlistService.songSpotifyAlreadyInPlaylist(item);
   }
 
   // go back to the previous URL

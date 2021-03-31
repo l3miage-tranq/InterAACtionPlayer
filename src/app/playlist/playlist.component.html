@@ -30,12 +30,12 @@
             <a class="header">{{ elem.title }}</a>
             <div class="meta">
               <span class="date">
-                {{ elem.channelTitle }}
+                {{ elem.artists }}
               </span>
               <span class="ui right floated date">{{ elem.publishedAt | date:'mediumDate' }}</span>
             </div>
             <div class="description">
-              {{ elem.description?.slice(0,50) }}...
+              {{ elem.description?.slice(0,50) }}
             </div>
             <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
               Delete

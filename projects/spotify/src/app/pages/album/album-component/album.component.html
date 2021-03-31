@@ -10,7 +10,14 @@
   </div>
   <div *ngFor="let nbTrack of album.tracks.items; let i = index">
     <iframe [src]="album.tracks.items[i].uri | uri" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <button id="alignement" class="right attached ui green button" (click)="addToPlaylist(album.tracks.items[i])">Add to Playlist</button>
+    <button *ngIf="!songAlreadyAddToPlaylist(album.tracks.items[i])"
+            class="right attached ui green button alignement" (click)="addToPlaylist(album.tracks.items[i])">
+      Add to Playlist
+    </button>
+    <button *ngIf="songAlreadyAddToPlaylist(this.album.tracks.items[i])"
+            class="right attached ui red button alignement" (click)="deleteToPlaylist(album.tracks.items[i])">
+      Delete to Playlist
+    </button>
   </div>
 </div>
 <notifier-container></notifier-container>

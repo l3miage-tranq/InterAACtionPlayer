@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Types } from '../model/types-interface';
 import { Item } from '../../../../projects/spotify/src/app/pages/album/models/album-model';
+import { Video } from '../../../../projects/youtube/src/app/shared/models/search.interface'
 
 @Injectable({
   providedIn: 'root'
@@ -8,37 +9,29 @@ import { Item } from '../../../../projects/spotify/src/app/pages/album/models/al
 
 export class PlaylistService {
 
-  btnAdd: Types = {types: "btnAdd",
-    videoId: "btnAddToPlaylistProjectMultimedia",
-    videoUrl: null,
-    channelId: null,
-    channelUrl: null,
-    channelTitle: null,
-    title: null,
-    publishedAt: null,
-    description: null,
-    thumbnail: './assets/Add.png'};
-
   playList: Types[] = [];
 
   constructor() { }
 
-  addVideoYoutubeToPlaylist(video: Types) {
+  addVideoYoutubeToPlaylist(videoY: Video) {
+    let video: Types = {
+      types: "YouTube",
+      id: videoY.videoId,
+      artists: videoY.channelTitle,
+      title: videoY.title,
+      publishedAt: videoY.publishedAt,
+      description: videoY.description,
+      thumbnail: videoY.thumbnail
+    }
     this.playList.push(video);
   }
 
-  addFileToPlaylist(file: File) {
-  }
-
-  addSongToPlaylist(item: Item) {
+  addSongToPlaylist(music: Item) {
     let song: Types = {
-      types: "spotify",
-      videoId: item.uri,
-      videoUrl: null,
-      channelId: null,
-      channelUrl: null,
-      channelTitle: null,
-      title: item.name,
+      types: "Spotify",
+      id: music.uri,
+      artists: music.artists[0].name,
+      title: music.name,
       publishedAt: null,
       description: null,
       thumbnail: './assets/Spotify.png'
@@ -46,8 +39,20 @@ export class PlaylistService {
     this.playList.push(song);
   }
 
+  addFileToPlaylist(file: File) {
+  }
+
   addBtnAdd(){
-    this.playList.push(this.btnAdd);
+    let btnAdd: Types = {
+      types: "btnAdd",
+      id: "btnAddToPlaylistProjectMultimedia",
+      artists: null,
+      title: null,
+      publishedAt: null,
+      description: null,
+      thumbnail: './assets/Add.png'
+    };
+    this.playList.push(btnAdd);
   }
 
   deleteBtnAdd(){
@@ -58,14 +63,31 @@ export class PlaylistService {
     return this.playList = this.playList.filter(value => value.title != elem.title);
   }
 
-  alreadyInPlaylist(elem: Types){
+  deleteVideoYoutubeToPlaylist(elem: Video){
+    return this.playList = this.playList.filter(value => value.id != elem.videoId);
+  }
+
+  deleteSongSpotifyToPlaylist(elem: Item){
+    return this.playList = this.playList.filter(value => value.id != elem.uri);
+  }
+
+  videoYoutubeAlreadyInPlaylist(elem: Video){
     let find = false;
     this.playList.forEach(value => {
-      if ((value.types == elem.types) && (value.title == elem.title)){
+      if (value.id == elem.videoId){
         find = true;
       }
     });
     return find;
   }
 
+  songSpotifyAlreadyInPlaylist(elem: Item){
+    let find = false;
+    this.playList.forEach(value => {
+      if (value.id == elem.uri){
+        find = true;
+      }
+    });
+    return find;
+  }
 }
