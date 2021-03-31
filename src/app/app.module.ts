@@ -35,6 +35,7 @@ const customNotifierOptions: NotifierOptions = {
 
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
+import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: '', redirectTo: 'playlist', pathMatch: 'full'},
     ]),
+    PipesModule,
   ],
   providers: [
     PlaylistService

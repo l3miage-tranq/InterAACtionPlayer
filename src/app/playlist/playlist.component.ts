@@ -19,6 +19,7 @@ export class PlaylistComponent implements OnInit {
   fullScreen = false;
   currentElem = null;
   UrlVideoLaunch = null;
+  typeElem = null;
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
@@ -64,9 +65,10 @@ export class PlaylistComponent implements OnInit {
 
   goLaunch(elem: Types) {
     this.fullScreen = false;
-    if (elem.title != null){
+    if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.UrlVideoLaunch = elem.id;
+      this.typeElem = elem.types;
       this.launch = true;
     }
   }
@@ -79,7 +81,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   getUrl(){
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.UrlVideoLaunch);
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.UrlVideoLaunch)
   }
 
   goNext() {

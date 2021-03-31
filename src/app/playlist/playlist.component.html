@@ -52,7 +52,7 @@
           Previous
         </button>
       </div>
-      <div *ngIf="!fullScreen" class="ui header">
+      <div *ngIf="!fullScreen && typeElem == 'YouTube'" class="ui header">
         <iframe width="560"
                 height="315"
                 [src]="getUrl()"
@@ -61,7 +61,7 @@
                 allowfullscreen>
         </iframe>
       </div>
-      <div *ngIf="fullScreen" class="ui header">
+      <div *ngIf="fullScreen && typeElem == 'YouTube'" class="ui header">
         <iframe id="myVideoYouTube"
                 width="560"
                 height="315"
@@ -71,12 +71,21 @@
                 allowfullscreen>
         </iframe>
       </div>
+      <div *ngIf="typeElem == 'Spotify'" class="ui header">
+        <iframe [src]="currentElem.id | uri"
+                width="500" height="80"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media">
+        </iframe>
+      </div>
       <div class="btnVideo left aligned">
         <button class="ui right labeled icon button" (click)="goNext()">
           <i class="right arrow icon"></i>
           Next
         </button>
-        <button class="ui button" (click)="goFullScreen()">Full screen</button>
+        <button *ngIf="typeElem == 'YouTube'"
+          class="ui button" (click)="goFullScreen()">Full screen</button>
       </div>
     </div>
   </div>
