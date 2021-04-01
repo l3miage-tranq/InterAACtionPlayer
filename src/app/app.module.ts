@@ -9,7 +9,6 @@ import { PlaylistService } from './playlist/services/playlist.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 
 /**
  * Custom angular notifier options
@@ -36,12 +35,14 @@ const customNotifierOptions: NotifierOptions = {
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
+import { ImportfileComponent } from './playlist/importFile/importfile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaylistComponent,
-    DialogChooseTypeComponent
+    DialogChooseTypeComponent,
+    ImportfileComponent
   ],
   imports: [
     BrowserModule,

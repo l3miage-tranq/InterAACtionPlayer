@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PlaylistService } from './services/playlist.service';
 import { DialogChooseTypeComponent } from './dialogChooseType/dialog-choose-type.component';
 import { Router } from '@angular/router';
+import { ImportfileComponent } from './importFile/importfile.component';
 
 @Component({
   selector: 'app-playlist',
@@ -44,6 +45,10 @@ export class PlaylistComponent implements OnInit {
       this.dialog.open(DialogChooseTypeComponent);
       this.goEdit();
     }
+  }
+
+  openImport(){
+    this.dialog.open(ImportfileComponent);
   }
 
   goEdit(): void {
@@ -111,12 +116,4 @@ export class PlaylistComponent implements OnInit {
       }
     }
   }
-
-  goSave() {
-
-  }
-
-  getFile(event) {
-  }
-
 }

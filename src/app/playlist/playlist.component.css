@@ -66,12 +66,3 @@ iframe{
 .title{
   text-align: center;
 }
-
-.addFile{
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}

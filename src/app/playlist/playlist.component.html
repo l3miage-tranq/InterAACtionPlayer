@@ -5,11 +5,10 @@
     </h1>
     <div class="ui secondary menu">
       <div class="right menu">
-        <a class="ui item" (click)="goSave()">
+        <a class="ui item">
           <i class="save icon"></i>
         </a>
-        <input type=file (change)="getFile($event)" class="addFile" id="addLocalFile" />
-        <label for="addLocalFile">
+        <label (click)="openImport()">
           <a class="ui item">
             <i class="upload icon"></i>
           </a>
