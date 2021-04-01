@@ -15,6 +15,6 @@ export class AppComponent implements  OnInit{
 
   ngOnInit(): void {
     this.globalService.accessToken; //initialise le token
-    this.router.navigate(['/spotify/home']);
+    setTimeout(() => this.router.navigate(['/spotify/home']) ,500 ); // attend que le token s'initialise bien
   }
 }

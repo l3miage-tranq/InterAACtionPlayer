@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Types } from '../model/types-interface';
-import { Item } from '../../../../projects/spotify/src/app/pages/album/models/album-model';
+import { Image, Item } from '../../../../projects/spotify/src/app/pages/album/models/album-model';
 import { Video } from '../../../../projects/youtube/src/app/shared/models/search.interface'
 
 @Injectable({
@@ -26,7 +26,7 @@ export class PlaylistService {
     this.playList.push(video);
   }
 
-  addSongToPlaylist(music: Item) {
+  addSongToPlaylist(music: Item, image: Image) {
     let song: Types = {
       types: "Spotify",
       id: music.uri,
@@ -34,7 +34,7 @@ export class PlaylistService {
       title: music.name,
       publishedAt: null,
       description: null,
-      thumbnail: './assets/Spotify.png'
+      thumbnail: image.url
     }
     this.playList.push(song);
   }

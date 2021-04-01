@@ -8,9 +8,7 @@ import { AlbumService } from '../services/album.service';
 import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
 
 // Models
-import {APIAlbums, Item} from '../models/album-model';
-import {Video} from '../../../../../../youtube/src/app/shared/models/search.interface';
-
+import { APIAlbums, Image, Item } from '../models/album-model';
 
 @Component({
   selector: 'app-album',
@@ -55,8 +53,8 @@ export class AlbumComponent implements OnInit {
     });
   }
 
-  public addToPlaylist(item: Item){
-    this.playlistService.addSongToPlaylist(item);
+  public addToPlaylist(item: Item, image: Image){
+    this.playlistService.addSongToPlaylist(item, image);
     this.notifier.notify('success', 'Song add to playlist');
   }
 
