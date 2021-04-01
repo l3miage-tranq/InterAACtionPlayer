@@ -18,14 +18,12 @@ export class PlaylistComponent implements OnInit {
   launch = false;
   fullScreen = false;
   currentElem = null;
-  UrlVideoLaunch = null;
-  typeElem = null;
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
   public dialog: MatDialog;
   private playlistService: PlaylistService;
-  public PlayList: Types[];
+  public playList: Types[];
   private router: Router;
 
   constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router) {
@@ -33,7 +31,7 @@ export class PlaylistComponent implements OnInit {
     this.sanitizer = sanitizer;
     this.dialog = dialog;
     this.playlistService = playlistService;
-    this.PlayList = playlistService.playList;
+    this.playList = playlistService.playList;
     this.router = router;
   }
 
@@ -54,21 +52,19 @@ export class PlaylistComponent implements OnInit {
       this.playlistService.addBtnAdd();
       this.notifier.notify('warning', 'Edit mode ON');
     }else {
-      this.PlayList = this.playlistService.deleteBtnAdd();
+      this.playList = this.playlistService.deleteBtnAdd();
       this.notifier.notify('warning', 'Edit mode OFF');
     }
   }
 
   goDelete(elem: Types): void {
-    this.PlayList = this.playlistService.deleteToPlaylist(elem);
+    this.playList = this.playlistService.deleteToPlaylist(elem);
   }
 
   goLaunch(elem: Types) {
     this.fullScreen = false;
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
-      this.UrlVideoLaunch = elem.id;
-      this.typeElem = elem.types;
       this.launch = true;
     }
   }
@@ -77,46 +73,39 @@ export class PlaylistComponent implements OnInit {
     this.fullScreen = true;
     const elem = document.getElementById("myVideoYouTube");
     elem.requestFullscreen();
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.UrlVideoLaunch + "?autoplay=1");
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id + "?autoplay=1");
   }
 
   getUrl(){
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.UrlVideoLaunch)
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id)
   }
 
   goNext() {
-    if (this.PlayList.length > 2){
-      let nextElem = null;
-      let find = false;
-      this.PlayList.forEach(elem => {
-        if (find){
-          find = false;
-          if (elem.title != null){
-            nextElem = elem;
+    if (this.playList.length > 1){
+      for (let i = 0; i < this.playList.length; i++ ){
+        if (this.currentElem.id == this.playList[i].id){
+          if (i == (this.playList.length - 1)){
+            this.currentElem = this.playList[0];
+            break;
           }else {
-            nextElem = this.PlayList[0];
+            this.currentElem = this.playList[i+1];
+            break;
           }
         }
-        if (elem.title == this.currentElem.videoUrl){
-          find = true;
-        }
-      });
-      this.UrlVideoLaunch = nextElem.videoId;
-      this.currentElem = nextElem;
+      }
     }
   }
 
   goPrevious() {
-    if (this.PlayList.length > 1){
-      for (let i = 0; i < (this.PlayList.length - 1); i++){
-        if (this.PlayList[i].title == this.currentElem.videoUrl){
-          if (this.currentElem == this.PlayList[0]){
-            this.UrlVideoLaunch = this.PlayList[this.PlayList.length-1].id;
-            this.currentElem = this.PlayList[this.PlayList.length-1];
-            i = this.PlayList.length;
+    if (this.playList.length > 1){
+      for (let i = 0; i < this.playList.length; i++ ){
+        if (this.currentElem.id == this.playList[i].id){
+          if (i == 0){
+            this.currentElem = this.playList[this.playList.length - 1];
+            break;
           }else {
-            this.UrlVideoLaunch = this.PlayList[i - 1].id;
-            this.currentElem = this.PlayList[i - 1];
+            this.currentElem = this.playList[i-1];
+            break;
           }
         }
       }

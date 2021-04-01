@@ -21,7 +21,7 @@
     </div>
     <hr>
     <div class="ui four column grid">
-      <div class="column" *ngFor="let elem of PlayList; let isLast = last;">
+      <div class="column" *ngFor="let elem of playList; let isLast = last;">
         <div class="ui card" (click)="goLaunch(this.elem)">
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
@@ -52,7 +52,7 @@
           Previous
         </button>
       </div>
-      <div *ngIf="!fullScreen && typeElem == 'YouTube'" class="ui header">
+      <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
         <iframe width="560"
                 height="315"
                 [src]="getUrl()"
@@ -61,7 +61,7 @@
                 allowfullscreen>
         </iframe>
       </div>
-      <div *ngIf="fullScreen && typeElem == 'YouTube'" class="ui header">
+      <div *ngIf="fullScreen && currentElem.types == 'YouTube'" class="ui header">
         <iframe id="myVideoYouTube"
                 width="560"
                 height="315"
@@ -71,7 +71,7 @@
                 allowfullscreen>
         </iframe>
       </div>
-      <div *ngIf="typeElem == 'Spotify'" class="ui header">
+      <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
         <iframe [src]="currentElem.id | uri"
                 width="500" height="80"
                 frameborder="0"
@@ -84,7 +84,7 @@
           <i class="right arrow icon"></i>
           Next
         </button>
-        <button *ngIf="typeElem == 'YouTube'"
+        <button *ngIf="currentElem.types == 'YouTube'"
           class="ui button" (click)="goFullScreen()">Full screen</button>
       </div>
     </div>
