@@ -7,6 +7,7 @@ import { PlaylistService } from './services/playlist.service';
 import { DialogChooseTypeComponent } from './dialogChooseType/dialog-choose-type.component';
 import { Router } from '@angular/router';
 import { ImportfileComponent } from './importFile/importfile.component';
+import {isLineBreak} from 'codelyzer/angular/sourceMappingVisitor';
 
 @Component({
   selector: 'app-playlist',
@@ -83,6 +84,11 @@ export class PlaylistComponent implements OnInit {
 
   getUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id)
+  }
+
+  getAudio(){
+    let audio = new Audio(this.currentElem.id);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(audio.src);
   }
 
   goNext() {

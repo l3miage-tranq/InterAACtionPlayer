@@ -36,6 +36,7 @@ import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
 import { ImportfileComponent } from './playlist/importFile/importfile.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,22 +45,23 @@ import { ImportfileComponent } from './playlist/importFile/importfile.component'
     DialogChooseTypeComponent,
     ImportfileComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    NotifierModule.withConfig(customNotifierOptions),
-    MatDialogModule,
-    RouterModule,
-    YoutubeSharedModule.forRoot(),
-    SpotifySharedModule.forRoot(),
-    RouterModule.forRoot([
-      {path: 'playlist', component: PlaylistComponent},
-      {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
-      {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
-      {path: '', redirectTo: 'playlist', pathMatch: 'full'},
-    ]),
-    PipesModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        NotifierModule.withConfig(customNotifierOptions),
+        MatDialogModule,
+        RouterModule,
+        YoutubeSharedModule.forRoot(),
+        SpotifySharedModule.forRoot(),
+        RouterModule.forRoot([
+            {path: 'playlist', component: PlaylistComponent},
+            {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+            {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+            {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+        ]),
+        PipesModule,
+        FormsModule,
+    ],
   providers: [
     PlaylistService
   ],

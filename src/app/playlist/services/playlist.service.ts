@@ -39,7 +39,17 @@ export class PlaylistService {
     this.playList.push(song);
   }
 
-  addFileToPlaylist(file: File) {
+  addFileToPlaylist(song: any, typeFile: string, titleFileInput: string, artistFileInput: string) {
+    let songFile: Types = {
+      types: typeFile,
+      id: song,
+      artists: artistFileInput,
+      title: titleFileInput,
+      publishedAt: null,
+      description: null,
+      thumbnail: './assets/Music.png'
+    }
+    this.playList.push(songFile);
   }
 
   addBtnAdd(){

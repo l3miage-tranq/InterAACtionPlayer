@@ -78,6 +78,15 @@
                 allow="encrypted-media">
         </iframe>
       </div>
+      <div *ngIf="currentElem.types == 'song'" class="ui header">
+        <figure>
+          <figcaption>{{currentElem.title}}</figcaption>
+          <audio preload="none" controls loop>
+            <source [src]="getAudio()">
+          </audio>
+          <figcaption>{{currentElem.artists}}</figcaption>
+        </figure>
+      </div>
       <div class="btnVideo left aligned">
         <button class="ui right labeled icon button" (click)="goNext()">
           <i class="right arrow icon"></i>
