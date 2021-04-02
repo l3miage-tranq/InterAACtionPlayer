@@ -87,6 +87,15 @@
           <figcaption>{{currentElem.artists}}</figcaption>
         </figure>
       </div>
+      <div *ngIf="currentElem.types == 'video'" class="ui header">
+        <figure>
+          <figcaption>{{currentElem.title}}</figcaption>
+          <video controls width="560" height="315">
+            <source [src]="getVideo()">
+          </video>
+          <figcaption>{{currentElem.artists}}</figcaption>
+        </figure>
+      </div>
       <div class="btnVideo left aligned">
         <button class="ui right labeled icon button" (click)="goNext()">
           <i class="right arrow icon"></i>

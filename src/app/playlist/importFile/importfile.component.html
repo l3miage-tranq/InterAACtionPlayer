@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>
+  Add Local Song To Playlist
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div class="field">
+      <label>Type of Files</label>
+      <div class="inline fields">
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="type" checked="checked" (click)="getTypeSong()">
+            <label>Song</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="type" (click)="getTypeVideo()">
+            <label>Video</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="required field">
+      <label>Title of Song</label>
+      <input type="text" placeholder="{{ titleFilePlaceholder }}" id="titleSong" (keyup)="getTitle($event)">
+      <div class="ui error message">
+        <p *ngIf="errorEmptyTitle">Need a title !</p>
+      </div>
+    </div>
+    <div class="field">
+      <label>Artist of Song</label>
+      <input type="text" placeholder="{{ artistFilePlaceholder }}" id="artistSong" (keyup)="getArtist($event)">
+    </div>
+    <div class="required field">
+      <label>Song</label>
+      <input class="ui button" type="file" (change)="addFile($event)"/>
+      <div class="ui error message">
+        <p *ngIf="errorEmptyFile">Need a file !</p>
+        <p *ngIf="errorWrongFile">Wrong file !</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">Cancel</button>
+  <button class="ui button" (click)="submit()">Add</button>
+</div>

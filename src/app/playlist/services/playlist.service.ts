@@ -40,6 +40,14 @@ export class PlaylistService {
   }
 
   addFileToPlaylist(song: any, typeFile: string, titleFileInput: string, artistFileInput: string) {
+
+    let img = './assets/no-image.png';
+    if (typeFile == 'song'){
+      img = './assets/Music.png';
+    }else if (typeFile == 'video'){
+      img = './assets/video.png';
+    }
+
     let songFile: Types = {
       types: typeFile,
       id: song,
@@ -47,7 +55,7 @@ export class PlaylistService {
       title: titleFileInput,
       publishedAt: null,
       description: null,
-      thumbnail: './assets/Music.png'
+      thumbnail: img
     }
     this.playList.push(songFile);
   }
