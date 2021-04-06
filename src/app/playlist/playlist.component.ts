@@ -4,10 +4,11 @@ import { NotifierService } from 'angular-notifier';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { PlaylistService } from './services/playlist.service';
-import { DialogChooseTypeComponent } from './dialogChooseType/dialog-choose-type.component';
+import { DialogChooseTypeComponent } from './dialogComponents/dialogChooseType/dialog-choose-type.component';
 import { Router } from '@angular/router';
-import { ImportfileComponent } from './importFile/importfile.component';
+import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { SaveService } from '../services/save.service';
+import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
 
 @Component({
   selector: 'app-playlist',
@@ -41,18 +42,25 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {
     new DialogChooseTypeComponent(this.router, this.dialog);
-    setTimeout(() => this.playList = this.playlistService.playList ,500 );
+    setTimeout(() => this.playList = this.playlistService.playList ,500 ); // permet de laisser le temps de charger la playlist sauvegarder dans la playlist
   }
 
   openDialog(elem: Types): void{
     if (elem.types == "btnAdd") {
-      this.dialog.open(DialogChooseTypeComponent);
       this.goEdit();
+      this.dialog.open(DialogChooseTypeComponent);
     }
   }
 
   openImport(){
     this.dialog.open(ImportfileComponent);
+  }
+
+  openSave(){
+    if (this.edit){
+      this.goEdit();
+    }
+    this.dialog.open(SaveDialogComponent);
   }
 
   goEdit(): void {
@@ -78,18 +86,9 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
-  goSave(){
-    if (this.edit){
-      this.goEdit();
-    }
-    this.saveService.updatePlaylist();
-    this.notifier.notify('warning', 'Save Done !');
-  }
-
   goFullScreen(){
     this.fullScreen = true;
-    const elem = document.getElementById("myVideoYouTube");
-    elem.requestFullscreen();
+    document.getElementById("myVideoYouTube").requestFullscreen();
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id + "?autoplay=1");
   }
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { PlaylistComponent } from './playlist/playlist.component';
-import { DialogChooseTypeComponent } from './playlist/dialogChooseType/dialog-choose-type.component';
+import { DialogChooseTypeComponent } from './playlist/dialogComponents/dialogChooseType/dialog-choose-type.component';
 import { PlaylistService } from './playlist/services/playlist.service';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -35,15 +35,17 @@ const customNotifierOptions: NotifierOptions = {
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
-import { ImportfileComponent } from './playlist/importFile/importfile.component';
+import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import {FormsModule} from '@angular/forms';
+import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaylistComponent,
     DialogChooseTypeComponent,
-    ImportfileComponent
+    ImportfileComponent,
+    SaveDialogComponent
   ],
     imports: [
         BrowserModule,

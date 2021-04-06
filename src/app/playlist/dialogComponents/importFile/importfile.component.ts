@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PlaylistService } from '../services/playlist.service';
+import { PlaylistService } from '../../services/playlist.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-importfile',
@@ -22,7 +23,7 @@ export class ImportfileComponent implements OnInit {
   public errorEmptyTitle = false;
 
 
-  constructor(private dialog: MatDialog, private playlistService: PlaylistService) { }
+  constructor(private dialog: MatDialog, private playlistService: PlaylistService, private notifier: NotifierService) { }
 
   ngOnInit(){
   }
@@ -86,6 +87,7 @@ export class ImportfileComponent implements OnInit {
           this.errorEmptyTitle = false
           this.playlistService.addFileToPlaylist(this.fileUpload, this.typeFile, this.titleFileInput, this.artistFileInput);
           this.dialog.closeAll();
+          this.notifier.notify('warning', this.typeFile + ' add to playlist !');
         }else {
           this.errorEmptyTitle = true;
         }
