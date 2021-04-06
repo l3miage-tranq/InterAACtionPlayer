@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Types} from '../playlist/model/types-interface';
-import {PlaylistService} from '../playlist/services/playlist.service';
+import { PlaylistService } from '../playlist/services/playlist.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +7,19 @@ import {PlaylistService} from '../playlist/services/playlist.service';
 export class SaveService {
 
   openRequest;
-  playlistService: PlaylistService
+  playlistService: PlaylistService;
 
   constructor(playlistService: PlaylistService) {
     this.playlistService = playlistService;
+    this.initPlaylist();
   }
 
   initPlaylist(){
 
     this.openRequest = indexedDB.open('SavePlaylist', 2);
 
+    // Creation of Store
     this.openRequest.onupgradeneeded = event => {
-
-      // Creation of Store
       const db = event.target.result;
       const transaction = event.target.transaction;
 
@@ -57,7 +56,7 @@ export class SaveService {
     this.openRequest.onsuccess = event => {
       const db = event.target.result;
 
-      // UPDATE THE SCENE
+      // UPDATE THE PLAYLIST
       const scenesStore = db.transaction(['Playlist'], 'readwrite');
       const scenesObjectStore = scenesStore.objectStore('Playlist');
       const storeScenesRequest = scenesObjectStore.get(1);

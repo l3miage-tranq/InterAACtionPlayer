@@ -41,6 +41,7 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {
     new DialogChooseTypeComponent(this.router, this.dialog);
+    setTimeout(() => this.playList = this.playlistService.playList ,500 );
   }
 
   openDialog(elem: Types): void{
@@ -78,7 +79,11 @@ export class PlaylistComponent implements OnInit {
   }
 
   goSave(){
+    if (this.edit){
+      this.goEdit();
+    }
     this.saveService.updatePlaylist();
+    this.notifier.notify('warning', 'Save Done !');
   }
 
   goFullScreen(){
