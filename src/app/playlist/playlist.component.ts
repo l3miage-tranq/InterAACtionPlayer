@@ -7,6 +7,7 @@ import { PlaylistService } from './services/playlist.service';
 import { DialogChooseTypeComponent } from './dialogChooseType/dialog-choose-type.component';
 import { Router } from '@angular/router';
 import { ImportfileComponent } from './importFile/importfile.component';
+import { SaveService } from '../services/save.service';
 
 @Component({
   selector: 'app-playlist',
@@ -26,14 +27,16 @@ export class PlaylistComponent implements OnInit {
   private playlistService: PlaylistService;
   public playList: Types[];
   private router: Router;
+  private saveService: SaveService;
 
-  constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router) {
+  constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router, saveService: SaveService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
     this.playlistService = playlistService;
     this.playList = playlistService.playList;
     this.router = router;
+    this.saveService = saveService;
   }
 
   ngOnInit(): void {
@@ -72,6 +75,10 @@ export class PlaylistComponent implements OnInit {
       this.currentElem = elem;
       this.launch = true;
     }
+  }
+
+  goSave(){
+    this.saveService.updatePlaylist();
   }
 
   goFullScreen(){
