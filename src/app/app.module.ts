@@ -38,6 +38,7 @@ import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import {FormsModule} from '@angular/forms';
 import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
+import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save
     PlaylistComponent,
     DialogChooseTypeComponent,
     ImportfileComponent,
-    SaveDialogComponent
+    SaveDialogComponent,
+    SettingsComponent
   ],
     imports: [
         BrowserModule,

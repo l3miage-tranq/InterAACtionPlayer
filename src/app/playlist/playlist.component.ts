@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { SaveService } from '../services/save.service';
 import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
+import { SettingsComponent } from './dialogComponents/settings/settings.component';
 
 @Component({
   selector: 'app-playlist',
@@ -61,6 +62,10 @@ export class PlaylistComponent implements OnInit {
       this.goEdit();
     }
     this.dialog.open(SaveDialogComponent);
+  }
+
+  openSettings(){
+    this.dialog.open(SettingsComponent);
   }
 
   goEdit(): void {
