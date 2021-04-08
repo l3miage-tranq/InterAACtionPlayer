@@ -23,11 +23,17 @@
     </div>
     <hr>
     <div class="ui four column grid">
-      <div class="column" *ngFor="let elem of playList; let isLast = last;">
-        <div class="ui card" (click)="goLaunch(this.elem)">
+      <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
+        <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)" (mouseenter)="showProgressIndicator(elem.id, index)" (mouseleave)="hideProgressIndicator(elem.id, index)">
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
           </div>
+          <mat-progress-spinner [id]="index"
+                                class="progressIndicator"
+                                color="warn"
+                                mode="determinate"
+                                [value]="spinnerValue">
+          </mat-progress-spinner>
           <div class="content" *ngIf="elem.types != 'btnAdd'">
             <a class="header">{{ elem.title }}</a>
             <div class="meta">

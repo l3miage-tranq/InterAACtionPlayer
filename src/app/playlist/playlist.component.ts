@@ -10,6 +10,7 @@ import { ImportfileComponent } from './dialogComponents/importFile/importfile.co
 import { SaveService } from '../services/save.service';
 import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
+import { DwelltimeService } from '../services/dwelltime.service';
 
 @Component({
   selector: 'app-playlist',
@@ -22,6 +23,8 @@ export class PlaylistComponent implements OnInit {
   launch = false;
   fullScreen = false;
   currentElem = null;
+  timeout = null;
+  spinnerValue = 0;
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
@@ -30,8 +33,9 @@ export class PlaylistComponent implements OnInit {
   public playList: Types[];
   private router: Router;
   private saveService: SaveService;
+  private dwelltimeService: DwelltimeService;
 
-  constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router, saveService: SaveService) {
+  constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router, saveService: SaveService, dwelltimeService: DwelltimeService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -39,6 +43,7 @@ export class PlaylistComponent implements OnInit {
     this.playList = playlistService.playList;
     this.router = router;
     this.saveService = saveService;
+    this.dwelltimeService = dwelltimeService;
   }
 
   ngOnInit(): void {
@@ -140,5 +145,41 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
+  }
+
+  showProgressIndicator(cardId: string, spinnerId: number) {
+    const card = document.getElementById(cardId);
+    const spinner = document.getElementById(String(spinnerId));
+
+    card.style.opacity = '0.5';
+    spinner.style.visibility = 'visible';
+
+    this.startInterval(cardId, spinnerId, card);
+  }
+
+  hideProgressIndicator(cardId: string, spinnerId: number) {
+    const card = document.getElementById(cardId);
+    const spinner = document.getElementById(String(spinnerId));
+
+    card.style.opacity = '1';
+    spinner.style.visibility = 'hidden';
+
+    this.stopInterval();
+    this.spinnerValue = 0;
+  }
+
+  startInterval(cardId: string, spinnerId: number, card: HTMLElement) {
+    this.timeout = setInterval(() => {
+      if (this.spinnerValue == 100){
+        this.hideProgressIndicator(cardId, spinnerId);
+        card.click();
+      }else {
+        this.spinnerValue++;
+      }
+    }, (this.dwelltimeService.dwellTimeValue / 100));
+  }
+
+  stopInterval(){
+    clearInterval(this.timeout);
   }
 }

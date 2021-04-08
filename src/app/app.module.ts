@@ -7,6 +7,7 @@ import { DialogChooseTypeComponent } from './playlist/dialogComponents/dialogCho
 import { PlaylistService } from './playlist/services/playlist.service';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,9 +35,9 @@ const customNotifierOptions: NotifierOptions = {
 
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
-import {PipesModule} from '../../projects/spotify/src/app/pipes/pipes.module';
+import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 
@@ -49,23 +50,24 @@ import { SettingsComponent } from './playlist/dialogComponents/settings/settings
     SaveDialogComponent,
     SettingsComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        NotifierModule.withConfig(customNotifierOptions),
-        MatDialogModule,
-        RouterModule,
-        YoutubeSharedModule.forRoot(),
-        SpotifySharedModule.forRoot(),
-        RouterModule.forRoot([
-            {path: 'playlist', component: PlaylistComponent},
-            {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
-            {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
-            {path: '', redirectTo: 'playlist', pathMatch: 'full'},
-        ]),
-        PipesModule,
-        FormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    NotifierModule.withConfig(customNotifierOptions),
+    MatDialogModule,
+    RouterModule,
+    YoutubeSharedModule.forRoot(),
+    SpotifySharedModule.forRoot(),
+    RouterModule.forRoot([
+      {path: 'playlist', component: PlaylistComponent},
+      {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+      {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+      {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+    ]),
+    PipesModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+  ],
   providers: [
     PlaylistService
   ],

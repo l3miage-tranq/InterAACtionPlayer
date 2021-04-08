@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class DwelltimeService {
 
   dwellTime: boolean = false;
-  dwellTimeValue = 500;
+  dwellTimeValue = 1000;
 
   constructor() { }
-
 }
