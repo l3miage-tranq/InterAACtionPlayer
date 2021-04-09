@@ -55,9 +55,19 @@
     <hr>
     <div *ngIf="launch" class="ui three column grid centered">
       <div class="btnVideo right aligned">
-        <button id="previousBtn" class="ui left labeled icon button" (click)="goPrevious()">
+        <button id="previousBtn" class="ui left labeled icon button"
+                (click)="goPrevious()"
+                (mouseenter)="showProgressIndicator('previousBtn', 'previousProgressSpinner')"
+                (mouseleave)="hideProgressIndicator('previousBtn', 'previousProgressSpinner')">
           <i class="left arrow icon"></i>
           Previous
+          <mat-progress-spinner id="previousProgressSpinner"
+                                class="progressIndicator"
+                                color="warn"
+                                mode="determinate"
+                                [value]="spinnerValue"
+                                disabled>
+          </mat-progress-spinner>
         </button>
       </div>
       <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
@@ -106,9 +116,18 @@
         </figure>
       </div>
       <div class="btnVideo left aligned">
-        <button class="ui right labeled icon button" (click)="goNext()">
+        <button id="nextBtn" class="ui right labeled icon button"
+                (click)="goNext()"
+                (mouseenter)="showProgressIndicator('nextBtn', 'nextProgressSpinner')"
+                (mouseleave)="hideProgressIndicator('nextBtn', 'nextProgressSpinner')">
           <i class="right arrow icon"></i>
           Next
+          <mat-progress-spinner id="nextProgressSpinner"
+                                class="progressIndicator"
+                                color="warn"
+                                mode="determinate"
+                                [value]="spinnerValue">
+          </mat-progress-spinner>
         </button>
         <button *ngIf="currentElem.types == 'YouTube'"
           class="ui button" (click)="goFullScreen()">

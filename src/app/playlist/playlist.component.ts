@@ -22,6 +22,7 @@ export class PlaylistComponent implements OnInit {
   edit = false;
   launch = false;
   fullScreen = false;
+  clicked = false;
   currentElem = null;
   timeout = null;
   spinnerValue = 0;
@@ -142,20 +143,22 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
-  showProgressIndicator(cardId: string, spinnerId: number) {
-    if (this.dwelltimeService.dwellTime && (cardId != 'btnAddToPlaylistProjectMultimedia')){
-      const card = document.getElementById(cardId);
+  showProgressIndicator(elemId: string, spinnerId: any) {
+    if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistProjectMultimedia')){
+      const id = document.getElementById(elemId);
       const spinner = document.getElementById(String(spinnerId));
 
-      card.style.opacity = '0.5';
+      id.style.opacity = '0.5';
       spinner.style.visibility = 'visible';
 
-      this.startInterval(cardId, spinnerId, card);
+      this.clicked = false;
+      this.spinnerValue = 0;
+      this.startInterval(elemId, spinnerId, id);
     }
   }
 
-  hideProgressIndicator(cardId: string, spinnerId: number) {
-    const card = document.getElementById(cardId);
+  hideProgressIndicator(elemId: string, spinnerId: any) {
+    const card = document.getElementById(elemId);
     const spinner = document.getElementById(String(spinnerId));
 
     card.style.opacity = '1';
@@ -165,12 +168,16 @@ export class PlaylistComponent implements OnInit {
     this.spinnerValue = 0;
   }
 
-  startInterval(cardId: string, spinnerId: number, card: HTMLElement) {
+  startInterval(elemId: string, spinnerId: any, id: HTMLElement) {
     this.timeout = setInterval(() => {
       if (this.spinnerValue == 100){
         setTimeout(() => {
-          this.hideProgressIndicator(cardId, spinnerId);
-          card.click();
+          if (!this.clicked){
+            this.clicked = true;
+            this.hideProgressIndicator(elemId, spinnerId);
+            id.click();
+            console.log("click");
+          }
         } ,500 );
       }else {
         this.spinnerValue++;
