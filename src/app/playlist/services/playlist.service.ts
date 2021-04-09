@@ -43,7 +43,7 @@ export class PlaylistService {
 
     let img = './assets/no-image.png';
     if (typeFile == 'song'){
-      img = './assets/Music.png';
+      img = './assets/Music.jpeg';
     }else if (typeFile == 'video'){
       img = './assets/video.png';
     }

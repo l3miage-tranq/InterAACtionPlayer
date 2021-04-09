@@ -102,16 +102,11 @@ export class PlaylistComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id + "?autoplay=1");
   }
 
-  getUrl(){
+  getYoutubeUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id)
   }
 
-  getAudio(){
-    let audio = new Audio(this.currentElem.id);
-    return this.sanitizer.bypassSecurityTrustResourceUrl(audio.src);
-  }
-
-  getVideo(){
+  getSrcFile(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentElem.id);
   }
 
@@ -171,15 +166,17 @@ export class PlaylistComponent implements OnInit {
   startInterval(cardId: string, spinnerId: number, card: HTMLElement) {
     this.timeout = setInterval(() => {
       if (this.spinnerValue == 100){
-        this.hideProgressIndicator(cardId, spinnerId);
-        card.click();
+        setTimeout(() => {
+          this.hideProgressIndicator(cardId, spinnerId);
+          card.click();
+        } ,500 );
       }else {
         this.spinnerValue++;
       }
-    }, (this.dwelltimeService.dwellTimeValue / 100));
+    }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
 
   stopInterval(){
-    clearInterval(this.timeout);
+    window.clearInterval(this.timeout);
   }
 }

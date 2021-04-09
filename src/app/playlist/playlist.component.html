@@ -55,7 +55,7 @@
     <hr>
     <div *ngIf="launch" class="ui three column grid centered">
       <div class="btnVideo right aligned">
-        <button class="ui left labeled icon button" (click)="goPrevious()">
+        <button id="previousBtn" class="ui left labeled icon button" (click)="goPrevious()">
           <i class="left arrow icon"></i>
           Previous
         </button>
@@ -63,7 +63,7 @@
       <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
         <iframe width="560"
                 height="315"
-                [src]="getUrl()"
+                [src]="getYoutubeUrl()"
                 frameborder="0"
                 allow="autoplay"
                 allowfullscreen>
@@ -90,8 +90,8 @@
       <div *ngIf="currentElem.types == 'song'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <audio preload="none" controls loop>
-            <source [src]="getAudio()">
+          <audio preload="metadata" controls>
+            <source [src]="getSrcFile()">
           </audio>
           <figcaption>{{currentElem.artists}}</figcaption>
         </figure>
@@ -99,8 +99,8 @@
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <video controls width="560" height="315">
-            <source [src]="getVideo()">
+          <video preload="metadata" controls width="560" height="315">
+            <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>
         </figure>
@@ -111,7 +111,9 @@
           Next
         </button>
         <button *ngIf="currentElem.types == 'YouTube'"
-          class="ui button" (click)="goFullScreen()">Full screen</button>
+          class="ui button" (click)="goFullScreen()">
+          Full screen
+        </button>
       </div>
     </div>
   </div>
