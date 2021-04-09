@@ -143,13 +143,15 @@ export class PlaylistComponent implements OnInit {
   }
 
   showProgressIndicator(cardId: string, spinnerId: number) {
-    const card = document.getElementById(cardId);
-    const spinner = document.getElementById(String(spinnerId));
+    if (this.dwelltimeService.dwellTime && (cardId != 'btnAddToPlaylistProjectMultimedia')){
+      const card = document.getElementById(cardId);
+      const spinner = document.getElementById(String(spinnerId));
 
-    card.style.opacity = '0.5';
-    spinner.style.visibility = 'visible';
+      card.style.opacity = '0.5';
+      spinner.style.visibility = 'visible';
 
-    this.startInterval(cardId, spinnerId, card);
+      this.startInterval(cardId, spinnerId, card);
+    }
   }
 
   hideProgressIndicator(cardId: string, spinnerId: number) {
