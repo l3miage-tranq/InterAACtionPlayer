@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Types } from './model/types-interface';
 import { NotifierService } from 'angular-notifier';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -18,6 +18,9 @@ import { DwelltimeService } from '../services/dwelltime.service';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
+
+  @ViewChild('myVideo') myvideo: ElementRef;
+  @ViewChild('myAudio') myaudio: ElementRef;
 
   edit = false;
   launch = false;
@@ -138,6 +141,22 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  goPlay(){
+    if (this.currentElem.types == 'video'){
+      this.myvideo.nativeElement.play();
+    }else if (this.currentElem.types == 'song'){
+      this.myaudio.nativeElement.play();
+    }
+  }
+
+  goPause(){
+    if (this.currentElem.types == 'video'){
+      this.myvideo.nativeElement.pause();
+    }else if (this.currentElem.types == 'song'){
+      this.myaudio.nativeElement.pause();
+    }
+  }
+
   showProgressIndicator(elemId: string, spinnerId: any) {
     if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistProjectMultimedia')){
       const id = document.getElementById(elemId);
@@ -177,5 +196,4 @@ export class PlaylistComponent implements OnInit {
       }
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
-
 }

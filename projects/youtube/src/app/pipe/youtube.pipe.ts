@@ -11,7 +11,8 @@ export class YoutubePipe implements PipeTransform {
   // receives url and verifies security
   transform( value: string): any {
     const url = "https://www.youtube-nocookie.com/embed/";
-    return this.domSanitizer.bypassSecurityTrustResourceUrl( url + value );
+    const noSuggestVideo = "?rel=0";
+    return this.domSanitizer.bypassSecurityTrustResourceUrl( url + value + noSuggestVideo);
   }
 
 }

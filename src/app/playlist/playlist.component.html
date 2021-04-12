@@ -100,19 +100,39 @@
       <div *ngIf="currentElem.types == 'song'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <audio preload="metadata" controls>
+          <audio preload="metadata" controls #myAudio>
             <source [src]="getSrcFile()">
           </audio>
           <figcaption>{{currentElem.artists}}</figcaption>
+          <figcaption>
+            <button class="ui labeled icon button" (click)="goPlay()">
+              <i class="play icon"></i>
+              Play
+            </button>
+            <button class="ui right labeled icon button" (click)="goPause()">
+              <i class="pause icon"></i>
+              Pause
+            </button>
+          </figcaption>
         </figure>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <video controls preload="metadata" width="560" height="315">
+          <video controls muted preload="metadata" width="560" height="315" #myVideo>
             <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>
+          <figcaption>
+            <button class="ui labeled icon button" (click)="goPlay()">
+              <i class="play icon"></i>
+              Play
+            </button>
+            <button class="ui right labeled icon button" (click)="goPause()">
+              <i class="pause icon"></i>
+              Pause
+            </button>
+          </figcaption>
         </figure>
       </div>
       <div class="btnVideo left aligned">
