@@ -22,10 +22,9 @@ export class PlaylistComponent implements OnInit {
   edit = false;
   launch = false;
   fullScreen = false;
-  clicked = false;
   currentElem = null;
   timeout = null;
-  spinnerValue = 0;
+  spinnerValue: number = 0;
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
@@ -151,8 +150,6 @@ export class PlaylistComponent implements OnInit {
       id.style.opacity = '0.5';
       spinner.style.visibility = 'visible';
 
-      this.clicked = false;
-      this.spinnerValue = 0;
       this.startInterval(elemId, spinnerId, id);
     }
   }
@@ -164,28 +161,25 @@ export class PlaylistComponent implements OnInit {
     card.style.opacity = '1';
     spinner.style.visibility = 'hidden';
 
-    this.stopInterval();
+    clearInterval(this.timeout);
     this.spinnerValue = 0;
   }
 
   startInterval(elemId: string, spinnerId: any, id: HTMLElement) {
+    this.spinnerValue = 0;
     this.timeout = setInterval(() => {
       if (this.spinnerValue == 100){
-        setTimeout(() => {
-          if (!this.clicked){
-            this.clicked = true;
-            this.hideProgressIndicator(elemId, spinnerId);
-            id.click();
-            console.log("click");
-          }
-        } ,500 );
+        clearInterval(this.timeout);
+        console.log("click");
+        setTimeout( () => {
+          this.hideProgressIndicator(elemId, spinnerId);
+          id.click();
+        }, 500);
       }else {
         this.spinnerValue++;
+        console.log("value +1");
       }
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
 
-  stopInterval(){
-    window.clearInterval(this.timeout);
-  }
 }
