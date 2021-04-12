@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchContainerComponent } from './search/container/search-container.component';
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
 import { SearchListComponent } from './search/components/search-list/search-list.component';
+import { YoutubePipe } from './pipe/youtube.pipe';
 
 /**
  * Custom angular notifier options
@@ -33,15 +34,19 @@ const providers = [];
     AppComponent,
     SearchContainerComponent,
     SearchInputComponent,
-    SearchListComponent
+    SearchListComponent,
+    YoutubePipe
   ],
   imports: [
     BrowserModule,
     NotifierModule.withConfig(customNotifierOptions),
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: providers,
+  exports: [
+    YoutubePipe
+  ],
   bootstrap: [
     AppComponent
   ]

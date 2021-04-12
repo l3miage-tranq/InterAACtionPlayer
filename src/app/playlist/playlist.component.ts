@@ -102,10 +102,6 @@ export class PlaylistComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id + "?autoplay=1");
   }
 
-  getYoutubeUrl(){
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id)
-  }
-
   getSrcFile(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentElem.id);
   }

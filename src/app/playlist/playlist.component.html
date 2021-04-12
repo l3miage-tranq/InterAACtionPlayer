@@ -73,10 +73,10 @@
       <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
         <iframe width="560"
                 height="315"
-                [src]="getYoutubeUrl()"
+                [src]="currentElem.id | yt"
                 frameborder="0"
-                allow="autoplay"
-                allowfullscreen>
+                allowtransparency="true"
+                allow="encrypted-media">
         </iframe>
       </div>
       <div *ngIf="fullScreen && currentElem.types == 'YouTube'" class="ui header">
@@ -91,7 +91,7 @@
       </div>
       <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
         <iframe [src]="currentElem.id | uri"
-                width="500" height="80"
+                width="560" height="315"
                 frameborder="0"
                 allowtransparency="true"
                 allow="encrypted-media">
@@ -109,7 +109,7 @@
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <video preload="metadata" controls width="560" height="315">
+          <video controls preload="metadata" width="560" height="315">
             <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>
