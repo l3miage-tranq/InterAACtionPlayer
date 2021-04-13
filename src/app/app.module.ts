@@ -40,6 +40,7 @@ import { ImportfileComponent } from './playlist/dialogComponents/importFile/impo
 import { FormsModule } from '@angular/forms';
 import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
+import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SettingsComponent } from './playlist/dialogComponents/settings/settings
     DialogChooseTypeComponent,
     ImportfileComponent,
     SaveDialogComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProgressIndicatorComponent
   ],
   imports: [
     BrowserModule,

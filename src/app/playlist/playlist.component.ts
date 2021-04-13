@@ -29,6 +29,9 @@ export class PlaylistComponent implements OnInit {
   timeout = null;
   spinnerValue: number = 0;
 
+  idProgressIndicatorBtnNext = "nextProgressSpinner";
+  idProgressIndicatorBtnPrevious = "previousProgressSpinner";
+
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
   public dialog: MatDialog;
