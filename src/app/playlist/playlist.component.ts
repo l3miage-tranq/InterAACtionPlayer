@@ -104,6 +104,11 @@ export class PlaylistComponent implements OnInit {
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.launch = true;
+
+      setTimeout( () => {
+        let goTo = document.getElementById("watchPlace");
+        goTo.scrollIntoView(true);
+      }, 500);
     }
   }
 
