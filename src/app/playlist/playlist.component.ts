@@ -62,6 +62,9 @@ export class PlaylistComponent implements OnInit {
   }
 
   openImport(){
+    if (this.edit){
+      this.goEdit();
+    }
     this.dialog.open(ImportfileComponent);
   }
 
