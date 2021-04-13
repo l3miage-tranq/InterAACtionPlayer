@@ -52,33 +52,21 @@
       <div class="btnVideo right aligned">
         <button id="previousBtn" class="ui left labeled icon button"
                 (click)="goPrevious()"
-                (mouseenter)="showProgressIndicator('previousBtn', 'previousProgressSpinner')"
-                (mouseleave)="hideProgressIndicator('previousBtn', 'previousProgressSpinner')">
+                (mouseenter)="showProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)"
+                (mouseleave)="hideProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)">
           <i class="left arrow icon"></i>
           Previous
           <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
       <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
-        <figure>
-          <iframe width="560"
-                  height="315"
-                  [src]="currentElem.id | yt"
-                  frameborder="0"
-                  allowtransparency="true"
-                  allow="encrypted-media">
-          </iframe>
-          <figcaption>
-            <button class="ui labeled icon button" (click)="goPlay()">
-              <i class="play icon"></i>
-              Play
-            </button>
-            <button class="ui right labeled icon button" (click)="goPause()">
-              <i class="pause icon"></i>
-              Pause
-            </button>
-          </figcaption>
-        </figure>
+        <iframe width="560"
+                height="315"
+                [src]="currentElem.id | yt"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media">
+        </iframe>
       </div>
       <div *ngIf="fullScreen && currentElem.types == 'YouTube'" class="ui header">
         <iframe id="myVideoYouTube"
@@ -91,24 +79,12 @@
         </iframe>
       </div>
       <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
-        <figure>
-          <iframe [src]="currentElem.id | uri"
-                  width="560" height="315"
-                  frameborder="0"
-                  allowtransparency="true"
-                  allow="encrypted-media">
-          </iframe>
-          <figcaption>
-            <button class="ui labeled icon button" (click)="goPlay()">
-              <i class="play icon"></i>
-              Play
-            </button>
-            <button class="ui right labeled icon button" (click)="goPause()">
-              <i class="pause icon"></i>
-              Pause
-            </button>
-          </figcaption>
-        </figure>
+        <iframe [src]="currentElem.id | uri"
+                width="560" height="315"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media">
+        </iframe>
       </div>
       <div *ngIf="currentElem.types == 'song'" class="ui header">
         <figure>
@@ -117,16 +93,6 @@
             <source [src]="getSrcFile()">
           </audio>
           <figcaption>{{currentElem.artists}}</figcaption>
-          <figcaption>
-            <button class="ui labeled icon button" (click)="goPlay()">
-              <i class="play icon"></i>
-              Play
-            </button>
-            <button class="ui right labeled icon button" (click)="goPause()">
-              <i class="pause icon"></i>
-              Pause
-            </button>
-          </figcaption>
         </figure>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
@@ -136,23 +102,13 @@
             <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>
-          <figcaption>
-            <button class="ui labeled icon button" (click)="goPlay()">
-              <i class="play icon"></i>
-              Play
-            </button>
-            <button class="ui right labeled icon button" (click)="goPause()">
-              <i class="pause icon"></i>
-              Pause
-            </button>
-          </figcaption>
         </figure>
       </div>
       <div class="btnVideo left aligned">
         <button id="nextBtn" class="ui right labeled icon button"
                 (click)="goNext()"
-                (mouseenter)="showProgressIndicator('nextBtn', 'nextProgressSpinner')"
-                (mouseleave)="hideProgressIndicator('nextBtn', 'nextProgressSpinner')">
+                (mouseenter)="showProgressIndicator('nextBtn', idProgressIndicatorBtnNext)"
+                (mouseleave)="hideProgressIndicator('nextBtn', idProgressIndicatorBtnNext)">
           <i class="right arrow icon"></i>
           Next
           <app-progress-indicator [id]="idProgressIndicatorBtnNext" [spinnerValue]="spinnerValue"></app-progress-indicator>
@@ -160,6 +116,24 @@
         <button *ngIf="currentElem.types == 'YouTube'"
           class="ui button" (click)="goFullScreen()">
           Full screen
+        </button>
+      </div>
+      <div class=" row aligned">
+        <button id="playBtn" class="ui labeled icon button"
+                (click)="goPlay()"
+                (mouseenter)="showProgressIndicator('playBtn', idProgressIndicatorBtnPlay)"
+                (mouseleave)="hideProgressIndicator('playBtn', idProgressIndicatorBtnPlay)">
+          <i class="play icon"></i>
+          Play
+          <app-progress-indicator [id]="idProgressIndicatorBtnPlay" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
+        <button id="pauseBtn" class="ui right labeled icon button"
+                (click)="goPause()"
+                (mouseenter)="showProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)"
+                (mouseleave)="hideProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)">
+          <i class="pause icon"></i>
+          Pause
+          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
     </div>
