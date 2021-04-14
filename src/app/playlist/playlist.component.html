@@ -50,12 +50,13 @@
     <hr>
     <div *ngIf="launch" class="ui three column grid centered">
       <div class="btnVideo right aligned">
-        <button id="previousBtn" class="ui left labeled icon button"
+        <button id="previousBtn" class="ui labeled icon button btnCircular"
                 (click)="goPrevious()"
                 (mouseenter)="showProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)"
                 (mouseleave)="hideProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)">
-          <i class="left arrow icon"></i>
-          Previous
+          <div class="btnIcon">
+            <i class="massive left arrow icon"></i>
+          </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
@@ -105,34 +106,33 @@
         </figure>
       </div>
       <div class="btnVideo left aligned">
-        <button id="nextBtn" class="ui right labeled icon button"
+        <button id="nextBtn" class="ui labeled icon button btnCircular"
                 (click)="goNext()"
                 (mouseenter)="showProgressIndicator('nextBtn', idProgressIndicatorBtnNext)"
                 (mouseleave)="hideProgressIndicator('nextBtn', idProgressIndicatorBtnNext)">
-          <i class="right arrow icon"></i>
-          Next
+          <div class="btnIcon">
+            <i class="massive right arrow icon"></i>
+          </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnNext" [spinnerValue]="spinnerValue"></app-progress-indicator>
-        </button>
-        <button *ngIf="currentElem.types == 'YouTube'"
-          class="ui button" (click)="goFullScreen()">
-          Full screen
         </button>
       </div>
       <div class=" row aligned">
-        <button id="playBtn" class="ui labeled icon button"
+        <button id="playBtn" class="ui labeled icon button btnCircular"
                 (click)="goPlay()"
                 (mouseenter)="showProgressIndicator('playBtn', idProgressIndicatorBtnPlay)"
                 (mouseleave)="hideProgressIndicator('playBtn', idProgressIndicatorBtnPlay)">
-          <i class="play icon"></i>
-          Play
+          <div class="btnIcon">
+            <i class="massive play icon"></i>
+          </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPlay" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
-        <button id="pauseBtn" class="ui right labeled icon button"
+        <button id="pauseBtn" class="ui labeled icon button btnCircular"
                 (click)="goPause()"
                 (mouseenter)="showProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)"
                 (mouseleave)="hideProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)">
-          <i class="pause icon"></i>
-          Pause
+          <div class="btnIcon">
+            <i class="massive pause icon"></i>
+          </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>

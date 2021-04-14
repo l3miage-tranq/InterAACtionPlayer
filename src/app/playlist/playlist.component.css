@@ -66,3 +66,13 @@ iframe{
 .title{
   text-align: center;
 }
+
+.btnCircular{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.btnIcon{
+  transform: translateX(-66%);
+}
