@@ -6,6 +6,7 @@ import { NotifierService } from 'angular-notifier';
 // Services
 import { AlbumService } from '../services/album.service';
 import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
+import { SaveService } from '../../../../../../../src/app/services/save.service';
 
 // Models
 import { APIAlbums, Image, Item } from '../models/album-model';
@@ -25,6 +26,7 @@ export class AlbumComponent implements OnInit {
     private location: Location,
     private notifier: NotifierService,
     private playlistService: PlaylistService,
+    private saveService: SaveService
   ) { /*empty*/ }
 
   ngOnInit(): void {
@@ -56,11 +58,13 @@ export class AlbumComponent implements OnInit {
   public addToPlaylist(item: Item, image: Image){
     this.playlistService.addSongToPlaylist(item, image);
     this.notifier.notify('success', 'Song add to playlist');
+    this.saveService.updatePlaylist();
   }
 
   public deleteToPlaylist(item: Item){
     this.playlistService.deleteSongSpotifyToPlaylist(item);
     this.notifier.notify('success', 'Song delete to playlist');
+    this.saveService.updatePlaylist();
   }
 
   public songAlreadyAddToPlaylist(item: Item){

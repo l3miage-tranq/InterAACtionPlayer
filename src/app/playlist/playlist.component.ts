@@ -97,6 +97,9 @@ export class PlaylistComponent implements OnInit {
 
   goDelete(elem: Types): void {
     this.playList = this.playlistService.deleteToPlaylist(elem);
+    this.playList = this.playlistService.deleteBtnAdd();
+    this.saveService.updatePlaylist();
+    this.playlistService.addBtnAdd();
   }
 
   goLaunch(elem: Types) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Types } from '../model/types-interface';
 import { Image, Item } from '../../../../projects/spotify/src/app/pages/album/models/album-model';
-import { Video } from '../../../../projects/youtube/src/app/shared/models/search.interface'
+import { Video } from '../../../../projects/youtube/src/app/shared/models/search.interface';
 
 @Injectable({
   providedIn: 'root'
