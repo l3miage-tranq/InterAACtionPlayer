@@ -24,16 +24,17 @@ export class PlaylistComponent implements OnInit {
 
   edit = false;
   launch = false;
-  fullScreen = false;
   currentElem = null;
   timeout = null;
   spinnerValue: number = 0;
+  fullScreen = false;
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
   idProgressIndicatorBtnPlay = "playProgressSpinner";
   idProgressIndicatorBtnPause= "pauseProgressSpinner";
   idProgressIndicatorBtnExpand = "expandProgressSpinner";
+  idProgressIndicatorBtnCompress = "compressProgressSpinner";
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
@@ -104,22 +105,77 @@ export class PlaylistComponent implements OnInit {
   }
 
   goLaunch(elem: Types) {
-    this.fullScreen = false;
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.launch = true;
-
-      setTimeout( () => {
-        let goTo = document.getElementById("watchPlace");
-        goTo.scrollIntoView(true);
-      }, 500);
+      this.goOnElement();
     }
   }
 
   goFullScreen(){
     this.fullScreen = true;
-    document.getElementById("myVideoYouTube").requestFullscreen();
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.currentElem.id + "?autoplay=1");
+    if (this.currentElem.types == "YouTube"){
+      const elem = document.getElementById("myYoutubeVideo");
+      elem.classList.add("fullScreen");
+    }else if (this.currentElem.types == "video"){
+      const elem = document.getElementById("myVideo");
+      elem.classList.add("fullScreen");
+      this.fixeBtn();
+    }
+  }
+
+  exitFullScreen(){
+    this.fullScreen = false;
+    if (this.currentElem.types == "YouTube"){
+      const elem = document.getElementById("myYoutubeVideo");
+      elem.classList.remove("fullScreen");
+    }else if (this.currentElem.types == "video"){
+      const elem = document.getElementById("myVideo");
+      elem.classList.remove("fullScreen");
+      this.unFixeBtn();
+    }
+    this.goOnElement();
+  }
+
+  fixeBtn(){
+    const previousBtn = document.getElementById("previousBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const playBtn = document.getElementById("playBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+
+    previousBtn.classList.add("btnFullScreen");
+    previousBtn.style.opacity = "0";
+    nextBtn.style.opacity = "0";
+    playBtn.style.opacity = "0";
+    pauseBtn.style.opacity = "0";
+
+  }
+
+  unFixeBtn(){
+    const previousBtn = document.getElementById("previousBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const playBtn = document.getElementById("playBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+
+    previousBtn.classList.remove("btnFullScreen");
+    previousBtn.style.opacity = "1";
+    nextBtn.style.opacity = "1";
+    playBtn.style.opacity = "1";
+    pauseBtn.style.opacity = "1";
+  }
+
+  showBtn(idBtn: string){
+    if (this.fullScreen){
+      const elem = document.getElementById(idBtn);
+      elem.style.opacity = "1";
+    }
+  }
+
+  hideBtn(idBtn: string){
+    if (this.fullScreen){
+      const elem = document.getElementById(idBtn);
+      elem.style.opacity = "0";
+    }
   }
 
   getSrcFile(){
@@ -127,6 +183,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   goNext() {
+    this.exitFullScreen();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
@@ -140,9 +197,11 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
+    this.goOnElement();
   }
 
   goPrevious() {
+    this.exitFullScreen();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
@@ -156,6 +215,14 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
+    this.goOnElement();
+  }
+
+  goOnElement(){
+    setTimeout( () => {
+      let goTo = document.getElementById("watchPlace");
+      goTo.scrollIntoView(true);
+    }, 500);
   }
 
   goPlay(){

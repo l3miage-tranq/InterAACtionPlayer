@@ -52,15 +52,15 @@
       <div class="btnVideo right aligned">
         <button id="previousBtn" class="ui labeled icon button btnCircular"
                 (click)="goPrevious()"
-                (mouseenter)="showProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)"
-                (mouseleave)="hideProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious)">
+                (mouseenter)="showProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious); showBtn('previousBtn')"
+                (mouseleave)="hideProgressIndicator('previousBtn', idProgressIndicatorBtnPrevious); hideBtn('previousBtn')">
           <div class="btnIcon">
             <i class="massive left arrow icon"></i>
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
-      <div *ngIf="currentElem.types == 'YouTube'" class="ui header">
+      <div *ngIf="currentElem.types == 'YouTube'" id="myYoutubeVideo" class="ui header">
         <iframe width="560"
                 height="315"
                 [src]="currentElem.id | yt"
@@ -89,7 +89,7 @@
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <video controls preload="metadata" width="560" height="315" #myVideo>
+          <video controls preload="metadata" width="560" height="315" id="myVideo" class="" #myVideo>
             <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>
@@ -98,8 +98,8 @@
       <div class="btnVideo left aligned">
         <button id="nextBtn" class="ui labeled icon button btnCircular"
                 (click)="goNext()"
-                (mouseenter)="showProgressIndicator('nextBtn', idProgressIndicatorBtnNext)"
-                (mouseleave)="hideProgressIndicator('nextBtn', idProgressIndicatorBtnNext)">
+                (mouseenter)="showProgressIndicator('nextBtn', idProgressIndicatorBtnNext); showBtn('nextBtn')"
+                (mouseleave)="hideProgressIndicator('nextBtn', idProgressIndicatorBtnNext); hideBtn('nextBtn')">
           <div class="btnIcon">
             <i class="massive right arrow icon"></i>
           </div>
@@ -109,8 +109,8 @@
       <div class=" row aligned">
         <button id="playBtn" class="ui labeled icon button btnCircular"
                 (click)="goPlay()"
-                (mouseenter)="showProgressIndicator('playBtn', idProgressIndicatorBtnPlay)"
-                (mouseleave)="hideProgressIndicator('playBtn', idProgressIndicatorBtnPlay)">
+                (mouseenter)="showProgressIndicator('playBtn', idProgressIndicatorBtnPlay); showBtn('playBtn')"
+                (mouseleave)="hideProgressIndicator('playBtn', idProgressIndicatorBtnPlay); hideBtn('playBtn')">
           <div class="btnIcon">
             <i class="massive play icon"></i>
           </div>
@@ -118,21 +118,30 @@
         </button>
         <button id="pauseBtn" class="ui labeled icon button btnCircular"
                 (click)="goPause()"
-                (mouseenter)="showProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)"
-                (mouseleave)="hideProgressIndicator('pauseBtn', idProgressIndicatorBtnPause)">
+                (mouseenter)="showProgressIndicator('pauseBtn', idProgressIndicatorBtnPause); showBtn('pauseBtn')"
+                (mouseleave)="hideProgressIndicator('pauseBtn', idProgressIndicatorBtnPause); hideBtn('pauseBtn')">
           <div class="btnIcon">
             <i class="massive pause icon"></i>
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
-        <button *ngIf="currentElem.types == 'video' || currentElem.types == 'YouTube'" id="expandBtn" class="ui labeled icon button btnCircular"
+        <button *ngIf="(currentElem.types == 'video' || currentElem.types == 'YouTube') && !fullScreen" id="expandBtn" class="ui labeled icon button btnCircular"
                 (click)="goFullScreen()"
-                (mouseenter)="showProgressIndicator('expandBtn', idProgressIndicatorBtnPause)"
-                (mouseleave)="hideProgressIndicator('expandBtn', idProgressIndicatorBtnPause)">
+                (mouseenter)="showProgressIndicator('expandBtn', idProgressIndicatorBtnExpand)"
+                (mouseleave)="hideProgressIndicator('expandBtn', idProgressIndicatorBtnExpand)">
           <div class="btnIcon">
             <i class="massive expand icon"></i>
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnExpand" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
+        <button *ngIf="fullScreen" id="compressBtn" class="ui labeled icon button btnCircular"
+                (click)="exitFullScreen()"
+                (mouseenter)="showProgressIndicator('compressBtn', idProgressIndicatorBtnCompress)"
+                (mouseleave)="hideProgressIndicator('compressBtn', idProgressIndicatorBtnCompress)">
+          <div class="btnIcon">
+            <i class="massive compress icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnCompress" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
     </div>

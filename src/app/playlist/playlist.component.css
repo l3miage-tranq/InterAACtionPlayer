@@ -76,3 +76,16 @@ iframe{
 .btnIcon{
   transform: translateX(-66%);
 }
+
+.fullScreen{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btnFullScreen{
+  position: fixed;
+  z-index: 1;
+}
