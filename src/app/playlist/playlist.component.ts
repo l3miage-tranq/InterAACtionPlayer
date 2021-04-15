@@ -33,6 +33,7 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
   idProgressIndicatorBtnPlay = "playProgressSpinner";
   idProgressIndicatorBtnPause= "pauseProgressSpinner";
+  idProgressIndicatorBtnExpand = "expandProgressSpinner";
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;

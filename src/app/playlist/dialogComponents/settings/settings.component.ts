@@ -12,6 +12,9 @@ export class SettingsComponent implements OnInit {
 
   dwellTimeEnable: boolean;
   dwellTimeValue: number;
+
+  themeLightEnable: boolean = true;
+
   error: boolean = false;
 
   constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService) {
@@ -20,6 +23,10 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  toggleTheme(){
+    this.themeLightEnable = !this.themeLightEnable;
   }
 
   dwellTime(){

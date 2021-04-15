@@ -60,23 +60,13 @@
           <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
-      <div *ngIf="!fullScreen && currentElem.types == 'YouTube'" class="ui header">
+      <div *ngIf="currentElem.types == 'YouTube'" class="ui header">
         <iframe width="560"
                 height="315"
                 [src]="currentElem.id | yt"
                 frameborder="0"
                 allowtransparency="true"
                 allow="encrypted-media">
-        </iframe>
-      </div>
-      <div *ngIf="fullScreen && currentElem.types == 'YouTube'" class="ui header">
-        <iframe id="myVideoYouTube"
-                width="560"
-                height="315"
-                [src]="goFullScreen()"
-                frameborder="0"
-                allow="autoplay"
-                allowfullscreen>
         </iframe>
       </div>
       <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
@@ -135,8 +125,17 @@
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
+        <button *ngIf="currentElem.types == 'video' || currentElem.types == 'YouTube'" id="expandBtn" class="ui labeled icon button btnCircular"
+                (click)="goFullScreen()"
+                (mouseenter)="showProgressIndicator('expandBtn', idProgressIndicatorBtnPause)"
+                (mouseleave)="hideProgressIndicator('expandBtn', idProgressIndicatorBtnPause)">
+          <div class="btnIcon">
+            <i class="massive expand icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnExpand" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
       </div>
     </div>
   </div>
 </div>
-<notifier-container id="watchPlace" ></notifier-container>
+<notifier-container id="watchPlace"></notifier-container>

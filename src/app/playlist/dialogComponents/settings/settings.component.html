@@ -4,6 +4,23 @@
 <div mat-dialog-content>
   <div class="ui form error">
     <div class="field">
+      <label>Theme</label>
+      <div class="inline fields">
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="theme" [checked]="themeLightEnable" (click)="toggleTheme()">
+            <label>Light</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="theme" [checked]="!themeLightEnable" (click)="toggleTheme()">
+            <label>Dark</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
       <label>Dwell-Time</label>
       <div class="inline fields">
         <div class="field">
