@@ -117,6 +117,7 @@ export class PlaylistComponent implements OnInit {
       if (this.currentElem.types == "YouTube"){
         const elem = document.getElementById("myYoutubeVideo");
         elem.classList.add("fullScreen");
+        this.fixeBtn();
       }else if (this.currentElem.types == "video"){
         const elem = document.getElementById("myVideo");
         elem.classList.add("fullScreen");
@@ -133,6 +134,7 @@ export class PlaylistComponent implements OnInit {
       if (this.currentElem.types == "YouTube"){
         const elem = document.getElementById("myYoutubeVideo");
         elem.classList.remove("fullScreen");
+        this.unFixeBtn();
       }else if (this.currentElem.types == "video"){
         const elem = document.getElementById("myVideo");
         elem.classList.remove("fullScreen");
@@ -281,14 +283,12 @@ export class PlaylistComponent implements OnInit {
     this.timeout = setInterval(() => {
       if (this.spinnerValue == 100){
         clearInterval(this.timeout);
-        console.log("click");
         setTimeout( () => {
           this.hideProgressIndicator(elemId, spinnerId);
           id.click();
         }, 500);
       }else {
         this.spinnerValue++;
-        console.log("value +1");
       }
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
