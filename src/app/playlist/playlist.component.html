@@ -125,23 +125,14 @@
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
-        <button *ngIf="(currentElem.types == 'video' || currentElem.types == 'YouTube') && !fullScreen" id="expandBtn" class="ui labeled icon button btnCircular"
+        <button *ngIf="(currentElem.types == 'video' || currentElem.types == 'YouTube')" id="screenBtn" class="ui labeled icon button btnCircular"
                 (click)="goFullScreen()"
-                (mouseenter)="showProgressIndicator('expandBtn', idProgressIndicatorBtnExpand)"
-                (mouseleave)="hideProgressIndicator('expandBtn', idProgressIndicatorBtnExpand)">
+                (mouseenter)="showProgressIndicator('screenBtn', idProgressIndicatorBtnExpand); showBtn('screenBtn')"
+                (mouseleave)="hideProgressIndicator('screenBtn', idProgressIndicatorBtnExpand); hideBtn('screenBtn')">
           <div class="btnIcon">
-            <i class="massive expand icon"></i>
+            <i id="screenIcon" class="massive expand icon"></i>
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnExpand" [spinnerValue]="spinnerValue"></app-progress-indicator>
-        </button>
-        <button *ngIf="fullScreen" id="compressBtn" class="ui labeled icon button btnCircular"
-                (click)="exitFullScreen()"
-                (mouseenter)="showProgressIndicator('compressBtn', idProgressIndicatorBtnCompress)"
-                (mouseleave)="hideProgressIndicator('compressBtn', idProgressIndicatorBtnCompress)">
-          <div class="btnIcon">
-            <i class="massive compress icon"></i>
-          </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnCompress" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
       </div>
     </div>

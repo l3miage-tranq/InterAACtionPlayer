@@ -34,7 +34,6 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnPlay = "playProgressSpinner";
   idProgressIndicatorBtnPause= "pauseProgressSpinner";
   idProgressIndicatorBtnExpand = "expandProgressSpinner";
-  idProgressIndicatorBtnCompress = "compressProgressSpinner";
 
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
@@ -113,28 +112,34 @@ export class PlaylistComponent implements OnInit {
   }
 
   goFullScreen(){
-    this.fullScreen = true;
-    if (this.currentElem.types == "YouTube"){
-      const elem = document.getElementById("myYoutubeVideo");
-      elem.classList.add("fullScreen");
-    }else if (this.currentElem.types == "video"){
-      const elem = document.getElementById("myVideo");
-      elem.classList.add("fullScreen");
-      this.fixeBtn();
+    if (!this.fullScreen){
+      this.fullScreen = true;
+      if (this.currentElem.types == "YouTube"){
+        const elem = document.getElementById("myYoutubeVideo");
+        elem.classList.add("fullScreen");
+      }else if (this.currentElem.types == "video"){
+        const elem = document.getElementById("myVideo");
+        elem.classList.add("fullScreen");
+        this.fixeBtn();
+      }
+    }else {
+      this.exitFullScreen();
     }
   }
 
   exitFullScreen(){
-    this.fullScreen = false;
-    if (this.currentElem.types == "YouTube"){
-      const elem = document.getElementById("myYoutubeVideo");
-      elem.classList.remove("fullScreen");
-    }else if (this.currentElem.types == "video"){
-      const elem = document.getElementById("myVideo");
-      elem.classList.remove("fullScreen");
-      this.unFixeBtn();
+    if (this.fullScreen){
+      this.fullScreen = false;
+      if (this.currentElem.types == "YouTube"){
+        const elem = document.getElementById("myYoutubeVideo");
+        elem.classList.remove("fullScreen");
+      }else if (this.currentElem.types == "video"){
+        const elem = document.getElementById("myVideo");
+        elem.classList.remove("fullScreen");
+        this.unFixeBtn();
+      }
+      this.goOnElement();
     }
-    this.goOnElement();
   }
 
   fixeBtn(){
@@ -142,13 +147,16 @@ export class PlaylistComponent implements OnInit {
     const nextBtn = document.getElementById("nextBtn");
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
+    const screenBtn = document.getElementById("screenBtn");
+    const screenIcon = document.getElementById("screenIcon");
 
     previousBtn.classList.add("btnFullScreen");
     previousBtn.style.opacity = "0";
     nextBtn.style.opacity = "0";
     playBtn.style.opacity = "0";
     pauseBtn.style.opacity = "0";
-
+    screenBtn.style.opacity = "0";
+    screenIcon.classList.replace("expand", "compress");
   }
 
   unFixeBtn(){
@@ -156,12 +164,16 @@ export class PlaylistComponent implements OnInit {
     const nextBtn = document.getElementById("nextBtn");
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
+    const screenBtn = document.getElementById("screenBtn");
+    const screenIcon = document.getElementById("screenIcon");
 
     previousBtn.classList.remove("btnFullScreen");
     previousBtn.style.opacity = "1";
     nextBtn.style.opacity = "1";
     playBtn.style.opacity = "1";
     pauseBtn.style.opacity = "1";
+    screenBtn.style.opacity = "1";
+    screenIcon.classList.replace("compress", "expand");
   }
 
   showBtn(idBtn: string){
