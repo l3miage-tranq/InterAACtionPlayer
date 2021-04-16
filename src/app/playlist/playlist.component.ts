@@ -247,6 +247,7 @@ export class PlaylistComponent implements OnInit {
       this.myaudio.nativeElement.play();
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }else{
     }
   }
 
@@ -257,6 +258,8 @@ export class PlaylistComponent implements OnInit {
       this.myaudio.nativeElement.pause();
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }else {
+      $("#mySpotifySong").trigger('pause');
     }
   }
 

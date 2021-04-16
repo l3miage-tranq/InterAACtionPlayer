@@ -67,13 +67,12 @@
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
-      <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
-        <iframe [src]="currentElem.id | uri"
-                width="560" height="315"
-                allowtransparency="true"
-                allow="encrypted-media">
-        </iframe>
-      </div>
+      <iframe *ngIf="currentElem.types == 'Spotify'" id="mySpotifySong" class="ui header"
+              [src]="currentElem.id | uri"
+              width="560" height="315"
+              allowtransparency="true"
+              allow="encrypted-media">
+      </iframe>
       <div *ngIf="currentElem.types == 'song'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
