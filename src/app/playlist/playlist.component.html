@@ -64,14 +64,12 @@
               width="560"
               height="315"
               [src]="currentElem.id | yt"
-              frameborder="0"
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
       <div *ngIf="currentElem.types == 'Spotify'" class="ui header">
         <iframe [src]="currentElem.id | uri"
                 width="560" height="315"
-                frameborder="0"
                 allowtransparency="true"
                 allow="encrypted-media">
         </iframe>

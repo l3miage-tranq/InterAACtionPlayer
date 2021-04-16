@@ -12,7 +12,9 @@ export class YoutubePipe implements PipeTransform {
   transform( value: string): any {
     const url = "https://www.youtube-nocookie.com/embed/";
     const noSuggestVideo = "?rel=0";
-    return this.domSanitizer.bypassSecurityTrustResourceUrl( url + value + noSuggestVideo);
+    const jsApi = "&enablejsapi=1";
+    const mute = "&mute=1";
+    return this.domSanitizer.bypassSecurityTrustResourceUrl( url + value + noSuggestVideo + jsApi + mute);
   }
 
 }

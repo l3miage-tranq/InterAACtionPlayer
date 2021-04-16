@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Types } from './model/types-interface';
 import { NotifierService } from 'angular-notifier';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,6 +11,7 @@ import { SaveService } from '../services/save.service';
 import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { DwelltimeService } from '../services/dwelltime.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-playlist',
@@ -244,6 +245,8 @@ export class PlaylistComponent implements OnInit {
       this.myvideo.nativeElement.play();
     }else if (this.currentElem.types == 'song'){
       this.myaudio.nativeElement.play();
+    }else if (this.currentElem.types == 'YouTube'){
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }
   }
 
@@ -252,6 +255,8 @@ export class PlaylistComponent implements OnInit {
       this.myvideo.nativeElement.pause();
     }else if (this.currentElem.types == 'song'){
       this.myaudio.nativeElement.pause();
+    }else if (this.currentElem.types == 'YouTube'){
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }
   }
 
