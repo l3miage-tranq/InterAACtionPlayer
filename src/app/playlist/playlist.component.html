@@ -61,15 +61,16 @@
         </button>
       </div>
       <iframe *ngIf="currentElem.types == 'YouTube'" id="myYoutubeVideo" class="ui header"
-              width="560"
-              height="315"
+              [width]="width"
+              [height]="height"
               [src]="currentElem.id | yt"
               allowtransparency="true"
               allow="autoplay">
       </iframe>
       <iframe *ngIf="currentElem.types == 'Spotify'" id="mySpotifySong" class="ui header"
               [src]="currentElem.id | uri"
-              width="560" height="315"
+              [width]="width"
+              [height]="height"
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
@@ -85,7 +86,11 @@
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
           <figcaption>{{currentElem.title}}</figcaption>
-          <video controls preload="metadata" width="560" height="315" id="myVideo" class="" #myVideo>
+          <video controls
+                 preload="metadata"
+                 [width]="width"
+                 [height]="height"
+                 id="myVideo" class="" #myVideo>
             <source [src]="getSrcFile()">
           </video>
           <figcaption>{{currentElem.artists}}</figcaption>

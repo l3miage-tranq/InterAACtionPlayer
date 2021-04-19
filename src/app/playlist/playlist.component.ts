@@ -23,6 +23,9 @@ export class PlaylistComponent implements OnInit {
   @ViewChild('myVideo') myvideo: ElementRef;
   @ViewChild('myAudio') myaudio: ElementRef;
 
+  width = 560;
+  height = 315;
+
   edit = false;
   launch = false;
   currentElem = null;
@@ -248,7 +251,25 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
+      const iframeX = window.parent.document.getElementById('mySpotifySong').offsetLeft + (this.width / 2);
+      const iframeY = window.parent.document.getElementById('mySpotifySong').offsetTop + (this.height / 2);
+      this.click(iframeX, iframeY);
     }
+  }
+
+  click(x, y)
+  {
+    var ev = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true,
+      'screenX': x,
+      'screenY': y
+    });
+
+    var el = document.elementFromPoint(x, y);
+    console.log(el); //print element to console
+    el.dispatchEvent(ev);
   }
 
   goPause(){
