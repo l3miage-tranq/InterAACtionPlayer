@@ -65,7 +65,7 @@
               height="315"
               [src]="currentElem.id | yt"
               allowtransparency="true"
-              allow="encrypted-media">
+              allow="autoplay">
       </iframe>
       <iframe *ngIf="currentElem.types == 'Spotify'" id="mySpotifySong" class="ui header"
               [src]="currentElem.id | uri"

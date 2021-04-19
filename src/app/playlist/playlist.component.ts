@@ -246,7 +246,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'song'){
       this.myaudio.nativeElement.play();
     }else if (this.currentElem.types == 'YouTube'){
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
     }
   }
