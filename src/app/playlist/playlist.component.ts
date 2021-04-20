@@ -307,5 +307,6 @@ export class PlaylistComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.playList, event.previousIndex, event.currentIndex);
+    this.saveService.updatePlaylist();
   }
 }

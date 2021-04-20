@@ -22,8 +22,8 @@
       </div>
     </div>
     <hr>
-    <div cdkDropList class="ui four column grid" (cdkDropListDropped)="drop($event)">
-      <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;" cdkDrag>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="ui four column grid playlist-list" (cdkDropListDropped)="drop($event)">
+      <div class="column playlist-box" *ngFor="let elem of playList; let index = index; let isLast = last;" cdkDrag>
         <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)"
                                                                 (mouseenter)="showProgressIndicator(elem.id, index)"
                                                                 (mouseleave)="hideProgressIndicator(elem.id, index)">
