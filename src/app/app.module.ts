@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 /**
  * Custom angular notifier options
@@ -69,6 +70,7 @@ import { ProgressIndicatorComponent } from './playlist/progressIndicator/progres
     PipesModule,
     FormsModule,
     MatProgressSpinnerModule,
+    DragDropModule,
   ],
   providers: [
     PlaylistService

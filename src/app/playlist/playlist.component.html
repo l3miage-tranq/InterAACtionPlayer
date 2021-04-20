@@ -22,9 +22,11 @@
       </div>
     </div>
     <hr>
-    <div class="ui four column grid">
-      <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
-        <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)" (mouseenter)="showProgressIndicator(elem.id, index)" (mouseleave)="hideProgressIndicator(elem.id, index)">
+    <div cdkDropList class="ui four column grid" (cdkDropListDropped)="drop($event)">
+      <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;" cdkDrag>
+        <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)"
+                                                                (mouseenter)="showProgressIndicator(elem.id, index)"
+                                                                (mouseleave)="hideProgressIndicator(elem.id, index)">
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
           </div>
@@ -76,16 +78,16 @@
       </iframe>
       <div *ngIf="currentElem.types == 'song'" class="ui header">
         <figure>
-          <figcaption>{{currentElem.title}}</figcaption>
+          <figcaption>{{ currentElem.title }}</figcaption>
           <audio preload="metadata" controls #myAudio>
             <source [src]="getSrcFile()">
           </audio>
-          <figcaption>{{currentElem.artists}}</figcaption>
+          <figcaption>{{ currentElem.artists }}</figcaption>
         </figure>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
-          <figcaption>{{currentElem.title}}</figcaption>
+          <figcaption>{{ currentElem.title }}</figcaption>
           <video controls
                  preload="metadata"
                  [width]="width"
@@ -93,7 +95,7 @@
                  id="myVideo" class="" #myVideo>
             <source [src]="getSrcFile()">
           </video>
-          <figcaption>{{currentElem.artists}}</figcaption>
+          <figcaption>{{ currentElem.artists }}</figcaption>
         </figure>
       </div>
       <div class="btnVideo left aligned">

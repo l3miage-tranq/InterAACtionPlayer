@@ -12,6 +12,7 @@ import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.c
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { DwelltimeService } from '../services/dwelltime.service';
 import * as $ from 'jquery';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-playlist',
@@ -251,25 +252,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
-      const iframeX = window.parent.document.getElementById('mySpotifySong').offsetLeft + (this.width / 2);
-      const iframeY = window.parent.document.getElementById('mySpotifySong').offsetTop + (this.height / 2);
-      this.click(iframeX, iframeY);
     }
-  }
-
-  click(x, y)
-  {
-    var ev = new MouseEvent('click', {
-      'view': window,
-      'bubbles': true,
-      'cancelable': true,
-      'screenX': x,
-      'screenY': y
-    });
-
-    var el = document.elementFromPoint(x, y);
-    console.log(el); //print element to console
-    el.dispatchEvent(ev);
   }
 
   goPause(){
@@ -320,5 +303,9 @@ export class PlaylistComponent implements OnInit {
         this.spinnerValue++;
       }
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.playList, event.previousIndex, event.currentIndex);
   }
 }
