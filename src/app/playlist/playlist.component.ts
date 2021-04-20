@@ -305,8 +305,11 @@ export class PlaylistComponent implements OnInit {
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  dragDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.playList, event.previousIndex, event.currentIndex);
+    if (this.edit){
+      this.goEdit();
+    }
     this.saveService.updatePlaylist();
   }
 }
