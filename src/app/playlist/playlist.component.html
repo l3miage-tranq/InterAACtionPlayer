@@ -1,9 +1,9 @@
 <div class="ui centered grid">
   <div class="fourteen wide column">
-    <h1 class="ui centered aligned header">
+    <h1 [ngClass]="theme" class="ui centered aligned header">
       <span>My PlayList</span>
     </h1>
-    <div class="ui secondary menu">
+    <div [ngClass]="theme" class="ui secondary menu">
       <div class="right menu">
         <a class="ui item" (click)="openSave()">
           <i class="save icon"></i>
@@ -26,7 +26,7 @@
       <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
         <div cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="{elem:elem, index:index}" (cdkDropListDropped)="dragDrop($event)">
           <div cdkDrag>
-            <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)"
+            <div [id]="elem.id" [ngClass]="theme" class="ui card" (click)="goLaunch(this.elem)"
                                                 (mouseenter)="showProgressIndicator(elem.id, index)"
                                                 (mouseleave)="hideProgressIndicator(elem.id, index)">
               <div class="image">

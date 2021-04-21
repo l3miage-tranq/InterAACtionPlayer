@@ -12,7 +12,8 @@ import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.c
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { DwelltimeService } from '../services/dwelltime.service';
 import * as $ from 'jquery';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-playlist',
@@ -33,6 +34,7 @@ export class PlaylistComponent implements OnInit {
   timeout = null;
   spinnerValue: number = 0;
   fullScreen = false;
+  theme = "";
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
@@ -48,8 +50,16 @@ export class PlaylistComponent implements OnInit {
   private router: Router;
   private saveService: SaveService;
   private dwelltimeService: DwelltimeService;
+  private themeService: ThemeService;
 
-  constructor(notifier: NotifierService, sanitizer: DomSanitizer, dialog: MatDialog, playlistService: PlaylistService, router: Router, saveService: SaveService, dwelltimeService: DwelltimeService) {
+  constructor(notifier: NotifierService,
+              sanitizer: DomSanitizer,
+              dialog: MatDialog,
+              playlistService: PlaylistService,
+              router: Router,
+              saveService: SaveService,
+              dwelltimeService: DwelltimeService,
+              themeService: ThemeService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -58,9 +68,14 @@ export class PlaylistComponent implements OnInit {
     this.router = router;
     this.saveService = saveService;
     this.dwelltimeService = dwelltimeService;
+    this.themeService = themeService;
+    this.theme = this.themeService.getTheme();
   }
 
   ngOnInit(): void {
+    this.themeService.themeObservable.subscribe(value => {
+      this.theme = value;
+    })
     new DialogChooseTypeComponent(this.router, this.dialog);
     setTimeout(() => this.playList = this.playlistService.playList ,500 ); // permet de laisser le temps de charger la playlist sauvegarder dans la playlist
   }

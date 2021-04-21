@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DwelltimeService } from '../../../services/dwelltime.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +18,7 @@ export class SettingsComponent implements OnInit {
 
   error: boolean = false;
 
-  constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService) {
+  constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService, private themeService: ThemeService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
   }
@@ -51,6 +52,11 @@ export class SettingsComponent implements OnInit {
     if (this.isValid()){
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
+      if (this.themeLightEnable){
+        this.themeService.emitTheme("");
+      }else {
+        this.themeService.emitTheme("inverted");
+      }
       this.notifier.notify('warning', 'Settings have changed !');
       this.dialog.closeAll();
     }
