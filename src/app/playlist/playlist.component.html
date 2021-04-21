@@ -22,29 +22,33 @@
       </div>
     </div>
     <hr>
-    <div cdkDropList cdkDropListOrientation="horizontal" class="ui four column grid playlist-list" (cdkDropListDropped)="dragDrop($event)">
-      <div class="column playlist-box" *ngFor="let elem of playList; let index = index; let isLast = last;" cdkDrag>
-        <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)"
-                                            (mouseenter)="showProgressIndicator(elem.id, index)"
-                                            (mouseleave)="hideProgressIndicator(elem.id, index)">
-          <div class="image">
-            <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
-          </div>
-          <app-progress-indicator [id]="index" [spinnerValue]="spinnerValue"></app-progress-indicator>
-          <div class="content" *ngIf="elem.types != 'btnAdd'">
-            <a class="header">{{ elem.title }}</a>
-            <div class="meta">
+    <div class="ui four column grid" cdkDropListGroup>
+      <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
+        <div cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="{elem:elem, index:index}" (cdkDropListDropped)="dragDrop($event)">
+          <div cdkDrag>
+            <div [id]="elem.id" class="ui card" (click)="goLaunch(this.elem)"
+                                                (mouseenter)="showProgressIndicator(elem.id, index)"
+                                                (mouseleave)="hideProgressIndicator(elem.id, index)">
+              <div class="image">
+                <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
+              </div>
+              <app-progress-indicator [id]="index" [spinnerValue]="spinnerValue"></app-progress-indicator>
+              <div class="content" *ngIf="elem.types != 'btnAdd'">
+                <a class="header">{{ elem.title }}</a>
+                <div class="meta">
               <span class="date">
                 {{ elem.artists }}
               </span>
-              <span class="ui right floated date">{{ elem.publishedAt | date:'mediumDate' }}</span>
+                  <span class="ui right floated date">{{ elem.publishedAt | date:'mediumDate' }}</span>
+                </div>
+                <div class="description">
+                  {{ elem.description?.slice(0,50) }}
+                </div>
+                <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
+                  Delete
+                </button>
+              </div>
             </div>
-            <div class="description">
-              {{ elem.description?.slice(0,50) }}
-            </div>
-            <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
-              Delete
-            </button>
           </div>
         </div>
       </div>
