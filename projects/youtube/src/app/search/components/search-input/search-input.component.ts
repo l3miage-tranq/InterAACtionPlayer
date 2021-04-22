@@ -15,7 +15,6 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   theme = "";
-  themeButton= "";
 
   private router: Router;
   private themeService: ThemeService;
@@ -28,7 +27,6 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     if (this.theme == "inverted"){
-      this.themeButton = "secondary contourColor";
       this.theme = this.theme + " transparent contourColor";
     }
     this.themeService.themeObservable.subscribe(value => {
