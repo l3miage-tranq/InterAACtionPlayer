@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,9 +12,12 @@ export class NavBarComponent implements OnInit {
   public activeLanguage: string = 'en';
   public moreLanguages: boolean = false;
 
-  constructor( private translate: TranslateService ) {
+  theme = "";
+
+  constructor( private translate: TranslateService, private themeService: ThemeService ) {
     // set default language
     this.translate.setDefaultLang(this.activeLanguage);
+    this.theme = themeService.getTheme();
   }
 
   ngOnInit(): void {}

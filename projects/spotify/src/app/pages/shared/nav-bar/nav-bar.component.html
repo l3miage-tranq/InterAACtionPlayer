@@ -1,4 +1,4 @@
-<div class="ui vertical fluid tabular menu">
+<div [ngClass]="theme" class="ui vertical fluid tabular menu">
   <a class="item">
     <img class="ui mini spaced image" src="assets/banner-ico.png" alt="logo spotify">
     Spotify
@@ -7,27 +7,27 @@
     Languages
     <i class="dropdown icon"></i>
   </a>
-  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'en'}" (click)="switchLanguage('en')">
+  <a class="item" *ngIf="moreLanguages" (click)="switchLanguage('en')">
     English
     <img class="ui mini spaced image" src="assets/usa.svg" alt="Usa flag">
   </a>
-  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'de'}" (click)="switchLanguage('de')">
+  <a class="item" *ngIf="moreLanguages" (click)="switchLanguage('de')">
     Deutsch
     <img class="ui mini spaced image" src="assets/german.svg" alt="German flag">
   </a>
-  <a class="item" *ngIf="moreLanguages" [ngClass]="{'active': activeLanguage == 'es'}" (click)="switchLanguage('es')">
+  <a class="item" *ngIf="moreLanguages" (click)="switchLanguage('es')">
     Spanish
     <img class="ui mini spaced image" src="assets/spain.svg" alt="Spain flag">
   </a>
-  <a class="item" routerLink="home" routerLinkActive="active">
+  <a class="item" routerLink="home">
     <i class="home icon"></i>
     {{ 'nav-bar.home-text' | translate }}
   </a>
-  <a class="item" routerLink="search" routerLinkActive="active">
+  <a class="item" routerLink="search">
     <i class="search icon"></i>
     {{ 'nav-bar.search-text' | translate }}
   </a>
-  <a class="item" routerLink="/playlist" routerLinkActive="active">
+  <a class="item" routerLink="/playlist">
     <i class="arrow left icon"></i>
     {{ 'nav-bar.playlist-text' | translate }}
   </a>
