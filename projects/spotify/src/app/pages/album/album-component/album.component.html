@@ -1,5 +1,5 @@
 <div>
-  <div class="ui segment">
+  <div [ngClass]="theme" class="ui segment">
     <img class="ui small centered image" [src]="album.images | errorImage" [alt]="album.name">
     <h6 class="ui centered aligned header">{{ album.type | uppercase}}</h6>
     <h2 class="ui centered aligned header">{{ album.name }}</h2>

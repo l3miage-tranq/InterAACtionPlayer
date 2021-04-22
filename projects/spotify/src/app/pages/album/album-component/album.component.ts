@@ -7,6 +7,7 @@ import { NotifierService } from 'angular-notifier';
 import { AlbumService } from '../services/album.service';
 import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
 import { SaveService } from '../../../../../../../src/app/services/save.service';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 // Models
 import { APIAlbums, Image, Item } from '../models/album-model';
@@ -20,14 +21,19 @@ export class AlbumComponent implements OnInit {
   public albumId: string = '';
   public album: APIAlbums | null = null;
 
+  theme = "";
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private albumService: AlbumService,
     private location: Location,
     private notifier: NotifierService,
     private playlistService: PlaylistService,
-    private saveService: SaveService
-  ) { /*empty*/ }
+    private saveService: SaveService,
+    private themeService: ThemeService
+  ) {
+    this.theme = themeService.getTheme();
+  }
 
   ngOnInit(): void {
     this.getActivatedRoute();
