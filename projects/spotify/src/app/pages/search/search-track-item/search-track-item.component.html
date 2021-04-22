@@ -1,5 +1,5 @@
 <div class="column" *ngIf="track" (click)="navigate(track)">
-  <div id="space" class="ui card">
+  <div id="space" [ngClass]="theme" class="ui card">
     <div class="image">
       <img [src]="track.album.images | errorImage" [alt]="track.name">
     </div>

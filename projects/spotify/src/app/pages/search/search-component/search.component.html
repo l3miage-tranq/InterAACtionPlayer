@@ -1,14 +1,14 @@
 <div class="ui centered grid" style="margin-top: 3rem;">
   <div class="fourteen wide column">
-    <h1 class="ui centered aligned header">
-      <span>Spotify Search </span>
+    <h1 [ngClass]="theme" class="ui centered aligned header">
+      <span>Spotify Search</span>
     </h1>
     <div>
       <div class="ui four column grid">
         <div class="ten wide column centered">
-          <div class="ui fluid action icon input ">
+          <div [ngClass]="themeSearch" class="ui fluid action icon input ">
             <button class="ui button" [routerLink]="['/spotify/home']">Back to Home</button>
-            <input type="text" placeholder="Search artist or track" (keyup)="search(searchTerm.value)" (keydown.backspace)="search(searchTerm.value)" #searchTerm>
+            <input type="text" placeholder="  Search artist or track...  " (keyup)="search(searchTerm.value)" (keydown.backspace)="search(searchTerm.value)" #searchTerm>
             <i class="search icon"></i>
           </div>
         </div>

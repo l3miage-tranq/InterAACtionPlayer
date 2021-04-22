@@ -1,5 +1,5 @@
 <div class="column" *ngIf="album" (click)="seeAlbum(album)">
-  <div id="space" class="ui card">
+  <div id="space" [ngClass]="theme" class="ui card">
     <div class="image">
       <img [src]="album.images | errorImage" alt="{{ album.name }}">
     </div>

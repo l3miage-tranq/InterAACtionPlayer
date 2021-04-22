@@ -5,6 +5,7 @@ import { SearchService } from '../services/search.service';
 import { Router } from '@angular/router';
 import { GlobalService} from '../../../services/global.service';
 import { TranslateService } from '@ngx-translate/core';
+import {ThemeService} from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,13 @@ export class SearchComponent implements OnInit {
   public onSearch: boolean = false;
   public activeLanguage: string = 'en';
 
-  constructor( private searchService: SearchService, private router: Router ) { /*empty*/ }
+  theme = "";
+  themeSearch = "";
+
+  constructor( private searchService: SearchService, private router: Router, private themeService: ThemeService ) {
+    this.theme = themeService.getTheme();
+    this.themeSearch = themeService.getTheme() + " transparent contourColor";
+  }
 
   ngOnInit(): void {
     this.search('');

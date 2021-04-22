@@ -1,5 +1,5 @@
 <div class="column" (click)="navigate(newRelease)">
-  <div id="space" class="ui card">
+  <div id="space" [ngClass]="theme" class="ui card">
     <div class="image">
       <img [src]="newRelease.images | errorImage" alt="newRelease.name">
     </div>

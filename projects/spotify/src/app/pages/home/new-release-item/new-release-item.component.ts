@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 // Models
 import { NewReleasesItem} from '../models/new-releases-model';
+import {ThemeService} from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-new-release-item',
@@ -12,7 +13,11 @@ import { NewReleasesItem} from '../models/new-releases-model';
 export class NewReleaseItemComponent implements OnInit {
   @Input() newRelease: NewReleasesItem;
 
-  constructor(private router: Router) {}
+  theme = "";
+
+  constructor(private router: Router, private themeService : ThemeService) {
+    this.theme = themeService.getTheme();
+  }
 
   ngOnInit(): void {}
 

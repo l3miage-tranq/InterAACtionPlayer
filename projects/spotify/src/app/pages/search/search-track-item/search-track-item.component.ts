@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-search-track-item',
@@ -9,9 +10,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SearchTrackItemComponent implements OnInit {
   @Input() track: any;
 
-  constructor(private router: Router) { /*empty*/ }
+  theme = "";
 
-  ngOnInit(): void { /*empty*/ }
+  constructor(private router: Router, private themeService: ThemeService) {
+    this.theme = themeService.getTheme();
+  }
+
+  ngOnInit(): void {
+  }
 
   // navigates to album
   public navigate(track: any): void {

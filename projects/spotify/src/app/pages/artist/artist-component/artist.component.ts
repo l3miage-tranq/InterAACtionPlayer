@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 // Services
 import { ArtistService } from '../services/artist.service';
 import { GlobalService} from '../../../services/global.service';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-artist',
@@ -19,7 +20,11 @@ export class ArtistComponent implements OnInit {
   public moreAlbums: boolean = false;
   public moreTracks: boolean = false;
 
-  constructor( private activatedRoute: ActivatedRoute, private artistService: ArtistService ) { /*empty*/ }
+  theme = "";
+
+  constructor( private activatedRoute: ActivatedRoute, private artistService: ArtistService, private themeService: ThemeService ) {
+    this.theme = themeService.getTheme();
+  }
 
   ngOnInit(): void {
     this.getActivatedRoute();

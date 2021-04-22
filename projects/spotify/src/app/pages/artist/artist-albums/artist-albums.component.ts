@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-artist-albums',
@@ -9,9 +10,14 @@ import { Router } from '@angular/router';
 export class ArtistAlbumsComponent implements OnInit {
   @Input() album: any;
 
-  constructor(private router: Router) { /*empty*/ }
+  theme = "";
 
-  ngOnInit(): void { /*empty*/ }
+  constructor(private router: Router, private themeService: ThemeService) {
+    this.theme = themeService.getTheme();
+  }
+
+  ngOnInit(): void {
+  }
 
   public seeAlbum(album: any): void {
     this.router.navigate(['/spotify/album', album.id]);
