@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
   constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService, private themeService: ThemeService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
+    this.themeLightEnable = this.themeService.getTypeTheme();
   }
 
   ngOnInit(): void {

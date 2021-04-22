@@ -1,22 +1,39 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css']
 })
-export class SearchInputComponent implements AfterViewInit {
+export class SearchInputComponent implements OnInit,AfterViewInit {
 
   @ViewChild('input') inputElement: ElementRef;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  private router: Router;
+  theme = "";
+  themeButton= "";
 
-  constructor(router: Router) {
+  private router: Router;
+  private themeService: ThemeService;
+
+  constructor(router: Router, themeService: ThemeService) {
     this.router = router;
+    this.themeService = themeService;
+    this.theme = this.themeService.getTheme();
+  }
+
+  ngOnInit(): void {
+    if (this.theme == "inverted"){
+      this.themeButton = "secondary contourColor";
+      this.theme = this.theme + " transparent contourColor";
+    }
+    this.themeService.themeObservable.subscribe(value => {
+      this.theme = value + " transparent contourColor";
+    })
   }
 
   ngAfterViewInit() {
