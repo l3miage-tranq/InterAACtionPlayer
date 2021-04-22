@@ -3,6 +3,7 @@ import { DwelltimeService } from '../../../services/dwelltime.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { ThemeService } from '../../../services/theme.service';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,10 +16,11 @@ export class SettingsComponent implements OnInit {
   dwellTimeValue: number;
 
   themeLightEnable: boolean = true;
+  moreLanguages: boolean = false;
 
   error: boolean = false;
 
-  constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService, private themeService: ThemeService) {
+  constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService, private themeService: ThemeService, private language: LanguageService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
@@ -37,6 +39,15 @@ export class SettingsComponent implements OnInit {
 
   getValue(event){
     this.dwellTimeValue = event.target.value * 1000.0;
+  }
+
+  seeLanguages(): void {
+    this.moreLanguages = !this.moreLanguages;
+  }
+
+  switchLanguage(language: string){
+    console.log("switch");
+    this.language.switchLanguage(language);
   }
 
   isValid(){

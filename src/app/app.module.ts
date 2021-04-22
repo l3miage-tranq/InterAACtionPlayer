@@ -43,6 +43,17 @@ import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 
+/**
+ * Import Translation
+ */
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +78,13 @@ import { ProgressIndicatorComponent } from './playlist/progressIndicator/progres
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: '', redirectTo: 'playlist', pathMatch: 'full'},
     ]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
+      }
+    }),
     PipesModule,
     FormsModule,
     MatProgressSpinnerModule,
