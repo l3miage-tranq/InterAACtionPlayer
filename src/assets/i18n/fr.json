@@ -1,4 +1,8 @@
 {
+  "playlist": {
+  "title": "Ma Playlist",
+  "delete": "Supprimer"
+  },
   "settingsPlaylist": {
     "settings": "Configurations",
     "themes": "Thème",
@@ -26,12 +30,23 @@
     "titleSong": "Titre de la musique",
     "titleVideo": "Titre de la vidéo",
     "errorEmptyTitle": "Besoin d'un titre !",
-    "artistSong": "Artist de la musique",
-    "artistVideo": "Artist de la vidéo",
+    "artistSong": "Artiste de la musique",
+    "artistVideo": "Artiste de la vidéo",
     "file": "Fichier",
     "errorEmptyFile": "Besoin d'un fichier !",
     "errorWrongFile": "Mauvais fichier !",
     "add": "Ajouter",
     "cancel": "Annuler"
+  },
+  "youtubeSearchContainer": {
+    "noVideo": "Pas de vidéo trouvé !"
+  },
+  "youtubeSearchList": {
+    "add": "Ajouter à la Playlist",
+    "delete": "Supprimer de la Playlist"
+  },
+  "youtubeSearchInput": {
+    "back": "Retour à la Playlist",
+    "input": " Chercher une vidéo ... "
   }
 }

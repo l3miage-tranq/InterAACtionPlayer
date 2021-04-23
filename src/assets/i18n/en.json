@@ -1,64 +1,79 @@
 {
-    "nav-bar": {
-        "home-text": "Home",
-        "search-text": "Search",
-        "playlist-text": "Playlist"
-      },
-    "home": {
-      "title": "New Releases"
-    },
-    "artist": {
-      "followers": "followers",
-      "profile-btn": "View Profile",
-      "overview": "Overview",
-      "title": "Top Tracks",
-      "more-btn": "See More",
-      "album-title": "Albums",
-      "song-preview": "Preview"
-    },
-    "search": {
-      "placeholder": "Search artist or track",
-      "artist-title": "Artists",
-      "more-btn": "See More",
-      "tracks-title": "Songs"
-    },
-    "modal": {
-      "body": "Sorry... artist or track not found",
-      "search-btn": "Search again"
-    },
-    "settingsPlaylist": {
-      "settings": "Settings",
-      "themes": "Theme",
-      "light": "Light",
-      "dark": "Dark",
-      "languages": "Languages",
-      "yes": "Yes",
-      "no": "No",
-      "duration": "Dwell Time duration",
-      "save": "Save",
-      "english-language": "English",
-      "french-language": "French"
-    },
-    "savePlaylist": {
-      "title": "Save Playlist ?",
-      "content": "Do you want to save this Playlist ?",
-      "yes": "Yes",
-      "no": "No"
-    },
-    "importFilePlaylist": {
-      "title": "Add local file to Playlist",
-      "type": "Type of file",
-      "song": "Music",
-      "video": "Video",
-      "titleSong": "Title of music",
-      "titleVideo": "Title of video",
-      "errorEmptyTitle": "Need title !",
-      "artistSong": "Artist of music",
-      "artistVideo": "Artist of video",
-      "file": "File",
-      "errorEmptyFile": "Need file !",
-      "errorWrongFile": "Wrong file !",
-      "add": "Add",
-      "cancel": "Cancel"
-    }
+  "nav-bar": {
+    "home-text": "Home",
+    "search-text": "Search",
+    "playlist-text": "Playlist"
+  },
+  "home": {
+    "title": "New Releases"
+  },
+  "artist": {
+    "followers": "followers",
+    "profile-btn": "View Profile",
+    "overview": "Overview",
+    "title": "Top Tracks",
+    "more-btn": "See More",
+    "album-title": "Albums",
+    "song-preview": "Preview"
+  },
+  "search": {
+    "placeholder": "Search artist or track",
+    "artist-title": "Artists",
+    "more-btn": "See More",
+    "tracks-title": "Songs"
+  },
+  "modal": {
+    "body": "Sorry... artist or track not found",
+    "search-btn": "Search again"
+  },
+  "playlist": {
+    "title": "My Playlist",
+    "delete": "Delete"
+  },
+  "settingsPlaylist": {
+    "settings": "Settings",
+    "themes": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "languages": "Languages",
+    "yes": "Yes",
+    "no": "No",
+    "duration": "Dwell Time duration",
+    "save": "Save",
+    "english-language": "English",
+    "french-language": "French"
+  },
+  "savePlaylist": {
+    "title": "Save Playlist ?",
+    "content": "Do you want to save this Playlist ?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "importFilePlaylist": {
+    "title": "Add local file to Playlist",
+    "type": "Type of file",
+    "song": "Music",
+    "video": "Video",
+    "titleSong": "Title of music",
+    "titleVideo": "Title of video",
+    "errorEmptyTitle": "Need title !",
+    "artistSong": "Artist of music",
+    "artistVideo": "Artist of video",
+    "file": "File",
+    "errorEmptyFile": "Need file !",
+    "errorWrongFile": "Wrong file !",
+    "add": "Add",
+    "cancel": "Cancel"
+  },
+  "youtubeSearchContainer": {
+    "noVideo": "No video found !"
+  },
+  "youtubeSearchList": {
+    "add": "Add to Playlist",
+    "delete": "Delete to Playlist"
+  },
+  "youtubeSearchInput": {
+    "back": "Back to Playlist",
+    "input": " Search for a video ... "
+  }
 }

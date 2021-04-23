@@ -18,11 +18,11 @@
       </div>
       <button *ngIf="!videoAlreadyAddToPlaylist(this.video)"
               class="ui right floated tiny green right labeled icon button" (click)="addVideoToPlaylist(this.video)">
-        Add to Playlist
+        {{ "youtubeSearchList.add" | translate }}
       </button>
       <button *ngIf="videoAlreadyAddToPlaylist(this.video)"
               class="ui right floated tiny red right labeled icon button" (click)="deleteVideoToPlaylist(this.video)">
-        Delete to Playlist
+        {{ "youtubeSearchList.delete" | translate }}
       </button>
     </div>
   </div>
