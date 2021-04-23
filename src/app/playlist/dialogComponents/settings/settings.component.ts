@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { ThemeService } from '../../../services/theme.service';
 import { LanguageService } from '../../../services/language.service';
+import { SaveService } from '../../../services/save.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,11 +17,17 @@ export class SettingsComponent implements OnInit {
   dwellTimeValue: number;
 
   themeLightEnable: boolean = true;
+  themeValue = "";
   moreLanguages: boolean = false;
 
   error: boolean = false;
 
-  constructor(private dwellTimeService: DwelltimeService, private dialog: MatDialog, private notifier: NotifierService, private themeService: ThemeService, private language: LanguageService) {
+  constructor(private dwellTimeService: DwelltimeService,
+              private dialog: MatDialog,
+              private notifier: NotifierService,
+              private themeService: ThemeService,
+              private language: LanguageService,
+              private saveService: SaveService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
@@ -31,6 +38,11 @@ export class SettingsComponent implements OnInit {
 
   toggleTheme(){
     this.themeLightEnable = !this.themeLightEnable;
+    if (this.themeLightEnable){
+      this.themeValue = "";
+    }else {
+      this.themeValue = "inverted";
+    }
   }
 
   dwellTime(){
@@ -63,11 +75,8 @@ export class SettingsComponent implements OnInit {
     if (this.isValid()){
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
-      if (this.themeLightEnable){
-        this.themeService.emitTheme("");
-      }else {
-        this.themeService.emitTheme("inverted");
-      }
+      this.themeService.emitTheme(this.themeValue);
+      this.saveService.updateTheme();
       this.notifier.notify('warning', 'Settings have changed !');
       this.dialog.closeAll();
     }

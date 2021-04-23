@@ -102,6 +102,9 @@ export class PlaylistComponent implements OnInit {
   }
 
   openSettings(){
+    if (this.edit){
+      this.goEdit();
+    }
     this.dialog.open(SettingsComponent);
   }
 
