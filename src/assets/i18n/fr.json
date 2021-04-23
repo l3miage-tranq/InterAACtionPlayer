@@ -1,0 +1,37 @@
+{
+  "settingsPlaylist": {
+    "settings": "Configurations",
+    "themes": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "languages": "Langues",
+    "yes": "Oui",
+    "no": "Non",
+    "duration": "Durée du Dwell Time",
+    "save": "Sauvegarder",
+    "english-language": "Anglais",
+    "french-language": "Français"
+  },
+  "savePlaylist": {
+    "title": "Sauvegarder la Playlist ?",
+    "content": "Voulez-vous sauvegarder cette Playlist ?",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "importFilePlaylist": {
+    "title": "Ajouter un fichier local à la Playlist",
+    "type": "Type de fichier",
+    "song": "Musique",
+    "video": "Vidéo",
+    "titleSong": "Titre de la musique",
+    "titleVideo": "Titre de la vidéo",
+    "errorEmptyTitle": "Besoin d'un titre !",
+    "artistSong": "Artist de la musique",
+    "artistVideo": "Artist de la vidéo",
+    "file": "Fichier",
+    "errorEmptyFile": "Besoin d'un fichier !",
+    "errorWrongFile": "Mauvais fichier !",
+    "add": "Ajouter",
+    "cancel": "Annuler"
+  }
+}

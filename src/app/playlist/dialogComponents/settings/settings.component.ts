@@ -46,7 +46,6 @@ export class SettingsComponent implements OnInit {
   }
 
   switchLanguage(language: string){
-    console.log("switch");
     this.language.switchLanguage(language);
   }
 

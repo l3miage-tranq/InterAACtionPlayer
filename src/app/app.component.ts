@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from './services/theme.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent{
 
   theme = "";
 
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private languageService: LanguageService) {
     this.themeService.themeObservable.subscribe(value => {
       if (value == "inverted"){
         this.theme = "darkMode";

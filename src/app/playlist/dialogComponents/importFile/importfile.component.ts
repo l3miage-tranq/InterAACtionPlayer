@@ -11,12 +11,12 @@ import { SaveService } from '../../../services/save.service';
 })
 export class ImportfileComponent implements OnInit {
 
-  private typeFile = "song"
+  public typeFile = "song"
   private fileUpload;
   public titleFileInput = '';
   public artistFileInput = '';
-  public titleFilePlaceholder = "Title of song";
-  public artistFilePlaceholder = "Artist of song";
+  public titleFile = "importFilePlaylist.titleSong";
+  public artistFile = "importFilePlaylist.artistSong";
   public error = '';
 
   public errorEmptyFile = false;
@@ -32,16 +32,16 @@ export class ImportfileComponent implements OnInit {
   public getTypeSong(){
     if (this.typeFile != "song"){
       this.typeFile = "song";
-      this.titleFilePlaceholder = "Title of song";
-      this.artistFilePlaceholder = "Artist of song";
+      this.titleFile = "importFilePlaylist.titleSong";
+      this.artistFile = "importFilePlaylist.artistSong";
     }
   }
 
   public getTypeVideo(){
     if (this.typeFile != "video"){
       this.typeFile = "video";
-      this.titleFilePlaceholder = "Title of video";
-      this.artistFilePlaceholder = "Artist of video";
+      this.titleFile = "importFilePlaylist.titleVideo";
+      this.artistFile = "importFilePlaylist.artistVideo";
     }
   }
 

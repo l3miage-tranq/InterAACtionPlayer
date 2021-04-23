@@ -25,5 +25,40 @@
     "modal": {
       "body": "Sorry... artist or track not found",
       "search-btn": "Search again"
+    },
+    "settingsPlaylist": {
+      "settings": "Settings",
+      "themes": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "languages": "Languages",
+      "yes": "Yes",
+      "no": "No",
+      "duration": "Dwell Time duration",
+      "save": "Save",
+      "english-language": "English",
+      "french-language": "French"
+    },
+    "savePlaylist": {
+      "title": "Save Playlist ?",
+      "content": "Do you want to save this Playlist ?",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "importFilePlaylist": {
+      "title": "Add local file to Playlist",
+      "type": "Type of file",
+      "song": "Music",
+      "video": "Video",
+      "titleSong": "Title of music",
+      "titleVideo": "Title of video",
+      "errorEmptyTitle": "Need title !",
+      "artistSong": "Artist of music",
+      "artistVideo": "Artist of video",
+      "file": "File",
+      "errorEmptyFile": "Need file !",
+      "errorWrongFile": "Wrong file !",
+      "add": "Add",
+      "cancel": "Cancel"
     }
 }

@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>
-  Save Playlist ?
+  {{ "savePlaylist.title" | translate }}
 </h1>
 <div mat-dialog-content>
-  <p>Want to save this Playlist ?</p>
+  <p>{{ "savePlaylist.content" | translate }}</p>
 </div>
 <div mat-dialog-actions>
-  <button class="ui button" (click)="goCancel()">Cancel</button>
-  <button class="ui button" (click)="submit()">Yes</button>
+  <button class="ui button" (click)="goCancel()">{{ "savePlaylist.no" | translate }}</button>
+  <button class="ui button" (click)="submit()">{{ "savePlaylist.yes" | translate }}</button>
 </div>
 <notifier-container></notifier-container>
