@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 // Services
 import { ArtistService } from '../services/artist.service';
-import { GlobalService} from '../../../services/global.service';
 import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
@@ -17,8 +15,6 @@ export class ArtistComponent implements OnInit {
   public artist: any | null = null;
   public topTracks: any[] = [];
   public albums: any[] = [];
-  public moreAlbums: boolean = false;
-  public moreTracks: boolean = false;
 
   theme = "";
 
@@ -37,7 +33,6 @@ export class ArtistComponent implements OnInit {
   public getActivatedRoute(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.artistId = params.id;
-      console.log('Activated Route Id', params.id);
     });
   }
 
@@ -78,20 +73,5 @@ export class ArtistComponent implements OnInit {
     }, () => {
       console.log('Albums Complete!');
     });
-  }
-
-  // update variable to see more/less albums
-  public seeMoreAlbums(): void {
-    this.moreAlbums = !this.moreAlbums;
-  }
-
-  // update variable to see more/less tracks
-  public seeMoreTracks(): void {
-    this.moreTracks = !this.moreTracks;
-  }
-
-  // scroll to element
-  public scrollTo(elementId: string): void {
-    document.getElementById(elementId).scrollIntoView();
   }
 }

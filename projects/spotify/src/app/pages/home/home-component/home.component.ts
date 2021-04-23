@@ -13,7 +13,6 @@ import { NewReleasesService } from '../services/new-releases.service';
 })
 export class HomeComponent implements OnInit {
   public newReleases: NewReleasesItem[] = [];
-  // public activeLanguage: string = 'en';
 
   constructor(private newReleasesService: NewReleasesService){}
 
@@ -32,10 +31,5 @@ export class HomeComponent implements OnInit {
     }, () => {
       console.log('Complete!');
     });
-  }
-
-  // scroll to element
-  public scrollTo(elementId: string): void {
-    document.getElementById(elementId).scrollIntoView();
   }
 }

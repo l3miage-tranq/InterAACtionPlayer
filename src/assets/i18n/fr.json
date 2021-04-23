@@ -48,5 +48,29 @@
   "youtubeSearchInput": {
     "back": "Retour à la Playlist",
     "input": " Chercher une vidéo ... "
+  },
+  "spotifyNavbar": {
+    "home": "Accueil",
+    "search": "Recherche",
+    "playlist": "Playlist"
+  },
+  "spotifyHome": {
+    "title": "Nouvelles musiques"
+  },
+  "spotifyArtist": {
+    "followers": "Abonnés",
+    "back": "Retour vers recherche",
+    "albums": "Albums"
+  },
+  "spotifySearch": {
+    "back": "Retour à l'accueil",
+    "placeholder": " Rechercher des musiques ou des artistes... ",
+    "artists": "Artistes",
+    "tracks": "Musiques"
+  },
+  "spotifyAlbum": {
+    "back": "Retour vers l'artist",
+    "add": "Ajouter à la Playlist",
+    "delete": "Supprimer de la Playlist"
   }
 }

@@ -1,31 +1,4 @@
 {
-  "nav-bar": {
-    "home-text": "Home",
-    "search-text": "Search",
-    "playlist-text": "Playlist"
-  },
-  "home": {
-    "title": "New Releases"
-  },
-  "artist": {
-    "followers": "followers",
-    "profile-btn": "View Profile",
-    "overview": "Overview",
-    "title": "Top Tracks",
-    "more-btn": "See More",
-    "album-title": "Albums",
-    "song-preview": "Preview"
-  },
-  "search": {
-    "placeholder": "Search artist or track",
-    "artist-title": "Artists",
-    "more-btn": "See More",
-    "tracks-title": "Songs"
-  },
-  "modal": {
-    "body": "Sorry... artist or track not found",
-    "search-btn": "Search again"
-  },
   "playlist": {
     "title": "My Playlist",
     "delete": "Delete"
@@ -75,5 +48,29 @@
   "youtubeSearchInput": {
     "back": "Back to Playlist",
     "input": " Search for a video ... "
+  },
+  "spotifyNavbar": {
+    "home": "Home",
+    "search": "Search",
+    "playlist": "Playlist"
+  },
+  "spotifyHome": {
+    "title": "New Releases"
+  },
+  "spotifyArtist": {
+    "followers": "Followers",
+    "back": "Back to search",
+    "albums": "Albums"
+  },
+  "spotifySearch": {
+    "back": "Back to Home",
+    "placeholder": " Search artist or track... ",
+    "artists": "Artists",
+    "tracks": "Musics"
+  },
+  "spotifyAlbum": {
+    "back": "Back to artist",
+    "add": "Add to Playlist",
+    "delete": "Delete to Playlist"
   }
 }

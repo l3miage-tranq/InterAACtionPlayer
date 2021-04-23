@@ -5,18 +5,18 @@
     <h2 class="ui centered aligned header">{{ album.name }}</h2>
     <button class="ui button" (click)="goBack()">
       <i class="left arrow icon"></i>
-      Back to Artist
+      {{ "spotifyAlbum.back" | translate }}
     </button>
   </div>
   <div *ngFor="let nbTrack of album.tracks.items; let i = index">
     <iframe [src]="album.tracks.items[i].uri | uri" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <button *ngIf="!songAlreadyAddToPlaylist(album.tracks.items[i])"
             class="right attached ui green button alignement" (click)="addToPlaylist(album.tracks.items[i], album.images[0])">
-      Add to Playlist
+      {{ "spotifyAlbum.add" | translate }}
     </button>
     <button *ngIf="songAlreadyAddToPlaylist(this.album.tracks.items[i])"
             class="right attached ui red button alignement" (click)="deleteToPlaylist(album.tracks.items[i])">
-      Delete to Playlist
+      {{ "spotifyAlbum.delete" | translate }}
     </button>
   </div>
 </div>

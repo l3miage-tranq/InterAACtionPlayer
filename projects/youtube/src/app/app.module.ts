@@ -8,13 +8,13 @@ import { SearchContainerComponent } from './search/container/search-container.co
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
 import { SearchListComponent } from './search/components/search-list/search-list.component';
 import { YoutubePipe } from './pipe/youtube.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Custom angular notifier options
  */
 
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import {TranslateModule} from '@ngx-translate/core';
 
 const customNotifierOptions: NotifierOptions = {
   position: { horizontal: { position: 'left', distance: 12 },
@@ -38,13 +38,13 @@ const providers = [];
     SearchListComponent,
     YoutubePipe
   ],
-    imports: [
-        BrowserModule,
-        NotifierModule.withConfig(customNotifierOptions),
-        HttpClientModule,
-        AppRoutingModule,
-        TranslateModule,
-    ],
+  imports: [
+    BrowserModule,
+    NotifierModule.withConfig(customNotifierOptions),
+    HttpClientModule,
+    AppRoutingModule,
+    TranslateModule,
+  ],
   providers: providers,
   exports: [
     YoutubePipe

@@ -16,6 +16,7 @@ import { PipesModule} from '../../pipes/pipes.module';
  */
 
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import {TranslateModule} from '@ngx-translate/core';
 
 const customNotifierOptions: NotifierOptions = {
   position: { horizontal: { position: 'left', distance: 12 },
@@ -34,10 +35,11 @@ const customNotifierOptions: NotifierOptions = {
     AlbumComponent,
   ],
     imports: [
-      CommonModule,
-      AlbumRoutingModule,
-      PipesModule,
-      NotifierModule.withConfig(customNotifierOptions),
+        CommonModule,
+        AlbumRoutingModule,
+        PipesModule,
+        NotifierModule.withConfig(customNotifierOptions),
+        TranslateModule,
     ],
   providers: [
     AlbumService,

@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 //Translation
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Routes
 import { AppRoutingModule } from './app-routing.module';
@@ -15,10 +14,6 @@ import { NavBarComponent} from './pages/shared/nav-bar/nav-bar.component';
 
 // Services
 import { GlobalService } from './services/global.service';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-}
 
 const providers = [
   GlobalService,
@@ -33,13 +28,7 @@ const providers = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient],
-      }
-    })
+    TranslateModule,
   ],
   providers: providers,
   bootstrap: [
