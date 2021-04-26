@@ -57,11 +57,23 @@ export class SettingsComponent implements OnInit {
     this.dwellTimeValue = event.target.value * 1000.0;
   }
 
+  setActiveLanguage(){
+    const elem = document.getElementById(this.usedLanguage)
+    elem.classList.add("active");
+  }
+
   seeLanguages(): void {
     this.moreLanguages = !this.moreLanguages;
+    setTimeout(() => {
+      this.setActiveLanguage();
+    }, 250);
   }
 
   switchLanguage(language: string){
+    const oldElem = document.getElementById(this.usedLanguage);
+    const newElem = document.getElementById(language);
+    oldElem.classList.remove("active");
+    newElem.classList.add("active");
     this.usedLanguage = language;
   }
 

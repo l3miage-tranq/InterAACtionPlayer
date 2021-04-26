@@ -35,11 +35,11 @@
           {{ 'settingsPlaylist.languages' | translate }}
           <i class="dropdown icon"></i>
         </a>
-        <a class="item" *ngIf="moreLanguages" (click)="switchLanguage('en')">
+        <a id="en" class="item" *ngIf="moreLanguages" (click)="switchLanguage('en')">
           {{ 'settingsPlaylist.english-language' | translate }}
           <i class="gb uk flag"></i>
         </a>
-        <a class="item" *ngIf="moreLanguages" (click)="switchLanguage('fr')">
+        <a id="fr" class="item" *ngIf="moreLanguages" (click)="switchLanguage('fr')">
           {{ 'settingsPlaylist.french-language' | translate }}
           <i class="fr flag"></i>
         </a>
