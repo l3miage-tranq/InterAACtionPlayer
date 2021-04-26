@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PlaylistService } from '../playlist/services/playlist.service';
 import { ThemeService } from './theme.service';
+import { LanguageService } from './language.service';
+import { DwelltimeService } from './dwelltime.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +12,20 @@ export class SaveService {
   openRequest;
   playlistService: PlaylistService;
   themeService: ThemeService;
+  languageService: LanguageService;
+  dwellTimeService: DwelltimeService;
 
-  constructor(playlistService: PlaylistService, themeService: ThemeService) {
+  constructor(playlistService: PlaylistService, themeService: ThemeService, languageService: LanguageService, dwellTimeService: DwelltimeService) {
     this.playlistService = playlistService;
     this.themeService = themeService;
+    this.languageService = languageService;
+    this.dwellTimeService = dwellTimeService;
     this.initPlaylist();
   }
 
   initPlaylist(){
 
-    this.openRequest = indexedDB.open('SavePlaylist', 3);
+    this.openRequest = indexedDB.open('SavePlaylist', 4);
 
     // Creation of Store
     this.openRequest.onupgradeneeded = event => {
@@ -38,6 +44,20 @@ export class SaveService {
         db.createObjectStore('Theme', {autoIncrement: true});
         const themeStore = transaction.objectStore('Theme');
         themeStore.add(this.themeService.theme);
+      }
+
+      // Creation du Store du language
+      if (!db.objectStoreNames.contains("Language")) {
+        db.createObjectStore('Language', {autoIncrement: true});
+        const languageStore = transaction.objectStore('Language');
+        languageStore.add(this.languageService.activeLanguage);
+      }
+
+      // Creation du Store du dwellTime
+      if (!db.objectStoreNames.contains("DwellTime")) {
+        db.createObjectStore('DwellTime', {autoIncrement: true});
+        const dwellTimeStore = transaction.objectStore('DwellTime');
+        dwellTimeStore.add(this.dwellTimeService.getConfiguration());
       }
     };
 
@@ -62,6 +82,24 @@ export class SaveService {
       themeStore.onerror = event => {
         alert('ThemeStore error: ' + event.target.errorCode);
       };
+
+      // Recupération du Language enregistré
+      const languageStore = db.transaction(['Language'], 'readwrite').objectStore('Language').get(1);
+      languageStore.onsuccess = e => {
+        this.languageService.switchLanguage(languageStore.result);
+      };
+      languageStore.onerror = event => {
+        alert('LanguageStore error: ' + event.target.errorCode);
+      };
+
+      // Recupération du DwellTime enregistré
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').get(1);
+      dwellTimeStore.onsuccess = e => {
+        this.dwellTimeService.setConfiguration(dwellTimeStore.result);
+      };
+      dwellTimeStore.onerror = event => {
+        alert('DwellTimeStore error: ' + event.target.errorCode);
+      };
     };
 
     // ERROR
@@ -72,7 +110,7 @@ export class SaveService {
 
   updatePlaylist() {
 
-    this.openRequest = indexedDB.open('SavePlaylist', 3);
+    this.openRequest = indexedDB.open('SavePlaylist', 4);
 
     // SUCCESS
     this.openRequest.onsuccess = event => {
@@ -93,9 +131,9 @@ export class SaveService {
     };
   }
 
-  updateTheme(){
+  updateSettings(){
 
-    this.openRequest = indexedDB.open('SavePlaylist', 3);
+    this.openRequest = indexedDB.open('SavePlaylist', 4);
 
     // SUCCESS
     this.openRequest.onsuccess = event => {
@@ -107,6 +145,22 @@ export class SaveService {
       const storeThemeRequest = themeObjectStore.get(1);
       storeThemeRequest.onsuccess = () => {
         themeObjectStore.put(this.themeService.theme, 1);
+      };
+
+      // UPDATE LANGUAGE
+      const languageStore = db.transaction(['Language'], 'readwrite');
+      const languageObjectStore = languageStore.objectStore('Language');
+      const storeLanguageRequest = languageObjectStore.get(1);
+      storeLanguageRequest.onsuccess = () => {
+        languageObjectStore.put(this.languageService.activeLanguage, 1);
+      };
+
+      // UPDATE DWELLTIME
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite');
+      const dwellTimeObjectStore = dwellTimeStore.objectStore('DwellTime');
+      const storeDwellTimeRequest = dwellTimeObjectStore.get(1);
+      storeDwellTimeRequest.onsuccess = () => {
+        dwellTimeObjectStore.put(this.dwellTimeService.getConfiguration(), 1);
       };
     }
 

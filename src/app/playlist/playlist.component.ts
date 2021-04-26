@@ -69,7 +69,7 @@ export class PlaylistComponent implements OnInit {
     this.saveService = saveService;
     this.dwelltimeService = dwelltimeService;
     this.themeService = themeService;
-    this.theme = this.themeService.getTheme();
+    this.theme = this.themeService.theme;
   }
 
   ngOnInit(): void {

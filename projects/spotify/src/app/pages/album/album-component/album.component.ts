@@ -32,7 +32,7 @@ export class AlbumComponent implements OnInit {
     private saveService: SaveService,
     private themeService: ThemeService
   ) {
-    this.theme = themeService.getTheme();
+    this.theme = themeService.theme;
   }
 
   ngOnInit(): void {

@@ -16,7 +16,7 @@ export class NewReleaseItemComponent implements OnInit {
   theme = "";
 
   constructor(private router: Router, private themeService : ThemeService) {
-    this.theme = themeService.getTheme();
+    this.theme = themeService.theme;
   }
 
   ngOnInit(): void {}

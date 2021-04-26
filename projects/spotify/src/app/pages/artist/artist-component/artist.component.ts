@@ -19,7 +19,7 @@ export class ArtistComponent implements OnInit {
   theme = "";
 
   constructor( private activatedRoute: ActivatedRoute, private artistService: ArtistService, private themeService: ThemeService ) {
-    this.theme = themeService.getTheme();
+    this.theme = themeService.theme;
   }
 
   ngOnInit(): void {

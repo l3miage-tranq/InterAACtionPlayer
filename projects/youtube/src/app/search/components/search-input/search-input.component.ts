@@ -22,7 +22,7 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
   constructor(router: Router, themeService: ThemeService) {
     this.router = router;
     this.themeService = themeService;
-    this.theme = this.themeService.getTheme();
+    this.theme = this.themeService.theme;
   }
 
   ngOnInit(): void {

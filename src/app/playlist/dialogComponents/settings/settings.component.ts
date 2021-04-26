@@ -19,6 +19,7 @@ export class SettingsComponent implements OnInit {
   themeLightEnable: boolean = true;
   themeValue = "";
   moreLanguages: boolean = false;
+  usedLanguage = "";
 
   error: boolean = false;
 
@@ -31,6 +32,7 @@ export class SettingsComponent implements OnInit {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
+    this.usedLanguage = this.language.activeLanguage;
   }
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class SettingsComponent implements OnInit {
   }
 
   switchLanguage(language: string){
-    this.language.switchLanguage(language);
+    this.usedLanguage = language;
   }
 
   isValid(){
@@ -76,7 +78,8 @@ export class SettingsComponent implements OnInit {
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
       this.themeService.emitTheme(this.themeValue);
-      this.saveService.updateTheme();
+      this.language.switchLanguage(this.usedLanguage);
+      this.saveService.updateSettings();
       this.notifier.notify('warning', 'Settings have changed !');
       this.dialog.closeAll();
     }

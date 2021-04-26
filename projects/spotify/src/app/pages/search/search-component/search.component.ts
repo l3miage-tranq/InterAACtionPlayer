@@ -24,8 +24,8 @@ export class SearchComponent implements OnInit {
   themeSearch = "";
 
   constructor( private searchService: SearchService, private router: Router, private themeService: ThemeService ) {
-    this.theme = themeService.getTheme();
-    this.themeSearch = themeService.getTheme() + " transparent contourColor";
+    this.theme = themeService.theme;
+    this.themeSearch = themeService.theme + " transparent contourColor";
   }
 
   ngOnInit(): void {

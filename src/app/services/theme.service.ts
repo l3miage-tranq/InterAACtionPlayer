@@ -17,10 +17,6 @@ export class ThemeService {
     this.theme = val;
   }
 
-  getTheme(){
-    return this.theme;
-  }
-
   getTypeTheme(){
     return this.theme == "";
   }

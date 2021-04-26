@@ -13,7 +13,7 @@ export class AppComponent{
   theme = "";
 
   constructor(private themeService: ThemeService, private languageService: LanguageService) {
-    this.theme = this.themeService.getTheme();
+    this.theme = this.themeService.theme;
     this.themeService.themeObservable.subscribe(value => {
       if (value == "inverted"){
         this.theme = "darkMode";

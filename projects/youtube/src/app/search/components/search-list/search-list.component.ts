@@ -25,7 +25,7 @@ export class SearchListComponent implements OnInit {
     this.playlistService = playlistService;
     this.saveService = saveService;
     this.themeService = themeService;
-    this.theme = this.themeService.getTheme();
+    this.theme = this.themeService.theme;
   }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@ export class NavBarComponent implements OnInit {
   theme = "";
 
   constructor(private themeService: ThemeService) {
-    this.theme = themeService.getTheme();
+    this.theme = themeService.theme;
   }
 
   ngOnInit(): void {
