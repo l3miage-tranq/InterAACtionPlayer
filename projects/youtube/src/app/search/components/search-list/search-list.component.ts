@@ -4,6 +4,7 @@ import { PlaylistService } from '../../../../../../../src/app/playlist/services/
 import { NotifierService } from "angular-notifier";
 import { SaveService } from '../../../../../../../src/app/services/save.service';
 import { ThemeService } from '../../../../../../../src/app/services/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-list',
@@ -19,13 +20,15 @@ export class SearchListComponent implements OnInit {
   private playlistService: PlaylistService;
   private saveService: SaveService;
   private themeService: ThemeService;
+  private translate: TranslateService;
 
-  constructor( notifier: NotifierService, playlistService : PlaylistService, saveService: SaveService, themeService: ThemeService ) {
+  constructor( notifier: NotifierService, playlistService : PlaylistService, saveService: SaveService, themeService: ThemeService, translate: TranslateService ) {
     this.notifier = notifier;
     this.playlistService = playlistService;
     this.saveService = saveService;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
+    this.translate = translate;
   }
 
   ngOnInit(): void {
@@ -36,13 +39,13 @@ export class SearchListComponent implements OnInit {
 
   addVideoToPlaylist(video: Video) {
     this.playlistService.addVideoYoutubeToPlaylist(video);
-    this.notifier.notify('success', 'Video add to playlist');
+    this.notifier.notify('success', this.translate.instant('notifier.addVideo'));
     this.saveService.updatePlaylist();
   }
 
   deleteVideoToPlaylist(video: Video) {
     this.playlistService.deleteVideoYoutubeToPlaylist(video);
-    this.notifier.notify('success', 'Video delete to playlist');
+    this.notifier.notify('success', this.translate.instant('notifier.deleteVideo'));
     this.saveService.updatePlaylist();
   }
 

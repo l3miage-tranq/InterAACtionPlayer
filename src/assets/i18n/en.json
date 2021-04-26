@@ -1,4 +1,13 @@
 {
+  "notifier": {
+    "settings": "Settings have changed !",
+    "editOn": "Edit mode ON !",
+    "editOff": "Edit mode OFF !",
+    "addVideo": "Video add to playlist !",
+    "deleteVideo": "Video delete to playlist !",
+    "addSong": "Music add to playlist !",
+    "deleteSong": "Music delete to playlist !"
+  },
   "playlist": {
     "title": "My Playlist",
     "delete": "Delete"

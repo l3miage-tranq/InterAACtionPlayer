@@ -14,6 +14,7 @@ import { DwelltimeService } from '../services/dwelltime.service';
 import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ThemeService } from '../services/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-playlist',
@@ -51,6 +52,7 @@ export class PlaylistComponent implements OnInit {
   private saveService: SaveService;
   private dwelltimeService: DwelltimeService;
   private themeService: ThemeService;
+  private translate: TranslateService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -59,7 +61,8 @@ export class PlaylistComponent implements OnInit {
               router: Router,
               saveService: SaveService,
               dwelltimeService: DwelltimeService,
-              themeService: ThemeService) {
+              themeService: ThemeService,
+              translate: TranslateService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -70,6 +73,7 @@ export class PlaylistComponent implements OnInit {
     this.dwelltimeService = dwelltimeService;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
+    this.translate = translate;
   }
 
   ngOnInit(): void {
@@ -112,10 +116,10 @@ export class PlaylistComponent implements OnInit {
     this.edit = !this.edit;
     if (this.edit){
       this.playlistService.addBtnAdd();
-      this.notifier.notify('warning', 'Edit mode ON');
+      this.notifier.notify('warning', this.translate.instant('notifier.editOn'));
     }else {
       this.playList = this.playlistService.deleteBtnAdd();
-      this.notifier.notify('warning', 'Edit mode OFF');
+      this.notifier.notify('warning', this.translate.instant('notifier.editOff'));
     }
   }
 

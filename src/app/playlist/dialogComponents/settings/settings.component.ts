@@ -5,6 +5,7 @@ import { NotifierService } from 'angular-notifier';
 import { ThemeService } from '../../../services/theme.service';
 import { LanguageService } from '../../../services/language.service';
 import { SaveService } from '../../../services/save.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-settings',
@@ -28,7 +29,8 @@ export class SettingsComponent implements OnInit {
               private notifier: NotifierService,
               private themeService: ThemeService,
               private language: LanguageService,
-              private saveService: SaveService) {
+              private saveService: SaveService,
+              private translate: TranslateService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
@@ -80,7 +82,7 @@ export class SettingsComponent implements OnInit {
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
       this.saveService.updateSettings();
-      this.notifier.notify('warning', 'Settings have changed !');
+      this.notifier.notify('warning', this.translate.instant('notifier.settings'));
       this.dialog.closeAll();
     }
   }

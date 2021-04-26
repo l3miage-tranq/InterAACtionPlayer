@@ -1,4 +1,13 @@
 {
+  "notifier": {
+    "settings": "Les paramètres ont changés !",
+    "editOn": "Mode d'édition ON !",
+    "editOff": "Mode d'édition OFF !",
+    "addVideo": "Vidéo ajouté à la playlist !",
+    "deleteVideo": "Vidéo supprimé de la playlist !",
+    "addSong": "Musique ajouté à la playlist !",
+    "deleteSong": "Musique supprimé de la playlist !"
+  },
   "playlist": {
   "title": "Ma Playlist",
   "delete": "Supprimer"

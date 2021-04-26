@@ -8,6 +8,7 @@ import { AlbumService } from '../services/album.service';
 import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
 import { SaveService } from '../../../../../../../src/app/services/save.service';
 import { ThemeService } from '../../../../../../../src/app/services/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 
 // Models
 import { APIAlbums, Image, Item } from '../models/album-model';
@@ -30,7 +31,8 @@ export class AlbumComponent implements OnInit {
     private notifier: NotifierService,
     private playlistService: PlaylistService,
     private saveService: SaveService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private translate: TranslateService
   ) {
     this.theme = themeService.theme;
   }
@@ -63,13 +65,13 @@ export class AlbumComponent implements OnInit {
 
   public addToPlaylist(item: Item, image: Image){
     this.playlistService.addSongToPlaylist(item, image);
-    this.notifier.notify('success', 'Song add to playlist');
+    this.notifier.notify('success', this.translate.instant('notifier.addSong'));
     this.saveService.updatePlaylist();
   }
 
   public deleteToPlaylist(item: Item){
     this.playlistService.deleteSongSpotifyToPlaylist(item);
-    this.notifier.notify('success', 'Song delete to playlist');
+    this.notifier.notify('success', this.translate.instant('notifier.deleteSong'));
     this.saveService.updatePlaylist();
   }
 
