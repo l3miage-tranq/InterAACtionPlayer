@@ -1,1 +1,7 @@
+.ui.checkbox label{
+  color: white;
+}
 
+.ui.form .field>label{
+  color: white;
+}
