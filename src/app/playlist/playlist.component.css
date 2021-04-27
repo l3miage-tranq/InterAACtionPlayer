@@ -92,6 +92,10 @@ iframe{
   z-index: 1;
 }
 
+#myFileAudio{
+  margin-top: 50px !important;
+}
+
 /* -------------------------- Drag&Drop --------------------------------- */
 
 .cdk-drag-placeholder {

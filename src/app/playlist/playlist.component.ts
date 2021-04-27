@@ -24,7 +24,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class PlaylistComponent implements OnInit {
 
   @ViewChild('myVideo') myvideo: ElementRef;
-  @ViewChild('myAudio') myaudio: ElementRef;
 
   width = 560;
   height = 315;
@@ -36,6 +35,7 @@ export class PlaylistComponent implements OnInit {
   spinnerValue: number = 0;
   fullScreen = false;
   theme = "";
+  audioPlay = false;
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
@@ -269,8 +269,9 @@ export class PlaylistComponent implements OnInit {
   goPlay(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.play();
-    }else if (this.currentElem.types == 'song'){
-      this.myaudio.nativeElement.play();
+    }else if (this.currentElem.types == 'song' && !this.audioPlay){
+      $('.play-pause').trigger('click');
+      this.audioPlay = !this.audioPlay;
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
@@ -280,12 +281,12 @@ export class PlaylistComponent implements OnInit {
   goPause(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.pause();
-    }else if (this.currentElem.types == 'song'){
-      this.myaudio.nativeElement.pause();
+    }else if (this.currentElem.types == 'song' && this.audioPlay){
+      $('.play-pause').trigger('click');
+      this.audioPlay = !this.audioPlay;
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
-      $("#mySpotifySong").trigger('pause');
     }
   }
 

@@ -82,14 +82,8 @@
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
-      <div *ngIf="currentElem.types == 'song'" class="ui header">
-        <figure>
-          <figcaption>{{ currentElem.title }}</figcaption>
-          <audio preload="metadata" controls #myAudio>
-            <source [src]="getSrcFile()">
-          </audio>
-          <figcaption>{{ currentElem.artists }}</figcaption>
-        </figure>
+      <div *ngIf="currentElem.types == 'song'" id="myFileAudio" class="ui header">
+        <app-audio-player [elemPlaylist]="currentElem" [src]="getSrcFile()"></app-audio-player>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>

@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 /**
  * Custom angular notifier options
@@ -50,6 +51,7 @@ import { ProgressIndicatorComponent } from './playlist/progressIndicator/progres
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
@@ -62,7 +64,8 @@ export function createTranslateLoader(http: HttpClient) {
     ImportfileComponent,
     SaveDialogComponent,
     SettingsComponent,
-    ProgressIndicatorComponent
+    ProgressIndicatorComponent,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     MatProgressSpinnerModule,
     DragDropModule,
+    NgxAudioPlayerModule,
   ],
   providers: [
     PlaylistService

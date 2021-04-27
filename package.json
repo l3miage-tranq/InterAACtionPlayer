@@ -25,6 +25,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-notifier": "^9.0.1",
     "jquery": "^3.6.0",
+    "ngx-audio-player": "^11.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
