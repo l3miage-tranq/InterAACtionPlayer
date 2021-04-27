@@ -1,1 +1,15 @@
+.ui.checkbox label{
+  color: white;
+}
 
+.ui.form .field>label{
+  color: white;
+}
+
+.ui.vertical.tabular.menu .item{
+  color: white;
+}
+
+.langues{
+  color: black !important;
+}

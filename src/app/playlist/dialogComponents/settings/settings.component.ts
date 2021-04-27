@@ -60,6 +60,7 @@ export class SettingsComponent implements OnInit {
   setActiveLanguage(){
     const elem = document.getElementById(this.usedLanguage)
     elem.classList.add("active");
+    elem.classList.add("langues");
   }
 
   seeLanguages(): void {
@@ -73,7 +74,9 @@ export class SettingsComponent implements OnInit {
     const oldElem = document.getElementById(this.usedLanguage);
     const newElem = document.getElementById(language);
     oldElem.classList.remove("active");
+    oldElem.classList.remove("langues");
     newElem.classList.add("active");
+    newElem.classList.add("langues");
     this.usedLanguage = language;
   }
 
