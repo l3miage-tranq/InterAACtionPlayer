@@ -15,6 +15,7 @@ import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ThemeService } from '../services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
+import { GlobalService } from '../../../projects/spotify/src/app/services/global.service';
 
 @Component({
   selector: 'app-playlist',
@@ -53,6 +54,7 @@ export class PlaylistComponent implements OnInit {
   private dwelltimeService: DwelltimeService;
   private themeService: ThemeService;
   private translate: TranslateService;
+  private globalService: GlobalService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -62,7 +64,8 @@ export class PlaylistComponent implements OnInit {
               saveService: SaveService,
               dwelltimeService: DwelltimeService,
               themeService: ThemeService,
-              translate: TranslateService) {
+              translate: TranslateService,
+              globalService: GlobalService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -74,6 +77,7 @@ export class PlaylistComponent implements OnInit {
     this.themeService = themeService;
     this.theme = this.themeService.theme;
     this.translate = translate;
+    this.globalService = globalService;
   }
 
   ngOnInit(): void {
@@ -275,6 +279,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
+      this.globalService.playMusic(this.currentElem.id);
     }
   }
 
@@ -287,6 +292,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
+      this.globalService.pauseMusic();
     }
   }
 

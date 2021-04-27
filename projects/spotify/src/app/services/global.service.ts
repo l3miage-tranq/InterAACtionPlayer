@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as $ from 'jquery';
 
 @Injectable() // provide service in module
 export class GlobalService {
@@ -43,5 +44,30 @@ export class GlobalService {
 
     // execute request
     return this.http.get(url, { headers });
+  }
+
+  public playMusic(uri: string){
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/play',
+      type: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken
+      },
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify({
+        "uris": [`spotify:track:${uri}`]
+      })
+    });
+  }
+
+  public pauseMusic(){
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/pause',
+      type: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken
+      }
+    });
   }
 }
