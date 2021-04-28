@@ -12,21 +12,25 @@ export class AudioPlayerComponent implements OnInit {
   @Input() elemPlaylist: Types;
   @Input() src;
 
-  msaapDisplayTitle = true;
-  msaapDisplayPlayList = false;
-  msaapPageSizeOptions = [2,4,6];
-  msaapDisplayVolumeControls = true;
-  msaapDisplayRepeatControls = false;
-  msaapDisplayArtist = true;
-  msaapDisplayDuration = true;
-  msaapDisablePositionSlider = true;
-  msaapPlaylist: Track[] = [];
+  playlist: Track[] = [];
+  displayTitle = true;
+  enableAutoplay = false;
+  displayPlayList = false;
+  displayArtist = true;
+  displayDuration = true;
+  enableExpanded = true;
+  displayVolumeControls = true;
+  displayRepeatControls = false;
+  disablePositionSlider = true;
 
   constructor() {
   }
 
+  /**
+   * Load the Playlist with the local music selected
+   */
   ngOnInit(): void {
-    this.msaapPlaylist = [
+    this.playlist = [
       {
         title: this.elemPlaylist.title,
         link: this.src,

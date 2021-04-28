@@ -80,6 +80,11 @@ export class PlaylistComponent implements OnInit {
     this.globalService = globalService;
   }
 
+  /**
+   * Allows to know if the theme value has changed
+   * Initialize DialogChooseTypeComponent
+   * Wait 500ms for the Playlist to get the Playlist from database
+   */
   ngOnInit(): void {
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
@@ -88,6 +93,11 @@ export class PlaylistComponent implements OnInit {
     setTimeout(() => this.playList = this.playlistService.playList ,500 ); // permet de laisser le temps de charger la playlist sauvegarder dans la playlist
   }
 
+  /**
+   * @param elem -> and item of the Playlist
+   *
+   * Check if this item is the btnAdd then if is true open DialogueChooseTypeComponent
+   */
   openDialog(elem: Types): void{
     if (elem.types == "btnAdd") {
       this.goEdit();
@@ -95,6 +105,9 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * If edit mode is On, close it and open ImportFileComponent
+   */
   openImport(){
     if (this.edit){
       this.goEdit();
@@ -102,6 +115,9 @@ export class PlaylistComponent implements OnInit {
     this.dialog.open(ImportfileComponent);
   }
 
+  /**
+   * If edit mode is On, close it and open SaveDialogComponent
+   */
   openSave(){
     if (this.edit){
       this.goEdit();
@@ -109,6 +125,9 @@ export class PlaylistComponent implements OnInit {
     this.dialog.open(SaveDialogComponent);
   }
 
+  /**
+   * If edit mode is On, close it and open SettingsComponent
+   */
   openSettings(){
     if (this.edit){
       this.goEdit();
@@ -116,6 +135,11 @@ export class PlaylistComponent implements OnInit {
     this.dialog.open(SettingsComponent);
   }
 
+  /**
+   * Allows the user to enable or disable the edit mode
+   * When edit mode is on, add button Add else delete button Add
+   * Notify the statue of edit mode (on or off)
+   */
   goEdit(): void {
     this.edit = !this.edit;
     if (this.edit){
@@ -127,6 +151,13 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * @param elem -> item of Playlist
+   *
+   * Delete the item choose by the user of the Playlist
+   * Delete also the button Add to avoid him to be in the upadte Playlist who save the actual Playlist in the database Palylist Store
+   * Then re add it
+   */
   goDelete(elem: Types): void {
     this.playList = this.playlistService.deleteToPlaylist(elem);
     this.playList = this.playlistService.deleteBtnAdd();
@@ -134,6 +165,12 @@ export class PlaylistComponent implements OnInit {
     this.playlistService.addBtnAdd();
   }
 
+  /**
+   * @param elem -> item of the Playlist
+   *
+   * Launch the item in the Playlist selected by the user
+   * Then go on it
+   */
   goLaunch(elem: Types) {
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
@@ -142,6 +179,9 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * Applies the mode FullScreen only on a Youtube / Video element
+   */
   goFullScreen(){
     if (!this.fullScreen){
       this.fullScreen = true;
@@ -159,6 +199,9 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * Exit the fullScreen and return to the current element
+   */
   exitFullScreen(){
     if (this.fullScreen){
       this.fullScreen = false;
@@ -175,6 +218,9 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * Fixe all buttons when we are in fullscreen
+   */
   fixeBtn(){
     const previousBtn = document.getElementById("previousBtn");
     const nextBtn = document.getElementById("nextBtn");
@@ -192,6 +238,9 @@ export class PlaylistComponent implements OnInit {
     screenIcon.classList.replace("expand", "compress");
   }
 
+  /**
+   * Unfixe all buttons when we leave the fullscreen
+   */
   unFixeBtn(){
     const previousBtn = document.getElementById("previousBtn");
     const nextBtn = document.getElementById("nextBtn");
@@ -209,6 +258,11 @@ export class PlaylistComponent implements OnInit {
     screenIcon.classList.replace("compress", "expand");
   }
 
+  /**
+   * @param idBtn -> button
+   *
+   * In FullScreen mode, allows tho show the button when mouseover on it
+   */
   showBtn(idBtn: string){
     if (this.fullScreen){
       const elem = document.getElementById(idBtn);
@@ -216,6 +270,11 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * @param idBtn -> button
+   *
+   * In FullScreen mode, allows tho hide the button when mouseleave the button
+   */
   hideBtn(idBtn: string){
     if (this.fullScreen){
       const elem = document.getElementById(idBtn);
@@ -223,10 +282,18 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * Get the src of the file
+   */
   getSrcFile(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentElem.id);
   }
 
+  /**
+   * Allows the user to go to the next item in the Playlist
+   * If it the last item, go to the first
+   * Then go on this element
+   */
   goNext() {
     this.exitFullScreen();
     if (this.playList.length > 1){
@@ -245,6 +312,11 @@ export class PlaylistComponent implements OnInit {
     this.goOnElement();
   }
 
+  /**
+   * Allows the user to go to the previous item in the Playlist
+   * If it the first item, go to the last
+   * Then go on this element
+   */
   goPrevious() {
     this.exitFullScreen();
     if (this.playList.length > 1){
@@ -263,6 +335,9 @@ export class PlaylistComponent implements OnInit {
     this.goOnElement();
   }
 
+  /**
+   * When the user choose an element in the Playlist, 500ms after we go on it
+   */
   goOnElement(){
     setTimeout( () => {
       let goTo = document.getElementById("watchPlace");
@@ -270,6 +345,9 @@ export class PlaylistComponent implements OnInit {
     }, 500);
   }
 
+  /**
+   * Allows the user to launch the current element
+   */
   goPlay(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.play();
@@ -279,10 +357,13 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
-      this.globalService.playMusic(this.currentElem.id);
+      /*this.globalService.playMusic(this.currentElem.id);*/
     }
   }
 
+  /**
+   * Allows the user to pause the current element
+   */
   goPause(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.pause();
@@ -292,10 +373,16 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
-      this.globalService.pauseMusic();
+      /*this.globalService.pauseMusic();*/
     }
   }
 
+  /**
+   * @param elemId -> id of the element containing the spinner
+   * @param spinnerId -> id of the spinner selected
+   *
+   * Show the spinner when the user mouseover the element
+   */
   showProgressIndicator(elemId: string, spinnerId: any) {
     if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistProjectMultimedia')){
       const id = document.getElementById(elemId);
@@ -308,6 +395,13 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * @param elemId -> id of the element containing the spinner
+   * @param spinnerId -> id of the spinner selected
+   *
+   * Hide the spinner when the user leave the element
+   * Delete the current Interval
+   */
   hideProgressIndicator(elemId: string, spinnerId: any) {
     const card = document.getElementById(elemId);
     const spinner = document.getElementById(String(spinnerId));
@@ -319,6 +413,16 @@ export class PlaylistComponent implements OnInit {
     this.spinnerValue = 0;
   }
 
+  /**
+   *
+   * @param elemId -> id of the element containing the spinner
+   * @param spinnerId -> id of the spinner selected
+   * @param id -> htmlElement
+   *
+   * When the spinner is show, launch an interval
+   * When this interval is finish, simulate a user click
+   * If the user leave before the end of the interval, the interval timer is reset
+   */
   startInterval(elemId: string, spinnerId: any, id: HTMLElement) {
     this.spinnerValue = 0;
     this.timeout = setInterval(() => {
@@ -334,6 +438,12 @@ export class PlaylistComponent implements OnInit {
     }, ((this.dwelltimeService.dwellTimeValue - 500) / 100));
   }
 
+  /**
+   * @param event -> drag&drop event
+   *
+   * Allows the user to drag&drop the item in Playlist for design the Playlist as he wish
+   * Then save this Playlist in database
+   */
   dragDrop(event: CdkDragDrop<any>){
     this.playList[event.previousContainer.data.index] = event.container.data.elem;
     this.playList[event.container.data.index] = event.previousContainer.data.elem;

@@ -12,6 +12,13 @@ export class AppComponent{
 
   theme = "";
 
+  /**
+   * @param themeService
+   * @param languageService
+   *
+   * Allows to initialize the page with the right theme;
+   * And to know if the theme should be changed.
+   */
   constructor(private themeService: ThemeService, private languageService: LanguageService) {
     this.theme = this.themeService.theme;
     this.themeService.themeObservable.subscribe(value => {

@@ -15,12 +15,19 @@ export class SaveDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * If the user submit, update the database, close the DialogComponent and notify that save is done;
+   */
   public submit(){
     this.saveService.updatePlaylist();
+    this.saveService.updateSettings();
     this.dialog.closeAll();
     this.notifier.notify('warning', 'Save Done !');
   }
 
+  /**
+   * If the user cancel the save then close the DialogComponent
+   */
   public goCancel(){
     this.dialog.closeAll();
   }

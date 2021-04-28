@@ -1,4 +1,4 @@
 export class Configuration {
   'dwellTime': boolean;
-  'dwellTimeValue': number;
+  'dwellTimeValue': number; // in milliseconds
 }

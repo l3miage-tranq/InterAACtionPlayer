@@ -40,6 +40,9 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Actualize themeValue depending on the box checked by the user
+   */
   toggleTheme(){
     this.themeLightEnable = !this.themeLightEnable;
     if (this.themeLightEnable){
@@ -49,20 +52,34 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  /**
+   * Enable or not the DwellTime function according to the choice of the user
+   */
   dwellTime(){
     this.dwellTimeEnable = !this.dwellTimeEnable;
   }
 
+  /**
+   * @param event -> change event
+   *
+   * Get the value set by the user and convert the value (in seconds) to milliseconds
+   */
   getValue(event){
     this.dwellTimeValue = event.target.value * 1000.0;
   }
 
+  /**
+   * Show the language currently used in the dropdown menu
+   */
   setActiveLanguage(){
     const elem = document.getElementById(this.usedLanguage)
     elem.classList.add("active");
     elem.classList.add("langues");
   }
 
+  /**
+   * Show all languages available
+   */
   seeLanguages(): void {
     this.moreLanguages = !this.moreLanguages;
     setTimeout(() => {
@@ -70,6 +87,11 @@ export class SettingsComponent implements OnInit {
     }, 250);
   }
 
+  /**
+   * @param language -> the language chosen by the user
+   *
+   * Set the new language chosen by the user
+   */
   switchLanguage(language: string){
     const oldElem = document.getElementById(this.usedLanguage);
     const newElem = document.getElementById(language);
@@ -80,6 +102,10 @@ export class SettingsComponent implements OnInit {
     this.usedLanguage = language;
   }
 
+  /**
+   * Check if the value entered by the user is >= 1000.0
+   * Else return an error
+   */
   isValid(){
     if (this.dwellTimeValue >= 1000.0){
       this.error = false;
@@ -90,6 +116,11 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  /**
+   * If the user submit :
+   *  - Check if the dwellTimeValue is valid
+   * Then set all value , update database Settings Store, notify that settings has changed and close this DialogComponent
+   */
   submit(){
     if (this.isValid()){
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;

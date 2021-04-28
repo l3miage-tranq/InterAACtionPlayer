@@ -20,11 +20,17 @@ export class DialogChooseTypeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Close all DialogComponents then on the web page Youtube
+   */
   goYoutube(): void {
     this.dialog.closeAll();
     this.router.navigate(['/youtube']);
   }
 
+  /**
+   * Close all DialogComponents then on the web page Spotify
+   */
   goSpotify() {
     this.dialog.closeAll();
     this.router.navigate(['/spotify']);

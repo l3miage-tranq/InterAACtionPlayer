@@ -1,24 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { PlaylistComponent } from './playlist/playlist.component';
-import { DialogChooseTypeComponent } from './playlist/dialogComponents/dialogChooseType/dialog-choose-type.component';
-import { PlaylistService } from './playlist/services/playlist.service';
-
+/**
+ * Import Module
+ */
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
+import { FormsModule } from '@angular/forms';
 
 /**
  * Custom angular notifier options
  */
-
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-
 const customNotifierOptions: NotifierOptions = {
   position: { horizontal: { position: 'left', distance: 12 },
     vertical: { position: 'bottom', distance: 12, gap: 10 }
@@ -32,17 +30,23 @@ const customNotifierOptions: NotifierOptions = {
 };
 
 /**
- * Import module Sub-Application
+ * Import Component Main-Application
  */
-
-import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
-import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
-import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
-import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
-import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { DialogChooseTypeComponent } from './playlist/dialogComponents/dialogChooseType/dialog-choose-type.component';
+import { PlaylistService } from './playlist/services/playlist.service';
 import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
+import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
+import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
+
+/**
+ * Import module Sub-Application
+ */
+import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
+import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 
 /**
  * Import Translation
@@ -51,11 +55,9 @@ import { ProgressIndicatorComponent } from './playlist/progressIndicator/progres
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
-
 @NgModule({
   declarations: [
     AppComponent,
