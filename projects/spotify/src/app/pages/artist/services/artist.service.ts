@@ -2,20 +2,29 @@ import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-// Services
+/**
+ * Import Services
+ */
 import { GlobalService} from '../../../services/global.service';
 
-// Models
+/**
+ * Import Modules
+ */
 import { APIArtist } from '../models/artist-model';
 import { APIArtistTracks } from '../models/artist-top-track-model';
 import { APIArtistAlbums, AlbumItem } from '../models/artist-albums';
 
-@Injectable() // service provided in Artist module
+@Injectable()
 export class ArtistService {
 
-  constructor(private globalService: GlobalService) { /*empty*/ }
+  constructor(private globalService: GlobalService) {
+  }
 
-  // get artist info
+  /**
+   * @param artistId
+   *
+   * Get artist (selected by the user) information with Query request (GlobalService)
+   */
   public getArtist(artistId: string): Observable<APIArtist> {
     const artistUrl: string = `artists/${ artistId }`;
 
@@ -32,7 +41,11 @@ export class ArtistService {
       }));
   }
 
-  // get artist top tracks
+  /**
+   * @param artistId
+   *
+   * Get artist (selected by the user) Top Tracks with Query request (GlobalService)
+   */
   public getTopTracks(artistId: string): Observable<APIArtistTracks[]> {
     const artistUrl: string = `artists/${ artistId }/top-tracks?country=us`;
 
@@ -49,7 +62,11 @@ export class ArtistService {
       }));
   }
 
-  // get artist top tracks
+  /**
+   * @param artistId
+   *
+   * Get artist (selected by the user) albums with Query request (GlobalService)
+   */
   public getAlbums(artistId: string): Observable<AlbumItem[]> {
     const albumUrl: string = `artists/${ artistId }/albums`;
 

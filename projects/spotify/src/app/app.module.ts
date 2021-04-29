@@ -1,18 +1,21 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+/**
+ * Import Module
+ */
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-
-//Translation
 import { TranslateModule } from '@ngx-translate/core';
-
-// Routes
 import { AppRoutingModule } from './app-routing.module';
 
-// Components and Modules
+/**
+ * Import Component Main-Application
+ */
 import { AppComponent } from './app.component';
 import { NavBarComponent} from './pages/shared/nav-bar/nav-bar.component';
 
-// Services
+/**
+ * Import Services
+ */
 import { GlobalService } from './services/global.service';
 
 const providers = [

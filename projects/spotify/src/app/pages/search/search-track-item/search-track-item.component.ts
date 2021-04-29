@@ -19,7 +19,11 @@ export class SearchTrackItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // navigates to album
+  /**
+   * @param track
+   *
+   * When the user click on a track, it makes him navigate to track the web page
+   */
   public navigate(track: any): void {
     console.log('id', track.album.id);
     this.router.navigate(['/spotify//album', track.album.id]);

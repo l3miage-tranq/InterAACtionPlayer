@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 
-// Pipes
+/**
+ * Import Pipe
+ */
 import { ErrorImagePipe } from './error-image.pipe';
 import { UriPipe } from './uri.pipe';
 

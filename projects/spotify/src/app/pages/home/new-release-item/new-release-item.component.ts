@@ -1,8 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-// Models
-import { NewReleasesItem} from '../models/new-releases-model';
+/**
+ * Import Models
+ */
+import { NewReleasesItem } from '../models/new-releases-model';
+
+/**
+ * Import Services
+ */
 import {ThemeService} from '../../../../../../../src/app/services/theme.service';
 
 @Component({
@@ -19,8 +25,14 @@ export class NewReleaseItemComponent implements OnInit {
     this.theme = themeService.theme;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
+  /**
+   * @param newRelease
+   *
+   * When the user click on a new release music, navigate to this album web page
+   */
   public navigate(newRelease: any): void {
     let newReleaseId: number = 0;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import {ThemeService} from '../../../../../../../src/app/services/theme.service';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 
 @Component({
   selector: 'app-search-artist-item',
@@ -19,7 +19,11 @@ export class SearchArtistItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // navigates to artist
+  /**
+   * @param artist
+   *
+   * When the user click on a artist, it makes him navigate to the artist web page
+   */
   public navigate(artist: any): void {
     console.log('id', artist.id);
     this.router.navigate(['/spotify/artist', artist.id]);

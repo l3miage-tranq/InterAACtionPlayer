@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-// Models
+/**
+ * Import Models
+ */
 import { NewReleasesItem } from '../models/new-releases-model';
 
-// Services
+/**
+ * Import Services
+ */
 import { NewReleasesService } from '../services/new-releases.service';
 
 @Component({
@@ -14,13 +18,16 @@ import { NewReleasesService } from '../services/new-releases.service';
 export class HomeComponent implements OnInit {
   public newReleases: NewReleasesItem[] = [];
 
-  constructor(private newReleasesService: NewReleasesService){}
+  constructor(private newReleasesService: NewReleasesService){
+  }
 
   ngOnInit(): void {
     this.getNewReleases();
   }
 
-  // call service to get new releases from spotify
+  /**
+   * Call the service to get the new release from Spotify
+   */
   public getNewReleases(): void {
     this.newReleasesService.getNewReleases().subscribe((data: any) => {
       this.newReleases = data;

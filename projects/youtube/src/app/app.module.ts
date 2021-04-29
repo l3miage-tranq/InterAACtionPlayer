@@ -1,9 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-
 /**
  * Import Module
  */
+import { BrowserModule } from '@angular/platform-browser';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';

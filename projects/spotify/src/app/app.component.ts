@@ -13,8 +13,12 @@ export class AppComponent implements  OnInit{
   constructor(private globalService: GlobalService, private router: Router) {
   }
 
+  /**
+   * Initialize token for the Spotify Api
+   * When the token is initialize, 500ms after we go to the spotify/home web page
+   */
   ngOnInit(): void {
-    this.globalService.accessToken; //initialise le token
-    setTimeout(() => this.router.navigate(['/spotify/home']) ,500 ); // attend que le token s'initialise bien
+    this.globalService.accessToken; //
+    setTimeout(() => this.router.navigate(['/spotify/home']) ,500 );
   }
 }

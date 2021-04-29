@@ -2,18 +2,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-// Services
-import { GlobalService} from '../../../services/global.service';
+/**
+ * Import Services
+ */
+import { GlobalService } from '../../../services/global.service';
 
-// Models
-import { APISearch} from '../models/search-model';
+/**
+ * Import Models
+ */
+import { APISearch } from '../models/search-model';
 
-@Injectable() // service provided in module
+@Injectable()
 export class SearchService {
 
-  constructor(private globalService: GlobalService) { /*empty*/ }
+  constructor(private globalService: GlobalService) {
+  }
 
-  // get both tracks and artist from spotify
+  /**
+   * @param term
+   *
+   * Get both tracks and artist from Spotify
+   */
   public getTracksAndArtists(term: string): Observable<APISearch[]> {
     const searchUrl: string = `search?q=${ term }&type=track%2Cartist`;
 

@@ -1,23 +1,30 @@
+/**
+ * Import Modules
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// Modules and Components
 import { AlbumRoutingModule } from './album-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
+
+/**
+ * Import Components
+ */
 import { AlbumComponent } from './album-component/album.component';
 
-// Services
+/**
+ * Import Services
+ */
 import { AlbumService } from './services/album.service';
 
-// Pipes
-import { PipesModule} from '../../pipes/pipes.module';
+/**
+ * Import Pipe
+ */
+import { PipesModule } from '../../pipes/pipes.module';
 
 /**
  * Custom angular notifier options
  */
-
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import {TranslateModule} from '@ngx-translate/core';
-
 const customNotifierOptions: NotifierOptions = {
   position: { horizontal: { position: 'left', distance: 12 },
     vertical: { position: 'bottom', distance: 12, gap: 10 }

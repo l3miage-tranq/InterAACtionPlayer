@@ -29,14 +29,18 @@ export class ArtistComponent implements OnInit {
     this.getAlbums();
   }
 
-  // get artist id from active route
+  /**
+   * Get artist Id from active route
+   */
   public getActivatedRoute(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.artistId = params.id;
     });
   }
 
-  // get artist info
+  /**
+   * Get artist (selected by the user) information
+   */
   public getArtist(): void {
     this.artistService.getArtist(this.artistId).subscribe((artist: any) => {
       this.artist = artist;
@@ -49,7 +53,9 @@ export class ArtistComponent implements OnInit {
     });
   }
 
-  // get artist top tracks
+  /**
+   * Get artist (selected by the user) Top Tracks
+   */
   public getTopTracks(): void {
     this.artistService.getTopTracks(this.artistId).subscribe((topTracks: any) => {
       this.topTracks = topTracks;
@@ -62,7 +68,9 @@ export class ArtistComponent implements OnInit {
     });
   }
 
-  // get artist albums
+  /**
+   * Get artist (selected by the user) albums
+   */
   public getAlbums(): void {
     this.artistService.getAlbums(this.artistId).subscribe((albums: any) => {
       this.albums = albums;

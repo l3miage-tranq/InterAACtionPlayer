@@ -23,6 +23,11 @@ export class SaveService {
     this.initPlaylist();
   }
 
+  /**
+   * Initialize the database;
+   * If the store we search does not exit then we create it;
+   * Else we recovery the recorded elem in database
+   */
   initPlaylist(){
 
     // Opening of the Database

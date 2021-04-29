@@ -5,7 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ErrorImagePipe implements PipeTransform {
 
-  // validates images before display them in view
+  /**
+   * @param images
+   *
+   * It receives an array of images for which it will make several verification;
+   * Then i use the image from the first position;
+   * If the pipe does not receive the images, i use a default image;
+   *
+   * So i validates images before display them in view
+   */
   transform(images: any[]): string {
     if (!images) {
       console.log('!images');

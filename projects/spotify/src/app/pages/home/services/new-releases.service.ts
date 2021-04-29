@@ -2,18 +2,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-// Models
+/**
+ * Import Models
+ */
 import { FormattedNewReleases, APINewReleases } from '../models/new-releases-model';
 
-// Services
-import { GlobalService} from '../../../services/global.service';
+/**
+ * Import Services
+ */
+import { GlobalService } from '../../../services/global.service';
 
-@Injectable() // service provided in module
+@Injectable()
 export class NewReleasesService {
   private newReleasesUrl: string = 'browse/new-releases';
 
-  constructor(private globalService: GlobalService) { /*empty*/ }
+  constructor(private globalService: GlobalService) {
+  }
 
+  /**
+   * Allows to get the last new releases musics in spotify with Query request (GlobalService)
+   */
   public getNewReleases(): Observable<FormattedNewReleases[]> {
     return this.globalService.getQuery(this.newReleasesUrl).pipe(
       map((res: APINewReleases) => {

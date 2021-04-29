@@ -8,12 +8,17 @@ import { APIAlbums } from '../models/album-model';
 // Services
 import { GlobalService} from '../../../services/global.service';
 
-@Injectable() // service provided in Artist module
+@Injectable()
 export class AlbumService {
 
-  constructor(private globalService: GlobalService) { /*empty*/ }
+  constructor(private globalService: GlobalService) {
+  }
 
-  // get album info
+  /**
+   * @param albumId
+   *
+   * Get album (selected by the user) information with a Query request (GlobalService)
+   */
   public getAlbum(albumId: string): Observable<APIAlbums> {
     const albumUrl: string = `albums/${ albumId }`;
 
