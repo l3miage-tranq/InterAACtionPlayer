@@ -52,7 +52,6 @@ export class AlbumComponent implements OnInit {
   public getActivatedRoute(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.albumId = params.id;
-      console.log('Activated Route Id', params.id);
     });
   }
 
@@ -62,12 +61,6 @@ export class AlbumComponent implements OnInit {
   public getAlbum(): void {
     this.albumService.getAlbum(this.albumId).subscribe((album: APIAlbums) => {
       this.album = album;
-      console.log('Album Data:', album);
-    }, (err) => {
-      console.log('Album Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Album Complete!');
     });
   }
 

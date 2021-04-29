@@ -16,7 +16,6 @@ export class ErrorImagePipe implements PipeTransform {
    */
   transform(images: any[]): string {
     if (!images) {
-      console.log('!images');
       return './assets/no-image.png';
     }
 

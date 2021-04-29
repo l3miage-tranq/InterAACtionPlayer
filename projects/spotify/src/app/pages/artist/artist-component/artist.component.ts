@@ -44,12 +44,6 @@ export class ArtistComponent implements OnInit {
   public getArtist(): void {
     this.artistService.getArtist(this.artistId).subscribe((artist: any) => {
       this.artist = artist;
-      console.log('Artist Data:', artist);
-    }, (err) => {
-      console.log('Artist Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Artist Complete!');
     });
   }
 
@@ -59,12 +53,6 @@ export class ArtistComponent implements OnInit {
   public getTopTracks(): void {
     this.artistService.getTopTracks(this.artistId).subscribe((topTracks: any) => {
       this.topTracks = topTracks;
-      console.log('Top tracks Data:', topTracks);
-    }, (err) => {
-      console.log('Artist Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Artist Complete!');
     });
   }
 
@@ -74,12 +62,6 @@ export class ArtistComponent implements OnInit {
   public getAlbums(): void {
     this.artistService.getAlbums(this.artistId).subscribe((albums: any) => {
       this.albums = albums;
-      console.log('Albums Data:', albums);
-    }, (err) => {
-      console.log('Albums Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Albums Complete!');
     });
   }
 }

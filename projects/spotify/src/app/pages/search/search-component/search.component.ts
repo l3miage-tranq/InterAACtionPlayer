@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit {
    * Serach both artist and tracks
    */
   public search(term: string): void {
-    console.log('Term to find:', term);
     this.onSearch = true;
     this.router.navigate(['/spotify/search', term]);
     this.searchService.getTracksAndArtists(term).subscribe((data: any) => {
@@ -49,11 +48,6 @@ export class SearchComponent implements OnInit {
       if (this.artistsList.length === 0 && this.tracksList.length === 0) {
         this.showModal = true;
       }
-    }, (err) => {
-      console.log('Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Complete!');
     });
   }
 }

@@ -31,12 +31,6 @@ export class HomeComponent implements OnInit {
   public getNewReleases(): void {
     this.newReleasesService.getNewReleases().subscribe((data: any) => {
       this.newReleases = data;
-      console.log('Data:', data);
-    }, (err) => {
-      console.log('Error:', err);
-      console.error(err.message);
-    }, () => {
-      console.log('Complete!');
     });
   }
 }

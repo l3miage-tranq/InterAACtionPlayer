@@ -25,7 +25,6 @@ export class SearchArtistItemComponent implements OnInit {
    * When the user click on a artist, it makes him navigate to the artist web page
    */
   public navigate(artist: any): void {
-    console.log('id', artist.id);
     this.router.navigate(['/spotify/artist', artist.id]);
   }
 }

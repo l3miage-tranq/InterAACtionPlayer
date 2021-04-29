@@ -9,8 +9,6 @@ export class UriPipe implements PipeTransform {
   constructor( private domSanitizer: DomSanitizer){
   }
 
-  // receives uri and verifies security
-
   /**
    * @param value
    *
