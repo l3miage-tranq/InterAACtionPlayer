@@ -1,21 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
+/**
+ * Import Module
+ */
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchContainerComponent } from './search/container/search-container.component';
-import { SearchInputComponent } from './search/components/search-input/search-input.component';
-import { SearchListComponent } from './search/components/search-list/search-list.component';
-import { YoutubePipe } from './pipe/youtube.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Custom angular notifier options
  */
-
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-
 const customNotifierOptions: NotifierOptions = {
   position: { horizontal: { position: 'left', distance: 12 },
     vertical: { position: 'bottom', distance: 12, gap: 10 }
@@ -27,6 +23,19 @@ const customNotifierOptions: NotifierOptions = {
     shift: { speed: 300, easing: 'ease' },
     overlap: 150 }
 };
+
+/**
+ * Import Component Main-Application
+ */
+import { AppComponent } from './app.component';
+import { SearchContainerComponent } from './search/container/search-container.component';
+import { SearchInputComponent } from './search/components/search-input/search-input.component';
+import { SearchListComponent } from './search/components/search-list/search-list.component';
+
+/**
+ * Import Pipe
+ */
+import { YoutubePipe } from './pipe/youtube.pipe';
 
 const providers = [];
 

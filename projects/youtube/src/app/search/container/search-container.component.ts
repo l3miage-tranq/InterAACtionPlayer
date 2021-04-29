@@ -13,8 +13,18 @@ export class SearchContainerComponent {
   loading = false;
   videos: Video[] = [];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService) {
+  }
 
+  /**
+   * @param inputValue
+   *
+   * The 'handleSearch' method takes in the user input as an argument.
+   * It then communicates with the 'getVideos' method in the searchService passing in the input value as an argument;
+   *
+   * The 'subscribe' function invokes the searchService call and the response from the 'getVideos' method is passed to it as the items argument;
+   * Then i filter out the necessary values needed and add that to the videos array component.
+   */
   handleSearch(inputValue: string) {
     this.loading = true;
     this.searchService.getVideos(inputValue)

@@ -32,23 +32,39 @@ export class SearchListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeService.themeObservable.subscribe(value => {
-      this.theme = value;
-    })
   }
 
+  /**
+   * @param video
+   *
+   * Add the video selected in the Playlist;
+   * Then notify the user that the video is added to the playlist;
+   * And save the playlist in the database Playlist Store.
+   */
   addVideoToPlaylist(video: Video) {
     this.playlistService.addVideoYoutubeToPlaylist(video);
     this.notifier.notify('success', this.translate.instant('notifier.addVideo'));
     this.saveService.updatePlaylist();
   }
 
+  /**
+   * @param video
+   *
+   * Delete the video selected to the Playlist;
+   * Then notify the user that the video is deleted to the playlist;
+   * And save the playlist in the database Playlist Store.
+   */
   deleteVideoToPlaylist(video: Video) {
     this.playlistService.deleteVideoYoutubeToPlaylist(video);
     this.notifier.notify('success', this.translate.instant('notifier.deleteVideo'));
     this.saveService.updatePlaylist();
   }
 
+  /**
+   * @param video
+   *
+   * Check if the video is already in the playlist;
+   */
   videoAlreadyAddToPlaylist(video: Video){
     return this.playlistService.videoYoutubeAlreadyInPlaylist(video);
   }

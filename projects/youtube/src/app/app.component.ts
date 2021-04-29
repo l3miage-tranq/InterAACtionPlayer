@@ -11,6 +11,11 @@ export class AppComponent {
 
   theme = "";
 
+  /**
+   * @param themeService
+   *
+   * Allows to initialize the page with the right theme
+   */
   constructor(private themeService: ThemeService) {
     this.theme = themeService.theme;
   }

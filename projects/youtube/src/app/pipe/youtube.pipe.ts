@@ -6,9 +6,15 @@ import { DomSanitizer  } from '@angular/platform-browser';
 })
 export class YoutubePipe implements PipeTransform {
 
-  constructor( private domSanitizer: DomSanitizer){ /*empty*/ }
+  constructor( private domSanitizer: DomSanitizer){
+  }
 
-  // receives url and verifies security
+  /**
+   * @param value -> ID of the video
+   *
+   * Receives the ID of the video and verifies security
+   * Then return URL of the video verified and secured
+   */
   transform( value: string): any {
     const url = "https://www.youtube-nocookie.com/embed/";
     const noSuggestVideo = "?rel=0";

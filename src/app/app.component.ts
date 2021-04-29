@@ -16,7 +16,7 @@ export class AppComponent{
    * @param themeService
    * @param languageService
    *
-   * Allows to initialize the page with the right theme;
+   * Allows to initialize the page with the right theme & language;
    * And to know if the theme should be changed.
    */
   constructor(private themeService: ThemeService, private languageService: LanguageService) {
