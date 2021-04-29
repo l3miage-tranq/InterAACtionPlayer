@@ -37,6 +37,7 @@
       <div class="ui error message">
         <p *ngIf="errorEmptyFile">{{ "importFilePlaylist.errorEmptyFile" | translate }}</p>
         <p *ngIf="errorWrongFile">{{ "importFilePlaylist.errorWrongFile" | translate }}</p>
+        <p *ngIf="errorFileAlreadyInPlaylist">{{ "importFilePlaylist.errorFileAlreadyInPlaylist" | translate }}</p>
       </div>
     </div>
   </div>

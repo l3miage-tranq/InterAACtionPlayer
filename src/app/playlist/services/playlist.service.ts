@@ -68,7 +68,7 @@ export class PlaylistService {
       img = './assets/video.png';
     }
 
-    let songFile: Types = {
+    let importFile: Types = {
       types: typeFile,
       id: file,
       artists: artistFileInput,
@@ -77,7 +77,7 @@ export class PlaylistService {
       description: null,
       thumbnail: img
     }
-    this.playList.push(songFile);
+    this.playList.push(importFile);
   }
 
   /**
@@ -128,6 +128,22 @@ export class PlaylistService {
    */
   deleteSongSpotifyToPlaylist(elem: Item){
     return this.playList = this.playList.filter(value => value.id != elem.uri);
+  }
+
+  /**
+   * @param file -> file imported by the user
+   *
+   * Chek if the file passed in parameter is already in the Playlist
+   * Return true or false
+   */
+  fileAlreadyInPlaylist(file: any){
+    let find = false;
+    this.playList.forEach(value => {
+      if (value.id == file){
+        find = true;
+      }
+    });
+    return find;
   }
 
   /**

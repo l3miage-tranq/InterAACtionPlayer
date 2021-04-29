@@ -22,7 +22,7 @@ export class ImportfileComponent implements OnInit {
   public errorEmptyFile = false;
   public errorWrongFile = false;
   public errorEmptyTitle = false;
-
+  public errorFileAlreadyInPlaylist = false;
 
   constructor(private dialog: MatDialog,
               private playlistService: PlaylistService,
@@ -91,7 +91,6 @@ export class ImportfileComponent implements OnInit {
     reader.onload = () => {
       this.fileUpload = reader.result;
     };
-    return this.fileUpload;
   }
 
   /**
@@ -119,6 +118,7 @@ export class ImportfileComponent implements OnInit {
   /**
    * If the user submit :
    *  - Check if the file is not empty;
+   *  - Chek if the file is not already in the Playlist;
    *  - Check if the file is valid for audio or video;
    *  - Check if the titleFileInput is not empty
    *  - then add file to the Playlist, close the DialogComponent , notify that file is added to the Playlist and update database Playlist Store;
@@ -128,19 +128,24 @@ export class ImportfileComponent implements OnInit {
   public submit(){
     if (this.fileUpload !== null) {
       this.errorEmptyFile = false;
-      if (this.audioIsValid() || this.videoIsValid()){
-        this.errorWrongFile = false;
-        if (this.titleFileInput != ''){
-          this.errorEmptyTitle = false
-          this.playlistService.addFileToPlaylist(this.fileUpload, this.typeFile, this.titleFileInput, this.artistFileInput);
-          this.dialog.closeAll();
-          this.notifier.notify('warning', this.typeFile + ' add to playlist !');
-          this.saveService.updatePlaylist();
-        }else {
-          this.errorEmptyTitle = true;
+      if (!this.playlistService.fileAlreadyInPlaylist(this.fileUpload)) {
+        this.errorFileAlreadyInPlaylist = false;
+        if (this.audioIsValid() || this.videoIsValid()) {
+          this.errorWrongFile = false;
+          if (this.titleFileInput != '') {
+            this.errorEmptyTitle = false
+            this.playlistService.addFileToPlaylist(this.fileUpload, this.typeFile, this.titleFileInput, this.artistFileInput);
+            this.dialog.closeAll();
+            this.notifier.notify('warning', this.typeFile + ' add to playlist !');
+            this.saveService.updatePlaylist();
+          } else {
+            this.errorEmptyTitle = true;
+          }
+        } else {
+          this.errorWrongFile = true;
         }
-      }else {
-        this.errorWrongFile = true;
+      } else {
+        this.errorFileAlreadyInPlaylist = true;
       }
     }else {
       this.errorEmptyFile = true;

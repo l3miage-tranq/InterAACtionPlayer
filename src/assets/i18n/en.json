@@ -44,6 +44,7 @@
     "file": "File",
     "errorEmptyFile": "Need file !",
     "errorWrongFile": "Wrong file !",
+    "errorFileAlreadyInPlaylist": "File already in Playlist !",
     "add": "Add",
     "cancel": "Cancel"
   },
