@@ -1,21 +1,33 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Types } from './model/types-interface';
-import { NotifierService } from 'angular-notifier';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import { PlaylistService } from './services/playlist.service';
-import { DialogChooseTypeComponent } from './dialogComponents/dialogChooseType/dialog-choose-type.component';
 import { Router } from '@angular/router';
-import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
-import { SaveService } from '../services/save.service';
-import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
-import { SettingsComponent } from './dialogComponents/settings/settings.component';
-import { DwelltimeService } from '../services/dwelltime.service';
 import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+
+/**
+ * Import Components
+ */
+import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
+import { SettingsComponent } from './dialogComponents/settings/settings.component';
+import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
+import { DialogChooseTypeComponent } from './dialogComponents/dialogChooseType/dialog-choose-type.component';
+
+/**
+ * Import Services
+ */
 import { ThemeService } from '../services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
 import { GlobalService } from '../../../projects/spotify/src/app/services/global.service';
+import { DwelltimeService } from '../services/dwelltime.service';
+import { SaveService } from '../services/save.service';
+import { PlaylistService } from './services/playlist.service';
+import { NotifierService } from 'angular-notifier';
+
+/**
+ * Import Models
+ */
+import { Types } from './model/types-interface';
 
 @Component({
   selector: 'app-playlist',
@@ -357,7 +369,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
-      /*this.globalService.playMusic(this.currentElem.id);*/
+      this.globalService.playMusic(this.currentElem.id);
     }
   }
 
@@ -373,7 +385,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
-      /*this.globalService.pauseMusic();*/
+      this.globalService.pauseMusic();
     }
   }
 
