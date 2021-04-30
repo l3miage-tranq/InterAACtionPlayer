@@ -6,11 +6,13 @@
     "addVideo": "Vidéo ajouté à la playlist !",
     "deleteVideo": "Vidéo supprimé de la playlist !",
     "addSong": "Musique ajouté à la playlist !",
-    "deleteSong": "Musique supprimé de la playlist !"
+    "deleteSong": "Musique supprimé de la playlist !",
+    "save": "Sauvegarde réussi !",
+    "addPlaylist": " ajouté à la Playlist !"
   },
   "playlist": {
-  "title": "Ma Playlist",
-  "delete": "Supprimer"
+    "title": "Ma Playlist",
+    "delete": "Supprimer"
   },
   "settingsPlaylist": {
     "settings": "Configurations",
@@ -26,8 +28,8 @@
     "french-language": "Français"
   },
   "savePlaylist": {
-    "title": "Sauvegarder la Playlist ?",
-    "content": "Voulez-vous sauvegarder cette Playlist ?",
+    "title": "Exporter la Playlist ?",
+    "content": "Voulez-vous exporter cette Playlist ?",
     "yes": "Oui",
     "no": "Non"
   },

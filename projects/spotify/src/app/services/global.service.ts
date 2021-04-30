@@ -24,7 +24,7 @@ export class GlobalService {
           'Basic  ' + btoa(this.clientId + ':' + this.clientSecret),
         'Content-Type': 'application/x-www-form-urlencoded;',
       }),
-    })
+    });
   }
 
   /**
@@ -33,8 +33,8 @@ export class GlobalService {
   public getLogin(){
     const authorizationLoginUrl = `https://accounts.spotify.com/authorize?`;
     const responseType = 'response_type=code';
-    const redirectUri = 'redirect_uri=http://localhost:4200/home'
-    return this.http.get(authorizationLoginUrl + this.clientId + '&' + responseType + '&' + redirectUri)
+    const redirectUri = 'redirect_uri=http://localhost:4200/home';
+    return this.http.get(authorizationLoginUrl + this.clientId + '&' + responseType + '&' + redirectUri);
   }
 
   /**
@@ -58,6 +58,22 @@ export class GlobalService {
     return this.http.get(url, { headers });
   }
 
+  /*
+    accessCode = this.getLoginAccountSpotify().subscribe( data => {this.accessCode = data['code'];});
+
+    public getLoginAccountSpotify(){
+    const authorizationLoginUrl = `https://accounts.spotify.com/authorize?`;
+    const clientId = 'client_id=' + this.clientId;
+    const responseType = 'response_type=code';
+    const redirectUri = 'redirect_uri=http://localhost:4200/playlist';
+    const scope = 'scope=user-modify-playback-state';
+    return this.http.get(authorizationLoginUrl + clientId + '&' + responseType + '&' + redirectUri + '&' + scope);
+  }
+  */
+
+  /**
+   * @param uri
+   */
   public playMusic(uri: string){
     $.ajax({
       url: 'https://api.spotify.com/v1/me/player/play',
@@ -73,6 +89,9 @@ export class GlobalService {
     });
   }
 
+  /**
+   *
+   */
   public pauseMusic(){
     $.ajax({
       url: 'https://api.spotify.com/v1/me/player/pause',

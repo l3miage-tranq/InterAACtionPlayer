@@ -6,7 +6,9 @@
     "addVideo": "Video add to playlist !",
     "deleteVideo": "Video delete to playlist !",
     "addSong": "Music add to playlist !",
-    "deleteSong": "Music delete to playlist !"
+    "deleteSong": "Music delete to playlist !",
+    "save": "Save done !",
+    "addPlaylist": " add to the Playlist !"
   },
   "playlist": {
     "title": "My Playlist",
@@ -26,8 +28,8 @@
     "french-language": "French"
   },
   "savePlaylist": {
-    "title": "Save Playlist ?",
-    "content": "Do you want to save this Playlist ?",
+    "title": "Export Playlist ?",
+    "content": "Do you want to export this Playlist ?",
     "yes": "Yes",
     "no": "No"
   },

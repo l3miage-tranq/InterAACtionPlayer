@@ -188,6 +188,7 @@ export class PlaylistComponent implements OnInit {
       this.currentElem = elem;
       this.launch = true;
       this.goOnElement();
+      console.log(this.playList);
     }
   }
 
@@ -358,7 +359,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
-   * Allows the user to launch the current element
+   * Allows the user to launch the current element selected
    */
   goPlay(){
     if (this.currentElem.types == 'video'){
@@ -374,7 +375,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
-   * Allows the user to pause the current element
+   * Allows the user to pause the current element selected
    */
   goPause(){
     if (this.currentElem.types == 'video'){
