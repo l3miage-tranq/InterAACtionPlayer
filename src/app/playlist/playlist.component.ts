@@ -103,6 +103,9 @@ export class PlaylistComponent implements OnInit {
     })
     new DialogChooseTypeComponent(this.router, this.dialog);
     setTimeout(() => this.playList = this.playlistService.playList ,500 ); // permet de laisser le temps de charger la playlist sauvegarder dans la playlist
+    if (this.playList == []){
+      this.goEdit();
+    }
   }
 
   /**
