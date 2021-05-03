@@ -119,12 +119,16 @@ export class PlaylistComponent implements OnInit {
 
   /**
    * If edit mode is On, close it and open ImportFileComponent
+   * Then when importDialog is close refresh the playlist with the new playlist who contains new values
    */
   openImport(){
     if (this.edit){
       this.goEdit();
     }
-    this.dialog.open(ImportfileComponent);
+    const importDialog = this.dialog.open(ImportfileComponent);
+    importDialog.afterClosed().subscribe(() => {
+      this.playList = this.playlistService.playList;
+      });
   }
 
   /**
