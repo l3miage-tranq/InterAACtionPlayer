@@ -23,6 +23,7 @@ import { DwelltimeService } from '../services/dwelltime.service';
 import { SaveService } from '../services/save.service';
 import { PlaylistService } from './services/playlist.service';
 import { NotifierService } from 'angular-notifier';
+import { AudioService } from './services/audio.service';
 
 /**
  * Import Models
@@ -48,7 +49,6 @@ export class PlaylistComponent implements OnInit {
   spinnerValue: number = 0;
   fullScreen = false;
   theme = "";
-  audioPlay = false;
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
@@ -67,6 +67,7 @@ export class PlaylistComponent implements OnInit {
   private themeService: ThemeService;
   private translate: TranslateService;
   private globalService: GlobalService;
+  private audioService: AudioService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -77,7 +78,8 @@ export class PlaylistComponent implements OnInit {
               dwelltimeService: DwelltimeService,
               themeService: ThemeService,
               translate: TranslateService,
-              globalService: GlobalService) {
+              globalService: GlobalService,
+              audioService: AudioService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -90,6 +92,7 @@ export class PlaylistComponent implements OnInit {
     this.theme = this.themeService.theme;
     this.translate = translate;
     this.globalService = globalService;
+    this.audioService = audioService;
   }
 
   /**
@@ -370,9 +373,8 @@ export class PlaylistComponent implements OnInit {
   goPlay(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.play();
-    }else if (this.currentElem.types == 'song' && !this.audioPlay){
+    }else if (this.currentElem.types == 'song' && !this.audioService.audioPlay){
       $('.play-pause').trigger('click');
-      this.audioPlay = !this.audioPlay;
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
@@ -386,9 +388,8 @@ export class PlaylistComponent implements OnInit {
   goPause(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.pause();
-    }else if (this.currentElem.types == 'song' && this.audioPlay){
+    }else if (this.currentElem.types == 'song' && this.audioService.audioPlay){
       $('.play-pause').trigger('click');
-      this.audioPlay = !this.audioPlay;
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {

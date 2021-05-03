@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
 import { Types } from '../model/types-interface';
+import * as $ from 'jquery';
+import { AudioService } from '../services/audio.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -23,13 +25,16 @@ export class AudioPlayerComponent implements OnInit {
   displayRepeatControls = false;
   disablePositionSlider = true;
 
-  constructor() {
+  constructor(private audioService: AudioService) {
   }
 
   /**
    * Load the Playlist with the local music selected
    */
   ngOnInit(): void {
+
+    this.addEventPlayPause(this.audioService);
+
     this.playlist = [
       {
         title: this.elemPlaylist.title,
@@ -39,4 +44,9 @@ export class AudioPlayerComponent implements OnInit {
     ];
   }
 
+  addEventPlayPause(audioService: AudioService){
+    $('.play-pause').on("click", function(){
+      audioService.audioPlay = !audioService.audioPlay;
+    });
+  }
 }
