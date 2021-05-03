@@ -137,6 +137,17 @@ export class ImportfileComponent implements OnInit {
   }
 
   /**
+   * Check if the Json file is a right file
+   */
+  public jsonIsValid(){
+    if (this.typeFile == 'file'){
+      return this.fileUpload.endsWith('json');
+    }else{
+      return false;
+    }
+  }
+
+  /**
    * If the user submit :
    *  - Check if the file is not empty;
    *  - Chek if the file is not already in the Playlist;
@@ -144,42 +155,43 @@ export class ImportfileComponent implements OnInit {
    *  - Check if the titleFileInput is not empty
    *  - Then add file to the Playlist, close the DialogComponent, notify that file is added to the Playlist and update database Playlist Store;
    * Else if typeFile == "file" :
+   *  - Check if the file is a json file
    *  - Parse the Json file;
    *  - Then add it to the Playlist;
    * Else :
    *  - Show error message;
    */
   public submit(){
-    if (this.fileUpload !== null && this.typeFile != "file") {
+    if (this.fileUpload !== null) {
       this.errorEmptyFile = false;
-      if (!this.playlistService.fileAlreadyInPlaylist(this.fileUpload)) {
-        this.errorFileAlreadyInPlaylist = false;
-        if (this.audioIsValid() || this.videoIsValid()) {
-          this.errorWrongFile = false;
-          if (this.titleFileInput != '') {
+      if (this.audioIsValid() || this.videoIsValid() || this.jsonIsValid()) {
+        this.errorWrongFile = false;
+        if (this.titleFileInput != '' && this.typeFile != 'file') {
+          if (!this.playlistService.fileAlreadyInPlaylist(this.fileUpload)) {
+            this.errorFileAlreadyInPlaylist = false;
             this.errorEmptyTitle = false
             this.playlistService.addFileToPlaylist(this.fileUpload, this.typeFile, this.titleFileInput, this.artistFileInput);
             this.dialog.closeAll();
             this.notifier.notify('warning', this.typeFile + this.translate.instant('notifier.addPlaylist'));
             this.saveService.updatePlaylist();
           } else {
-            this.errorEmptyTitle = true;
+            this.errorFileAlreadyInPlaylist = true;
           }
         } else {
-          this.errorWrongFile = true;
+          if (this.typeFile == "file"){
+            this.playlistService.playList = JSON.parse(this.fileUpload);
+            this.dialog.closeAll();
+            this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
+            this.saveService.updatePlaylist();
+          }else {
+            this.errorEmptyTitle = true;
+          }
         }
       } else {
-        this.errorFileAlreadyInPlaylist = true;
+        this.errorWrongFile = true;
       }
     }else {
-      if (this.typeFile == "file"){
-        this.playlistService.playList = JSON.parse(this.fileUpload);
-        this.dialog.closeAll();
-        this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
-        this.saveService.updatePlaylist();
-      }else {
-        this.errorEmptyFile = true;
-      }
+      this.errorEmptyFile = true;
     }
   }
 
