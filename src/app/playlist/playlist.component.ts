@@ -373,7 +373,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else{
-      this.globalService.playMusic(this.currentElem.id);
+      //this.globalService.playMusic(this.currentElem.id);
     }
   }
 
@@ -389,7 +389,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
-      this.globalService.pauseMusic();
+      //this.globalService.pauseMusic();
     }
   }
 

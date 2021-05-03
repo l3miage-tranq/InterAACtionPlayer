@@ -149,17 +149,18 @@ export class ImportfileComponent implements OnInit {
 
   /**
    * If the user submit :
-   *  - Check if the file is not empty;
-   *  - Chek if the file is not already in the Playlist;
-   *  - Check if the file is valid for audio or video;
-   *  - Check if the titleFileInput is not empty
-   *  - Then add file to the Playlist, close the DialogComponent, notify that file is added to the Playlist and update database Playlist Store;
-   * Else if typeFile == "file" :
-   *  - Check if the file is a json file
-   *  - Parse the Json file;
-   *  - Then add it to the Playlist;
-   * Else :
-   *  - Show error message;
+   *  If typeFile == "video" or "song" :
+   *    - Check if the file is not empty;
+   *    - Chek if the file is not already in the Playlist;
+   *    - Check if the file is valid for audio or video;
+   *    - Check if the titleFileInput is not empty
+   *    - Then add file to the Playlist, close the DialogComponent, notify that file is added to the Playlist and update database Playlist Store;
+   *  Else if typeFile == "file" :
+   *    - Check if the file is a json file
+   *    - Parse the Json file;
+   *    - Then add it to the Playlist;
+   *  Else :
+   *    - Show error message;
    */
   public submit(){
     if (this.fileUpload !== null) {
