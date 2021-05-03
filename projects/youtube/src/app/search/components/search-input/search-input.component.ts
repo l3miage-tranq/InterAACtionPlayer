@@ -65,7 +65,7 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
         debounceTime(500),
         pluck('target', 'value'),
         distinctUntilChanged(),
-        filter((value: string) => value.length > 3),
+        filter((value: string) => value.length > 0),
         map((value) => value)
       )
       .subscribe(value => {
