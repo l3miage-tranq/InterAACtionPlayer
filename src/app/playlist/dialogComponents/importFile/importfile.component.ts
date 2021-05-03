@@ -62,6 +62,16 @@ export class ImportfileComponent implements OnInit {
   }
 
   /**
+   * Allows to know if the checked box is "file"
+   * If file already checked do nothing
+   */
+  public getTypeFile(){
+    if (this.typeFile != "file"){
+      this.typeFile = "file";
+    }
+  }
+
+  /**
    * @param event -> keyup event
    *
    * Get the title written by the user
@@ -87,12 +97,21 @@ export class ImportfileComponent implements OnInit {
    * Get the local file add by the user
    */
   public addFile(event){
-    this.fileUpload = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileUpload);
-    reader.onload = () => {
-      this.fileUpload = reader.result;
-    };
+    if (this.typeFile == 'file'){
+      this.fileUpload = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsText(this.fileUpload);
+      reader.onload = () => {
+        this.fileUpload = reader.result;
+      };
+    }else {
+      this.fileUpload = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.fileUpload);
+      reader.onload = () => {
+        this.fileUpload = reader.result;
+      };
+    }
   }
 
   /**
@@ -128,7 +147,7 @@ export class ImportfileComponent implements OnInit {
    *  - Show error message;
    */
   public submit(){
-    if (this.fileUpload !== null) {
+    if (this.fileUpload !== null && this.typeFile != "file") {
       this.errorEmptyFile = false;
       if (!this.playlistService.fileAlreadyInPlaylist(this.fileUpload)) {
         this.errorFileAlreadyInPlaylist = false;
@@ -150,7 +169,14 @@ export class ImportfileComponent implements OnInit {
         this.errorFileAlreadyInPlaylist = true;
       }
     }else {
-      this.errorEmptyFile = true;
+      if (this.typeFile == "file"){
+        this.playlistService.playList = JSON.parse(this.fileUpload);
+        this.dialog.closeAll();
+        this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
+        this.saveService.updatePlaylist();
+      }else {
+        this.errorEmptyFile = true;
+      }
     }
   }
 

@@ -18,16 +18,22 @@
             <label>{{ "importFilePlaylist.video" | translate }}</label>
           </div>
         </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="type" (click)="getTypeFile()">
+            <label>{{ "importFilePlaylist.file" | translate }}</label>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="required field">
+    <div class="required field" *ngIf="typeFile != 'file'">
       <label>{{ titleFile | translate }}</label>
       <input type="text" placeholder="{{ titleFile | translate }}" (keyup)="getTitle($event)">
       <div class="ui error message">
         <p *ngIf="errorEmptyTitle">{{ "importFilePlaylist.errorEmptyTitle" | translate }}</p>
       </div>
     </div>
-    <div class="field">
+    <div class="field" *ngIf="typeFile != 'file'">
       <label>{{ artistFile | translate }}</label>
       <input type="text" placeholder="{{ artistFile | translate }}" (keyup)="getArtist($event)">
     </div>

@@ -8,7 +8,8 @@
     "addSong": "Music add to playlist !",
     "deleteSong": "Music delete to playlist !",
     "save": "Export Playlist done !",
-    "addPlaylist": " add to the Playlist !"
+    "addPlaylist": " add to the Playlist !",
+    "importPlaylist": "Import Playlist done !"
   },
   "playlist": {
     "title": "GazeMedia Player",

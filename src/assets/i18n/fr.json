@@ -8,7 +8,8 @@
     "addSong": "Musique ajouté à la playlist !",
     "deleteSong": "Musique supprimé de la playlist !",
     "save": "Exportation de la Playlist réussi !",
-    "addPlaylist": " ajouté à la Playlist !"
+    "addPlaylist": " ajouté à la Playlist !",
+    "importPlaylist": "Importation de la Playlist réussi !"
   },
   "playlist": {
     "title": "GazeMedia Player",
