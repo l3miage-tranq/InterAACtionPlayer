@@ -22,14 +22,14 @@
     </div>
     <div class="required field">
       <label>{{ titleFile | translate }}</label>
-      <input type="text" placeholder="{{ titleFile | translate }}" id="titleSong" (keyup)="getTitle($event)">
+      <input type="text" placeholder="{{ titleFile | translate }}" (keyup)="getTitle($event)">
       <div class="ui error message">
         <p *ngIf="errorEmptyTitle">{{ "importFilePlaylist.errorEmptyTitle" | translate }}</p>
       </div>
     </div>
     <div class="field">
       <label>{{ artistFile | translate }}</label>
-      <input type="text" placeholder="{{ artistFile | translate }}" id="artistSong" (keyup)="getArtist($event)">
+      <input type="text" placeholder="{{ artistFile | translate }}" (keyup)="getArtist($event)">
     </div>
     <div class="required field">
       <label>{{ "importFilePlaylist.file" | translate }}</label>

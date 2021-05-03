@@ -188,7 +188,6 @@ export class PlaylistComponent implements OnInit {
       this.currentElem = elem;
       this.launch = true;
       this.goOnElement();
-      console.log(this.playList);
     }
   }
 

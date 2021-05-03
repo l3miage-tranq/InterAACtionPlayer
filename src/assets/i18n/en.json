@@ -7,11 +7,11 @@
     "deleteVideo": "Video delete to playlist !",
     "addSong": "Music add to playlist !",
     "deleteSong": "Music delete to playlist !",
-    "save": "Save done !",
+    "save": "Export Playlist done !",
     "addPlaylist": " add to the Playlist !"
   },
   "playlist": {
-    "title": "My Playlist",
+    "title": "GazeMedia Player",
     "delete": "Delete"
   },
   "settingsPlaylist": {
@@ -29,7 +29,8 @@
   },
   "savePlaylist": {
     "title": "Export Playlist ?",
-    "content": "Do you want to export this Playlist ?",
+    "titleFile": "Title File",
+    "defaultTitleFile": "By default title = Playlist",
     "yes": "Yes",
     "no": "No"
   },

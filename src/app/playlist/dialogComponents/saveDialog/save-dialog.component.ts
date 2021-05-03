@@ -17,6 +17,9 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class SaveDialogComponent implements OnInit {
 
+  defaultTitleFile = "Playlist"
+  titleFile = "";
+
   constructor(private dialog: MatDialog,
               private saveService: SaveService,
               private notifier: NotifierService,
@@ -28,14 +31,26 @@ export class SaveDialogComponent implements OnInit {
   }
 
   /**
+   * @param event
+   *
+   * Allows to get the value given by the user
+   */
+  getTitle(event){
+    this.titleFile = event.target.value;
+  }
+
+  /**
    * If the user submit, allows the user to export the Playlist
    * Then close the DialogComponent and notify that the save is done;
    */
   public submit(){
+    if (this.titleFile == ""){
+      this.titleFile = this.defaultTitleFile;
+    }
     exportFromJSON({
       data: this.playlistService.playList,
       fields: {} ,
-      fileName: 'MyPlaylist',
+      fileName: this.titleFile,
       exportType: exportFromJSON.types.json
     });
     this.dialog.closeAll();

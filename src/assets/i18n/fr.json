@@ -7,11 +7,11 @@
     "deleteVideo": "Vidéo supprimé de la playlist !",
     "addSong": "Musique ajouté à la playlist !",
     "deleteSong": "Musique supprimé de la playlist !",
-    "save": "Sauvegarde réussi !",
+    "save": "Exportation de la Playlist réussi !",
     "addPlaylist": " ajouté à la Playlist !"
   },
   "playlist": {
-    "title": "Ma Playlist",
+    "title": "GazeMedia Player",
     "delete": "Supprimer"
   },
   "settingsPlaylist": {
@@ -29,7 +29,8 @@
   },
   "savePlaylist": {
     "title": "Exporter la Playlist ?",
-    "content": "Voulez-vous exporter cette Playlist ?",
+    "titleFile": "Titre du fichier",
+    "defaultTitleFile": "Par défaut titre = Playlist",
     "yes": "Oui",
     "no": "Non"
   },
