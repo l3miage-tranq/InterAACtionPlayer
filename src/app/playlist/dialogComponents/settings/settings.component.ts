@@ -34,6 +34,7 @@ export class SettingsComponent implements OnInit {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
+    this.themeValue = this.themeService.theme;
     this.usedLanguage = this.language.activeLanguage;
   }
 
