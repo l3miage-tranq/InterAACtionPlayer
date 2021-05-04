@@ -407,13 +407,11 @@ export class PlaylistComponent implements OnInit {
    * Show the spinner when the user mouseover the element
    */
   showProgressIndicator(elemId: string, spinnerId: any) {
+    const id = document.getElementById(elemId);
+    id.style.opacity = '0.5';
     if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistProjectMultimedia')){
-      const id = document.getElementById(elemId);
       const spinner = document.getElementById(String(spinnerId));
-
-      id.style.opacity = '0.5';
       spinner.style.visibility = 'visible';
-
       this.startInterval(elemId, spinnerId, id);
     }
   }
@@ -428,10 +426,8 @@ export class PlaylistComponent implements OnInit {
   hideProgressIndicator(elemId: string, spinnerId: any) {
     const card = document.getElementById(elemId);
     const spinner = document.getElementById(String(spinnerId));
-
     card.style.opacity = '1';
     spinner.style.visibility = 'hidden';
-
     clearInterval(this.timeout);
     this.spinnerValue = 0;
   }
