@@ -98,18 +98,20 @@ export class PlaylistComponent implements OnInit {
   /**
    * Allows to know if the theme value has changed
    * Initialize DialogChooseTypeComponent
-   * Wait 500ms for the Playlist to get the Playlist from database
-   * At the start, if the playlist is empty then we active the edit mode
+   * Allows time (500ms) to load the playlist from the database
+   * Then check if the playlist is empty, if it's the case active the edit mode
    */
   ngOnInit(): void {
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
     })
     new DialogChooseTypeComponent(this.router, this.dialog);
-    setTimeout(() => this.playList = this.playlistService.playList ,500 ); // permet de laisser le temps de charger la playlist sauvegarder dans la playlist
-    if (this.playList.length == 0){
-      this.goEdit();
-    }
+    setTimeout(() => {
+      this.playList = this.playlistService.playList;
+      if (this.playList.length == 0){
+        this.goEdit();
+      }
+    },500 );
   }
 
   /**
