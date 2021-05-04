@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 /**
  * Custom angular notifier options
@@ -94,6 +95,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatProgressSpinnerModule,
     DragDropModule,
     NgxAudioPlayerModule,
+    MatTooltipModule,
   ],
   providers: [
     PlaylistService

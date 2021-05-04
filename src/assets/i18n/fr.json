@@ -13,7 +13,11 @@
   },
   "playlist": {
     "title": "GazeMedia Player",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "saveBtn": "Exporter la Playlist",
+    "importBtn": "Importer un fichier",
+    "editBtn": "Mode édition",
+    "settingsBtn": "Paramètres"
   },
   "settingsPlaylist": {
     "settings": "Configurations",

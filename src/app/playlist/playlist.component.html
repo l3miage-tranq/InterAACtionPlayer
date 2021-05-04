@@ -7,18 +7,26 @@
     </h1>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="right menu">
-        <a class="ui item" (click)="openSave()">
+        <a class="ui item" (click)="openSave()"
+           matTooltip="{{'playlist.saveBtn' | translate}}"
+           matTooltipPosition="before">
           <i class="save icon"></i>
         </a>
-        <label (click)="openImport()">
+        <label (click)="openImport()"
+               matTooltip="{{'playlist.importBtn' | translate}}"
+               matTooltipPosition="before">
           <a class="ui item">
             <i class="download icon"></i>
           </a>
         </label>
-        <a class="ui item" (click)="goEdit()">
+        <a class="ui item" (click)="goEdit()"
+           matTooltip="{{'playlist.editBtn' | translate}}"
+           matTooltipPosition="before">
           <i class="edit icon"></i>
         </a>
-        <a class="ui item" (click)="openSettings()">
+        <a class="ui item" (click)="openSettings()"
+           matTooltip="{{'playlist.settingsBtn' | translate}}"
+           matTooltipPosition="before">
           <i class="cogs icon"></i>
         </a>
       </div>
