@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import * as Ajv from 'ajv';
+
+/**
+ * Import Models
+ */
 import { Types } from '../model/types-interface';
 import { Image, Item } from '../../../../projects/spotify/src/app/pages/album/models/album-model';
 import { Video } from '../../../../projects/youtube/src/app/shared/models/search.interface';
@@ -12,7 +17,26 @@ export class PlaylistService {
   // The Playlist that is displayed on the web
   playList: Types[] = [];
 
-  constructor() { }
+  // Schema for the json validator
+  schemaPlaylist = {
+    "properties": {
+      types: { "type": "string" },
+      id: { "type": "string" },
+      artists: { "type": "string" },
+      title: { "type": "string" },
+      publishedAt: {
+        type: "string",
+        format: "date-time",
+      },
+      description: { "type": "string" },
+      thumbnail: { "type": "string" }
+    },
+    "required": ["types", "id", "artists", "title", "publishedAt", "description", "thumbnail"],
+    "additionalProperties": false
+  }
+
+  constructor() {
+  }
 
   /**
    * @param videoY -> Youtube video
@@ -210,5 +234,22 @@ export class PlaylistService {
         find = false;
       }
     });
+  }
+
+  /**
+   * @param jsonFile
+   *
+   * Test the json file send by the user with Ajv (a json validator)
+   * He use my schema to check if the json file has the good schema
+   */
+  checkFileForPlaylist(jsonFile: any){
+    const ajv = new Ajv();
+    const valid = ajv.validate(this.schemaPlaylist, jsonFile);
+    if (valid){
+      return true;
+    }else {
+      console.log(ajv.errorsText(ajv.errors));
+      return false;
+    }
   }
 }

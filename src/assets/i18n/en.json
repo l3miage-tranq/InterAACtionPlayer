@@ -51,7 +51,7 @@
     "artistVideo": "Artist of video",
     "file": "File",
     "errorEmptyFile": "Need file !",
-    "errorWrongFile": "Wrong file !",
+    "errorWrongFile": "Wrong type file !",
     "errorFileAlreadyInPlaylist": "File already in Playlist !",
     "add": "Add",
     "cancel": "Cancel",

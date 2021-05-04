@@ -155,10 +155,17 @@ export class ImportfileComponent implements OnInit {
 
   /**
    * Check if the Json file is a right file
+   * Get the name of the file, split it from the point
+   * Then get the last value of the split (= extension of the file) and check if this value == json
+   * After check if the json file contains the right schema
    */
   public jsonIsValid(){
     if (this.typeFile == 'file'){
-      return this.nameFileUpload.split('.').pop() == "json";
+      if (this.nameFileUpload.split('.').pop() == "json"){
+        return this.playlistService.checkFileForPlaylist(JSON.parse(this.fileUpload));
+      }else {
+        return false;
+      }
     }else{
       return false;
     }
