@@ -54,7 +54,10 @@
     "errorWrongFile": "Wrong file !",
     "errorFileAlreadyInPlaylist": "File already in Playlist !",
     "add": "Add",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "newPlaylist": "new Playlist",
+    "mergePlaylist": "merge Playlist",
+    "options": "Options"
   },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"

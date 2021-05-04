@@ -177,4 +177,38 @@ export class PlaylistService {
     });
     return find;
   }
+
+  /**
+   * @param jsonFile
+   *
+   * Replace the current playlist with the playlist send by the user
+   */
+  newPlaylist(jsonFile: any){
+    this.playList = jsonFile;
+  }
+
+  /**
+   * @param jsonFile
+   *
+   * Merge the current playlist with the playlist send by the user
+   * Check, all element in the playlist send by the user, if is not already existing in the current playlist
+   * If it's false then add it to the current playlist
+   * Else skip
+   */
+  mergePlaylist(jsonFile: any){
+    const tmpPlaylist: Types[] = jsonFile;
+    let find = false;
+    tmpPlaylist.forEach(elemTmp => {
+      this.playList.forEach(elemPlt => {
+        if (elemTmp.id == elemPlt.id){
+          find = true;
+        }
+      });
+      if (!find){
+        this.playList.push(elemTmp);
+      }else {
+        find = false;
+      }
+    });
+  }
 }

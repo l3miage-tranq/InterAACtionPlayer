@@ -37,6 +37,24 @@
       <label>{{ artistFile | translate }}</label>
       <input type="text" placeholder="{{ artistFile | translate }}" (keyup)="getArtist($event)">
     </div>
+    <div class="field">
+      <label>{{ "importFilePlaylist.options" | translate }}</label>
+      <div class="inline field">
+        <div class="field" *ngIf="typeFile == 'file'">
+          <div class="ui checkbox">
+            <input type="radio" name="options" checked="checked" (click)="newPlaylist()">
+            <label>{{ "importFilePlaylist.newPlaylist" | translate }}</label>
+          </div>
+        </div>
+        <br>
+        <div class="field" *ngIf="typeFile == 'file'">
+          <div class="ui checkbox">
+            <input type="radio" name="options" (click)="mergePlaylist()">
+            <label>{{ "importFilePlaylist.mergePlaylist" | translate }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="required field">
       <label>{{ "importFilePlaylist.file" | translate }}</label>
       <input class="ui button" type="file" (change)="addFile($event)"/>

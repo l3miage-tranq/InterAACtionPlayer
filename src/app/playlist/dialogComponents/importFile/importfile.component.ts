@@ -14,11 +14,13 @@ export class ImportfileComponent implements OnInit {
 
   public typeFile = "song"
   private fileUpload;
+  private nameFileUpload;
   public titleFileInput = '';
   public artistFileInput = '';
   public titleFile = "importFilePlaylist.titleSong";
   public artistFile = "importFilePlaylist.artistSong";
   public error = '';
+  public optionsPlaylist = "new";
 
   public errorEmptyFile = false;
   public errorWrongFile = false;
@@ -92,6 +94,20 @@ export class ImportfileComponent implements OnInit {
   }
 
   /**
+   * Get the choice of the user and stock the choice in the global variable
+   */
+  public newPlaylist(){
+    this.optionsPlaylist = "new";
+  }
+
+  /**
+   * Get the choice of the user and stock the choice in the global variable
+   */
+  public mergePlaylist(){
+    this.optionsPlaylist = "merge";
+  }
+
+  /**
    * @param event -> change event
    *
    * Get the local file add by the user
@@ -99,6 +115,7 @@ export class ImportfileComponent implements OnInit {
   public addFile(event){
     if (this.typeFile == 'file'){
       this.fileUpload = event.target.files[0];
+      this.nameFileUpload = event.target.files[0].name;
       const reader = new FileReader();
       reader.readAsText(this.fileUpload);
       reader.onload = () => {
@@ -141,7 +158,7 @@ export class ImportfileComponent implements OnInit {
    */
   public jsonIsValid(){
     if (this.typeFile == 'file'){
-      return this.fileUpload.endsWith('json');
+      return this.nameFileUpload.split('.').pop() == "json";
     }else{
       return false;
     }
@@ -180,7 +197,11 @@ export class ImportfileComponent implements OnInit {
           }
         } else {
           if (this.typeFile == "file"){
-            this.playlistService.playList = JSON.parse(this.fileUpload);
+            if (this.optionsPlaylist == "new"){
+              this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
+            }else {
+              this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
+            }
             this.dialog.closeAll();
             this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
             this.saveService.updatePlaylist();

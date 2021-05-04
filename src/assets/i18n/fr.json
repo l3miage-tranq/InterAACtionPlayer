@@ -54,7 +54,10 @@
     "errorWrongFile": "Mauvais fichier !",
     "errorFileAlreadyInPlaylist": "Fichier déjà présent dans la Playlist !",
     "add": "Ajouter",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "newPlaylist": "nouvelle Playlist",
+    "mergePlaylist": "fusionner Playlist",
+    "options": "Options"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"
