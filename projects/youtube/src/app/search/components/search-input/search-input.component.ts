@@ -54,7 +54,7 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
    *
    * 'distincUntilChanged()' ensures that the current value is different from the last value. Otherwhise, it discards it;
    *
-   * I use the 'filter()' operator to check for and discard values that have fewer than three characters;
+   * I use the 'filter()' operator to check for and discard values that have fewer than one character;
    *
    * The 'map' operator returns the value as an 'Observable';
    * This allow us to subscribe to it, in which case the value can be sent over to the parent component using the 'Output' event emitter.
@@ -65,7 +65,7 @@ export class SearchInputComponent implements OnInit,AfterViewInit {
         debounceTime(500),
         pluck('target', 'value'),
         distinctUntilChanged(),
-        filter((value: string) => value.length > 0),
+        filter((value: string) => value.length >= 1),
         map((value) => value)
       )
       .subscribe(value => {
