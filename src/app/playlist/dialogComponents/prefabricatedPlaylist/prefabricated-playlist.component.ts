@@ -26,10 +26,21 @@ export class PrefabricatedPlaylistComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * @param choice
+   *
+   * Get the choice of the user
+   */
   choicePrefabricatedPlaylist(choice: string){
     this.namePrefabricatedPlaylist = choice + this.fileExtension;
   }
 
+  /**
+   * @param nameFile
+   *
+   * Allows to search the correct json file matching with the nameFile value in parameter
+   * Then add the value in json in the Playlist
+   */
   goLoad(nameFile: string){
     this.playlistService.playList = (function() {
       let json = null;
@@ -54,6 +65,11 @@ export class PrefabricatedPlaylistComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  /**
+   * Load the json file choice by the user
+   * Then close dialog and send a notification
+   * And save the new Playlist in the database
+   */
   submit(){
     this.goLoad(this.namePrefabricatedPlaylist);
     this.dialog.closeAll();
