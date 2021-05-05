@@ -12,6 +12,7 @@ import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.c
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { DialogChooseTypeComponent } from './dialogComponents/dialogChooseType/dialog-choose-type.component';
+import { DeleteDialogComponent } from './dialogComponents/deleteDialog/delete-dialog.component';
 
 /**
  * Import Services
@@ -158,6 +159,20 @@ export class PlaylistComponent implements OnInit {
       this.goEdit();
     }
     this.dialog.open(SettingsComponent);
+  }
+
+  /**
+   * If edit mode is On, close it and open DeleteDialogComponent
+   * Then when deleteDialog is close refresh the playlist with an empty playlist
+   */
+  openDelete(){
+    if (this.edit){
+      this.goEdit();
+    }
+    const importDialog = this.dialog.open(DeleteDialogComponent);
+    importDialog.afterClosed().subscribe(() => {
+      this.playList = this.playlistService.playList;
+    });
   }
 
   /**

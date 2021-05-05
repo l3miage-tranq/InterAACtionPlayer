@@ -41,6 +41,7 @@ import { SettingsComponent } from './playlist/dialogComponents/settings/settings
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
+import { DeleteDialogComponent } from './playlist/dialogComponents/deleteDialog/delete-dialog.component';
 
 /**
  * Import module Sub-Application
@@ -67,7 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
     SaveDialogComponent,
     SettingsComponent,
     ProgressIndicatorComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

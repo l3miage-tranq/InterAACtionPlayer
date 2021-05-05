@@ -5,7 +5,6 @@ import exportFromJSON from 'export-from-json';
 /**
  * Import Services
  */
-import { SaveService } from '../../../services/save.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
 import { PlaylistService } from '../../services/playlist.service';
@@ -21,7 +20,6 @@ export class SaveDialogComponent implements OnInit {
   titleFile = "";
 
   constructor(private dialog: MatDialog,
-              private saveService: SaveService,
               private notifier: NotifierService,
               private translate: TranslateService,
               private playlistService: PlaylistService) {

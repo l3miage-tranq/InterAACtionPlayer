@@ -9,7 +9,8 @@
     "deleteSong": "Musique supprimé de la playlist !",
     "save": "Exportation de la Playlist réussi !",
     "addPlaylist": " ajouté à la Playlist !",
-    "importPlaylist": "Importation de la Playlist réussi !"
+    "importPlaylist": "Importation de la Playlist réussi !",
+    "delete": "La Playlist a été effacer !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -36,6 +37,12 @@
     "title": "Exporter la Playlist ?",
     "titleFile": "Titre du fichier",
     "defaultTitleFile": "Par défaut titre = Playlist",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "deletePlaylist": {
+    "title": "Effacer la Playlist",
+    "text": "Voulez-vous effacer cette Playlist ?",
     "yes": "Oui",
     "no": "Non"
   },
