@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { PlaylistService } from '../../services/playlist.service';
+import { PrefabricatedPlaylistComponent } from '../prefabricatedPlaylist/prefabricated-playlist.component';
 
 @Component({
   selector: 'app-dialog-choose-type',
@@ -9,15 +11,20 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DialogChooseTypeComponent implements OnInit {
 
+  playlistEmpty = false;
+
   private router: Router;
   private dialog: MatDialog;
+  private playlistService: PlaylistService;
 
-  constructor(router: Router, dialog: MatDialog) {
+  constructor(router: Router, dialog: MatDialog, playlistService: PlaylistService) {
     this.router = router;
     this.dialog = dialog;
+    this.playlistService = playlistService;
   }
 
   ngOnInit(): void {
+    this.playlistEmpty = this.playlistService.playList.length == 0;
   }
 
   /**
@@ -36,4 +43,7 @@ export class DialogChooseTypeComponent implements OnInit {
     this.router.navigate(['/spotify']);
   }
 
+  goPrefabricatedPlaylist(){
+    this.dialog.open(PrefabricatedPlaylistComponent);
+  }
 }

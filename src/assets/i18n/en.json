@@ -10,7 +10,8 @@
     "save": "Export Playlist done !",
     "addPlaylist": " add to the Playlist !",
     "importPlaylist": "Import Playlist done !",
-    "delete": "The Playlist has been deleted !"
+    "delete": "The Playlist has been deleted !",
+    "prefabricatedPlaylist": "Prefabricated Playlist has been added !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -18,7 +19,8 @@
     "saveBtn": "Export Playlist",
     "importBtn": "Import File",
     "editBtn": "Edit mode",
-    "settingsBtn": "Settings"
+    "settingsBtn": "Settings",
+    "deleteBtn": "Delete Playlist"
   },
   "settingsPlaylist": {
     "settings": "Settings",
@@ -65,6 +67,12 @@
     "newPlaylist": "new Playlist",
     "mergePlaylist": "merge Playlist",
     "options": "Options"
+  },
+  "prefabricatedPlaylist": {
+    "title": "Prefabricated Playlist",
+    "choice": "List of prefabricated Playlist",
+    "cancel": "Cancel",
+    "add": "Add"
   },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"
