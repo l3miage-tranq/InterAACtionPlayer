@@ -23,7 +23,7 @@ export class AudioPlayerComponent implements OnInit {
   enableExpanded = true;
   displayVolumeControls = true;
   displayRepeatControls = false;
-  disablePositionSlider = true;
+  disablePositionSlider = false;
 
   constructor(private audioService: AudioService) {
   }
