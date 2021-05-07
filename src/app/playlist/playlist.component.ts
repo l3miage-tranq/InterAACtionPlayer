@@ -49,6 +49,7 @@ export class PlaylistComponent implements OnInit {
   timeout = null;
   spinnerValue: number = 0;
   fullScreen = false;
+  disableDragDrop = false;
   theme = "";
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
@@ -227,15 +228,18 @@ export class PlaylistComponent implements OnInit {
 
   /**
    * Allows the user to enable or disable the edit mode
-   * When edit mode is on, add button Add else delete button Add
+   * When edit mode is on, add button "Add" and disable Drag & Drop
+   * Else delete button Add and enable Drag & Drop
    * Notify the statue of edit mode (on or off)
    */
   goEdit(): void {
     this.edit = !this.edit;
     if (this.edit){
+      this.disableDragDrop = true;
       this.playlistService.addBtnAdd();
       this.notifier.notify('warning', this.translate.instant('notifier.editOn'));
     }else {
+      this.disableDragDrop = false;
       this.playList = this.playlistService.deleteBtnAdd();
       this.notifier.notify('warning', this.translate.instant('notifier.editOff'));
     }
@@ -525,15 +529,12 @@ export class PlaylistComponent implements OnInit {
   /**
    * @param event -> drag&drop event
    *
-   * Allows the user to drag&drop the item in Playlist for design the Playlist as he wish
+   * Allows the user to drag&drop the item in Playlist for design the Playlist as he wish if the edit mode is disable
    * Then save this Playlist in database
    */
   dragDrop(event: CdkDragDrop<any>){
-    this.playList[event.previousContainer.data.index] = event.container.data.elem;
-    this.playList[event.container.data.index] = event.previousContainer.data.elem;
-    if (this.edit){
-      this.goEdit();
-    }
-    this.saveService.updatePlaylist();
+      this.playList[event.previousContainer.data.index] = event.container.data.elem;
+      this.playList[event.container.data.index] = event.previousContainer.data.elem;
+      this.saveService.updatePlaylist();
   }
 }
