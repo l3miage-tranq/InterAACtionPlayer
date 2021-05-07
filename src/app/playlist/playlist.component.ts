@@ -109,18 +109,17 @@ export class PlaylistComponent implements OnInit {
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
       this.playList = this.playlistService.playList;
-      this.isPlaylistEmpty();
+      if (this.isPlaylistEmpty()){
+        this.goEdit()
+      }
     },500 );
   }
 
   /**
    * Check if the playlist is empty
-   * If it's true then active the edit mode
    */
   isPlaylistEmpty(){
-    if (this.playList.length == 0){
-      this.goEdit();
-    }
+    return this.playList.length == 0;
   }
 
   /**
@@ -134,10 +133,18 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
+   * Set the boolean launch to false for delete the current video
+   */
+  deleteCurrentElement(){
+    this.launch = false;
+  }
+
+  /**
    * @param elem -> and item of the Playlist
    *
    * Check if this item is the btnAdd then if is true open DialogueChooseTypeComponent and disable the edit mode
    * After the DialogueChooseTypeComponent is close, refresh the playlist and check if the playlist is empty
+   * If it's the case then enable edit mode
    */
   openDialog(elem: Types): void{
     if (elem.types == "btnAdd") {
@@ -145,7 +152,9 @@ export class PlaylistComponent implements OnInit {
       const dialogChoose = this.dialog.open(DialogChooseTypeComponent);
       dialogChoose.afterClosed().subscribe( () => {
         this.playList = this.playlistService.playList;
-        this.isPlaylistEmpty();
+        if (this.isPlaylistEmpty()){
+          this.goEdit();
+        }
       });
     }
   }
@@ -154,37 +163,47 @@ export class PlaylistComponent implements OnInit {
    * If edit mode is On, disable it and open ImportFileComponent
    * Then when importDialog is close refresh the playlist with the new playlist who contains new values
    * Then check if the playlist is empty
+   * If it's the case then enable edit mode & delete current music/video
    */
   openImport(){
     this.isEditModeActive();
     const importDialog = this.dialog.open(ImportfileComponent);
     importDialog.afterClosed().subscribe(() => {
       this.playList = this.playlistService.playList;
-      this.isPlaylistEmpty()
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+        this.deleteCurrentElement()
+      }
       });
   }
 
   /**
    * If edit mode is On, disable it and open SaveDialogComponent
    * Then check if the playlist is empty
+   * If it's the case then enable edit mode
    */
   openSave(){
     this.isEditModeActive();
     const saveDialog = this.dialog.open(SaveDialogComponent);
     saveDialog.afterClosed().subscribe( () => {
-      this.isPlaylistEmpty();
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+      }
     });
   }
 
   /**
    * If edit mode is On, disable it and open SettingsComponent
    * Then check if the playlist is empty
+   * If it's the case then enable edit mode
    */
   openSettings(){
     this.isEditModeActive();
     const settingsDialog = this.dialog.open(SettingsComponent);
     settingsDialog.afterClosed().subscribe( () => {
-      this.isPlaylistEmpty();
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+      }
     });
   }
 
@@ -192,13 +211,17 @@ export class PlaylistComponent implements OnInit {
    * If edit mode is On, close it and open DeleteDialogComponent
    * Then when deleteDialog is close refresh the playlist with an empty playlist
    * Then check if the playlist is empty
+   * If it's the case then enable edit mode & delete current music/video
    */
   openDelete(){
     this.isEditModeActive();
     const importDialog = this.dialog.open(DeleteDialogComponent);
     importDialog.afterClosed().subscribe(() => {
       this.playList = this.playlistService.playList;
-      this.isPlaylistEmpty();
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+        this.deleteCurrentElement();
+      }
     });
   }
 
