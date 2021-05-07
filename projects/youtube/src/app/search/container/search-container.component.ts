@@ -9,6 +9,7 @@ import { Video} from '../../shared/models/search.interface';
 })
 export class SearchContainerComponent {
 
+  inputValue = "";
   inputTouched = false;
   loading = false;
   videos: Video[] = [];
@@ -26,6 +27,7 @@ export class SearchContainerComponent {
    * Then i filter out the necessary values needed and add that to the videos array component.
    */
   handleSearch(inputValue: string) {
+    this.inputValue = inputValue;
     this.loading = true;
     this.searchService.getVideos(inputValue)
       .subscribe((items: any) => {
@@ -46,5 +48,4 @@ export class SearchContainerComponent {
         this.loading = false;
       });
   }
-
 }
