@@ -12,6 +12,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSliderModule } from '@angular/material/slider';
 
 /**
  * Custom angular notifier options
@@ -73,34 +74,35 @@ export function createTranslateLoader(http: HttpClient) {
     DeleteDialogComponent,
     PrefabricatedPlaylistComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    NotifierModule.withConfig(customNotifierOptions),
-    MatDialogModule,
-    RouterModule,
-    YoutubeSharedModule.forRoot(),
-    SpotifySharedModule.forRoot(),
-    RouterModule.forRoot([
-      {path: 'playlist', component: PlaylistComponent},
-      {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
-      {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
-      {path: '', redirectTo: 'playlist', pathMatch: 'full'},
-    ]),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient],
-      }
-    }),
-    PipesModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    DragDropModule,
-    NgxAudioPlayerModule,
-    MatTooltipModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        NotifierModule.withConfig(customNotifierOptions),
+        MatDialogModule,
+        RouterModule,
+        YoutubeSharedModule.forRoot(),
+        SpotifySharedModule.forRoot(),
+        RouterModule.forRoot([
+            {path: 'playlist', component: PlaylistComponent},
+            {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+            {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+            {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+        ]),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient],
+            }
+        }),
+        PipesModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        DragDropModule,
+        NgxAudioPlayerModule,
+        MatTooltipModule,
+        MatSliderModule,
+    ],
   providers: [
     PlaylistService
   ],

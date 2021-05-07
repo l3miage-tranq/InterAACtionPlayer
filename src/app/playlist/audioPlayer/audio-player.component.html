@@ -1,13 +1,33 @@
-<ngx-audio-player
-  [playlist]="playlist"
-  [displayTitle]="displayTitle"
-  [autoPlay]="enableAutoplay"
-  [displayPlaylist]="displayPlayList"
-  [displayArtist]="displayArtist"
-  [displayDuration]="displayDuration"
-  [expanded]="enableExpanded"
-  [displayVolumeControls]="displayVolumeControls"
-  [displayRepeatControls]="displayRepeatControls"
-  [disablePositionSlider]="disablePositionSlider"
-  muted="muted">
-</ngx-audio-player>
+<div>
+  <div class="container">
+    <ngx-audio-player
+      id="test"
+      [playlist]="playlist"
+      [displayTitle]="displayTitle"
+      [autoPlay]="enableAutoplay"
+      [displayPlaylist]="displayPlayList"
+      [displayArtist]="displayArtist"
+      [displayDuration]="displayDuration"
+      [expanded]="enableExpanded"
+      [displayVolumeControls]="displayVolumeControls"
+      [displayRepeatControls]="displayRepeatControls"
+      [disablePositionSlider]="disablePositionSlider"
+      muted="muted">
+    </ngx-audio-player>
+  </div>
+  <div id="volumeSlider" class="container">
+    <mat-slider thumbLabel
+                tickInterval="100"
+                step="1"
+                min="0"
+                max="100"
+                [value]="volume"
+                vertical="vertical"
+                aria-label="units"
+                (change)="setVolume($event.value)">
+    </mat-slider>
+  </div>
+</div>
+
+
+
