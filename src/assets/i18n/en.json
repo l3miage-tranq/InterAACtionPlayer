@@ -66,7 +66,10 @@
     "cancel": "Cancel",
     "newPlaylist": "new Playlist",
     "mergePlaylist": "merge Playlist",
-    "options": "Options"
+    "options": "Options",
+    "authorizedSong": "* only .mpeg & .wav are authorized !",
+    "authorizedVideo": "* only .mp4 & .webm are authorized !",
+    "authorizedFile": "* only .json is authorized !"
   },
   "prefabricatedPlaylist": {
     "title": "Prefabricated Playlist",

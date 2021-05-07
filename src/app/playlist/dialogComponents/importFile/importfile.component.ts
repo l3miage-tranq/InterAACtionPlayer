@@ -19,6 +19,7 @@ export class ImportfileComponent implements OnInit {
   public artistFileInput = '';
   public titleFile = "importFilePlaylist.titleSong";
   public artistFile = "importFilePlaylist.artistSong";
+  public authorizedExtension = "importFilePlaylist.authorizedSong";
   public error = '';
   public optionsPlaylist = "new";
 
@@ -47,6 +48,7 @@ export class ImportfileComponent implements OnInit {
       this.typeFile = "song";
       this.titleFile = "importFilePlaylist.titleSong";
       this.artistFile = "importFilePlaylist.artistSong";
+      this.authorizedExtension = "importFilePlaylist.authorizedSong";
     }
   }
 
@@ -60,16 +62,19 @@ export class ImportfileComponent implements OnInit {
       this.typeFile = "video";
       this.titleFile = "importFilePlaylist.titleVideo";
       this.artistFile = "importFilePlaylist.artistVideo";
+      this.authorizedExtension = "importFilePlaylist.authorizedVideo";
     }
   }
 
   /**
    * Allows to know if the checked box is "file"
    * If file already checked do nothing
+   * Else set the rights values to match the file type
    */
   public getTypeFile(){
     if (this.typeFile != "file"){
       this.typeFile = "file";
+      this.authorizedExtension = "importFilePlaylist.authorizedFile";
     }
   }
 
@@ -187,7 +192,7 @@ export class ImportfileComponent implements OnInit {
    *    - Show error message;
    */
   public submit(){
-    if (this.fileUpload !== null) {
+    if (this.fileUpload != null) {
       this.errorEmptyFile = false;
       if (this.audioIsValid() || this.videoIsValid() || this.jsonIsValid()) {
         this.errorWrongFile = false;
