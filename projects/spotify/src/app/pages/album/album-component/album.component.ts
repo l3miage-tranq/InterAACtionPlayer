@@ -77,6 +77,21 @@ export class AlbumComponent implements OnInit {
   }
 
   /**
+   * @param album
+   *
+   * Allows the user to all all the song in the album who are not in the playlist
+   */
+  public addAllToPlaylist(album: APIAlbums){
+    for (let i = 0; i < album.tracks.items.length; i++){
+      if (!this.songAlreadyAddToPlaylist(album.tracks.items[i])){
+        this.playlistService.addSongToPlaylist(album.tracks.items[i], album.images[0]);
+      }
+    }
+    this.notifier.notify('success', this.translate.instant('notifier.addAll'));
+    this.saveService.updatePlaylist();
+  }
+
+  /**
    * @param item -> music selected by the user
    *
    * Delete the music selected by the user to the Playlist
@@ -84,6 +99,19 @@ export class AlbumComponent implements OnInit {
   public deleteToPlaylist(item: Item){
     this.playlistService.deleteSongSpotifyToPlaylist(item);
     this.notifier.notify('success', this.translate.instant('notifier.deleteSong'));
+    this.saveService.updatePlaylist();
+  }
+
+  /**
+   * @param album
+   *
+   * Allows the user to delete all the song in the album who are in the playlist
+   */
+  public deleteAllToPlaylist(album: APIAlbums){
+    for (let i = 0; i < album.tracks.items.length; i++){
+      this.playlistService.deleteSongSpotifyToPlaylist(album.tracks.items[i]);
+    }
+    this.notifier.notify('success', this.translate.instant('notifier.deleteAll'));
     this.saveService.updatePlaylist();
   }
 

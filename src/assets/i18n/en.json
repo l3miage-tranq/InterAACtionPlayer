@@ -11,7 +11,9 @@
     "addPlaylist": " add to the Playlist !",
     "importPlaylist": "Import Playlist done !",
     "delete": "The Playlist has been deleted !",
-    "prefabricatedPlaylist": "Prefabricated Playlist has been added !"
+    "prefabricatedPlaylist": "Prefabricated Playlist has been added !",
+    "addAll": "All musics are added in the Playlist !",
+    "deleteAll": "All musics are deleted from the Playlist !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -110,6 +112,8 @@
   "spotifyAlbum": {
     "back": "Back to artist",
     "add": "Add to Playlist",
-    "delete": "Delete to Playlist"
+    "delete": "Delete to Playlist",
+    "btnAddAll": "Add all musics",
+    "btnDeleteAll": "Delete all musics"
   }
 }

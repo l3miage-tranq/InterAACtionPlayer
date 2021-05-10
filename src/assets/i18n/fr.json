@@ -11,7 +11,9 @@
     "addPlaylist": " ajouté à la Playlist !",
     "importPlaylist": "Importation de la Playlist réussi !",
     "delete": "La Playlist a été effacer !",
-    "prefabricatedPlaylist": "La Playlist pré-enregistré à été ajouté !"
+    "prefabricatedPlaylist": "La Playlist pré-enregistré à été ajouté !",
+    "addAll": "Toutes les musiques ont été ajouté dans la Playlist !",
+    "deleteAll": "Toutes les musiques ont été supprimé de la Playlist !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -110,6 +112,8 @@
   "spotifyAlbum": {
     "back": "Retour vers l'artist",
     "add": "Ajouter à la Playlist",
-    "delete": "Supprimer de la Playlist"
+    "delete": "Supprimer de la Playlist",
+    "btnAddAll": "Ajouter toutes les musiques",
+    "btnDeleteAll": "Supprimer toutes les musiques"
   }
 }
