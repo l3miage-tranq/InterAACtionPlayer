@@ -17,7 +17,7 @@ export class AudioPlayerComponent implements OnInit {
 
   playlist: Track[] = [];
   displayTitle = true;
-  enableAutoplay = true;
+  enableAutoplay = false;
   displayPlayList = false;
   displayArtist = true;
   displayDuration = true;
@@ -25,7 +25,7 @@ export class AudioPlayerComponent implements OnInit {
   displayVolumeControls = true;
   displayRepeatControls = false;
   disablePositionSlider = false;
-  volume;
+  volume = 50;
 
   constructor(private audioService: AudioService) {
     this.volume = audioService.startVolume;
@@ -34,6 +34,7 @@ export class AudioPlayerComponent implements OnInit {
   /**
    * Set the volume;
    * Subscribe to the displayVolumeSlider in audioService, then show or hide the volume slider;
+   * Subscribe to the volumeValue in audioService, then increase or decrease the volume of the current music
    * Add a event listener ("click" event) on the play-pause button of the audio-player
    * Add a event listener ("click" event) on the volume button of the audio-player
    * Load the Playlist with the local music selected
@@ -41,6 +42,9 @@ export class AudioPlayerComponent implements OnInit {
   ngOnInit(): void {
 
     this.setVolume(this.volume);
+    this.audioService.volumeObservable.subscribe(value => {
+      this.setVolume(value);
+    });
     this.audioService.audioObservable.subscribe( value => {
       if (value){
         this.setVolume(this.volume);
@@ -73,6 +77,7 @@ export class AudioPlayerComponent implements OnInit {
     $(document).ready(function(){
       $("audio").prop("volume", value / 100);
     });
+    this.audioService.volume = value;
   }
 
   /**

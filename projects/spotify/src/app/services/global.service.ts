@@ -73,6 +73,8 @@ export class GlobalService {
 
   /**
    * @param uri
+   *
+   * Allow the user to play the current Spotify music
    */
   public playMusic(uri: string){
     $.ajax({
@@ -90,7 +92,7 @@ export class GlobalService {
   }
 
   /**
-   *
+   * Allow the user to pause the current Spotify music
    */
   public pauseMusic(){
     $.ajax({
@@ -99,6 +101,26 @@ export class GlobalService {
       headers: {
         'Authorization': 'Bearer ' + this.accessToken
       }
+    });
+  }
+
+  /**
+   * @param value
+   *
+   * Allow the user to set the volume of the current Spotify musics
+   */
+  public setVolume(value: Number){
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/play',
+      type: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken
+      },
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify({
+        "volume_percent": value
+      })
     });
   }
 }

@@ -42,6 +42,8 @@ export class PlaylistComponent implements OnInit {
 
   width = 560;
   height = 315;
+  volumeYouTubeVideo = 50;
+  volumeSpotifyMusic = 50;
 
   edit = false;
   launch = false;
@@ -264,12 +266,33 @@ export class PlaylistComponent implements OnInit {
    *
    * Launch the item in the Playlist selected by the user
    * Then go on it
+   * And if it's a Youtube video or a Spotify music, set the volume default
    */
   goLaunch(elem: Types) {
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.launch = true;
       this.goOnElement();
+      this.setDefaultVolume();
+    }
+  }
+
+  /**
+   * Set the volume of a Youtube video or Spotify music by default
+   */
+  setDefaultVolume(){
+    if (this.currentElem.types == "YouTube"){
+      $(document).ready( () => {
+        setTimeout( () => {
+          (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+            '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
+            '*'
+          );
+        }, 500);
+      });
+
+    }else if (this.currentElem.types == "Spotify"){
+      this.globalService.setVolume(this.volumeSpotifyMusic);
     }
   }
 
@@ -394,7 +417,7 @@ export class PlaylistComponent implements OnInit {
   /**
    * Allows the user to go to the next item in the Playlist
    * If it the last item, go to the first
-   * Then go on this element
+   * Then go on this element and set default volume
    */
   goNext() {
     this.exitFullScreen();
@@ -412,12 +435,13 @@ export class PlaylistComponent implements OnInit {
       }
     }
     this.goOnElement();
+    this.setDefaultVolume();
   }
 
   /**
    * Allows the user to go to the previous item in the Playlist
    * If it the first item, go to the last
-   * Then go on this element
+   * Then go on this element and set default volume
    */
   goPrevious() {
     this.exitFullScreen();
@@ -435,6 +459,7 @@ export class PlaylistComponent implements OnInit {
       }
     }
     this.goOnElement();
+    this.setDefaultVolume();
   }
 
   /**
@@ -457,8 +482,8 @@ export class PlaylistComponent implements OnInit {
       $('.play-pause').trigger('click');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    }else{
-      //this.globalService.playMusic(this.currentElem.id);
+    }else if (this.currentElem.types == "Spotify"){
+      this.globalService.playMusic(this.currentElem.id);
     }
   }
 
@@ -472,8 +497,8 @@ export class PlaylistComponent implements OnInit {
       $('.play-pause').trigger('click');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    }else {
-      //this.globalService.pauseMusic();
+    }else if (this.currentElem.types == "Spotify"){
+      this.globalService.pauseMusic();
     }
   }
 
@@ -481,15 +506,26 @@ export class PlaylistComponent implements OnInit {
    * Allow the user to decrease the volume of the current video/music
    */
   goDecreaseVolume(){
-    let newVolume = 0.0;
-    if (this.currentElem == "video" && this.myvideo.nativeElement.volume > 0.0){
+    let newVolume = 0;
+    if (this.currentElem.types == "video" && this.myvideo.nativeElement.volume > 0){
       newVolume = this.myvideo.nativeElement.volume - 0.1;
-      if (newVolume < 0.0){
-        newVolume = 0.0
+      if (newVolume < 0){
+        newVolume = 0
         this.myvideo.nativeElement.volume = newVolume;
       }else {
         this.myvideo.nativeElement.volume = newVolume;
       }
+    }else if (this.currentElem.types == "song"){
+      this.audioService.emitDecreaseVolume();
+    }else if (this.currentElem.types == "YouTube"){
+      this.volumeYouTubeVideo = this.volumeYouTubeVideo - 10;
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
+        '*'
+      );
+    }else if (this.currentElem.types == "Spotify"){
+      this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
+      this.globalService.setVolume(this.volumeSpotifyMusic);
     }
   }
 
@@ -497,15 +533,26 @@ export class PlaylistComponent implements OnInit {
    * Allow the user to increase the volume of the current video/music
    */
   goIncreaseVolume(){
-    let newVolume = 0.0;
-    if (this.currentElem == "video" && this.myvideo.nativeElement.volume < 1.0){
+    let newVolume = 0;
+    if (this.currentElem.types == "video" && this.myvideo.nativeElement.volume < 1){
       newVolume = this.myvideo.nativeElement.volume + 0.1;
-      if (newVolume > 1.0){
-        newVolume = 1.0
+      if (newVolume > 1){
+        newVolume = 1
         this.myvideo.nativeElement.volume = newVolume;
       }else {
         this.myvideo.nativeElement.volume = newVolume;
       }
+    }else if (this.currentElem.types == "song"){
+      this.audioService.emitIncreaseVolume();
+    }else if (this.currentElem.types == "YouTube"){
+      this.volumeYouTubeVideo = this.volumeYouTubeVideo + 10;
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
+        '*'
+      );
+    }else if (this.currentElem.types == "Spotify"){
+      this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
+      this.globalService.setVolume(this.volumeSpotifyMusic);
     }
   }
 
