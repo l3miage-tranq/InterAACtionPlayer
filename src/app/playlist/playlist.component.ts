@@ -320,6 +320,8 @@ export class PlaylistComponent implements OnInit {
     const nextBtn = document.getElementById("nextBtn");
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
+    const minusBtn = document.getElementById("minusBtn");
+    const plusBtn = document.getElementById("plusBtn");
     const screenBtn = document.getElementById("screenBtn");
     const screenIcon = document.getElementById("screenIcon");
 
@@ -328,6 +330,8 @@ export class PlaylistComponent implements OnInit {
     nextBtn.style.opacity = "0";
     playBtn.style.opacity = "0";
     pauseBtn.style.opacity = "0";
+    minusBtn.style.opacity = "0";
+    plusBtn.style.opacity = "0";
     screenBtn.style.opacity = "0";
     screenIcon.classList.replace("expand", "compress");
   }
@@ -340,6 +344,8 @@ export class PlaylistComponent implements OnInit {
     const nextBtn = document.getElementById("nextBtn");
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
+    const minusBtn = document.getElementById("minusBtn");
+    const plusBtn = document.getElementById("plusBtn");
     const screenBtn = document.getElementById("screenBtn");
     const screenIcon = document.getElementById("screenIcon");
 
@@ -348,6 +354,8 @@ export class PlaylistComponent implements OnInit {
     nextBtn.style.opacity = "1";
     playBtn.style.opacity = "1";
     pauseBtn.style.opacity = "1";
+    minusBtn.style.opacity = "1";
+    plusBtn.style.opacity = "1";
     screenBtn.style.opacity = "1";
     screenIcon.classList.replace("compress", "expand");
   }
@@ -466,6 +474,38 @@ export class PlaylistComponent implements OnInit {
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else {
       //this.globalService.pauseMusic();
+    }
+  }
+
+  /**
+   * Allow the user to decrease the volume of the current video/music
+   */
+  goDecreaseVolume(){
+    let newVolume = 0.0;
+    if (this.currentElem == "video" && this.myvideo.nativeElement.volume > 0.0){
+      newVolume = this.myvideo.nativeElement.volume - 0.1;
+      if (newVolume < 0.0){
+        newVolume = 0.0
+        this.myvideo.nativeElement.volume = newVolume;
+      }else {
+        this.myvideo.nativeElement.volume = newVolume;
+      }
+    }
+  }
+
+  /**
+   * Allow the user to increase the volume of the current video/music
+   */
+  goIncreaseVolume(){
+    let newVolume = 0.0;
+    if (this.currentElem == "video" && this.myvideo.nativeElement.volume < 1.0){
+      newVolume = this.myvideo.nativeElement.volume + 0.1;
+      if (newVolume > 1.0){
+        newVolume = 1.0
+        this.myvideo.nativeElement.volume = newVolume;
+      }else {
+        this.myvideo.nativeElement.volume = newVolume;
+      }
     }
   }
 

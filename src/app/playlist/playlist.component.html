@@ -141,6 +141,24 @@
           </div>
           <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
         </button>
+        <button id="minusBtn" class="ui labeled icon button btnCircular"
+                (click)="goDecreaseVolume()"
+                (mouseenter)="showProgressIndicator('minusBtn', idProgressIndicatorBtnPause); showBtn('minusBtn')"
+                (mouseleave)="hideProgressIndicator('minusBtn', idProgressIndicatorBtnPause); hideBtn('minusBtn')">
+          <div class="btnIcon">
+            <i class="massive minus icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
+        <button id="plusBtn" class="ui labeled icon button btnCircular"
+                (click)="goIncreaseVolume()"
+                (mouseenter)="showProgressIndicator('plusBtn', idProgressIndicatorBtnPause); showBtn('plusBtn')"
+                (mouseleave)="hideProgressIndicator('plusBtn', idProgressIndicatorBtnPause); hideBtn('plusBtn')">
+          <div class="btnIcon">
+            <i class="massive plus icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
         <button *ngIf="(currentElem.types == 'video' || currentElem.types == 'YouTube')" id="screenBtn" class="ui labeled icon button btnCircular"
                 (click)="goFullScreen()"
                 (mouseenter)="showProgressIndicator('screenBtn', idProgressIndicatorBtnExpand); showBtn('screenBtn')"
