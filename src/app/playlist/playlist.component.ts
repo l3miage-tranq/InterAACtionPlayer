@@ -185,7 +185,7 @@ export class PlaylistComponent implements OnInit {
    * Then check if the playlist is empty
    * If it's the case then enable edit mode
    */
-  openSave(){
+  openExport(){
     this.isEditModeActive();
     const saveDialog = this.dialog.open(SaveDialogComponent);
     saveDialog.afterClosed().subscribe( () => {

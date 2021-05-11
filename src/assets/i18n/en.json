@@ -18,7 +18,7 @@
   "playlist": {
     "title": "GazeMedia Player",
     "delete": "Delete",
-    "saveBtn": "Export Playlist",
+    "exportBtn": "Export Playlist",
     "importBtn": "Import File",
     "editBtn": "Edit mode",
     "settingsBtn": "Settings",
