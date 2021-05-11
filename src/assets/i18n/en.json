@@ -7,8 +7,9 @@
     "deleteVideo": "Video delete to playlist !",
     "addSong": "Music add to playlist !",
     "deleteSong": "Music delete to playlist !",
-    "save": "Export Playlist done !",
+    "exportPlaylist": "Export Playlist done !",
     "addPlaylist": " add to the Playlist !",
+    "savePlaylist": "The Playlist has been saved !",
     "importPlaylist": "Import Playlist done !",
     "delete": "The Playlist has been deleted !",
     "prefabricatedPlaylist": "Prefabricated Playlist has been added !",
@@ -18,6 +19,7 @@
   "playlist": {
     "title": "GazeMedia Player",
     "delete": "Delete",
+    "saveBtn": "Save Playlist",
     "exportBtn": "Export Playlist",
     "importBtn": "Import File",
     "editBtn": "Edit mode",
@@ -38,6 +40,13 @@
     "french-language": "French"
   },
   "savePlaylist": {
+    "title": "Save Playlist ?",
+    "titleFile": "Name Playlist",
+    "defaultTitleFile": "By default name = random name",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "exportFile": {
     "title": "Export Playlist ?",
     "titleFile": "Title File",
     "defaultTitleFile": "By default title = Playlist",

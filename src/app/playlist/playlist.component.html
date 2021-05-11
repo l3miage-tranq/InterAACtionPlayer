@@ -7,6 +7,11 @@
     </h1>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="right menu">
+        <a class="ui item" (click)="openSave()"
+           matTooltip="{{'playlist.saveBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="save icon"></i>
+        </a>
         <a class="ui item" (click)="openDelete()"
            matTooltip="{{'playlist.deleteBtn' | translate}}"
            matTooltipPosition="before">

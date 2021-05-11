@@ -1,16 +1,16 @@
 <h1 mat-dialog-title>
-  {{ "savePlaylist.title" | translate }}
+  {{ "exportFile.title" | translate }}
 </h1>
 <div mat-dialog-content>
   <div class="ui form error">
     <div class="field">
-      <label>{{ 'savePlaylist.titleFile' | translate }}</label>
-      <input type="text" placeholder="{{ 'savePlaylist.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
+      <label>{{ 'exportFile.titleFile' | translate }}</label>
+      <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
     </div>
   </div>
 </div>
 <div mat-dialog-actions>
-  <button class="ui button" (click)="goCancel()">{{ "savePlaylist.no" | translate }}</button>
-  <button class="ui button" (click)="submit()">{{ "savePlaylist.yes" | translate }}</button>
+  <button class="ui button" (click)="goCancel()">{{ "exportFile.no" | translate }}</button>
+  <button class="ui button" (click)="submit()">{{ "exportFile.yes" | translate }}</button>
 </div>
 <notifier-container></notifier-container>

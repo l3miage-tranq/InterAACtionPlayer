@@ -13,6 +13,7 @@ import { SettingsComponent } from './dialogComponents/settings/settings.componen
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dialog-choose-type.component';
 import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
+import { SavePlaylistComponent } from './dialogComponents/savePlaylist/save-playlist.component';
 
 /**
  * Import Services
@@ -160,6 +161,11 @@ export class PlaylistComponent implements OnInit {
         }
       });
     }
+  }
+
+  openSave(){
+    this.isEditModeActive();
+    const saveDialog = this.dialog.open(SavePlaylistComponent);
   }
 
   /**

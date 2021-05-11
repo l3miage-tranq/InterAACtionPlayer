@@ -52,7 +52,7 @@ export class ExportfileComponent implements OnInit {
       exportType: exportFromJSON.types.json
     });
     this.dialog.closeAll();
-    this.notifier.notify('warning', this.translate.instant('notifier.save'));
+    this.notifier.notify('warning', this.translate.instant('notifier.exportPlaylist'));
   }
 
   /**

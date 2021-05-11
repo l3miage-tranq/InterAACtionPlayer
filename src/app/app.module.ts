@@ -58,6 +58,7 @@ import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
@@ -72,7 +73,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProgressIndicatorComponent,
     AudioPlayerComponent,
     DeleteDialogComponent,
-    PrefabricatedPlaylistComponent
+    PrefabricatedPlaylistComponent,
+    SavePlaylistComponent
   ],
     imports: [
         BrowserModule,

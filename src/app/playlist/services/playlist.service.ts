@@ -17,6 +17,9 @@ export class PlaylistService {
   // The Playlist that is displayed on the web
   playList: Types[] = [];
 
+  // A map who contains all the playlist save
+  mapPlaylist = new Map();
+
   // Schema for the json validator
   schemaPlaylist = {
     "properties": {
@@ -251,5 +254,14 @@ export class PlaylistService {
       console.log(ajv.errorsText(ajv.errors));
       return false;
     }
+  }
+
+  /**
+   * @param name
+   *
+   * Add to the map, the current playlist with his associate name
+   */
+  addMapPlaylist(name: string){
+    this.mapPlaylist.set(name, this.playList);
   }
 }
