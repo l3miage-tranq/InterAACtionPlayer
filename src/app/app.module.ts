@@ -37,7 +37,7 @@ import { AppComponent } from './app.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { DialogChooseTypeComponent } from './playlist/dialogComponents/choosePlatform/dialog-choose-type.component';
 import { PlaylistService } from './playlist/services/playlist.service';
-import { SaveDialogComponent } from './playlist/dialogComponents/exportFile/save-dialog.component';
+import { ExportfileComponent } from './playlist/dialogComponents/exportFile/exportfile.component';
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
@@ -67,7 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
     PlaylistComponent,
     DialogChooseTypeComponent,
     ImportfileComponent,
-    SaveDialogComponent,
+    ExportfileComponent,
     SettingsComponent,
     ProgressIndicatorComponent,
     AudioPlayerComponent,

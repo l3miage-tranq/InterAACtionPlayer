@@ -8,7 +8,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 /**
  * Import Components
  */
-import { SaveDialogComponent } from './dialogComponents/exportFile/save-dialog.component';
+import { ExportfileComponent } from './dialogComponents/exportFile/exportfile.component';
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dialog-choose-type.component';
@@ -181,13 +181,13 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
-   * If edit mode is On, disable it and open SaveDialogComponent
+   * If edit mode is On, disable it and open ExportfileComponent
    * Then check if the playlist is empty
    * If it's the case then enable edit mode
    */
   openExport(){
     this.isEditModeActive();
-    const saveDialog = this.dialog.open(SaveDialogComponent);
+    const saveDialog = this.dialog.open(ExportfileComponent);
     saveDialog.afterClosed().subscribe( () => {
       if (this.isPlaylistEmpty()){
         this.goEdit();

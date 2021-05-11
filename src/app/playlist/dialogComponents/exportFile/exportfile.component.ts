@@ -11,10 +11,10 @@ import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-save-dialog',
-  templateUrl: './save-dialog.component.html',
-  styleUrls: ['./save-dialog.component.css']
+  templateUrl: './exportfile.component.html',
+  styleUrls: ['./exportfile.component.css']
 })
-export class SaveDialogComponent implements OnInit {
+export class ExportfileComponent implements OnInit {
 
   defaultTitleFile = "Playlist"
   titleFile = "";

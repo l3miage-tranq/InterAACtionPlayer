@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaveDialogComponent } from './save-dialog.component';
+import { ExportfileComponent } from './exportfile.component';
 
-describe('SaveDialogComponent', () => {
-  let component: SaveDialogComponent;
-  let fixture: ComponentFixture<SaveDialogComponent>;
+describe('ExportfileComponent', () => {
+  let component: ExportfileComponent;
+  let fixture: ComponentFixture<ExportfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SaveDialogComponent ]
+      declarations: [ ExportfileComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaveDialogComponent);
+    fixture = TestBed.createComponent(ExportfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

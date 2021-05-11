@@ -43,6 +43,9 @@ export class DialogChooseTypeComponent implements OnInit {
     this.router.navigate(['/spotify']);
   }
 
+  /**
+   * Display the dialogComponent PrefabricatedPlaylist
+   */
   goPrefabricatedPlaylist(){
     this.dialog.open(PrefabricatedPlaylistComponent);
   }
