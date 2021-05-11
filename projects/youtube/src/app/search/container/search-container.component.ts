@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService} from '../../shared/services/search.service';
 import { Video} from '../../shared/models/search.interface';
 
@@ -7,14 +7,27 @@ import { Video} from '../../shared/models/search.interface';
   templateUrl: './search-container.component.html',
   styleUrls: ['./search-container.component.css']
 })
-export class SearchContainerComponent {
+export class SearchContainerComponent implements OnInit{
 
   inputValue = "";
   inputTouched = false;
   loading = false;
+  moreVideo = false;
   videos: Video[] = [];
 
   constructor(private searchService: SearchService) {
+  }
+
+  /**
+   * Allows to know if we have displayed all the elements
+   * If it's true, then we hide the "More Video" button
+   */
+  ngOnInit() {
+    this.searchService.nbDisplayElem.subscribe(value => {
+      if (value > 50){
+       this.moreVideo = false;
+      }
+    });
   }
 
   /**
@@ -25,6 +38,8 @@ export class SearchContainerComponent {
    *
    * The 'subscribe' function invokes the searchService call and the response from the 'getVideos' method is passed to it as the items argument;
    * Then i filter out the necessary values needed and add that to the videos array component.
+   *
+   * Finally, I show the button who allow to display more videos
    */
   handleSearch(inputValue: string) {
     this.inputValue = inputValue;
@@ -46,6 +61,14 @@ export class SearchContainerComponent {
         });
         this.inputTouched = true;
         this.loading = false;
+        this.moreVideo = true;
       });
+  }
+
+  /**
+   * Allows to the user to display more videos
+   */
+  increaseVideoDisplay(){
+    this.searchService.emitIncreaseNbDisplayValue();
   }
 }

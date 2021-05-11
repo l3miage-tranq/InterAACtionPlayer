@@ -5,6 +5,7 @@ import { NotifierService } from "angular-notifier";
 import { SaveService } from '../../../../../../../src/app/services/save.service';
 import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
+import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
   selector: 'app-search-list',
@@ -14,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class SearchListComponent implements OnInit {
 
   theme = "";
+  nbDisplayValue;
 
   @Input() videos: Video[];
   private notifier: NotifierService;
@@ -21,17 +23,31 @@ export class SearchListComponent implements OnInit {
   private saveService: SaveService;
   private themeService: ThemeService;
   private translate: TranslateService;
+  private searchService: SearchService;
 
-  constructor( notifier: NotifierService, playlistService : PlaylistService, saveService: SaveService, themeService: ThemeService, translate: TranslateService ) {
+  constructor( notifier: NotifierService,
+               playlistService : PlaylistService,
+               saveService: SaveService,
+               themeService: ThemeService,
+               translate: TranslateService,
+               searchService: SearchService) {
     this.notifier = notifier;
     this.playlistService = playlistService;
     this.saveService = saveService;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
     this.translate = translate;
+    this.searchService = searchService;
+    this.nbDisplayValue = searchService.nbDisplayDefault;
   }
 
+  /**
+   * Subscribe to the nbDisplayElem for know how much video we need to display
+   */
   ngOnInit(): void {
+    this.searchService.nbDisplayElem.subscribe(value => {
+      this.nbDisplayValue = value;
+    })
   }
 
   /**
