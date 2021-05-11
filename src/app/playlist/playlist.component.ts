@@ -391,6 +391,7 @@ export class PlaylistComponent implements OnInit {
   showBtn(idBtn: string){
     if (this.fullScreen){
       const elem = document.getElementById(idBtn);
+      elem.style.transition = "opacity 0.5s"
       elem.style.opacity = "1";
     }
   }
@@ -403,6 +404,7 @@ export class PlaylistComponent implements OnInit {
   hideBtn(idBtn: string){
     if (this.fullScreen){
       const elem = document.getElementById(idBtn);
+      elem.style.transition = "opacity 5s"
       elem.style.opacity = "0";
     }
   }
