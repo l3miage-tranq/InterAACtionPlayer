@@ -8,11 +8,11 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 /**
  * Import Components
  */
-import { SaveDialogComponent } from './dialogComponents/saveDialog/save-dialog.component';
+import { SaveDialogComponent } from './dialogComponents/exportFile/save-dialog.component';
 import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
-import { DialogChooseTypeComponent } from './dialogComponents/dialogChooseType/dialog-choose-type.component';
-import { DeleteDialogComponent } from './dialogComponents/deleteDialog/delete-dialog.component';
+import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dialog-choose-type.component';
+import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
 
 /**
  * Import Services

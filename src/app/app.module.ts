@@ -35,14 +35,14 @@ const customNotifierOptions: NotifierOptions = {
  */
 import { AppComponent } from './app.component';
 import { PlaylistComponent } from './playlist/playlist.component';
-import { DialogChooseTypeComponent } from './playlist/dialogComponents/dialogChooseType/dialog-choose-type.component';
+import { DialogChooseTypeComponent } from './playlist/dialogComponents/choosePlatform/dialog-choose-type.component';
 import { PlaylistService } from './playlist/services/playlist.service';
-import { SaveDialogComponent } from './playlist/dialogComponents/saveDialog/save-dialog.component';
+import { SaveDialogComponent } from './playlist/dialogComponents/exportFile/save-dialog.component';
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
-import { DeleteDialogComponent } from './playlist/dialogComponents/deleteDialog/delete-dialog.component';
+import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylist/delete-dialog.component';
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
 
 /**
