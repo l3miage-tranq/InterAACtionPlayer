@@ -268,6 +268,15 @@ export class PlaylistService {
   /**
    * @param name
    *
+   * Delete to the map, the playlist
+   */
+  deleteMapPlaylist(name: string){
+    this.mapPlaylist.delete(name);
+  }
+
+  /**
+   * @param name
+   *
    * Allows to know if the name choose is already use
    */
   playlistNameAlreadyInMap(name: string){

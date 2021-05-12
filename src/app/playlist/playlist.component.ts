@@ -14,6 +14,7 @@ import { ImportfileComponent } from './dialogComponents/importFile/importfile.co
 import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dialog-choose-type.component';
 import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
 import { SavePlaylistComponent } from './dialogComponents/savePlaylist/save-playlist.component';
+import { LoadPlaylistComponent } from './dialogComponents/loadPlaylist/load-playlist.component';
 
 /**
  * Import Services
@@ -177,6 +178,24 @@ export class PlaylistComponent implements OnInit {
         this.deleteCurrentElement()
       }
     })
+  }
+
+  /**
+   * If edit mode is On, disable it and open loadPlaylistComponent
+   * Then when loadDialog is close refresh the playlist with the new playlist who contains new values
+   * Then check if the playlist is empty
+   * If it's the case then enable edit mode & delete current music/video
+   */
+  openLoad(){
+    this.isEditModeActive();
+    const loadPlaylist = this.dialog.open(LoadPlaylistComponent);
+    loadPlaylist.afterClosed().subscribe( () => {
+      this.playList = this.playlistService.playList;
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+        this.deleteCurrentElement()
+      }
+    });
   }
 
   /**

@@ -1,0 +1,9 @@
+.ui.checkbox label{
+  color: white;
+  padding-right: 26px;
+}
+
+.ui.form .field>label{
+  color: white;
+  padding-bottom: 10px;
+}

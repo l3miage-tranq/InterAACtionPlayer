@@ -14,7 +14,9 @@
     "delete": "The Playlist has been deleted !",
     "prefabricatedPlaylist": "Prefabricated Playlist has been added !",
     "addAll": "All musics are added in the Playlist !",
-    "deleteAll": "All musics are deleted from the Playlist !"
+    "deleteAll": "All musics are deleted from the Playlist !",
+    "loadPlaylist": "Playlist loaded !",
+    "deletePlaylist": "Playlist deleted !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -24,7 +26,8 @@
     "importBtn": "Import File",
     "editBtn": "Edit mode",
     "settingsBtn": "Settings",
-    "deleteBtn": "Delete Playlist"
+    "deleteBtn": "Delete Playlist",
+    "loadBtn": "Load a Playlist"
   },
   "settingsPlaylist": {
     "settings": "Settings",
@@ -35,6 +38,7 @@
     "yes": "Yes",
     "no": "No",
     "duration": "Dwell Time duration",
+    "cancel": "Cancel",
     "save": "Save",
     "english-language": "English",
     "french-language": "French"
@@ -42,11 +46,19 @@
   "savePlaylist": {
     "title": "Save Playlist ?",
     "titleFile": "Name Playlist",
-    "defaultTitleFile": "By default name = random name",
-    "errorNameAlreadyUse": "Choose your name =D ! ",
+    "defaultTitleFile": "Choose your name =D ! ",
+    "errorNameAlreadyUse": "Name already use ! ",
     "errorNameEmpty": "Name needed for save !",
     "yes": "Yes",
     "no": "No"
+  },
+  "loadPlaylist": {
+    "title" : "Load Playlist ?",
+    "playlist" : "List of Playlist :",
+    "cancel": "Cancel",
+    "load": "Load",
+    "errorMessage": "No box check !",
+    "deleteBtn": "Eraser"
   },
   "exportFile": {
     "title": "Export Playlist ?",

@@ -44,6 +44,8 @@ import { ImportfileComponent } from './playlist/dialogComponents/importFile/impo
 import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
 import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylist/delete-dialog.component';
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
+import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
+import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/load-playlist.component';
 
 /**
  * Import module Sub-Application
@@ -54,14 +56,18 @@ import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
 /**
  * Import Translation
  */
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
+/**
+ * Import Pipe
+ */
+import { MapPipe } from './playlist/pipe/map.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +80,9 @@ export function createTranslateLoader(http: HttpClient) {
     AudioPlayerComponent,
     DeleteDialogComponent,
     PrefabricatedPlaylistComponent,
-    SavePlaylistComponent
+    SavePlaylistComponent,
+    LoadPlaylistComponent,
+    MapPipe
   ],
     imports: [
         BrowserModule,

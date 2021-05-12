@@ -133,4 +133,11 @@ export class SettingsComponent implements OnInit {
       this.dialog.closeAll();
     }
   }
+
+  /**
+   * If the user cancel the save then close the DialogComponent
+   */
+  public goCancel(){
+    this.dialog.closeAll();
+  }
 }
