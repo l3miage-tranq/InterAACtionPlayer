@@ -17,6 +17,8 @@ import { SaveService } from '../../../services/save.service';
 export class SavePlaylistComponent implements OnInit {
 
   name = "";
+  errorNameAlreadyUse = false;
+  errorNameEmpty = false;
 
   constructor(private dialog: MatDialog,
               private notifier: NotifierService,
@@ -44,10 +46,30 @@ export class SavePlaylistComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  /**
+   * When the user submit :
+   *  - We check if the name is not empty :
+   *    - True -> display error message;
+   *    - False -> we check if the name is not already use:
+   *      - True -> display error message;
+   *      - False -> we add the current playlist in the mapPlaylist with the correspondind name
+   *      Then we update the database and close the dialog component
+   */
   submit(){
-    this.playlistService.addMapPlaylist(this.name);
-    this.saveService.updateMapPlaylist();
-    this.dialog.closeAll();
-    this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
+    if (this.name != ""){
+      this.errorNameEmpty = false;
+      if (!this.playlistService.playlistNameAlreadyInMap(this.name)){
+        this.errorNameAlreadyUse = false;
+        this.playlistService.addMapPlaylist(this.name);
+        this.saveService.updateMapPlaylist();
+        this.dialog.closeAll();
+        this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
+      }else{
+        this.errorNameAlreadyUse = true;
+      }
+    }else {
+      this.errorNameEmpty = true;
+    }
+
   }
 }

@@ -43,6 +43,8 @@
     "title": "Save Playlist ?",
     "titleFile": "Name Playlist",
     "defaultTitleFile": "By default name = random name",
+    "errorNameAlreadyUse": "Choose your name =D ! ",
+    "errorNameEmpty": "Name needed for save !",
     "yes": "Yes",
     "no": "No"
   },

@@ -163,9 +163,20 @@ export class PlaylistComponent implements OnInit {
     }
   }
 
+  /**
+   * If edit mode is On, disable it and open SavePlaylistComponent
+   * Then when SaveDialog is close we check if the playlist is empty
+   * If it's the case then enable edit mode & delete current music/video
+   */
   openSave(){
     this.isEditModeActive();
-    const saveDialog = this.dialog.open(SavePlaylistComponent);
+    const savePlaylist = this.dialog.open(SavePlaylistComponent);
+    savePlaylist.afterClosed().subscribe(() => {
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+        this.deleteCurrentElement()
+      }
+    })
   }
 
   /**
@@ -183,7 +194,7 @@ export class PlaylistComponent implements OnInit {
         this.goEdit();
         this.deleteCurrentElement()
       }
-      });
+    });
   }
 
   /**

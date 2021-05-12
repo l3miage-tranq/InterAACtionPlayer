@@ -31,7 +31,7 @@ export class SaveService {
   initPlaylist(){
 
     // Opening of the Database
-    this.openRequest = indexedDB.open('SavePlaylist', 4);
+    this.openRequest = indexedDB.open('SavePlaylist', 5);
 
     // Creation of Stores if the version changes
     this.openRequest.onupgradeneeded = event => {
@@ -59,11 +59,18 @@ export class SaveService {
         languageStore.add(this.languageService.activeLanguage);
       }
 
-      // // Creation of DwellTime Store if this one does not exist
+      // Creation of DwellTime Store if this one does not exist
       if (!db.objectStoreNames.contains("DwellTime")) {
         db.createObjectStore('DwellTime', {autoIncrement: true});
         const dwellTimeStore = transaction.objectStore('DwellTime');
         dwellTimeStore.add(this.dwellTimeService.getConfiguration());
+      }
+
+      // Creation of mapPlaylist Store if this one does not exist
+      if (!db.objectStoreNames.contains("mapPlaylist")) {
+        db.createObjectStore('mapPlaylist', {autoIncrement: true});
+        const mapPlaylistStore = transaction.objectStore('mapPlaylist');
+        mapPlaylistStore.add(this.playlistService.mapPlaylist);
       }
     };
 
@@ -106,6 +113,15 @@ export class SaveService {
       dwellTimeStore.onerror = event => {
         alert('DwellTimeStore error: ' + event.target.errorCode);
       };
+
+      // Recovery of the recorded mapPlaylist
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(1);
+      mapPlaylistStore.onsuccess = e => {
+        this.playlistService.mapPlaylist = mapPlaylistStore.result;
+      };
+      mapPlaylistStore.onerror = event => {
+        alert('mapPlaylistStore error: ' + event.target.errorCode);
+      };
     };
 
     // Error open Database
@@ -120,7 +136,7 @@ export class SaveService {
   updatePlaylist() {
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 4);
+    this.openRequest = indexedDB.open('SavePlaylist', 5);
 
     // Success open Database
     this.openRequest.onsuccess = event => {
@@ -147,7 +163,7 @@ export class SaveService {
   updateSettings(){
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 4);
+    this.openRequest = indexedDB.open('SavePlaylist', 5);
 
     // Success open Database
     this.openRequest.onsuccess = event => {
@@ -184,7 +200,30 @@ export class SaveService {
     };
   }
 
+  /**
+   * Allows to save the mapPlaylist in the database
+   */
   updateMapPlaylist(){
 
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', 5);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Update mapPlaylist Store
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite');
+      const mapPlaylistObjectStore = mapPlaylistStore.objectStore('mapPlaylist');
+      const storeMapPlaylistRequest = mapPlaylistObjectStore.get(1);
+      storeMapPlaylistRequest.onsuccess = () => {
+        mapPlaylistObjectStore.put(this.playlistService.mapPlaylist, 1);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
   }
 }

@@ -3,9 +3,13 @@
 </h1>
 <div mat-dialog-content>
   <div class="ui form error">
-    <div class="field">
+    <div class="field required">
       <label>{{ 'savePlaylist.titleFile' | translate }}</label>
       <input type="text" placeholder="{{ 'savePlaylist.defaultTitleFile' | translate }}" (keyup)="getNamePlaylist($event)">
+      <div class="ui error message">
+        <p *ngIf="errorNameAlreadyUse">{{ "savePlaylist.errorNameAlreadyUse" | translate }}</p>
+        <p *ngIf="errorNameEmpty">{{ "savePlaylist.errorNameEmpty" | translate }}</p>
+      </div>
     </div>
   </div>
 </div>

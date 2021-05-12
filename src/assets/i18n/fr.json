@@ -42,7 +42,9 @@
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",
     "titleFile": "Nom de la Playlist",
-    "defaultTitleFile": "Par défaut nom = aléatoire",
+    "defaultTitleFile": "Choisie ton nom =D !",
+    "errorNameAlreadyUse": "Nom déjà utilisé !",
+    "errorNameEmpty": "Nom nécessaire pour la sauvegarde !",
     "yes": "Oui",
     "no": "Non"
   },

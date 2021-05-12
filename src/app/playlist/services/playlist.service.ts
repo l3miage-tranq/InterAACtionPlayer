@@ -264,4 +264,13 @@ export class PlaylistService {
   addMapPlaylist(name: string){
     this.mapPlaylist.set(name, this.playList);
   }
+
+  /**
+   * @param name
+   *
+   * Allows to know if the name choose is already use
+   */
+  playlistNameAlreadyInMap(name: string){
+    return this.mapPlaylist.has(name);
+  }
 }
