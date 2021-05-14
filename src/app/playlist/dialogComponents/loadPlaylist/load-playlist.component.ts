@@ -43,10 +43,15 @@ export class LoadPlaylistComponent implements OnInit {
   /**
    * @param name
    *
+   * Get the element that have the same id as the name send in parameter
+   * And hide it
    * Delete the playlist to the mapPlaylist
    * Then update the database
    */
   deletePlaylist(name: string){
+    const elem = document.getElementById(name);
+    elem.style.display = "none";
+
     this.playlistService.deleteMapPlaylist(name);
     this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
     this.saveService.updateMapPlaylist();

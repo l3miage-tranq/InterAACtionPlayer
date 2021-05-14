@@ -8,7 +8,7 @@
         {{ "loadPlaylist.playlist" | translate }}
       </label>
       <div class="field" *ngFor="let elem of mapPlaylist | mapPipe">
-        <div class="field">
+        <div [id]="elem.value" class="field">
           <div class="ui checkbox">
             <input type="radio" name="playlist" (click)="sendKey(elem.value)">
             <label>
