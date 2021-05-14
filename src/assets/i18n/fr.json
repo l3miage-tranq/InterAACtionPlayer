@@ -30,6 +30,8 @@
     "loadBtn": "Charger une Playlist"
   },
   "settingsPlaylist": {
+    "dwellTime": "Temps de temporisation",
+    "dwellTimeForm": "Forme du DwellTime",
     "settings": "Configurations",
     "themes": "Thème",
     "light": "Clair",
@@ -41,7 +43,9 @@
     "cancel": "Annuler",
     "save": "Sauvegarder",
     "english-language": "Anglais",
-    "french-language": "Français"
+    "french-language": "Français",
+    "spinnerInside": "Intérieur",
+    "spinnerOutside": "Extérieur"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",

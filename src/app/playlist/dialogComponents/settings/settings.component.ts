@@ -17,6 +17,8 @@ export class SettingsComponent implements OnInit {
   dwellTimeEnable: boolean;
   dwellTimeValue: number;
 
+  dwellTimeSpinnerOutsideBtn = true;
+
   themeLightEnable: boolean = true;
   themeValue = "";
   moreLanguages: boolean = false;
@@ -36,9 +38,11 @@ export class SettingsComponent implements OnInit {
     this.themeLightEnable = this.themeService.getTypeTheme();
     this.themeValue = this.themeService.theme;
     this.usedLanguage = this.language.activeLanguage;
+    this.dwellTimeSpinnerOutsideBtn = this.dwellTimeService.dwellTimeSpinnerOutsideBtn;
   }
 
   ngOnInit(): void {
+    console.log(this.dwellTimeSpinnerOutsideBtn);
   }
 
   /**
@@ -58,6 +62,13 @@ export class SettingsComponent implements OnInit {
    */
   dwellTime(){
     this.dwellTimeEnable = !this.dwellTimeEnable;
+  }
+
+  /**
+   * Enable the spinner inside the button or outside
+   */
+  dwellTimeShape(value: boolean){
+    this.dwellTimeSpinnerOutsideBtn = value;
   }
 
   /**
@@ -126,6 +137,8 @@ export class SettingsComponent implements OnInit {
     if (this.isValid()){
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
+      this.dwellTimeService.dwellTimeSpinnerOutsideBtn = this.dwellTimeSpinnerOutsideBtn;
+      this.dwellTimeService.getSizeDwellTimeSpinner();
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
       this.saveService.updateSettings();

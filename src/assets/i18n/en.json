@@ -30,6 +30,8 @@
     "loadBtn": "Load a Playlist"
   },
   "settingsPlaylist": {
+    "dwellTime": "DwellTime",
+    "dwellTimeForm": "DwellTime Shape",
     "settings": "Settings",
     "themes": "Theme",
     "light": "Light",
@@ -41,7 +43,9 @@
     "cancel": "Cancel",
     "save": "Save",
     "english-language": "English",
-    "french-language": "French"
+    "french-language": "French",
+    "spinnerInside": "Inside",
+    "spinnerOutside": "Outside"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",

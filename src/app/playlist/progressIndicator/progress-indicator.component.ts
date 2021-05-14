@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DwelltimeService } from '../../services/dwelltime.service';
 
 @Component({
   selector: 'app-progress-indicator',
@@ -10,9 +11,15 @@ export class ProgressIndicatorComponent implements OnInit {
   @Input() id;
   @Input() spinnerValue;
 
-  constructor() { }
+  diameterSpinner = 190;
+
+  constructor(private dwellTimeService: DwelltimeService) {
+  }
 
   ngOnInit(): void {
+    this.dwellTimeService.dwellTimeSpinnerSize.subscribe(value => {
+      this.diameterSpinner = value;
+    });
   }
 
 }
