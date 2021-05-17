@@ -106,6 +106,16 @@
     "cancel": "Annuler",
     "add": "Ajouter"
   },
+  "alert": {
+    "titleMerge": "Attention, fusion de la Playlist demandé !",
+    "titleDelete": "Attention, suppression de la Playlist demandé !",
+    "titleReplace": "Attention, remplacement de la Playlist demandé !",
+    "contentMerge": "Êtes-vous sur de vouloir fusionner la Playlist actuelle avec celle que vous nous avez donné ?",
+    "contentDelete": "Êtes-vous sur de vouloir supprimer la Playlist actuelle ?",
+    "contentReplace": "Êtes-vous sur de vouloir remplacer la Playlist actuelle avec celle que vous nous avez donné ?",
+    "no" : "Non",
+    "yes": "Oui"
+  },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"
   },

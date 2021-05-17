@@ -31,7 +31,6 @@ export class SearchService {
         if (!res) {
           throw new Error('Value expected!');
         } else {
-          console.log('res:', res);
           return res;
         }
       }),

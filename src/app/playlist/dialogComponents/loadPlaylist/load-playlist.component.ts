@@ -8,6 +8,8 @@ import { PlaylistService } from '../../services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AlertService } from '../../services/alert.service';
+import {AlertComponent} from '../alert/alert.component';
 
 @Component({
   selector: 'app-load-playlist',
@@ -24,11 +26,13 @@ export class LoadPlaylistComponent implements OnInit {
               private dialog: MatDialog,
               private notifier: NotifierService,
               private saveService: SaveService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private alertService: AlertService) {
     this.mapPlaylist = playlistService.mapPlaylist;
   }
 
   ngOnInit(): void {
+    this.alertService.setDeletePlaylist();
   }
 
   /**
@@ -49,12 +53,17 @@ export class LoadPlaylistComponent implements OnInit {
    * Then update the database
    */
   deletePlaylist(name: string){
-    const elem = document.getElementById(name);
-    elem.style.display = "none";
+    const alertDialog = this.dialog.open(AlertComponent);
+    alertDialog.afterClosed().subscribe(() => {
+      if (!this.alertService.alertCancel){
+        const elem = document.getElementById(name);
+        elem.style.display = "none";
 
-    this.playlistService.deleteMapPlaylist(name);
-    this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
-    this.saveService.updateMapPlaylist();
+        this.playlistService.deleteMapPlaylist(name);
+        this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
+        this.saveService.updateMapPlaylist();
+      }
+    });
   }
 
   /**

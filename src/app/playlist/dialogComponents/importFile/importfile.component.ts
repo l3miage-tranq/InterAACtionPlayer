@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../alert/alert.component';
+
+/**
+ * Import Services
+ */
 import { PlaylistService } from '../../services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-importfile',
@@ -32,10 +38,12 @@ export class ImportfileComponent implements OnInit {
               private playlistService: PlaylistService,
               private notifier: NotifierService,
               private saveService: SaveService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private alertService: AlertService) {
   }
 
   ngOnInit(){
+    this.alertService.setReplacePlaylist();
   }
 
   /**
@@ -100,16 +108,20 @@ export class ImportfileComponent implements OnInit {
 
   /**
    * Get the choice of the user and stock the choice in the global variable
+   * Then set the alertService
    */
   public newPlaylist(){
     this.optionsPlaylist = "new";
+    this.alertService.setReplacePlaylist();
   }
 
   /**
    * Get the choice of the user and stock the choice in the global variable
+   * Then set the alertService
    */
   public mergePlaylist(){
     this.optionsPlaylist = "merge";
+    this.alertService.setMergePlaylist();
   }
 
   /**
@@ -185,6 +197,7 @@ export class ImportfileComponent implements OnInit {
    *    - Check if the titleFileInput is not empty
    *    - Then add file to the Playlist, close the DialogComponent, notify that file is added to the Playlist and update database Playlist Store;
    *  Else if typeFile == "file" :
+   *    - Display a warning message
    *    - Check if the file is a json file
    *    - Parse the Json file;
    *    - Then add it to the Playlist;
@@ -209,14 +222,19 @@ export class ImportfileComponent implements OnInit {
           }
         } else {
           if (this.typeFile == "file"){
-            if (this.optionsPlaylist == "new"){
-              this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
-            }else {
-              this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
-            }
-            this.dialog.closeAll();
-            this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
-            this.saveService.updatePlaylist();
+            const alertDialog = this.dialog.open(AlertComponent);
+            alertDialog.afterClosed().subscribe(() => {
+              if (!this.alertService.alertCancel){
+                if (this.optionsPlaylist == "new"){
+                  this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
+                }else {
+                  this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
+                }
+                this.dialog.closeAll();
+                this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
+                this.saveService.updatePlaylist();
+              }
+            });
           }else {
             this.errorEmptyTitle = true;
           }

@@ -106,6 +106,16 @@
     "cancel": "Cancel",
     "add": "Add"
   },
+  "alert": {
+    "titleMerge": "Watch Out, merge Playlist incoming !",
+    "titleDelete": "Watch Out, delete Playlist incoming !",
+    "titleReplace": "Watch Out, replace Playlist incoming !",
+    "contentMerge": "Are you sure, you want to merge the current Playlist with the one you gave us ?",
+    "contentDelete": "Are you sure, you want to delete the current Playlist ?",
+    "contentReplace": "Are you sure, you want to replace the current Playlist with the one you gave us ?",
+    "no" : "No",
+    "yes": "Yes"
+  },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"
   },

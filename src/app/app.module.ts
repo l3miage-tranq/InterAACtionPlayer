@@ -67,6 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
  * Import Pipe
  */
 import { MapPipe } from './playlist/pipe/map.pipe';
+import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { MapPipe } from './playlist/pipe/map.pipe';
     PrefabricatedPlaylistComponent,
     SavePlaylistComponent,
     LoadPlaylistComponent,
-    MapPipe
+    MapPipe,
+    AlertComponent
   ],
     imports: [
         BrowserModule,

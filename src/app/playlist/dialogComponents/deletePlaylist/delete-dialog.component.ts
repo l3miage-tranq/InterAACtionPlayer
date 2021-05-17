@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../alert/alert.component';
+
+/**
+ * Import Services
+ */
 import { PlaylistService } from '../../services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
 import { SaveService } from '../../../services/save.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -16,10 +22,12 @@ export class DeleteDialogComponent implements OnInit {
               private playlistService: PlaylistService,
               private notifier: NotifierService,
               private translate: TranslateService,
-              private saveService: SaveService) {
+              private saveService: SaveService,
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
+    this.alertService.setDeletePlaylist();
   }
 
   /**
@@ -29,10 +37,22 @@ export class DeleteDialogComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  /**
+   * If the user submit, display a alert message before
+   * Then set the playlist to an empty array
+   * Close all dialog open
+   * Save the playlist in the database
+   * Notify it with a message
+   */
   submit(){
-    this.playlistService.playList = [];
-    this.dialog.closeAll();
-    this.saveService.updatePlaylist();
-    this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+    const alertDialog = this.dialog.open(AlertComponent);
+    alertDialog.afterClosed().subscribe(() => {
+      if (!this.alertService.alertCancel){
+        this.playlistService.playList = [];
+        this.dialog.closeAll();
+        this.saveService.updatePlaylist();
+        this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+      }
+    });
   }
 }
