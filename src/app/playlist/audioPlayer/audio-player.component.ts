@@ -32,6 +32,7 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   /**
+   * Adjust the size of the display number
    * Set the volume;
    * Subscribe to the displayVolumeSlider in audioService, then show or hide the volume slider;
    * Subscribe to the volumeValue in audioService, then increase or decrease the volume of the current music
@@ -40,6 +41,10 @@ export class AudioPlayerComponent implements OnInit {
    * Load the Playlist with the local music selected
    */
   ngOnInit(): void {
+
+    $(document).ready(function(){
+      $(".ngx-px-1").css("font-size", "25px");
+    });
 
     this.setVolume(this.volume);
     this.audioService.volumeObservable.subscribe(value => {

@@ -11,3 +11,7 @@ mat-slider{
   opacity: 1;
   transform: translateY(-40px);
 }
+
+#sizeText{
+  font-size: 30px !important;
+}
