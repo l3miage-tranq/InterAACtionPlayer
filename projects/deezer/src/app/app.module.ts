@@ -4,28 +4,19 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Import Component Main-Application
  */
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './pages/shared/nav-bar/nav-bar.component';
 
-/**
- * Import Services
- */
-import { GlobalService } from './services/global.service';
-
-const providers = [
-  GlobalService,
-]
+const providers = []
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavBarComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -38,11 +29,10 @@ const providers = [
     AppComponent
   ]
 })
-
 export class AppModule { }
 
 @NgModule({})
-export class SpotifySharedModule{
+export class DeezerSharedModule{
   static forRoot(): ModuleWithProviders<any> {
     return {
       ngModule: AppModule,

@@ -53,6 +53,7 @@ import { AlertComponent } from './playlist/dialogComponents/alert/alert.componen
  */
 import { YoutubeSharedModule } from '../../projects/youtube/src/app/app.module';
 import { SpotifySharedModule } from '../../projects/spotify/src/app/app.module';
+import { DeezerSharedModule } from '../../projects/deezer/src/app/app.module';
 
 /**
  * Import Translation
@@ -94,10 +95,12 @@ import { MapPipe } from './playlist/pipe/map.pipe';
         RouterModule,
         YoutubeSharedModule.forRoot(),
         SpotifySharedModule.forRoot(),
+        DeezerSharedModule.forRoot(),
         RouterModule.forRoot([
             {path: 'playlist', component: PlaylistComponent},
             {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
             {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+            {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
             {path: '', redirectTo: 'playlist', pathMatch: 'full'},
         ]),
         TranslateModule.forRoot({

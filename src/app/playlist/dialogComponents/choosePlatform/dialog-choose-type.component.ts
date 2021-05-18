@@ -44,6 +44,14 @@ export class DialogChooseTypeComponent implements OnInit {
   }
 
   /**
+   * Close all DialogComponents then on the web page Deezer
+   */
+  goDeezer(){
+    this.dialog.closeAll();
+    this.router.navigate(['/deezer']);
+  }
+
+  /**
    * Display the dialogComponent PrefabricatedPlaylist
    */
   goPrefabricatedPlaylist(){
