@@ -46,6 +46,7 @@ import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylis
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/load-playlist.component';
+import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
 
 /**
  * Import module Sub-Application
@@ -67,7 +68,6 @@ export function createTranslateLoader(http: HttpClient) {
  * Import Pipe
  */
 import { MapPipe } from './playlist/pipe/map.pipe';
-import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
 
 @NgModule({
   declarations: [

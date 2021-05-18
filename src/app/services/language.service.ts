@@ -9,7 +9,7 @@ export class LanguageService {
   public activeLanguage: string = 'en';
 
   /**
-   * @param translate -> Initialize nhx-translate library
+   * @param translate -> Initialize ngx-translate library
    *
    * Set the default language to English (en)
    */
