@@ -11,19 +11,23 @@ import { TranslateModule } from '@ngx-translate/core';
  * Import Component Main-Application
  */
 import { AppComponent } from './app.component';
+import { SearchComponent } from './pages/search/search.component';
+import {FormsModule} from '@angular/forms';
 
 const providers = []
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    TranslateModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        TranslateModule,
+        FormsModule,
+    ],
   providers: providers,
   bootstrap: [
     AppComponent

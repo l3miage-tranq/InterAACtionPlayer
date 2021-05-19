@@ -6,7 +6,7 @@ import { DomSanitizer  } from '@angular/platform-browser';
 })
 export class YoutubePipe implements PipeTransform {
 
-  constructor( private domSanitizer: DomSanitizer){
+  constructor(private domSanitizer: DomSanitizer){
   }
 
   /**

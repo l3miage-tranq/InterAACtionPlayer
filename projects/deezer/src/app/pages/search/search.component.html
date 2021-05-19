@@ -1,0 +1,15 @@
+<div class="ui four column grid stickyInputBar">
+  <div class="ten wide column centered">
+    <div [ngClass]="theme" class="ui fluid action icon input">
+      <button class="ui button" (click)="goPlaylist()">{{ "deezerSearch.back" | translate }}</button>
+      <input name="searchInput" type="text" [(ngModel)]="searchInput" (keyup)="searchMusic()" placeholder="{{ 'deezerSearch.input' | translate }}">
+      <i class="search icon"></i>
+    </div>
+  </div>
+  <div *ngIf="searchRes">
+    <div *ngFor="let res of searchRes">
+      <h4><a routerLink="/artist/{{res.artist.id}}" target="_blank">{{res.artist.name}}</a></h4>
+      <h6>{{res.title}}</h6>
+    </div>
+  </div>
+</div>

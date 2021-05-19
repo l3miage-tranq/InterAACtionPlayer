@@ -152,5 +152,9 @@
     "delete": "Delete to Playlist",
     "btnAddAll": "Add all musics",
     "btnDeleteAll": "Delete all musics"
+  },
+  "deezerSearch": {
+    "back": "Back to Playlist",
+    "input": " Search for a music ... "
   }
 }
