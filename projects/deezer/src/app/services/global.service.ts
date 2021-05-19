@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
@@ -24,6 +24,14 @@ export class GlobalService {
   private albumUrl: string;
   private tracksUrl: string;
 
+  headerOption = {
+    "Access-Control-Allow-Origin": "*"
+  }
+
+  header = {
+    headers: new HttpHeaders(this.headerOption),
+  };
+
   constructor(private http: HttpClient) {
     //this.test = this.getLogin().subscribe(data => {this.test = data['code'];});
   }
@@ -47,7 +55,7 @@ export class GlobalService {
    */
   searchMusic(artist: string): Observable<IResult[]> {
     const searchUrl = `https://api.deezer.com/search?q=${artist}&offset=0&limit=10&type=artist`;
-    return this.http.get(searchUrl).pipe(map((res: any) => <IResult[]>res.data));
+    return this.http.get(searchUrl, this.header).pipe(map((res: any) => <IResult[]>res.data));
   }
 
   /**
