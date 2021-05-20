@@ -17,36 +17,13 @@ import { ITrack } from '../models/itrack';
 })
 export class GlobalService {
 
-  test;
-
   private artistUrl: string;
   private albumsUrl: string;
   private albumUrl: string;
   private tracksUrl: string;
 
-  headerOption = {
-    "Access-Control-Allow-Origin": "*"
-  }
-
-  header = {
-    headers: new HttpHeaders(this.headerOption),
-  };
-
   constructor(private http: HttpClient) {
-    //this.test = this.getLogin().subscribe(data => {this.test = data['code'];});
   }
-
-  /*clientId = '479942';
-  clientSecret = '5a82e56cd54b7c5da576b693f9853d6e';
-  redirectUri = "http://localhost:4200/deezer";
-
-  public getLogin(){
-    const loginUrl = `https://connect.deezer.com/oauth/auth.php?`;
-    const appId = "app_id=" + this.clientId;
-    const redirectUri = '&redirect_uri=http://localhost:4200';
-    const perms = '&perms=basic_access,email,offline_access';
-    return this.http.get(loginUrl + appId + redirectUri + perms);
-  }*/
 
   /**
    * @param artist
@@ -54,8 +31,8 @@ export class GlobalService {
    * Get all result who are in related to the artist the user want
    */
   searchMusic(artist: string): Observable<IResult[]> {
-    const searchUrl = `https://api.deezer.com/search?q=${artist}&offset=0&limit=10&type=artist`;
-    return this.http.get(searchUrl, this.header).pipe(map((res: any) => <IResult[]>res.data));
+    const searchUrl = `https://api.deezer.com/search?q=${artist}&offset=0&type=artist`;
+    return this.http.get(searchUrl).pipe(map((res: any) => <IResult[]>res.data));
   }
 
   /**

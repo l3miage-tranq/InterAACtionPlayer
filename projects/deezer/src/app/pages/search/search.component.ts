@@ -11,6 +11,7 @@ import { GlobalService } from '../../services/global.service';
  * Import Models
  */
 import { IResult } from '../../models/iresult';
+import { IArtist } from '../../models/iartist';
 
 @Component({
   selector: 'app-search',
@@ -31,12 +32,11 @@ export class SearchComponent implements OnInit {
    * @param router
    * @param themeService
    * @param globalService
-   * @param languageService
    *
    * Initialize the router for navigate between page
    * And allows to initialize the page with the right theme
    */
-  constructor(router: Router, themeService: ThemeService, globalService: GlobalService,) {
+  constructor(router: Router, themeService: ThemeService, globalService: GlobalService) {
     this.router = router;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
@@ -53,10 +53,9 @@ export class SearchComponent implements OnInit {
    * Get music on Deezer who are equal with the user submit in the search bar
    */
   searchMusic() {
-    this.globalService.searchMusic(this.searchInput)
-      .subscribe(results => {
-        this.searchRes = results;
-      });
+    this.globalService.searchMusic(this.searchInput).subscribe(results => {
+      this.searchRes = results;
+    });
   }
 
   /**

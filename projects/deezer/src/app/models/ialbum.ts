@@ -6,11 +6,7 @@ export interface IAlbum {
   cover_medium: string;
   cover_big: string;
   cover_xl: string;
-  link: string;
-  nb_tracks: string;
-  label: string;
-  duration: number;
-  fans: string;
-  rating: string;
-  release_date: string;
+  md5_image: string;
+  tracklist: string;
+  type: string;
 }
