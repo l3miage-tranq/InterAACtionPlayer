@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 /**
  * Import Services
  */
-import { ThemeService } from '../../../../../../src/app/services/theme.service';
-import { GlobalService } from '../../services/global.service';
+import { ThemeService } from '../../../../../../../src/app/services/theme.service';
+import { GlobalService } from '../../../services/global.service';
 
 /**
  * Import Models
  */
-import { IResult } from '../../models/iresult';
-import { IArtist } from '../../models/iartist';
+import { IResult } from '../../../models/iresult';
 
 @Component({
   selector: 'app-search',
@@ -63,5 +62,15 @@ export class SearchComponent implements OnInit {
    */
   goPlaylist() {
     this.router.navigate(['/playlist']);
+  }
+
+  /**
+   * @param albumArtist
+   *
+   * When the user click on a artist, navigate to this album web page
+   */
+  public navigate(albumArtist): void {
+    this.globalService.artistChoose = albumArtist;
+    this.router.navigate(['/deezer/albums']);
   }
 }

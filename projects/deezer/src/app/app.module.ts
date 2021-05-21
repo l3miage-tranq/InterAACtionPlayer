@@ -28,7 +28,6 @@ const customNotifierOptions: NotifierOptions = {
  * Import Component Main-Application
  */
 import { AppComponent } from './app.component';
-import { SearchComponent } from './pages/search/search.component';
 
 /**
  * Import Services
@@ -42,7 +41,6 @@ const providers = [
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
   ],
     imports: [
         BrowserModule,

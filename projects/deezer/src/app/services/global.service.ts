@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
@@ -22,6 +22,8 @@ export class GlobalService {
   private albumUrl: string;
   private tracksUrl: string;
 
+  public artistChoose;
+
   constructor(private http: HttpClient) {
   }
 
@@ -31,7 +33,7 @@ export class GlobalService {
    * Get all result who are in related to the artist the user want
    */
   searchMusic(artist: string): Observable<IResult[]> {
-    const searchUrl = `https://api.deezer.com/search?q=${artist}&offset=0&type=artist`;
+    const searchUrl = `https://api.deezer.com/search/artist?q=${artist}`;
     return this.http.get(searchUrl).pipe(map((res: any) => <IResult[]>res.data));
   }
 

@@ -19,7 +19,6 @@ import { NewReleaseItemComponent } from './new-release-item/new-release-item.com
 import { NewReleasesService } from './services/new-releases.service';
 import { PipesModule } from '../../pipes/pipes.module';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
