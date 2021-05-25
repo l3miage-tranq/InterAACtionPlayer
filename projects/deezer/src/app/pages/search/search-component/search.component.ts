@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit {
    * When the user click on a artist, navigate to this album web page
    */
   public navigate(artistId): void {
-    this.globalService.artistChoose = artistId;
-    this.router.navigate(['/deezer/artists']);
+    this.globalService.idArtistChoose = artistId;
+    this.router.navigate(['/deezer/artists', artistId]);
   }
 }

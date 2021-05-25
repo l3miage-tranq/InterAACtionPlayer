@@ -12,11 +12,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule)
       },
       {
-        path: 'albums',
+        path: 'albums/:id',
         loadChildren: () => import('./pages/albums/albums.module').then(m => m.AlbumsModule)
       },
       {
-        path: 'artists',
+        path: 'artists/:id',
         loadChildren: () => import('./pages/artists/artists.module').then(m => m.ArtistsModule)
       }
     ]

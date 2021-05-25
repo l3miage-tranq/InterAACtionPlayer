@@ -22,7 +22,7 @@ export class GlobalService {
   private albumUrl: string;
   private tracksUrl: string;
 
-  public artistChoose;
+  public idArtistChoose;
 
   constructor(private http: HttpClient) {
   }
