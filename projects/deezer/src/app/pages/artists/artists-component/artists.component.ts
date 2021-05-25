@@ -44,6 +44,7 @@ export class ArtistsComponent implements OnInit {
    * When clicked on the album, send the user on the a web page that contains all music in this album
    */
   public seeAlbum(album: any): void {
+    this.globalService.albumChoose = album;
     this.router.navigate(['/deezer/albums', album.id]);
   }
 }

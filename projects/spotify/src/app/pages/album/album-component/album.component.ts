@@ -71,7 +71,7 @@ export class AlbumComponent implements OnInit {
    * Add the music selected by the user in the Playlist
    */
   public addToPlaylist(item: Item, image: Image){
-    this.playlistService.addSongToPlaylist(item, image);
+    this.playlistService.addSpotifySongToPlaylist(item, image);
     this.notifier.notify('success', this.translate.instant('notifier.addSong'));
     this.saveService.updatePlaylist();
   }
@@ -84,7 +84,7 @@ export class AlbumComponent implements OnInit {
   public addAllToPlaylist(album: APIAlbums){
     for (let i = 0; i < album.tracks.items.length; i++){
       if (!this.songAlreadyAddToPlaylist(album.tracks.items[i])){
-        this.playlistService.addSongToPlaylist(album.tracks.items[i], album.images[0]);
+        this.playlistService.addSpotifySongToPlaylist(album.tracks.items[i], album.images[0]);
       }
     }
     this.notifier.notify('success', this.translate.instant('notifier.addAll'));

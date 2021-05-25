@@ -23,17 +23,18 @@ export class GlobalService {
   private tracksUrl: string;
 
   public idArtistChoose;
+  public albumChoose;
 
   constructor(private http: HttpClient) {
   }
 
   /**
-   * @param artist
+   * @param inputSearchBar
    *
    * Get all result who are in related to the artist the user want
    */
-  searchMusic(artist: string): Observable<IResult[]> {
-    const searchUrl = `https://api.deezer.com/search/artist?q=${artist}`;
+  searchMusic(inputSearchBar: string): Observable<IResult[]> {
+    const searchUrl = `https://api.deezer.com/search/artist?q=${inputSearchBar}`;
     return this.http.get(searchUrl).pipe(map((res: any) => <IResult[]>res.data));
   }
 
@@ -60,21 +61,10 @@ export class GlobalService {
   /**
    * @param albumId
    *
-   * Get all information about the album the user want
-   */
-  getTracksAlbum(albumId: string): Observable<IAlbum> {
-    this.albumUrl = `https://api.deezer.com/album/${albumId}`;
-    return this.http.get(this.albumUrl).pipe(map((res: any) => <IAlbum> res));
-  }
-
-
-  /**
-   * @param trackAlbumId
-   *
    * Get all tracks related to the album the user want
    */
-  getTracks(trackAlbumId: string): Observable<ITrack[]> {
-    this.tracksUrl = `https://api.deezer.com/album/${trackAlbumId}/tracks`;
+  getTracksAlbum(albumId: string): Observable<ITrack[]> {
+    this.tracksUrl = `https://api.deezer.com/album/${albumId}/tracks`;
     return this.http.get(this.tracksUrl).pipe(map((res: any) => <ITrack[]> res.data));
   }
 }

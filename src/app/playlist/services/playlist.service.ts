@@ -65,8 +65,8 @@ export class PlaylistService {
    *
    * Add a Spotify music to the Playlist
    */
-  addSongToPlaylist(music: Item, image: Image) {
-    let song: Types = {
+  addSpotifySongToPlaylist(music: Item, image: Image) {
+    let spotifySong: Types = {
       types: "Spotify",
       id: music.uri,
       artists: music.artists[0].name,
@@ -75,7 +75,23 @@ export class PlaylistService {
       description: null,
       thumbnail: image.url
     }
-    this.playList.push(song);
+    this.playList.push(spotifySong);
+  }
+
+  /**
+   * Add a Deezer music to the Playlist
+   */
+  addDeezerSongToPlaylist() {
+    let deezerSong: Types = {
+      types: "Spotify",
+      id: "",
+      artists: "",
+      title: "",
+      publishedAt: null,
+      description: null,
+      thumbnail: ""
+    }
+    this.playList.push(deezerSong);
   }
 
   /**
