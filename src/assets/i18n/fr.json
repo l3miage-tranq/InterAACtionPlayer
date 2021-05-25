@@ -160,5 +160,10 @@
   "deezerNavbar": {
     "home": "Accueil",
     "playlist": "Playlist"
+  },
+  "deezerArtist": {
+    "followers": "Abonnés",
+    "back": "Retour vers recherche",
+    "albums": "Albums"
   }
 }

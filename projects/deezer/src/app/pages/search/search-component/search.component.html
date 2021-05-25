@@ -17,7 +17,7 @@
     </div>
     <div class="ui four column grid">
       <div class="column" *ngFor="let res of searchRes">
-        <div [ngClass]="theme" class="ui card" (click)="navigate(res)">
+        <div [ngClass]="theme" class="ui card" (click)="navigate(res.id)">
           <div class="image">
             <img [src]="res.picture" [alt]="res.name">
           </div>

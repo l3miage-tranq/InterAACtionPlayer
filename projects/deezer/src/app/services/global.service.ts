@@ -52,7 +52,7 @@ export class GlobalService {
    *
    * Get all album who are related to the artist the user want
    */
-  getAlbums(albumArtistId: string): Observable<IAlbum[]> {
+  getListAlbums(albumArtistId: string): Observable<IAlbum[]> {
     this.albumsUrl = `https://api.deezer.com/artist/${albumArtistId}/albums`;
     return this.http.get(this.albumsUrl).pipe(map((res: any) => <IAlbum[]> res.data));
   }
@@ -62,7 +62,7 @@ export class GlobalService {
    *
    * Get all information about the album the user want
    */
-  getAlbum(albumId: string): Observable<IAlbum> {
+  getTracksAlbum(albumId: string): Observable<IAlbum> {
     this.albumUrl = `https://api.deezer.com/album/${albumId}`;
     return this.http.get(this.albumUrl).pipe(map((res: any) => <IAlbum> res));
   }

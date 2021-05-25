@@ -65,12 +65,12 @@ export class SearchComponent implements OnInit {
   }
 
   /**
-   * @param albumArtist
+   * @param artistId
    *
    * When the user click on a artist, navigate to this album web page
    */
-  public navigate(albumArtist): void {
-    this.globalService.artistChoose = albumArtist;
-    this.router.navigate(['/deezer/albums']);
+  public navigate(artistId): void {
+    this.globalService.artistChoose = artistId;
+    this.router.navigate(['/deezer/artists']);
   }
 }
