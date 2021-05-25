@@ -294,7 +294,9 @@ export class PlaylistComponent implements OnInit {
     this.playList = this.playlistService.deleteToPlaylist(elem);
     this.playList = this.playlistService.deleteBtnAdd();
     this.saveService.updatePlaylist();
-    this.playlistService.addBtnAdd();
+    setTimeout(() => {
+      this.playlistService.addBtnAdd();
+    }, 100);
   }
 
   /**

@@ -165,5 +165,12 @@
     "followers": "Abonnés",
     "back": "Retour vers recherche",
     "albums": "Albums"
+  },
+  "deezerAlbum": {
+    "back": "Retour vers l'artist",
+    "add": "Ajouter à la Playlist",
+    "delete": "Supprimer de la Playlist",
+    "btnAddAll": "Ajouter toutes les musiques",
+    "btnDeleteAll": "Supprimer toutes les musiques"
   }
 }

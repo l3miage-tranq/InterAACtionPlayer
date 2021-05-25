@@ -79,17 +79,22 @@ export class PlaylistService {
   }
 
   /**
+   * @param id -> id of the track
+   * @param name -> name of the artist
+   * @param title -> title of the track
+   * @param img
+   *
    * Add a Deezer music to the Playlist
    */
-  addDeezerSongToPlaylist() {
+  addDeezerSongToPlaylist(id, name, title, img) {
     let deezerSong: Types = {
-      types: "Spotify",
-      id: "",
-      artists: "",
-      title: "",
+      types: "Deezer",
+      id: id,
+      artists: name,
+      title: title,
       publishedAt: null,
       description: null,
-      thumbnail: ""
+      thumbnail: img
     }
     this.playList.push(deezerSong);
   }
@@ -174,6 +179,15 @@ export class PlaylistService {
   }
 
   /**
+   * @param idSong -> Deezer music
+   *
+   * Delete the Deezer music, passed in parameter, to the Playlist
+   */
+  deleteSongDeezerToPlaylist(idSong){
+    return this.playList = this.playList.filter(value => value.id != idSong);
+  }
+
+  /**
    * @param file -> file imported by the user
    *
    * Chek if the file passed in parameter is already in the Playlist
@@ -219,6 +233,22 @@ export class PlaylistService {
       }
     });
     return find;
+  }
+
+  /**
+   * @param idSong
+   *
+   * Chek if the Deezer music passed in parameter is already in the Playlist
+   * Return true or false
+   */
+  songDeezerAlreadyInPlaylist(idSong){
+    let find = false;
+    this.playList.forEach(value => {
+      if (value.id == idSong){
+        find = true;
+      }
+    });
+    return find
   }
 
   /**

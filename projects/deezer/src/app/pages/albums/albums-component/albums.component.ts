@@ -11,6 +11,7 @@ import { ThemeService } from '../../../../../../../src/app/services/theme.servic
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GlobalService } from '../../../services/global.service';
+import {APIAlbums, Item} from '../../../../../../spotify/src/app/pages/album/models/album-model';
 
 @Component({
   selector: 'app-albums',
@@ -41,32 +42,75 @@ export class AlbumsComponent implements OnInit {
     this.getTracksAlbum();
   }
 
+  /**
+   * Get all the track of the album
+   */
   getTracksAlbum(){
     this.globalService.getTracksAlbum(this.globalService.albumChoose.id).subscribe(results => {
       this.tracks = results;
     });
   }
 
-  addToPlaylist(){
-
+  /**
+   * @param track -> music selected by the user
+   *
+   * Add the music selected by the user in the Playlist
+   */
+  addToPlaylist(track){
+    this.playlistService.addDeezerSongToPlaylist(track.id, track.artist.name, track.title, this.album.cover);
+    this.notifier.notify('success', this.translate.instant('notifier.addSong'));
+    this.saveService.updatePlaylist();
   }
 
-  addAllToPlaylist(){
-
+  /**
+   * Allows the user to all all the song in the album who are not in the playlist
+   */
+  public addAllToPlaylist(){
+    for (let i = 0; i < this.tracks.length; i++){
+      if (!this.songAlreadyAddToPlaylist(this.tracks[i].id)){
+        this.playlistService.addDeezerSongToPlaylist(this.tracks[i].id, this.tracks[i].artist.name, this.tracks[i].title, this.album.cover);
+      }
+    }
+    this.notifier.notify('success', this.translate.instant('notifier.addAll'));
+    this.saveService.updatePlaylist();
   }
 
-  deleteToPlaylist(){
-
+  /**
+   * @param track -> music selected by the user
+   *
+   * Delete the music selected by the user to the Playlist
+   */
+  public deleteToPlaylist(track){
+    this.playlistService.deleteSongDeezerToPlaylist(track.id);
+    this.notifier.notify('success', this.translate.instant('notifier.deleteSong'));
+    this.saveService.updatePlaylist();
   }
 
-  deleteAllToPlaylist(){
-
+  /**
+   * Allows the user to delete all the song in the album who are in the playlist
+   */
+  public deleteAllToPlaylist(){
+    for (let i = 0; i < this.tracks.length; i++){
+      this.playlistService.deleteSongDeezerToPlaylist(this.tracks[i].id);
+    }
+    this.notifier.notify('success', this.translate.instant('notifier.deleteAll'));
+    this.saveService.updatePlaylist();
   }
 
-  songAlreadyAddToPlaylist(){
-    return false;
+  /**
+   * @param id -> music selected by the user
+   *
+   * Check if the music selected by the user is already in the Playlist
+   */
+  public songAlreadyAddToPlaylist(id){
+    return this.playlistService.songDeezerAlreadyInPlaylist(id);
   }
 
+  /**
+   * @param id
+   *
+   * Set the src with security check for the deezer iframe
+   */
   getSrc(id){
     return this.domSanitizer.bypassSecurityTrustResourceUrl("https://widget.deezer.com/widget/dark/track/" + id);
   }
