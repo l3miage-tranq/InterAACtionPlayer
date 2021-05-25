@@ -156,5 +156,9 @@
   "deezerSearch": {
     "back": "Back to Playlist",
     "input": " Search for a music ... "
+  },
+  "deezerNavbar": {
+    "home": "Accueil",
+    "playlist": "Playlist"
   }
 }

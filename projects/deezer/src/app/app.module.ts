@@ -28,6 +28,7 @@ const customNotifierOptions: NotifierOptions = {
  * Import Component Main-Application
  */
 import { AppComponent } from './app.component';
+import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
 
 /**
  * Import Services
@@ -41,6 +42,7 @@ const providers = [
 @NgModule({
   declarations: [
     AppComponent,
+    NavBarComponent,
   ],
     imports: [
         BrowserModule,
