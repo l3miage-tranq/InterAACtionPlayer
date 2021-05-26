@@ -9,9 +9,7 @@ import { PlaylistService } from '../../../../../../../src/app/playlist/services/
 import { SaveService } from '../../../../../../../src/app/services/save.service';
 import { ThemeService } from '../../../../../../../src/app/services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { GlobalService } from '../../../services/global.service';
-import {APIAlbums, Item} from '../../../../../../spotify/src/app/pages/album/models/album-model';
 
 @Component({
   selector: 'app-albums',
@@ -31,8 +29,7 @@ export class AlbumsComponent implements OnInit {
     private saveService: SaveService,
     private themeService: ThemeService,
     private translate: TranslateService,
-    private globalService: GlobalService,
-    private domSanitizer: DomSanitizer
+    private globalService: GlobalService
   ) {
     this.theme = themeService.theme;
   }
