@@ -26,12 +26,18 @@ export class ArtistsComponent implements OnInit {
     this.getListAlbumsArtist();
   }
 
+  /**
+   * Allows to get all information needed of the artist choose by the user
+   */
   getArtistInfo(){
     this.globalService.getArtist(this.globalService.idArtistChoose).subscribe(results => {
       this.artist = results;
     });
   }
 
+  /**
+   * Allows to get all albums information of the artist choose by the user
+   */
   getListAlbumsArtist(){
     this.globalService.getListAlbums(this.globalService.idArtistChoose).subscribe(results => {
       this.albums = results;
