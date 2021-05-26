@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
-import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
@@ -69,6 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
  * Import Pipe
  */
 import { MapPipe } from './playlist/pipe/map.pipe';
+import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
+import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { MapPipe } from './playlist/pipe/map.pipe';
             }
         }),
         PipesModule,
+        PipeModule,
         FormsModule,
         MatProgressSpinnerModule,
         DragDropModule,

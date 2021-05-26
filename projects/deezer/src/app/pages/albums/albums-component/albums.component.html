@@ -11,7 +11,7 @@
     <button class="ui button" (click)="deleteAllToPlaylist()">{{ "deezerAlbum.btnDeleteAll" | translate }}</button>
   </div>
   <div *ngFor="let nbTrack of tracks">
-    <iframe [src]="getSrc(nbTrack.id)" width="500" height="150" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write"></iframe>
+    <iframe [src]="nbTrack.id | dz" width="500" height="150" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write"></iframe>
     <button *ngIf="!songAlreadyAddToPlaylist(nbTrack.id)"
             class="right attached ui green button alignement" (click)="addToPlaylist(nbTrack)">
       {{ "deezerAlbum.add" | translate }}

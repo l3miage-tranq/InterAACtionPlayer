@@ -107,15 +107,6 @@ export class AlbumsComponent implements OnInit {
   }
 
   /**
-   * @param id
-   *
-   * Set the src with security check for the deezer iframe
-   */
-  getSrc(id){
-    return this.domSanitizer.bypassSecurityTrustResourceUrl("https://widget.deezer.com/widget/dark/track/" + id);
-  }
-
-  /**
    * Go back to the previous URL
    */
   public goBack(): void {
