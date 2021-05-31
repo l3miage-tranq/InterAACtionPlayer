@@ -1,9 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
 import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
 import { AudioService } from '../services/audio.service';
-import {MatSliderChange} from '@angular/material/slider';
 
 @Component({
   selector: 'app-audio-player',
