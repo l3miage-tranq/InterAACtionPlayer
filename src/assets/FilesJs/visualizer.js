@@ -1,3 +1,6 @@
+/**
+ * Allows to initialise the visualizer
+ */
 function initVisualizer(){
   window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
   startVisualizer();
@@ -11,10 +14,6 @@ var startVisualizer = function() {
   // we have to connect the MediaElementSource with the analyser
   audioSrc.connect(analyser);
   analyser.connect(ctx.destination);
-  // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
-  // analyser.fftSize = 64;
-  // frequencyBinCount tells you how many values you'll receive from the analyser
-  var frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
   // we're ready to receive some data!
   var canvas = document.getElementById('canvas'),
@@ -57,14 +56,3 @@ var startVisualizer = function() {
   }
   renderFrame();
 };
-
-var playVisualizer = function (){
-  var audio = document.getElementById('audio');
-  audio.play();
-}
-
-var pauseVisualizer = function (){
-  var audio = document.getElementById('audio');
-  audio.pause();
-}
-

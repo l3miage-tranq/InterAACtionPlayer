@@ -4,9 +4,7 @@ import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
 import { AudioService } from '../services/audio.service';
 
-declare var initVisualizer: any;
-declare var playVisualizer: any;
-declare var pauseVisualizer: any;
+declare var initVisualizer: any; //function in the javascript file
 
 @Component({
   selector: 'app-audio-player',
@@ -35,6 +33,7 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   /**
+   * Initialise the visualizer
    * Adjust the size of the display number
    * Set the volume;
    * Subscribe to the displayVolumeSlider in audioService, then show or hide the volume slider;
@@ -99,11 +98,6 @@ export class AudioPlayerComponent implements OnInit {
   addEventPlayPause(audioService: AudioService){
     $('.play-pause').on("click", function(){
       audioService.audioPlay = !audioService.audioPlay;
-      if (audioService.audioPlay){
-        playVisualizer();
-      }else {
-        pauseVisualizer();
-      }
     });
   }
 
@@ -121,6 +115,9 @@ export class AudioPlayerComponent implements OnInit {
     });
   }
 
+  /**
+   * Allows to initialise the visualizer
+   */
   initVisualizer(){
     $(document).ready(function(){
       $("audio").attr('id', 'audio');
