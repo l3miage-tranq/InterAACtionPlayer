@@ -4,6 +4,10 @@ import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
 import { AudioService } from '../services/audio.service';
 
+declare var initVisualizer: any;
+declare var playVisualizer: any;
+declare var pauseVisualizer: any;
+
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
@@ -40,6 +44,8 @@ export class AudioPlayerComponent implements OnInit {
    * Load the Playlist with the local music selected
    */
   ngOnInit(): void {
+
+    this.initVisualizer();
 
     $(document).ready(function(){
       $(".ngx-px-1").css("font-size", "25px");
@@ -93,6 +99,11 @@ export class AudioPlayerComponent implements OnInit {
   addEventPlayPause(audioService: AudioService){
     $('.play-pause').on("click", function(){
       audioService.audioPlay = !audioService.audioPlay;
+      if (audioService.audioPlay){
+        playVisualizer();
+      }else {
+        pauseVisualizer();
+      }
     });
   }
 
@@ -107,6 +118,13 @@ export class AudioPlayerComponent implements OnInit {
       $('.volume').on("click", function(e){
         audioService.emitVolumeSlider();
       });
+    });
+  }
+
+  initVisualizer(){
+    $(document).ready(function(){
+      $("audio").attr('id', 'audio');
+      initVisualizer();
     });
   }
 }
