@@ -33,8 +33,6 @@ import { AudioService } from './services/audio.service';
  */
 import { Types } from './model/types-interface';
 
-declare var initVisualizer: any;
-
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
@@ -120,7 +118,6 @@ export class PlaylistComponent implements OnInit {
         this.goEdit()
       }
     },500 );
-    initVisualizer();
   }
 
   /**
