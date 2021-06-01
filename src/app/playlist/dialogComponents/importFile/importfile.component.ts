@@ -197,7 +197,7 @@ export class ImportfileComponent implements OnInit {
    *    - Check if the titleFileInput is not empty
    *    - Then add file to the Playlist, close the DialogComponent, notify that file is added to the Playlist and update database Playlist Store;
    *  Else if typeFile == "file" :
-   *    - Display a warning message
+   *    - Display a warning message if the user allows us to display it
    *    - Check if the file is a json file
    *    - Parse the Json file;
    *    - Then add it to the Playlist;
@@ -222,19 +222,30 @@ export class ImportfileComponent implements OnInit {
           }
         } else {
           if (this.typeFile == "file"){
-            const alertDialog = this.dialog.open(AlertComponent);
-            alertDialog.afterClosed().subscribe(() => {
-              if (!this.alertService.alertCancel){
-                if (this.optionsPlaylist == "new"){
-                  this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
-                }else {
-                  this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
-                }
-                this.dialog.closeAll();
-                this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
-                this.saveService.updatePlaylist();
+            if (this.alertService.doNotShowAgain){
+              if (this.optionsPlaylist == "new"){
+                this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
+              }else {
+                this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
               }
-            });
+              this.dialog.closeAll();
+              this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
+              this.saveService.updatePlaylist();
+            }else {
+              const alertDialog = this.dialog.open(AlertComponent);
+              alertDialog.afterClosed().subscribe(() => {
+                if (!this.alertService.alertCancel){
+                  if (this.optionsPlaylist == "new"){
+                    this.playlistService.newPlaylist(JSON.parse(this.fileUpload));
+                  }else {
+                    this.playlistService.mergePlaylist(JSON.parse(this.fileUpload))
+                  }
+                  this.dialog.closeAll();
+                  this.notifier.notify('warning', this.translate.instant('notifier.importPlaylist'));
+                  this.saveService.updatePlaylist();
+                }
+              });
+            }
           }else {
             this.errorEmptyTitle = true;
           }

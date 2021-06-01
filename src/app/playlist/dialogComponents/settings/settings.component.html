@@ -100,6 +100,29 @@
         </div>
       </div>
     </div>
+    <div class="field">
+      <label>
+        {{ 'settingsPlaylist.alertMessage' | translate }}
+      </label>
+      <div class="inline fields">
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="alertMessage" [checked]="disableAlertMessage" (click)="displayAlertMessage(true)">
+            <label>
+              {{ 'settingsPlaylist.yes' | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="alertMessage" [checked]="!disableAlertMessage" (click)="displayAlertMessage(false)">
+            <label>
+              {{ 'settingsPlaylist.no' | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div mat-dialog-actions>
