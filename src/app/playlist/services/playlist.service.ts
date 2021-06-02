@@ -38,6 +38,9 @@ export class PlaylistService {
     "additionalProperties": false
   }
 
+  // A boolean to know if we need to add the btn Add in the playlist if she is empty
+  addBtnAddInEmptyPlaylist: boolean = true;
+
   constructor() {
   }
 
