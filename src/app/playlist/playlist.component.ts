@@ -159,7 +159,7 @@ export class PlaylistComponent implements OnInit {
       const dialogChoose = this.dialog.open(DialogChooseTypeComponent);
       dialogChoose.afterClosed().subscribe( () => {
         this.playList = this.playlistService.playList;
-        if (this.isPlaylistEmpty()){
+        if (this.isPlaylistEmpty() && this.playlistService.addBtnAddInEmptyPlaylist){
           this.goEdit();
         }
       });
