@@ -23,6 +23,8 @@ export class SettingsComponent implements OnInit {
   dwellTimeValue: number;
   dwellTimeSpinnerOutsideBtn = true;
 
+  diskProgress: boolean;
+
   disableAlertMessage: boolean;
 
   themeLightEnable: boolean = true;
@@ -48,6 +50,7 @@ export class SettingsComponent implements OnInit {
     this.usedLanguage = this.language.activeLanguage;
     this.dwellTimeSpinnerOutsideBtn = this.dwellTimeService.dwellTimeSpinnerOutsideBtn;
     this.disableAlertMessage = this.alertService.doNotShowAgain;
+    this.diskProgress = this.dwellTimeService.diskProgress;
   }
 
   ngOnInit(): void {
@@ -77,6 +80,10 @@ export class SettingsComponent implements OnInit {
    */
   dwellTimeShape(value: boolean){
     this.dwellTimeSpinnerOutsideBtn = value;
+  }
+
+  diskProgressMode(value: boolean){
+    this.diskProgress = value;
   }
 
   /**
@@ -147,10 +154,12 @@ export class SettingsComponent implements OnInit {
    */
   submit(){
     if (this.isValid()){
+      this.dwellTimeService.diskProgress = this.diskProgress;
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
       this.dwellTimeService.dwellTimeSpinnerOutsideBtn = this.dwellTimeSpinnerOutsideBtn;
       this.dwellTimeService.getSizeDwellTimeSpinner();
+      this.dwellTimeService.getDiskProgress();
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
       this.alertService.doNotShowAgain = this.disableAlertMessage;

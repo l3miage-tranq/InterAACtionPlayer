@@ -70,6 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
 import { MapPipe } from './playlist/pipe/map.pipe';
 import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
         NgxAudioPlayerModule,
         MatTooltipModule,
         MatSliderModule,
+        RoundProgressModule,
     ],
   providers: [
     PlaylistService

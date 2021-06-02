@@ -98,6 +98,22 @@
             </label>
           </div>
         </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="diskProgress" [checked]="diskProgress" (click)="diskProgressMode(true)">
+            <label>
+              diskProgress
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="diskProgress" [checked]="!diskProgress" (click)="diskProgressMode(false)">
+            <label>
+              CircleProgress
+            </label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="field">
