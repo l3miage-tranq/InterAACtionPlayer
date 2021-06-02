@@ -312,6 +312,7 @@ export class PlaylistComponent implements OnInit {
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.launch = true;
+      this.refreshAudioPlayer();
       this.goOnElement();
       this.setDefaultVolume();
     }
