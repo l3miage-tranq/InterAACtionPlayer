@@ -4,6 +4,8 @@ import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
 import { AudioService } from '../services/audio.service';
 
+declare var initVisualizer: any; //function in the javascript file
+
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
@@ -31,6 +33,7 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   /**
+   * Initialise the visualizer
    * Adjust the size of the display number
    * Set the volume;
    * Subscribe to the displayVolumeSlider in audioService, then show or hide the volume slider;
@@ -40,6 +43,8 @@ export class AudioPlayerComponent implements OnInit {
    * Load the Playlist with the local music selected
    */
   ngOnInit(): void {
+
+    this.initVisualizer();
 
     $(document).ready(function(){
       $(".ngx-px-1").css("font-size", "25px");
@@ -107,6 +112,16 @@ export class AudioPlayerComponent implements OnInit {
       $('.volume').on("click", function(e){
         audioService.emitVolumeSlider();
       });
+    });
+  }
+
+  /**
+   * Allows to initialise the visualizer
+   */
+  initVisualizer(){
+    $(document).ready(function(){
+      $("audio").attr('id', 'audio');
+      initVisualizer();
     });
   }
 }
