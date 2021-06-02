@@ -111,7 +111,7 @@
               allow="encrypted-media">
       </iframe>
       <div *ngIf="currentElem.types == 'song'" id="myFileAudio" class="ui header">
-        <app-audio-player [elemPlaylist]="currentElem" [src]="getSrcFile()"></app-audio-player>
+        <app-audio-player *ngIf="refresh == false" [elemPlaylist]="currentElem" [src]="getSrcFile()"></app-audio-player>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
