@@ -31,6 +31,7 @@ export class DialogChooseTypeComponent implements OnInit {
    * Close all DialogComponents then on the web page Youtube
    */
   goYoutube(): void {
+    this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/youtube']);
   }
@@ -39,6 +40,7 @@ export class DialogChooseTypeComponent implements OnInit {
    * Close all DialogComponents then on the web page Spotify
    */
   goSpotify() {
+    this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/spotify']);
   }
@@ -47,6 +49,7 @@ export class DialogChooseTypeComponent implements OnInit {
    * Close all DialogComponents then on the web page Deezer
    */
   goDeezer(){
+    this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/deezer']);
   }
