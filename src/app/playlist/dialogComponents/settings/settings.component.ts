@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DwelltimeService } from '../../../services/dwelltime.service';
 import { MatDialog } from '@angular/material/dialog';
+
+/**
+ * Import Services
+ */
+import { DwelltimeService } from '../../../services/dwelltime.service';
 import { NotifierService } from 'angular-notifier';
 import { ThemeService } from '../../../services/theme.service';
 import { LanguageService } from '../../../services/language.service';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,11 +21,13 @@ export class SettingsComponent implements OnInit {
 
   dwellTimeEnable: boolean;
   dwellTimeValue: number;
-
   dwellTimeSpinnerOutsideBtn = true;
+
+  disableAlertMessage: boolean;
 
   themeLightEnable: boolean = true;
   themeValue = "";
+
   moreLanguages: boolean = false;
   usedLanguage = "";
 
@@ -32,13 +39,15 @@ export class SettingsComponent implements OnInit {
               private themeService: ThemeService,
               private language: LanguageService,
               private saveService: SaveService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private alertService: AlertService) {
     this.dwellTimeEnable = this.dwellTimeService.dwellTime;
     this.dwellTimeValue = this.dwellTimeService.dwellTimeValue;
     this.themeLightEnable = this.themeService.getTypeTheme();
     this.themeValue = this.themeService.theme;
     this.usedLanguage = this.language.activeLanguage;
     this.dwellTimeSpinnerOutsideBtn = this.dwellTimeService.dwellTimeSpinnerOutsideBtn;
+    this.disableAlertMessage = this.alertService.doNotShowAgain;
   }
 
   ngOnInit(): void {
@@ -127,6 +136,10 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  displayAlertMessage(value){
+    this.disableAlertMessage = value;
+  }
+
   /**
    * If the user submit :
    *  - Check if the dwellTimeValue is valid
@@ -140,6 +153,7 @@ export class SettingsComponent implements OnInit {
       this.dwellTimeService.getSizeDwellTimeSpinner();
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
+      this.alertService.doNotShowAgain = this.disableAlertMessage;
       this.saveService.updateSettings();
       this.notifier.notify('warning', this.translate.instant('notifier.settings'));
       this.dialog.closeAll();

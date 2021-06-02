@@ -38,21 +38,29 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   /**
-   * If the user submit, display a alert message before
+   * Check if the user has activate or not the alert message
+   * If yes, when the user submit, we display an alert message before
    * Then set the playlist to an empty array
    * Close all dialog open
    * Save the playlist in the database
    * Notify it with a message
    */
   submit(){
-    const alertDialog = this.dialog.open(AlertComponent);
-    alertDialog.afterClosed().subscribe(() => {
-      if (!this.alertService.alertCancel){
-        this.playlistService.playList = [];
-        this.dialog.closeAll();
-        this.saveService.updatePlaylist();
-        this.notifier.notify('warning', this.translate.instant('notifier.delete'));
-      }
-    });
+    if (this.alertService.doNotShowAgain){
+      this.playlistService.playList = [];
+      this.dialog.closeAll();
+      this.saveService.updatePlaylist();
+      this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+    }else {
+      const alertDialog = this.dialog.open(AlertComponent);
+      alertDialog.afterClosed().subscribe(() => {
+        if (!this.alertService.alertCancel){
+          this.playlistService.playList = [];
+          this.dialog.closeAll();
+          this.saveService.updatePlaylist();
+          this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+        }
+      });
+    }
   }
 }

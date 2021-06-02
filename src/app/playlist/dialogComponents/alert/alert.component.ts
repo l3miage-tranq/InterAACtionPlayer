@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SaveService } from '../../../services/save.service';
 
 @Component({
   selector: 'app-alert',
@@ -11,10 +12,13 @@ export class AlertComponent implements OnInit {
 
   alertTitle = "";
   alertContent = "";
+  change: boolean;
 
   constructor(private alertService: AlertService,
-              private dialogRef: MatDialogRef<AlertComponent>) {
+              private dialogRef: MatDialogRef<AlertComponent>,
+              private saveService: SaveService) {
     dialogRef.disableClose = true;
+    this.change = false;
   }
 
   ngOnInit(): void {
@@ -25,10 +29,14 @@ export class AlertComponent implements OnInit {
   /**
    * If the user submit, then set the variable to false
    * Then close this dialogComponent
+   * And if the user check the check box "do not show again", then update settings
    */
   submit(){
     this.alertService.alertCancel = false;
     this.dialogRef.close();
+    if (this.change){
+      this.saveService.updateSettings();
+    }
   }
 
   /**
@@ -38,5 +46,16 @@ export class AlertComponent implements OnInit {
   goCancel(){
     this.alertService.alertCancel = true;
     this.dialogRef.close();
+    if (this.change){
+      this.saveService.updateSettings();
+    }
+  }
+
+  /**
+   * Allows to say the user don't want do see again the alert component
+   */
+  doNotShowAgain(){
+    this.alertService.doNotShowAgain = !this.alertService.doNotShowAgain;
+    this.change = true;
   }
 }

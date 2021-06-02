@@ -45,7 +45,8 @@
     "english-language": "Anglais",
     "french-language": "Français",
     "spinnerInside": "Intérieur",
-    "spinnerOutside": "Extérieur"
+    "spinnerOutside": "Extérieur",
+    "alertMessage": "Désactiver message d'alert"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",
@@ -114,7 +115,8 @@
     "contentDelete": "Êtes-vous sur de vouloir supprimer la Playlist actuelle ?",
     "contentReplace": "Êtes-vous sur de vouloir remplacer la Playlist actuelle avec celle que vous nous avez donné ?",
     "no" : "Non",
-    "yes": "Oui"
+    "yes": "Oui",
+    "doNotShowAgain": " Ne plus afficher !"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"

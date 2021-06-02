@@ -10,3 +10,6 @@
   <button class="ui button" (click)="goCancel()">{{ "alert.no" | translate }}</button>
   <button class="ui button" (click)="submit()">{{ "alert.yes" | translate }}</button>
 </div>
+<br>
+<input type="checkbox" id="doNotShowAgain" name="doNotShowAgain" (click)="doNotShowAgain()">
+<label for="doNotShowAgain">{{ "alert.doNotShowAgain" | translate }}</label>

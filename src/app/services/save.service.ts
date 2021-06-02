@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
+
+/**
+ * Import Services
+ */
 import { PlaylistService } from '../playlist/services/playlist.service';
 import { ThemeService } from './theme.service';
 import { LanguageService } from './language.service';
 import { DwelltimeService } from './dwelltime.service';
+import { AlertService } from '../playlist/services/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +19,18 @@ export class SaveService {
   themeService: ThemeService;
   languageService: LanguageService;
   dwellTimeService: DwelltimeService;
+  alertService: AlertService;
 
-  constructor(playlistService: PlaylistService, themeService: ThemeService, languageService: LanguageService, dwellTimeService: DwelltimeService) {
+  constructor(playlistService: PlaylistService,
+              themeService: ThemeService,
+              languageService: LanguageService,
+              dwellTimeService: DwelltimeService,
+              alertService: AlertService) {
     this.playlistService = playlistService;
     this.themeService = themeService;
     this.languageService = languageService;
     this.dwellTimeService = dwellTimeService;
+    this.alertService = alertService;
     this.initPlaylist();
   }
 
@@ -31,7 +42,7 @@ export class SaveService {
   initPlaylist(){
 
     // Opening of the Database
-    this.openRequest = indexedDB.open('SavePlaylist', 5);
+    this.openRequest = indexedDB.open('SavePlaylist', 6);
 
     // Creation of Stores if the version changes
     this.openRequest.onupgradeneeded = event => {
@@ -64,6 +75,13 @@ export class SaveService {
         db.createObjectStore('DwellTime', {autoIncrement: true});
         const dwellTimeStore = transaction.objectStore('DwellTime');
         dwellTimeStore.add(this.dwellTimeService.getConfiguration());
+      }
+
+      // Creation of Alert Message Store if this one does not exist
+      if (!db.objectStoreNames.contains("alertMessage")) {
+        db.createObjectStore('alertMessage', {autoIncrement: true});
+        const alertMessageStore = transaction.objectStore('alertMessage');
+        alertMessageStore.add(this.alertService.doNotShowAgain);
       }
 
       // Creation of mapPlaylist Store if this one does not exist
@@ -114,6 +132,15 @@ export class SaveService {
         alert('DwellTimeStore error: ' + event.target.errorCode);
       };
 
+      // Recovery of the recorded Alert Message
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').get(1);
+      alertMessageStore.onsuccess = e => {
+        this.alertService.doNotShowAgain = alertMessageStore.result;
+      };
+      dwellTimeStore.onerror = event => {
+        alert('DwellTimeStore error: ' + event.target.errorCode);
+      };
+
       // Recovery of the recorded mapPlaylist
       const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(1);
       mapPlaylistStore.onsuccess = e => {
@@ -136,7 +163,7 @@ export class SaveService {
   updatePlaylist() {
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 5);
+    this.openRequest = indexedDB.open('SavePlaylist', 6);
 
     // Success open Database
     this.openRequest.onsuccess = event => {
@@ -163,7 +190,7 @@ export class SaveService {
   updateSettings(){
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 5);
+    this.openRequest = indexedDB.open('SavePlaylist', 6);
 
     // Success open Database
     this.openRequest.onsuccess = event => {
@@ -192,6 +219,14 @@ export class SaveService {
       storeDwellTimeRequest.onsuccess = () => {
         dwellTimeObjectStore.put(this.dwellTimeService.getConfiguration(), 1);
       };
+
+      // Update Alert Message Store
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite');
+      const alertMessageObjectStore = alertMessageStore.objectStore('alertMessage');
+      const storeAlertMessageRequest = alertMessageObjectStore.get(1);
+      storeAlertMessageRequest.onsuccess = () => {
+        alertMessageObjectStore.put(this.alertService.doNotShowAgain, 1);
+      };
     }
 
     // Error open Database
@@ -206,7 +241,7 @@ export class SaveService {
   updateMapPlaylist(){
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 5);
+    this.openRequest = indexedDB.open('SavePlaylist', 6);
 
     // Success open Database
     this.openRequest.onsuccess = event => {

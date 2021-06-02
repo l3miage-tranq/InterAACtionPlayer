@@ -9,6 +9,8 @@ export class AlertService {
   alertContent = "";
   alertCancel = false;
 
+  doNotShowAgain = false;
+
   constructor() {
   }
 

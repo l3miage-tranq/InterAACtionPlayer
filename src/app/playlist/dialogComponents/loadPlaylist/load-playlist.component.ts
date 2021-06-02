@@ -49,21 +49,30 @@ export class LoadPlaylistComponent implements OnInit {
    *
    * Get the element that have the same id as the name send in parameter
    * And hide it
-   * Delete the playlist to the mapPlaylist
+   * When the user want to delete the playlist to the mapPlaylist, we display an alert message if the user allows us to do it
    * Then update the database
    */
   deletePlaylist(name: string){
-    const alertDialog = this.dialog.open(AlertComponent);
-    alertDialog.afterClosed().subscribe(() => {
-      if (!this.alertService.alertCancel){
-        const elem = document.getElementById(name);
-        elem.style.display = "none";
+    if (this.alertService.doNotShowAgain){
+      const elem = document.getElementById(name);
+      elem.style.display = "none";
 
-        this.playlistService.deleteMapPlaylist(name);
-        this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
-        this.saveService.updateMapPlaylist();
-      }
-    });
+      this.playlistService.deleteMapPlaylist(name);
+      this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
+      this.saveService.updateMapPlaylist();
+    }else {
+      const alertDialog = this.dialog.open(AlertComponent);
+      alertDialog.afterClosed().subscribe(() => {
+        if (!this.alertService.alertCancel){
+          const elem = document.getElementById(name);
+          elem.style.display = "none";
+
+          this.playlistService.deleteMapPlaylist(name);
+          this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
+          this.saveService.updateMapPlaylist();
+        }
+      });
+    }
   }
 
   /**
