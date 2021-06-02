@@ -62,6 +62,8 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnPause= "pauseProgressSpinner";
   idProgressIndicatorBtnExpand = "expandProgressSpinner";
 
+  refresh = false;
+
   private notifier: NotifierService;
   private sanitizer: DomSanitizer;
   public dialog: MatDialog;
@@ -310,6 +312,7 @@ export class PlaylistComponent implements OnInit {
     if (elem.types != "btnAdd"){
       this.currentElem = elem;
       this.launch = true;
+      this.refreshAudioPlayer();
       this.goOnElement();
       this.setDefaultVolume();
     }
@@ -476,6 +479,7 @@ export class PlaylistComponent implements OnInit {
     }
     this.goOnElement();
     this.setDefaultVolume();
+    this.refreshAudioPlayer();
   }
 
   /**
@@ -500,6 +504,17 @@ export class PlaylistComponent implements OnInit {
     }
     this.goOnElement();
     this.setDefaultVolume();
+    this.refreshAudioPlayer();
+  }
+
+  /**
+   * Allows to refresh the audio player with the new song
+   */
+  refreshAudioPlayer(){
+    this.refresh = true;
+    setTimeout(() => {
+      this.refresh = false;
+    }, 50);
   }
 
   /**
