@@ -47,8 +47,8 @@
     "spinnerInside": "Inside",
     "spinnerOutside": "Outside",
     "alertMessage": "Disable Alert message",
-    "diskProgress": "disk progress",
-    "CircleProgress": "circle progress"
+    "diskProgress": "Disk progress",
+    "circleProgress": "Circle progress"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",

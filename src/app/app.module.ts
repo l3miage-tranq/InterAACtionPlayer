@@ -12,6 +12,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 /**
  * Custom angular notifier options
@@ -70,7 +71,6 @@ export function createTranslateLoader(http: HttpClient) {
 import { MapPipe } from './playlist/pipe/map.pipe';
 import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
-import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 @NgModule({
   declarations: [

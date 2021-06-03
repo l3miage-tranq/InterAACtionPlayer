@@ -48,7 +48,7 @@
     "spinnerOutside": "Extérieur",
     "alertMessage": "Désactiver message d'alert",
     "diskProgress": "Progression en forme de disque",
-    "CircleProgress": "Progression en forme de cercle"
+    "circleProgress": "Progression en forme de cercle"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",

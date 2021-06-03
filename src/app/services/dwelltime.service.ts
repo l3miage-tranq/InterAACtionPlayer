@@ -30,6 +30,9 @@ export class DwelltimeService {
     }
   }
 
+  /**
+   * Update the type of the spinner chooser by the user
+   */
   getDiskProgress(){
     this.diskProgressObs.next(this.diskProgress);
   }
