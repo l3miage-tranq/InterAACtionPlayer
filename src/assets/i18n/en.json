@@ -46,7 +46,9 @@
     "french-language": "French",
     "spinnerInside": "Inside",
     "spinnerOutside": "Outside",
-    "alertMessage": "Disable Alert message"
+    "alertMessage": "Disable Alert message",
+    "diskProgress": "disk progress",
+    "CircleProgress": "circle progress"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",

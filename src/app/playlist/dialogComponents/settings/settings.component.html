@@ -102,7 +102,7 @@
           <div class="ui checkbox">
             <input type="radio" name="diskProgress" [checked]="diskProgress" (click)="diskProgressMode(true)">
             <label>
-              diskProgress
+              {{ 'settingsPlaylist.diskProgress' | translate }}
             </label>
           </div>
         </div>
@@ -110,7 +110,7 @@
           <div class="ui checkbox">
             <input type="radio" name="diskProgress" [checked]="!diskProgress" (click)="diskProgressMode(false)">
             <label>
-              CircleProgress
+              {{ 'settingsPlaylist.CircleProgress' | translate }}
             </label>
           </div>
         </div>
