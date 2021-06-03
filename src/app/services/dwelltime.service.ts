@@ -10,11 +10,12 @@ export class DwelltimeService {
   dwellTime: boolean = false;
   dwellTimeValue = 1000; // In milliseconds
   dwellTimeSpinnerOutsideBtn = true;
+  diskProgress: boolean = true;
 
   public dwellTimeSpinnerSize = new Subject<number>();
+  public diskProgressObs = new Subject<boolean>();
 
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Allows the user to choose if he want the spinner :
@@ -30,6 +31,13 @@ export class DwelltimeService {
   }
 
   /**
+   * Update the type of the spinner chooser by the user
+   */
+  getDiskProgress(){
+    this.diskProgressObs.next(this.diskProgress);
+  }
+
+  /**
    * @param configuration -> The configuration to use
    *
    * Update the variables with the new values
@@ -38,6 +46,7 @@ export class DwelltimeService {
     this.dwellTime = configuration.dwellTime;
     this.dwellTimeValue = configuration.dwellTimeValue;
     this.dwellTimeSpinnerOutsideBtn = configuration.spinnerDwellTimeOutside;
+    this.diskProgress = configuration.diskProgress;
   }
 
   /**
@@ -47,7 +56,8 @@ export class DwelltimeService {
     return {
       'dwellTime': this.dwellTime,
       'dwellTimeValue': this.dwellTimeValue,
-      'spinnerDwellTimeOutside': this.dwellTimeSpinnerOutsideBtn
+      'spinnerDwellTimeOutside': this.dwellTimeSpinnerOutsideBtn,
+      'diskProgress': this.diskProgress
     }
   }
 }

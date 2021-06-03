@@ -84,6 +84,24 @@
       <div class="inline fields">
         <div class="field">
           <div class="ui checkbox">
+            <input type="radio" name="diskProgress" [checked]="diskProgress" (click)="diskProgressMode(true)">
+            <label>
+              {{ 'settingsPlaylist.diskProgress' | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="radio" name="diskProgress" [checked]="!diskProgress" (click)="diskProgressMode(false)">
+            <label>
+              {{ 'settingsPlaylist.circleProgress' | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!diskProgress" class="inline fields">
+        <div class="field">
+          <div class="ui checkbox">
             <input type="radio" name="dwellTimeShape" [checked]="!dwellTimeSpinnerOutsideBtn" (click)="dwellTimeShape(false)">
             <label>
               {{ 'settingsPlaylist.spinnerInside' | translate }}

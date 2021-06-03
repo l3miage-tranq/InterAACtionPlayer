@@ -12,6 +12,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 /**
  * Custom angular notifier options
@@ -119,6 +120,7 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
         NgxAudioPlayerModule,
         MatTooltipModule,
         MatSliderModule,
+        RoundProgressModule,
     ],
   providers: [
     PlaylistService

@@ -1,7 +1,16 @@
-<mat-progress-spinner [id]="id"
+<mat-progress-spinner *ngIf="!diskProgress"
+                      [id]="id"
                       class="progressIndicator"
                       color="warn"
                       mode="determinate"
-                      [diameter]="diameterSpinner"
+                      [diameter]="diameterMatProgress"
                       [value]="spinnerValue">
 </mat-progress-spinner>
+<round-progress *ngIf="diskProgress"
+                  [id]="id"
+                  class="round-progress progressIndicator"
+                  [stroke]="diameterRoundProgress"
+                  max="100"
+                  [radius]="diameterRoundProgress"
+                  [current]="spinnerValue">
+</round-progress>
