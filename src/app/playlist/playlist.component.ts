@@ -27,6 +27,7 @@ import { SaveService } from '../services/save.service';
 import { PlaylistService } from './services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { AudioService } from './services/audio.service';
+import { LoginService } from '../../../projects/deezer/src/app/services/login.service';
 
 /**
  * Import Models
@@ -74,8 +75,9 @@ export class PlaylistComponent implements OnInit {
   private dwelltimeService: DwelltimeService;
   private themeService: ThemeService;
   private translate: TranslateService;
-  private globalService: GlobalService;
+  private globalServiceSpotify: GlobalService;
   private audioService: AudioService;
+  private loginServiceDeezer: LoginService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -86,8 +88,9 @@ export class PlaylistComponent implements OnInit {
               dwelltimeService: DwelltimeService,
               themeService: ThemeService,
               translate: TranslateService,
-              globalService: GlobalService,
-              audioService: AudioService) {
+              globalServiceSpotify: GlobalService,
+              audioService: AudioService,
+              loginServiceDeezer: LoginService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -99,8 +102,9 @@ export class PlaylistComponent implements OnInit {
     this.themeService = themeService;
     this.theme = this.themeService.theme;
     this.translate = translate;
-    this.globalService = globalService;
+    this.globalServiceSpotify = globalServiceSpotify;
     this.audioService = audioService;
+    this.loginServiceDeezer = loginServiceDeezer;
   }
 
   /**
@@ -333,7 +337,7 @@ export class PlaylistComponent implements OnInit {
       });
 
     }else if (this.currentElem.types == "Spotify"){
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalServiceSpotify.setVolume(this.volumeSpotifyMusic);
     }
   }
 
@@ -538,7 +542,9 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      this.globalService.playMusic(this.currentElem.id);
+      //this.globalService.playMusic(this.currentElem.id);
+    }else if (this.currentElem.types == "Deezer"){
+      this.loginServiceDeezer.getCodeDeezer();
     }
   }
 
@@ -553,7 +559,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      this.globalService.pauseMusic();
+      //this.globalService.pauseMusic();
+      console.log("click pause");
     }
   }
 
@@ -580,7 +587,7 @@ export class PlaylistComponent implements OnInit {
       );
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalServiceSpotify.setVolume(this.volumeSpotifyMusic);
     }
   }
 
@@ -607,7 +614,7 @@ export class PlaylistComponent implements OnInit {
       );
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalServiceSpotify.setVolume(this.volumeSpotifyMusic);
     }
   }
 
