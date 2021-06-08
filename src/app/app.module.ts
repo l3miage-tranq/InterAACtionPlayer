@@ -40,7 +40,7 @@ import { ExportfileComponent } from './playlist/dialogComponents/exportFile/expo
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
-import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
+import { AudioPlayerComponent } from './playlist/audioPlayer/filePlayer/audio-player.component';
 import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylist/delete-dialog.component';
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';

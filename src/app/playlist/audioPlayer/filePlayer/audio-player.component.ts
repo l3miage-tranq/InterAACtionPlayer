@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
-import { Types } from '../model/types-interface';
+import { Types } from '../../model/types-interface';
 import * as $ from 'jquery';
-import { AudioService } from '../services/audio.service';
+import { AudioService } from '../../services/audio.service';
 
 declare var initVisualizer: any; //function in the javascript file
 
