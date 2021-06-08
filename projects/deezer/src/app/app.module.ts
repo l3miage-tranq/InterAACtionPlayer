@@ -34,11 +34,9 @@ import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
  * Import Services
  */
 import { GlobalService } from './services/global.service';
-import { LoginService } from './services/login.service';
 
 const providers = [
   GlobalService,
-  LoginService,
 ]
 
 @NgModule({

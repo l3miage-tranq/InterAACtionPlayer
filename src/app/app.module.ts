@@ -46,6 +46,7 @@ import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/pref
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/load-playlist.component';
 import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
+import { DeezerPlayerComponent } from './playlist/audioPlayer/deezerPlayer/deezer-player.component';
 
 /**
  * Import module Sub-Application
@@ -86,7 +87,8 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     SavePlaylistComponent,
     LoadPlaylistComponent,
     MapPipe,
-    AlertComponent
+    AlertComponent,
+    DeezerPlayerComponent
   ],
     imports: [
         BrowserModule,

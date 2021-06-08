@@ -27,12 +27,19 @@ import { SaveService } from '../services/save.service';
 import { PlaylistService } from './services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { AudioService } from './services/audio.service';
-import { LoginService } from '../../../projects/deezer/src/app/services/login.service';
 
 /**
  * Import Models
  */
 import { Types } from './model/types-interface';
+
+/**
+ * Import functions javascript
+ */
+declare var playDeezer: any;
+declare var pauseDeezer: any;
+declare var increaseVolumeDeezer: any;
+declare var decreaseVolumeDeezer: any;
 
 @Component({
   selector: 'app-playlist',
@@ -77,7 +84,6 @@ export class PlaylistComponent implements OnInit {
   private translate: TranslateService;
   private globalServiceSpotify: GlobalService;
   private audioService: AudioService;
-  private loginServiceDeezer: LoginService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -89,8 +95,7 @@ export class PlaylistComponent implements OnInit {
               themeService: ThemeService,
               translate: TranslateService,
               globalServiceSpotify: GlobalService,
-              audioService: AudioService,
-              loginServiceDeezer: LoginService) {
+              audioService: AudioService,) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -104,7 +109,6 @@ export class PlaylistComponent implements OnInit {
     this.translate = translate;
     this.globalServiceSpotify = globalServiceSpotify;
     this.audioService = audioService;
-    this.loginServiceDeezer = loginServiceDeezer;
   }
 
   /**
@@ -542,9 +546,9 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      //this.globalService.playMusic(this.currentElem.id);
+
     }else if (this.currentElem.types == "Deezer"){
-      this.loginServiceDeezer.getCodeDeezer();
+      playDeezer();
     }
   }
 
@@ -559,8 +563,9 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      //this.globalService.pauseMusic();
-      console.log("click pause");
+
+    }else if (this.currentElem.types == "Deezer"){
+      pauseDeezer();
     }
   }
 
@@ -588,6 +593,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
       this.globalServiceSpotify.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      decreaseVolumeDeezer();
     }
   }
 
@@ -615,6 +622,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
       this.globalServiceSpotify.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      increaseVolumeDeezer();
     }
   }
 

@@ -3,15 +3,17 @@
  */
 function initDeezer(){
   initDZ();
-  loginDZ();
+  //loginDZ();
 }
+
+var track = [];
 
 var initDZ = function (){
   DZ.init({
     appId : '479942',
     channelUrl : 'http://localhost:4200',
     player: {
-      container: 'DeezerSong',
+      container: 'deezerSong',
       width: 500,
       height: 90,
       layout: 'dark',
@@ -42,14 +44,14 @@ var logoutDeezer = function (){
 
 var playTracks = function (){
   console.log("Chargement d'une musique");
-  DZ.player.playTracks([3135556]);
+  DZ.player.playTracks(track, true);
 }
 
 function playDeezer(){
   DZ.player.play();
 }
 
-function  pauseDeezer(){
+function pauseDeezer(){
   DZ.player.pause();
 }
 
@@ -59,4 +61,8 @@ function increaseVolumeDeezer(){
 
 function decreaseVolumeDeezer(){
   DZ.player.setVolume(DZ.player.getVolume() - 10);
+}
+
+function setTrack(trackId){
+  track.push(trackId);
 }
