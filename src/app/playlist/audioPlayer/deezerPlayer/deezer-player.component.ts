@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * Import functions javascript
+ */
 declare var setTrack: any;
 declare var initDeezer: any;
 
@@ -10,13 +13,19 @@ declare var initDeezer: any;
 })
 export class DeezerPlayerComponent implements OnInit {
 
-  @Input() id;
+  @Input() id; //id of the music we want to listen
 
-  constructor() { }
-
-  ngOnInit(): void {
-    setTrack(this.id);
-    initDeezer();
+  constructor() {
   }
 
+  /**
+   * Add the current music in the audio player deezer
+   * Then init deezer audio player
+   */
+  ngOnInit(): void {
+    setTrack(this.id);
+    setTimeout(() => {
+      initDeezer();
+    }, 500);
+  }
 }
