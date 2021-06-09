@@ -49,9 +49,8 @@
       <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
         <div cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="{elem:elem, index:index}" (cdkDropListDropped)="dragDrop($event)">
           <div cdkDrag [cdkDragDisabled]="disableDragDrop">
-            <div [id]="elem.id" [ngClass]="theme" class="ui card" (click)="goLaunch(this.elem)"
-                                                (mouseenter)="showProgressIndicator(elem.id, index)"
-                                                (mouseleave)="hideProgressIndicator(elem.id, index)">
+            <div [id]="elem.id" [ngClass]="theme" class="ui card" (mouseenter)="showProgressIndicator(elem.id, index)"
+                                                                  (mouseleave)="hideProgressIndicator(elem.id, index)">
               <div class="image">
                 <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
               </div>
