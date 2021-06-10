@@ -165,6 +165,8 @@ export class PlaylistComponent implements OnInit {
           this.goEdit();
         }
       });
+    }else {
+      this.goLaunch(elem);
     }
   }
 

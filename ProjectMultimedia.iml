@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="dz" level="application" />
     <orderEntry type="library" name="bundle.iife" level="application" />
+    <orderEntry type="library" name="spotify-player" level="application" />
   </component>
 </module>
