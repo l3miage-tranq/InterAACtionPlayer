@@ -47,6 +47,8 @@ import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/pref
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/load-playlist.component';
 import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
+import { UserComponent } from './userPage/user.component';
+import { UserFormComponent } from './playlist/dialogComponents/userForm/user-form.component';
 
 /**
  * Import module Sub-Application
@@ -87,7 +89,9 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     SavePlaylistComponent,
     LoadPlaylistComponent,
     MapPipe,
-    AlertComponent
+    AlertComponent,
+    UserComponent,
+    UserFormComponent
   ],
     imports: [
         BrowserModule,
@@ -99,11 +103,12 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
         SpotifySharedModule.forRoot(),
         DeezerSharedModule.forRoot(),
         RouterModule.forRoot([
-            {path: 'playlist', component: PlaylistComponent},
-            {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
-            {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
-            {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
-            {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+          {path: 'playlist', component: PlaylistComponent},
+          {path: 'user', component: UserComponent},
+          {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+          {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+          {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
+          {path: '', redirectTo: 'playlist', pathMatch: 'full'},
         ]),
         TranslateModule.forRoot({
             loader: {

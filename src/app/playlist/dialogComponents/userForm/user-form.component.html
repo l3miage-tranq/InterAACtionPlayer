@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>
+  User
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div class="field required">
+      <label>User's name</label>
+      <input type="text" placeholder="Enter your name =D" (keyup)="getNameUser($event)">
+      <div class="ui error message">
+        <p *ngIf="errorNameEmpty">Name Empty !</p>
+      </div>
+    </div>
+    <div>
+      <label>User's image</label>
+      <input class="ui button" type="file" accept="image/*" (change)="addImage($event)"/>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">No</button>
+  <button class="ui button" (click)="submit()">Yes</button>
+</div>
