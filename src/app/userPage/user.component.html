@@ -1,13 +1,46 @@
-<div class="ui four column grid">
-  <div class="column" *ngFor="let elem of usersList">
-    <div *ngIf="elem.type != 'btnAdd'" class="content">
-      <a class="header">{{elem.name}}</a>
+<div class="ui centered grid">
+  <div class="fourteen wide column">
+    <h1 [ngClass]="theme" class="ui centered aligned header">
+      <span>User Page</span>
+    </h1>
+    <div class="ui cards centered">
+      <div [ngClass]="theme" class="ui card" (click)="goPlaylist()">
+        <div class="image">
+          <img src="./assets/DefaultUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            Default User
+          </h2>
+        </div>
+      </div>
+      <div [ngClass]="theme" class="ui card" (click)="addUser()">
+        <div class="image">
+          <img src="./assets/AddUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            Add New User
+          </h2>
+        </div>
+      </div>
     </div>
-    <div class="image">
-      <img [src]="elem.thumbnail" alt="" (click)="goPlaylist(elem.type)">
+    <div class="ui four column grid">
+      <div class="column" *ngFor="let elem of usersList">
+        <div [ngClass]="theme" class="ui card">
+          <div class="content">
+            <h3 class="ui centered aligned header">
+              {{elem.name}}
+            </h3>
+          </div>
+          <div class="image">
+            <img [src]="elem.thumbnail" alt="" (click)="goPlaylist()">
+          </div>
+          <button *ngIf="elem.type != 'btnAdd'" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
+            Delete
+          </button>
+        </div>
+      </div>
     </div>
-    <button *ngIf="elem.type != 'btnAdd'" class="ui right floated tiny red right labeled icon button" (click)="goDelete()">
-      {{"playlist.delete" | translate}}
-    </button>
   </div>
 </div>

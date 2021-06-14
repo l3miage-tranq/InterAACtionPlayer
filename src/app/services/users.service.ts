@@ -10,13 +10,7 @@ import { Users } from '../playlist/model/users-interface';
 })
 export class UsersService {
 
-  btnAddUser: Users = {
-    name: 'new user',
-    id: 'btnAdd',
-    type: 'btnAdd',
-    thumbnail: './assets/Add.png'
-  }
-  listUsers: Users[] = [this.btnAddUser];
+  listUsers: Users[] = [];
 
   constructor() {
   }
@@ -29,5 +23,9 @@ export class UsersService {
       thumbnail: img
     }
     this.listUsers.push(newUser);
+  }
+
+  deleteUser(user){
+    return this.listUsers = this.listUsers.filter(value => value != user);
   }
 }

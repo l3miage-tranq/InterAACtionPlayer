@@ -27,7 +27,8 @@
     "editBtn": "Edit mode",
     "settingsBtn": "Settings",
     "deleteBtn": "Delete Playlist",
-    "loadBtn": "Load a Playlist"
+    "loadBtn": "Load a Playlist",
+    "logoutBtn": "Logout"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",

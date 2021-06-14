@@ -16,11 +16,14 @@ export class AppComponent{
   /**
    * @param themeService
    * @param languageService
+   * @param router
    *
    * Allows to initialize the page with the right theme & language;
    * And to know if the theme should be changed.
    */
-  constructor(private themeService: ThemeService, private languageService: LanguageService, private router: Router) {
+  constructor(private themeService: ThemeService,
+              private languageService: LanguageService,
+              private router: Router) {
     this.theme = this.themeService.theme;
     this.themeService.themeObservable.subscribe(value => {
       if (value == "inverted"){

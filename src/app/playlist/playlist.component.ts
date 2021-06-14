@@ -114,7 +114,7 @@ export class PlaylistComponent implements OnInit {
   ngOnInit(): void {
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
-    })
+    });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
       this.playList = this.playlistService.playList;
@@ -303,6 +303,13 @@ export class PlaylistComponent implements OnInit {
     setTimeout(() => {
       this.playlistService.addBtnAdd();
     }, 100);
+  }
+
+  /**
+   * Allows the user to logout and return on the user page
+   */
+  logout(){
+    this.router.navigate(['user']);
   }
 
   /**

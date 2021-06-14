@@ -27,7 +27,8 @@
     "editBtn": "Mode édition",
     "settingsBtn": "Paramètres",
     "deleteBtn": "Effacer la Playlist",
-    "loadBtn": "Charger une Playlist"
+    "loadBtn": "Charger une Playlist",
+    "logoutBtn": "Déconnexion"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
