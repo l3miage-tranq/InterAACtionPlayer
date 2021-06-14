@@ -32,6 +32,5 @@ export class AppComponent{
         this.theme = "";
       }
     });
-    this.router.navigate(['user']);
   }
 }

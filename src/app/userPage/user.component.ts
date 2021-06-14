@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../services/users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from '../playlist/dialogComponents/userForm/user-form.component';
 import { Router } from '@angular/router';
+
+/**
+ * Import Services
+ */
 import { ThemeService } from '../services/theme.service';
 import { SaveService } from '../services/save.service';
+import { DefaultService } from '../services/default.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +26,8 @@ export class UserComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
               private themeService: ThemeService,
-              private saveService: SaveService) {
+              private saveService: SaveService,
+              private defaultService: DefaultService) {
     this.usersList = this.usersService.listUsers;
   }
 
@@ -32,8 +38,20 @@ export class UserComponent implements OnInit {
     });
   }
 
-  goPlaylist(){
-      this.router.navigate(['playlist']);
+  goPlaylistLikeGuest(){
+    this.defaultService.setToDefault();
+    this.saveService.updatePlaylist();
+    this.saveService.updateSettings();
+    this.saveService.updateMapPlaylist();
+    this.usersService.typeUser = "guest";
+    this.saveService.updateTypeUser();
+    this.router.navigate(['playlist']);
+  }
+
+  goPlaylistLikeUser(){
+    this.usersService.typeUser = "user";
+    this.saveService.updateTypeUser();
+    this.router.navigate(['playlist']);
   }
 
   goDelete(user){

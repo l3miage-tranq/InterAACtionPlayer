@@ -108,7 +108,7 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
           {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
           {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
           {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
-          {path: '', redirectTo: 'playlist', pathMatch: 'full'},
+          {path: '', redirectTo: 'user', pathMatch: 'full'},
         ]),
         TranslateModule.forRoot({
             loader: {
