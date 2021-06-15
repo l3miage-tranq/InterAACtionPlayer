@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { AuthguardService } from './services/authguard.service';
 
 /**
  * Custom angular notifier options
@@ -103,8 +104,8 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
         SpotifySharedModule.forRoot(),
         DeezerSharedModule.forRoot(),
         RouterModule.forRoot([
-          {path: 'playlist', component: PlaylistComponent},
           {path: 'user', component: UserComponent},
+          {path: 'playlist', canActivate:[AuthguardService], component: PlaylistComponent},
           {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
           {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
           {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},

@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.theme;
+    this.notLogging();
     setTimeout(() => {
       this.usersList = this.usersService.listUsers;
     }, 200);
@@ -41,7 +42,6 @@ export class UserComponent implements OnInit {
     this.usersService.typeUser = "guest";
     this.usersService.idUser = "guest";
     this.saveService.updateUser();
-    this.defaultService.setToDefault();
     this.saveService.updatePlaylist();
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
@@ -52,7 +52,6 @@ export class UserComponent implements OnInit {
     this.usersService.typeUser = "user";
     this.usersService.idUser = id;
     this.saveService.updateUser();
-    this.saveService.initPlaylist(id);
     this.router.navigate(['playlist']);
   }
 
@@ -77,5 +76,10 @@ export class UserComponent implements OnInit {
     this.saveService.updatePlaylist();
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
+  }
+
+  notLogging(){
+    this.defaultService.setToDefault();
+    this.saveService.updateUser();
   }
 }

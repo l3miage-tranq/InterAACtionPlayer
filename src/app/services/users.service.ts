@@ -10,8 +10,8 @@ import { Users } from '../models/users-interface';
 })
 export class UsersService {
 
-  typeUser = "guest";
-  idUser = "guest";
+  typeUser = "";
+  idUser = "";
   listUsers: Users[] = [];
   randomId;
 

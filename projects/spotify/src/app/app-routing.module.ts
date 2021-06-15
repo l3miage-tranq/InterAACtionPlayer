@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthguardService } from '../../../../src/app/services/authguard.service';
 
 const routes: Routes = [
   { // default route
     path: 'spotify',
+    canActivate:[AuthguardService],
     component: AppComponent,
     children: [
       { // route => spotify/home

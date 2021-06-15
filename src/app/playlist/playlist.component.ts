@@ -121,10 +121,12 @@ export class PlaylistComponent implements OnInit {
    * Then check if the playlist is empty, if it's the case active the edit mode
    */
   ngOnInit(): void {
+    this.saveService.initPlaylist(this.usersService.idUser);
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
     });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
+    console.log(this.usersService.idUser);
     setTimeout(() => {
       this.playList = this.playlistService.playList;
       if (this.isPlaylistEmpty()){
@@ -318,7 +320,6 @@ export class PlaylistComponent implements OnInit {
    * Allows the user to logout and return on the user page
    */
   logout(){
-    this.defaultService.setToDefault();
     this.router.navigate(['user']);
   }
 

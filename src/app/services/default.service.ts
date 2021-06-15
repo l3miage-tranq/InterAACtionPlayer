@@ -33,7 +33,7 @@ export class DefaultService {
     this.alertService.doNotShowAgain = false;
     this.playlistService.playList = [];
     this.playlistService.mapPlaylist = new Map();
-    this.usersService.typeUser = "guest";
-    this.usersService.idUser = "guest";
+    this.usersService.typeUser = "";
+    this.usersService.idUser = "";
   }
 }
