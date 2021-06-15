@@ -24,7 +24,7 @@ export class AppComponent{
   constructor(private themeService: ThemeService,
               private languageService: LanguageService,
               private router: Router) {
-    this.theme = this.themeService.theme;
+    this.theme = this.themeService.themeBody;
     this.themeService.themeObservable.subscribe(value => {
       if (value == "inverted"){
         this.theme = "darkMode";

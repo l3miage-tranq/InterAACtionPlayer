@@ -27,6 +27,8 @@ import { SaveService } from '../services/save.service';
 import { PlaylistService } from './services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { AudioService } from './services/audio.service';
+import { DefaultService } from '../services/default.service';
+import { UsersService } from '../services/users.service';
 
 /**
  * Import Models
@@ -78,6 +80,8 @@ export class PlaylistComponent implements OnInit {
   private translate: TranslateService;
   private globalService: GlobalService;
   private audioService: AudioService;
+  private defaultService: DefaultService;
+  private usersService: UsersService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -89,7 +93,9 @@ export class PlaylistComponent implements OnInit {
               themeService: ThemeService,
               translate: TranslateService,
               globalService: GlobalService,
-              audioService: AudioService) {
+              audioService: AudioService,
+              defaultService: DefaultService,
+              usersService: UsersService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -103,9 +109,12 @@ export class PlaylistComponent implements OnInit {
     this.translate = translate;
     this.globalService = globalService;
     this.audioService = audioService;
+    this.defaultService = defaultService;
+    this.usersService = usersService;
   }
 
   /**
+   * Initialize the playlist with the id of the current user
    * Allows to know if the theme value has changed
    * Initialize DialogChooseTypeComponent
    * Allows time (500ms) to load the playlist from the database
@@ -309,6 +318,7 @@ export class PlaylistComponent implements OnInit {
    * Allows the user to logout and return on the user page
    */
   logout(){
+    this.defaultService.setToDefault();
     this.router.navigate(['user']);
   }
 

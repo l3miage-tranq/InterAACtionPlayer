@@ -32,22 +32,19 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.theme;
-    this.themeService.themeObservable.subscribe(value => {
-      this.theme = value;
-    });
     setTimeout(() => {
       this.usersList = this.usersService.listUsers;
     }, 200);
   }
 
   goPlaylistLikeGuest(){
+    this.usersService.typeUser = "guest";
+    this.usersService.idUser = "guest";
+    this.saveService.updateUser();
     this.defaultService.setToDefault();
     this.saveService.updatePlaylist();
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
-    this.usersService.typeUser = "guest";
-    this.usersService.idUser = "guest";
-    this.saveService.updateUser();
     this.router.navigate(['playlist']);
   }
 
@@ -55,12 +52,14 @@ export class UserComponent implements OnInit {
     this.usersService.typeUser = "user";
     this.usersService.idUser = id;
     this.saveService.updateUser();
+    this.saveService.initPlaylist(id);
     this.router.navigate(['playlist']);
   }
 
   goDelete(user){
     this.usersList = this.usersService.deleteUser(user);
     this.saveService.updateListUsers();
+    this.saveService.deleteUser(user.id);
   }
 
   addUser(){
@@ -68,6 +67,15 @@ export class UserComponent implements OnInit {
     dialogUser.afterClosed().subscribe(() => {
       this.usersList = this.usersService.listUsers;
       this.saveService.updateListUsers();
+      this.addUserInDatabase();
     });
+  }
+
+  addUserInDatabase(){
+    this.defaultService.setToDefault();
+    this.usersService.idUser = this.usersList[this.usersList.length -1].id;
+    this.saveService.updatePlaylist();
+    this.saveService.updateSettings();
+    this.saveService.updateMapPlaylist();
   }
 }

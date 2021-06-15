@@ -15,7 +15,7 @@ import { UsersService } from './users.service';
 })
 export class SaveService {
 
-  version = 2;
+  version = 3;
 
   openRequest;
   playlistService: PlaylistService;
@@ -37,15 +37,14 @@ export class SaveService {
     this.dwellTimeService = dwellTimeService;
     this.alertService = alertService;
     this.userService = userService;
-    this.initPlaylist();
+    this.init();
   }
 
   /**
    * Initialize the database;
    * If the store we search does not exit then we create it;
-   * Else we recovery the recorded elem in database
    */
-  initPlaylist(){
+  init(){
 
     // Opening of the Database
     this.openRequest = indexedDB.open('SavePlaylist', this.version);
@@ -116,60 +115,6 @@ export class SaveService {
     this.openRequest.onsuccess = event => {
       const db = event.target.result;
 
-      // Recovery of the recorded Playlist
-      const playlistStore = db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').get(1);
-      playlistStore.onsuccess = e => {
-        this.playlistService.playList = playlistStore.result;
-      };
-      playlistStore.onerror = event => {
-        alert('PlaylistStore error: ' + event.target.errorCode);
-      };
-
-      // Recovery of the recorded Theme
-      const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(1);
-      themeStore.onsuccess = e => {
-        this.themeService.emitTheme(themeStore.result);
-      };
-      themeStore.onerror = event => {
-        alert('ThemeStore error: ' + event.target.errorCode);
-      };
-
-      // Recovery of the recorded Language
-      const languageStore = db.transaction(['Language'], 'readwrite').objectStore('Language').get(1);
-      languageStore.onsuccess = e => {
-        this.languageService.switchLanguage(languageStore.result);
-      };
-      languageStore.onerror = event => {
-        alert('LanguageStore error: ' + event.target.errorCode);
-      };
-
-      // Recovery of the recorded DwellTime
-      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').get(1);
-      dwellTimeStore.onsuccess = e => {
-        this.dwellTimeService.setConfiguration(dwellTimeStore.result);
-      };
-      dwellTimeStore.onerror = event => {
-        alert('DwellTimeStore error: ' + event.target.errorCode);
-      };
-
-      // Recovery of the recorded Alert Message
-      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').get(1);
-      alertMessageStore.onsuccess = e => {
-        this.alertService.doNotShowAgain = alertMessageStore.result;
-      };
-      alertMessageStore.onerror = event => {
-        alert('alertMessageStore error: ' + event.target.errorCode);
-      };
-
-      // Recovery of the recorded mapPlaylist
-      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(1);
-      mapPlaylistStore.onsuccess = e => {
-        this.playlistService.mapPlaylist = mapPlaylistStore.result;
-      };
-      mapPlaylistStore.onerror = event => {
-        alert('mapPlaylistStore error: ' + event.target.errorCode);
-      };
-
       // Recovery of User
       const userStore = db.transaction(['user'], 'readwrite').objectStore('user').get(1);
       userStore.onsuccess = e => {
@@ -187,6 +132,74 @@ export class SaveService {
       listUsersStore.onerror = event => {
         alert('listUsersStore error: ' + event.target.errorCode);
       };
+    }
+  }
+
+  /**
+   * We recovery the recorded elem of playlist in database
+   */
+  initPlaylist(idUser){
+
+    // Opening of the Database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Recovery of the recorded Playlist
+      const playlistStore = db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').get(idUser);
+      playlistStore.onsuccess = e => {
+        this.playlistService.playList = playlistStore.result;
+      };
+      playlistStore.onerror = event => {
+        alert('PlaylistStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Theme
+      const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(idUser);
+      themeStore.onsuccess = e => {
+        this.themeService.emitTheme(themeStore.result);
+      };
+      themeStore.onerror = event => {
+        alert('ThemeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Language
+      const languageStore = db.transaction(['Language'], 'readwrite').objectStore('Language').get(idUser);
+      languageStore.onsuccess = e => {
+        this.languageService.switchLanguage(languageStore.result);
+      };
+      languageStore.onerror = event => {
+        alert('LanguageStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded DwellTime
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').get(idUser);
+      dwellTimeStore.onsuccess = e => {
+        this.dwellTimeService.setConfiguration(dwellTimeStore.result);
+      };
+      dwellTimeStore.onerror = event => {
+        alert('DwellTimeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Alert Message
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').get(idUser);
+      alertMessageStore.onsuccess = e => {
+        this.alertService.doNotShowAgain = alertMessageStore.result;
+      };
+      alertMessageStore.onerror = event => {
+        alert('alertMessageStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded mapPlaylist
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(idUser);
+      mapPlaylistStore.onsuccess = e => {
+        this.playlistService.mapPlaylist = mapPlaylistStore.result;
+      };
+      mapPlaylistStore.onerror = event => {
+        alert('mapPlaylistStore error: ' + event.target.errorCode);
+      };
     };
 
     // Error open Database
@@ -200,29 +213,26 @@ export class SaveService {
    */
   updatePlaylist() {
 
-    if (this.userService.typeUser != "guest"){
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
-      // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', this.version);
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
 
-      // Success open Database
-      this.openRequest.onsuccess = event => {
-        const db = event.target.result;
-
-        // Update Playlist Store
-        const playlistStore = db.transaction(['Playlist'], 'readwrite');
-        const playlistObjectStore = playlistStore.objectStore('Playlist');
-        const storePlaylistRequest = playlistObjectStore.get(1);
-        storePlaylistRequest.onsuccess = () => {
-          playlistObjectStore.put(this.playlistService.playList, 1);
-        };
-      }
-
-      // Error open Database
-      this.openRequest.onerror = event => {
-        alert('Database error: ' + event.target.errorCode);
+      // Update Playlist Store
+      const playlistStore = db.transaction(['Playlist'], 'readwrite');
+      const playlistObjectStore = playlistStore.objectStore('Playlist');
+      const storePlaylistRequest = playlistObjectStore.get(this.userService.idUser);
+      storePlaylistRequest.onsuccess = () => {
+        playlistObjectStore.put(this.playlistService.playList, this.userService.idUser);
       };
     }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
   }
 
   /**
@@ -230,53 +240,50 @@ export class SaveService {
    */
   updateSettings(){
 
-    if (this.userService.typeUser != "guest"){
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
-      // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', this.version);
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
 
-      // Success open Database
-      this.openRequest.onsuccess = event => {
-        const db = event.target.result;
+      // Update Theme Store
+      const themeStore = db.transaction(['Theme'], 'readwrite');
+      const themeObjectStore = themeStore.objectStore('Theme');
+      const storeThemeRequest = themeObjectStore.get(this.userService.idUser);
+      storeThemeRequest.onsuccess = () => {
+        themeObjectStore.put(this.themeService.theme, this.userService.idUser);
+      };
 
-        // Update Theme Store
-        const themeStore = db.transaction(['Theme'], 'readwrite');
-        const themeObjectStore = themeStore.objectStore('Theme');
-        const storeThemeRequest = themeObjectStore.get(1);
-        storeThemeRequest.onsuccess = () => {
-          themeObjectStore.put(this.themeService.theme, 1);
-        };
+      // Update Language Store
+      const languageStore = db.transaction(['Language'], 'readwrite');
+      const languageObjectStore = languageStore.objectStore('Language');
+      const storeLanguageRequest = languageObjectStore.get(this.userService.idUser);
+      storeLanguageRequest.onsuccess = () => {
+        languageObjectStore.put(this.languageService.activeLanguage, this.userService.idUser);
+      };
 
-        // Update Language Store
-        const languageStore = db.transaction(['Language'], 'readwrite');
-        const languageObjectStore = languageStore.objectStore('Language');
-        const storeLanguageRequest = languageObjectStore.get(1);
-        storeLanguageRequest.onsuccess = () => {
-          languageObjectStore.put(this.languageService.activeLanguage, 1);
-        };
+      // Update DwellTime Store
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite');
+      const dwellTimeObjectStore = dwellTimeStore.objectStore('DwellTime');
+      const storeDwellTimeRequest = dwellTimeObjectStore.get(this.userService.idUser);
+      storeDwellTimeRequest.onsuccess = () => {
+        dwellTimeObjectStore.put(this.dwellTimeService.getConfiguration(), this.userService.idUser);
+      };
 
-        // Update DwellTime Store
-        const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite');
-        const dwellTimeObjectStore = dwellTimeStore.objectStore('DwellTime');
-        const storeDwellTimeRequest = dwellTimeObjectStore.get(1);
-        storeDwellTimeRequest.onsuccess = () => {
-          dwellTimeObjectStore.put(this.dwellTimeService.getConfiguration(), 1);
-        };
-
-        // Update Alert Message Store
-        const alertMessageStore = db.transaction(['alertMessage'], 'readwrite');
-        const alertMessageObjectStore = alertMessageStore.objectStore('alertMessage');
-        const storeAlertMessageRequest = alertMessageObjectStore.get(1);
-        storeAlertMessageRequest.onsuccess = () => {
-          alertMessageObjectStore.put(this.alertService.doNotShowAgain, 1);
-        };
-      }
-
-      // Error open Database
-      this.openRequest.onerror = event => {
-        alert('Database error: ' + event.target.errorCode);
+      // Update Alert Message Store
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite');
+      const alertMessageObjectStore = alertMessageStore.objectStore('alertMessage');
+      const storeAlertMessageRequest = alertMessageObjectStore.get(this.userService.idUser);
+      storeAlertMessageRequest.onsuccess = () => {
+        alertMessageObjectStore.put(this.alertService.doNotShowAgain, this.userService.idUser);
       };
     }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
   }
 
   /**
@@ -284,29 +291,26 @@ export class SaveService {
    */
   updateMapPlaylist(){
 
-    if (this.userService.typeUser != "guest"){
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
-      // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', this.version);
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
 
-      // Success open Database
-      this.openRequest.onsuccess = event => {
-        const db = event.target.result;
-
-        // Update mapPlaylist Store
-        const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite');
-        const mapPlaylistObjectStore = mapPlaylistStore.objectStore('mapPlaylist');
-        const storeMapPlaylistRequest = mapPlaylistObjectStore.get(1);
-        storeMapPlaylistRequest.onsuccess = () => {
-          mapPlaylistObjectStore.put(this.playlistService.mapPlaylist, 1);
-        };
-      }
-
-      // Error open Database
-      this.openRequest.onerror = event => {
-        alert('Database error: ' + event.target.errorCode);
+      // Update mapPlaylist Store
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite');
+      const mapPlaylistObjectStore = mapPlaylistStore.objectStore('mapPlaylist');
+      const storeMapPlaylistRequest = mapPlaylistObjectStore.get(this.userService.idUser);
+      storeMapPlaylistRequest.onsuccess = () => {
+        mapPlaylistObjectStore.put(this.playlistService.mapPlaylist, this.userService.idUser);
       };
     }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
   }
 
   /**
@@ -352,6 +356,29 @@ export class SaveService {
       storeListUsersRequest.onsuccess = () => {
         listUsersObjectStore.put(this.userService.listUsers, 1);
       };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
+
+  deleteUser(user){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').delete(user);
+      db.transaction(['Theme'], 'readwrite').objectStore('Theme').delete(user);
+      db.transaction(['Language'], 'readwrite').objectStore('Language').delete(user);
+      db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').delete(user);
+      db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').delete(user);
+      db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').delete(user);
     }
 
     // Error open Database
