@@ -45,6 +45,13 @@ export class LoadPlaylistComponent implements OnInit {
   }
 
   /**
+   * Check if the mapPlaylist is empty
+   */
+  isMapEmpty(){
+    return this.mapPlaylist.size == 0;
+  }
+
+  /**
    * @param name
    *
    * Get the element that have the same id as the name send in parameter
