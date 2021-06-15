@@ -11,6 +11,7 @@ import { Users } from '../models/users-interface';
 export class UsersService {
 
   typeUser = "";
+  idUser = "";
   listUsers: Users[] = [];
   randomId;
 
@@ -45,5 +46,17 @@ export class UsersService {
       }
     });
     return find;
+  }
+
+  getConfiguration(){
+    return {
+      'typeUser': this.typeUser,
+      'idUser': this.idUser
+    }
+  }
+
+  setConfiguration(config){
+    this.typeUser = config.typeUser;
+    this.idUser = config.idUser;
   }
 }

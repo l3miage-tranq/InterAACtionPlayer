@@ -28,7 +28,6 @@ export class UserComponent implements OnInit {
               private themeService: ThemeService,
               private saveService: SaveService,
               private defaultService: DefaultService) {
-    this.usersList = this.usersService.listUsers;
   }
 
   ngOnInit(): void {
@@ -36,6 +35,9 @@ export class UserComponent implements OnInit {
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
     });
+    setTimeout(() => {
+      this.usersList = this.usersService.listUsers;
+    }, 200);
   }
 
   goPlaylistLikeGuest(){
@@ -44,24 +46,28 @@ export class UserComponent implements OnInit {
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
     this.usersService.typeUser = "guest";
-    this.saveService.updateTypeUser();
+    this.usersService.idUser = "guest";
+    this.saveService.updateUser();
     this.router.navigate(['playlist']);
   }
 
-  goPlaylistLikeUser(){
+  goPlaylistLikeUser(id){
     this.usersService.typeUser = "user";
-    this.saveService.updateTypeUser();
+    this.usersService.idUser = id;
+    this.saveService.updateUser();
     this.router.navigate(['playlist']);
   }
 
   goDelete(user){
     this.usersList = this.usersService.deleteUser(user);
+    this.saveService.updateListUsers();
   }
 
   addUser(){
     const dialogUser = this.dialog.open(UserFormComponent);
     dialogUser.afterClosed().subscribe(() => {
       this.usersList = this.usersService.listUsers;
+      this.saveService.updateListUsers();
     });
   }
 }

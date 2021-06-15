@@ -15,6 +15,8 @@ import { UsersService } from './users.service';
 })
 export class SaveService {
 
+  version = 2;
+
   openRequest;
   playlistService: PlaylistService;
   themeService: ThemeService;
@@ -46,7 +48,7 @@ export class SaveService {
   initPlaylist(){
 
     // Opening of the Database
-    this.openRequest = indexedDB.open('SavePlaylist', 7);
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
     // Creation of Stores if the version changes
     this.openRequest.onupgradeneeded = event => {
@@ -95,11 +97,18 @@ export class SaveService {
         mapPlaylistStore.add(this.playlistService.mapPlaylist);
       }
 
-      // Creation of mapPlaylist Store if this one does not exist
-      if (!db.objectStoreNames.contains("typeUser")) {
-        db.createObjectStore('typeUser', {autoIncrement: true});
-        const typeUserStore = transaction.objectStore('typeUser');
-        typeUserStore.add(this.userService.typeUser);
+      // Creation of User Store if this one does not exist
+      if (!db.objectStoreNames.contains("user")) {
+        db.createObjectStore('user', {autoIncrement: true});
+        const userStore = transaction.objectStore('user');
+        userStore.add(this.userService.getConfiguration());
+      }
+
+      // Creation of ListUsers Store if this one does not exist
+      if (!db.objectStoreNames.contains("listUsers")) {
+        db.createObjectStore('listUsers', {autoIncrement: true});
+        const listUsersStore = transaction.objectStore('listUsers');
+        listUsersStore.add(this.userService.listUsers);
       }
     };
 
@@ -148,8 +157,8 @@ export class SaveService {
       alertMessageStore.onsuccess = e => {
         this.alertService.doNotShowAgain = alertMessageStore.result;
       };
-      dwellTimeStore.onerror = event => {
-        alert('DwellTimeStore error: ' + event.target.errorCode);
+      alertMessageStore.onerror = event => {
+        alert('alertMessageStore error: ' + event.target.errorCode);
       };
 
       // Recovery of the recorded mapPlaylist
@@ -161,13 +170,22 @@ export class SaveService {
         alert('mapPlaylistStore error: ' + event.target.errorCode);
       };
 
-      // Recovery of typeUser
-      const typeUserStore = db.transaction(['typeUser'], 'readwrite').objectStore('typeUser').get(1);
-      typeUserStore.onsuccess = e => {
-        this.userService.typeUser = typeUserStore.result;
+      // Recovery of User
+      const userStore = db.transaction(['user'], 'readwrite').objectStore('user').get(1);
+      userStore.onsuccess = e => {
+        this.userService.setConfiguration(userStore.result);
       };
-      typeUserStore.onerror = event => {
-        alert('typeUserStore error: ' + event.target.errorCode);
+      userStore.onerror = event => {
+        alert('userStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of ListUsers
+      const listUsersStore = db.transaction(['listUsers'], 'readwrite').objectStore('listUsers').get(1);
+      listUsersStore.onsuccess = e => {
+        this.userService.listUsers = listUsersStore.result;
+      };
+      listUsersStore.onerror = event => {
+        alert('listUsersStore error: ' + event.target.errorCode);
       };
     };
 
@@ -185,7 +203,7 @@ export class SaveService {
     if (this.userService.typeUser != "guest"){
 
       // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', 7);
+      this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
       // Success open Database
       this.openRequest.onsuccess = event => {
@@ -215,7 +233,7 @@ export class SaveService {
     if (this.userService.typeUser != "guest"){
 
       // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', 7);
+      this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
       // Success open Database
       this.openRequest.onsuccess = event => {
@@ -269,7 +287,7 @@ export class SaveService {
     if (this.userService.typeUser != "guest"){
 
       // Opening of the database
-      this.openRequest = indexedDB.open('SavePlaylist', 7);
+      this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
       // Success open Database
       this.openRequest.onsuccess = event => {
@@ -291,21 +309,48 @@ export class SaveService {
     }
   }
 
-  updateTypeUser(){
+  /**
+   * Allows to save the User in the database
+   */
+  updateUser(){
 
     // Opening of the database
-    this.openRequest = indexedDB.open('SavePlaylist', 7);
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
 
     // Success open Database
     this.openRequest.onsuccess = event => {
       const db = event.target.result;
 
-      // Update typeUser Store
-      const typeUserStore = db.transaction(['typeUser'], 'readwrite');
-      const typeUserObjectStore = typeUserStore.objectStore('typeUser');
-      const storeTypeUserRequest = typeUserObjectStore.get(1);
-      storeTypeUserRequest.onsuccess = () => {
-        typeUserObjectStore.put(this.userService.typeUser, 1);
+      // Update User Store
+      const userStore = db.transaction(['user'], 'readwrite');
+      const userObjectStore = userStore.objectStore('user');
+      const storeUserRequest = userObjectStore.get(1);
+      storeUserRequest.onsuccess = () => {
+        userObjectStore.put(this.userService.getConfiguration(), 1);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
+
+  updateListUsers(){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Update User Store
+      const listUsersStore = db.transaction(['listUsers'], 'readwrite');
+      const listUsersObjectStore = listUsersStore.objectStore('listUsers');
+      const storeListUsersRequest = listUsersObjectStore.get(1);
+      storeListUsersRequest.onsuccess = () => {
+        listUsersObjectStore.put(this.userService.listUsers, 1);
       };
     }
 

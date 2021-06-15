@@ -36,7 +36,7 @@
             </h3>
           </div>
           <div class="image">
-            <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser()">
+            <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
           </div>
           <button *ngIf="elem.type != 'btnAdd'" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
             Delete
