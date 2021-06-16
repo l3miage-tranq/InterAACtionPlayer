@@ -15,7 +15,8 @@
     "addAll": "All musics are added in the Playlist !",
     "deleteAll": "All musics are deleted from the Playlist !",
     "loadPlaylist": "Playlist loaded !",
-    "deletePlaylist": "Playlist deleted !"
+    "deletePlaylist": "Playlist deleted !",
+    "deleteUser": "User deleted !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -81,6 +82,12 @@
     "yes": "Yes",
     "no": "No"
   },
+  "deleteUser": {
+    "title": "Delete User",
+    "text": "Do you want to delete this User ?",
+    "yes": "Yes",
+    "no": "No"
+  },
   "importFilePlaylist": {
     "title": "Add local file to Playlist",
     "type": "Type of file",
@@ -120,6 +127,39 @@
     "no" : "No",
     "yes": "Yes",
     "doNotShowAgain": " Do Not Show Again !"
+  },
+  "chooseType": {
+    "title": "Choose a type",
+    "prefabricated": "Prefabricated Playlist"
+  },
+  "chooseImage":{
+    "title": "Choose an image",
+    "crab": "Choose Crab",
+    "squirrel": "Choose Squirrel",
+    "hedgehog": "Choose Hedgehog",
+    "owl": "Choose Owl",
+    "rabbit": "Choose Rabbit",
+    "astonished": "Choose Astonished",
+    "octopus": "Choose Octopus",
+    "fox": "Choose Fox",
+    "turtle": "Choose Turtle"
+  },
+  "user": {
+    "title": "User Page",
+    "defaultUser": "Default User",
+    "addUser": "Add New User",
+    "delete": "Delete"
+  },
+  "userForm": {
+    "title": "New User",
+    "name": "User's name",
+    "nameEmpty": "Name is empty !",
+    "image": "User's image",
+    "importImg": "Import",
+    "chooseImg": "Choose",
+    "imgEmpty": "Image is empty !",
+    "cancel": "Cancel",
+    "submit": "Create"
   },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"

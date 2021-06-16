@@ -57,7 +57,9 @@ export class UserFormComponent implements OnInit {
     const chooseImgDialog = this.dialog.open(ChooseImgComponent, {height: '100%'});
     chooseImgDialog.afterClosed().subscribe(() => {
       this.image = this.usersService.imgChoose;
-      this.showImgChoose = true;
+      if (this.image != null){
+        this.showImgChoose = true;
+      }
     });
   }
 

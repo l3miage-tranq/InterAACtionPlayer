@@ -15,7 +15,8 @@
     "addAll": "Toutes les musiques ont été ajouté dans la Playlist !",
     "deleteAll": "Toutes les musiques ont été supprimé de la Playlist !",
     "loadPlaylist": "Playlist charger !",
-    "deletePlaylist": "Playlist supprimé !"
+    "deletePlaylist": "Playlist supprimé !",
+    "deleteUser": "Utilisateur supprimé !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -81,6 +82,12 @@
     "yes": "Oui",
     "no": "Non"
   },
+  "deleteUser": {
+    "title": "Effacer cette utilisateur ?",
+    "text": "Voulez-vous effacer cette utilisateur ?",
+    "yes": "Oui",
+    "no": "Non"
+  },
   "importFilePlaylist": {
     "title": "Ajouter un fichier local à la Playlist",
     "type": "Type de fichier",
@@ -120,6 +127,39 @@
     "no" : "Non",
     "yes": "Oui",
     "doNotShowAgain": " Ne plus afficher !"
+  },
+  "chooseType": {
+    "title": "Choisie un multimédia",
+    "prefabricated": "Playlist préfaite"
+  },
+  "chooseImage":{
+    "title": "Choisie une image",
+    "crab": "Choisir le Crabe",
+    "squirrel": "Choisir l'Ecureuil",
+    "hedgehog": "Choisir le Hérisson",
+    "owl": "Choisir le Hibou",
+    "rabbit": "Choisir le Lapin",
+    "astonished": "Choisir la Méduse",
+    "octopus": "Choisir le Poulpe",
+    "fox": "Choisir le Renard",
+    "turtle": "Choisir la Tortue"
+  },
+  "user": {
+    "title": "Page Utilisateur",
+    "defaultUser": "Utilisateur par défault",
+    "addUser": "Ajouter un utilisateur",
+    "delete": "Supprimer"
+  },
+  "userForm": {
+    "title": "Nouvelle utilisateur",
+    "name": "Nom de l'utilisateur",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Image de l'utilisateur",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Créer"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"

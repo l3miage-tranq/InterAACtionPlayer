@@ -1,7 +1,9 @@
 <div class="ui centered grid">
   <div class="fourteen wide column">
     <h1 [ngClass]="theme" class="ui centered aligned header">
-      <span>User Page</span>
+      <span>
+        {{"user.title" | translate}}
+      </span>
     </h1>
     <div class="ui cards centered">
       <div [ngClass]="theme" class="ui card" (click)="goPlaylistLikeGuest()">
@@ -10,7 +12,7 @@
         </div>
         <div class="content">
           <h2 class="ui centered aligned header">
-            Default User
+            {{"user.defaultUser" | translate}}
           </h2>
         </div>
       </div>
@@ -20,7 +22,7 @@
         </div>
         <div class="content">
           <h2 class="ui centered aligned header">
-            Add New User
+            {{"user.addUser" | translate}}
           </h2>
         </div>
       </div>
@@ -39,7 +41,7 @@
             <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
           </div>
           <button *ngIf="elem.type != 'btnAdd'" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
-            Delete
+            {{"user.delete" | translate}}
           </button>
         </div>
       </div>

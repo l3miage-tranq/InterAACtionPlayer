@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
+/**
+ * Import Services
+ */
 import { UsersService } from '../../../services/users.service';
+import { NotifierService } from 'angular-notifier';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-user',
@@ -12,7 +18,9 @@ export class DeleteUserComponent implements OnInit {
   security = "disabled";
 
   constructor(private dialog: MatDialog,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              private notifier: NotifierService,
+              private translate: TranslateService) {
   }
 
   /**
@@ -38,5 +46,6 @@ export class DeleteUserComponent implements OnInit {
   public submit(){
     this.usersService.wantDeleteUser = true;
     this.dialog.closeAll();
+    this.notifier.notify('warning', this.translate.instant('notifier.deleteUser'));
   }
 }
