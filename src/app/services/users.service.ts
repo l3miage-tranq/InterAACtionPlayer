@@ -15,6 +15,7 @@ export class UsersService {
   listUsers: Users[] = [];
   randomId;
   imgChoose;
+  wantDeleteUser = false;
 
   constructor() {
   }

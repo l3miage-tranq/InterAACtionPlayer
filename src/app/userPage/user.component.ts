@@ -10,6 +10,7 @@ import { ThemeService } from '../services/theme.service';
 import { SaveService } from '../services/save.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
+import {DeleteUserComponent} from '../playlist/dialogComponents/deleteUser/delete-user.component';
 
 @Component({
   selector: 'app-user',
@@ -56,9 +57,14 @@ export class UserComponent implements OnInit {
   }
 
   goDelete(user){
-    this.usersList = this.usersService.deleteUser(user);
-    this.saveService.updateListUsers();
-    this.saveService.deleteUser(user.id);
+    const dialogDeleteUser = this.dialog.open(DeleteUserComponent);
+    dialogDeleteUser.afterClosed().subscribe(() => {
+      if (this.usersService.wantDeleteUser){
+        this.usersList = this.usersService.deleteUser(user);
+        this.saveService.updateListUsers();
+        this.saveService.deleteUser(user.id);
+      }
+    });
   }
 
   addUser(){

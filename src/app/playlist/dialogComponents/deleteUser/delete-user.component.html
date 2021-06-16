@@ -1,1 +1,11 @@
-<p>delete-user works!</p>
+<h1 mat-dialog-title>
+  Delete User
+</h1>
+<div mat-dialog-content>
+  <p> Want to delete this user ?</p>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">No</button>
+  <button [ngClass]="security" class="negative ui button" (click)="submit()">Yes</button>
+</div>
+<notifier-container></notifier-container>
