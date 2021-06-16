@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from '../../../services/users.service';
+import { ChooseImgComponent } from '../chooseImgUser/choose-img.component';
 
 @Component({
   selector: 'app-user-form',
@@ -12,7 +13,9 @@ export class UserFormComponent implements OnInit {
 
   name = "";
   errorNameEmpty = false;
-  image;
+  image = null;
+  errorImgEmpty = false;
+  showImgChoose = false;
 
   constructor(private translate: TranslateService,
               private dialog: MatDialog,
@@ -38,6 +41,16 @@ export class UserFormComponent implements OnInit {
     reader.onload = () => {
      this.image = reader.result;
     }
+    this.usersService.imgChoose = this.image;
+    this.showImgChoose = true;
+  }
+
+  goChooseImg(){
+    const chooseImgDialog = this.dialog.open(ChooseImgComponent, {height: '100%'});
+    chooseImgDialog.afterClosed().subscribe(() => {
+      this.image = this.usersService.imgChoose;
+      this.showImgChoose = true;
+    });
   }
 
   /**
@@ -50,8 +63,13 @@ export class UserFormComponent implements OnInit {
   submit(){
     if (this.name != ""){
       this.errorNameEmpty = false;
-      this.usersService.addUser(this.name, this.image);
-      this.dialog.closeAll();
+      if (this.image != null){
+        this.errorImgEmpty = false;
+        this.usersService.addUser(this.name);
+        this.dialog.closeAll();
+      } else {
+        this.errorImgEmpty = true;
+      }
     }else {
       this.errorNameEmpty = true;
     }

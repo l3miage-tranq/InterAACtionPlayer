@@ -50,7 +50,7 @@ export class DeleteDialogComponent implements OnInit {
       this.playlistService.playList = [];
       this.dialog.closeAll();
       this.saveService.updatePlaylist();
-      this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+      this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
     }else {
       const alertDialog = this.dialog.open(AlertComponent);
       alertDialog.afterClosed().subscribe(() => {
@@ -58,7 +58,7 @@ export class DeleteDialogComponent implements OnInit {
           this.playlistService.playList = [];
           this.dialog.closeAll();
           this.saveService.updatePlaylist();
-          this.notifier.notify('warning', this.translate.instant('notifier.delete'));
+          this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
         }
       });
     }

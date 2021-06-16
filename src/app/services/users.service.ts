@@ -14,15 +14,16 @@ export class UsersService {
   idUser = "";
   listUsers: Users[] = [];
   randomId;
+  imgChoose;
 
   constructor() {
   }
 
-  addUser(name, img){
+  addUser(name){
     let newUser: Users = {
       name: name,
       id: this.getId(),
-      thumbnail: img
+      thumbnail: this.imgChoose
     }
     this.listUsers.push(newUser);
   }

@@ -126,7 +126,6 @@ export class PlaylistComponent implements OnInit {
       this.theme = value;
     });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
-    console.log(this.usersService.idUser);
     setTimeout(() => {
       this.playList = this.playlistService.playList;
       if (this.isPlaylistEmpty()){

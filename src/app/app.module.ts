@@ -50,6 +50,8 @@ import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/
 import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
 import { UserComponent } from './userPage/user.component';
 import { UserFormComponent } from './playlist/dialogComponents/userForm/user-form.component';
+import { DeleteUserComponent } from './playlist/dialogComponents/deleteUser/delete-user.component';
+import { ChooseImgComponent } from './playlist/dialogComponents/chooseImgUser/choose-img.component';
 
 /**
  * Import module Sub-Application
@@ -92,7 +94,9 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     MapPipe,
     AlertComponent,
     UserComponent,
-    UserFormComponent
+    UserFormComponent,
+    DeleteUserComponent,
+    ChooseImgComponent
   ],
     imports: [
         BrowserModule,
