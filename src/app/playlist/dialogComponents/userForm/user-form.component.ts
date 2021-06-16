@@ -34,6 +34,11 @@ export class UserFormComponent implements OnInit {
     this.name = event.target.value;
   }
 
+  /**
+   * @param event
+   *
+   * Get the image choose by the user
+   */
   addImage(event){
     const image = event.target.files[0];
     const reader = new FileReader();
@@ -45,6 +50,9 @@ export class UserFormComponent implements OnInit {
     this.showImgChoose = true;
   }
 
+  /**
+   * Launch the chooseImgDialog, that permit to the user to choose an image
+   */
   goChooseImg(){
     const chooseImgDialog = this.dialog.open(ChooseImgComponent, {height: '100%'});
     chooseImgDialog.afterClosed().subscribe(() => {
@@ -54,12 +62,15 @@ export class UserFormComponent implements OnInit {
   }
 
   /**
-   * If the user cancel the save then close the DialogComponent
+   * If the user cancel then close the DialogComponent
    */
   public goCancel(){
     this.dialog.closeAll();
   }
 
+  /**
+   * If the name and the image is not empty, then create the user
+   */
   submit(){
     if (this.name != ""){
       this.errorNameEmpty = false;

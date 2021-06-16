@@ -20,6 +20,11 @@ export class UsersService {
   constructor() {
   }
 
+  /**
+   * @param name
+   *
+   * Add the new user in the user list
+   */
   addUser(name){
     let newUser: Users = {
       name: name,
@@ -29,10 +34,19 @@ export class UsersService {
     this.listUsers.push(newUser);
   }
 
+  /**
+   * @param user
+   *
+   * Delete the user choice from the user list
+   */
   deleteUser(user){
     return this.listUsers = this.listUsers.filter(value => value != user);
   }
 
+  /**
+   * Generate a random id
+   * while the id generated is already use, we generate a new id
+   */
   getId(){
     do {
       this.randomId = Math.floor(Math.random() * 10000000000).toString() + Date.now().toString();
@@ -40,6 +54,11 @@ export class UsersService {
     return this.randomId;
   }
 
+  /**
+   * @param id
+   *
+   * Check if the id is already use
+   */
   idAlreadyUse(id){
     let find = false;
     this.listUsers.forEach( value => {
@@ -50,6 +69,9 @@ export class UsersService {
     return find;
   }
 
+  /**
+   * Return the actual configuration
+   */
   getConfiguration(){
     return {
       'typeUser': this.typeUser,
@@ -57,6 +79,11 @@ export class UsersService {
     }
   }
 
+  /**
+   * @param config
+   *
+   * Update the variables with the new values
+   */
   setConfiguration(config){
     this.typeUser = config.typeUser;
     this.idUser = config.idUser;

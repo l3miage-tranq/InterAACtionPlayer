@@ -39,6 +39,9 @@ export class UserComponent implements OnInit {
     }, 200);
   }
 
+  /**
+   * Defined the current user like a guest
+   */
   goPlaylistLikeGuest(){
     this.usersService.typeUser = "guest";
     this.usersService.idUser = "guest";
@@ -49,6 +52,9 @@ export class UserComponent implements OnInit {
     this.router.navigate(['playlist']);
   }
 
+  /**
+   * Log the user with the account selected
+   */
   goPlaylistLikeUser(id){
     this.usersService.typeUser = "user";
     this.usersService.idUser = id;
@@ -56,6 +62,11 @@ export class UserComponent implements OnInit {
     this.router.navigate(['playlist']);
   }
 
+  /**
+   * @param user
+   *
+   * Allows the user to delete an account
+   */
   goDelete(user){
     const dialogDeleteUser = this.dialog.open(DeleteUserComponent);
     dialogDeleteUser.afterClosed().subscribe(() => {
@@ -67,6 +78,9 @@ export class UserComponent implements OnInit {
     });
   }
 
+  /**
+   * Allows the user to create a new user account
+   */
   addUser(){
     const dialogUser = this.dialog.open(UserFormComponent);
     dialogUser.afterClosed().subscribe(() => {
@@ -76,6 +90,9 @@ export class UserComponent implements OnInit {
     });
   }
 
+  /**
+   * When a new account is created, add him in the database
+   */
   addUserInDatabase(){
     this.defaultService.setToDefault();
     this.usersService.idUser = this.usersList[this.usersList.length -1].id;
@@ -84,6 +101,9 @@ export class UserComponent implements OnInit {
     this.saveService.updateMapPlaylist();
   }
 
+  /**
+   * Logout a user
+   */
   notLogging(){
     this.defaultService.setToDefault();
     this.saveService.updateUser();

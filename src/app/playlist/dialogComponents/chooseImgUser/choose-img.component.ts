@@ -26,6 +26,11 @@ export class ChooseImgComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * @param img
+   *
+   * Send the image choose by the user
+   */
   chooseImg(img){
     this.usersService.imgChoose = img;
   }

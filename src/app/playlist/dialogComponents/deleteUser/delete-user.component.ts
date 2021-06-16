@@ -12,8 +12,13 @@ export class DeleteUserComponent implements OnInit {
   security = "disabled";
 
   constructor(private dialog: MatDialog,
-              private usersService: UsersService) { }
+              private usersService: UsersService) {
+  }
 
+  /**
+   * Set a security on the button delete.
+   * The user can only click on the button after 3s
+   */
   ngOnInit(): void {
     setTimeout(() => {
       this.security = "";
@@ -21,12 +26,15 @@ export class DeleteUserComponent implements OnInit {
   }
 
   /**
-   * If the user cancel the save then close the DialogComponent
+   * If the user cancel then close the DialogComponent
    */
   public goCancel(){
     this.dialog.closeAll();
   }
 
+  /**
+   * When the user click set the wantDeleteUser value to true for start the delete
+   */
   public submit(){
     this.usersService.wantDeleteUser = true;
     this.dialog.closeAll();
