@@ -148,7 +148,11 @@
     "title": "User Page",
     "defaultUser": "Default User",
     "addUser": "Add New User",
-    "delete": "Delete"
+    "delete": "Delete",
+    "french": "French",
+    "english": "English",
+    "sun": "Light theme",
+    "moon": "Dark theme"
   },
   "userForm": {
     "title": "New User",

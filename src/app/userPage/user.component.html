@@ -1,3 +1,27 @@
+<div [ngClass]="theme" class="ui secondary menu">
+  <div class="right menu">
+    <a class="ui item" (click)="setTheme('')"
+       matTooltip="{{'user.sun' | translate}}"
+       matTooltipPosition="before">
+      <i class="sun icon"></i>
+    </a>
+    <a class="ui item" (click)="setTheme('inverted')"
+       matTooltip="{{'user.moon' | translate}}"
+       matTooltipPosition="before">
+      <i class="moon icon"></i>
+    </a>
+    <a class="ui item" (click)="setLanguage('fr')"
+       matTooltip="{{'user.french' | translate}}"
+       matTooltipPosition="before">
+      <i class="fr flag"></i>
+    </a>
+    <a class="ui item" (click)="setLanguage('en')"
+       matTooltip="{{'user.english' | translate}}"
+       matTooltipPosition="before">
+      <i class="gb uk flag"></i>
+    </a>
+  </div>
+</div>
 <div class="ui centered grid">
   <div class="fourteen wide column">
     <h1 [ngClass]="theme" class="ui centered aligned header">

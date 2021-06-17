@@ -148,7 +148,11 @@
     "title": "Page Utilisateur",
     "defaultUser": "Utilisateur par défault",
     "addUser": "Ajouter un utilisateur",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "french": "Français",
+    "english": "Anglais",
+    "sun": "Thème clair",
+    "moon": "Thème sombre"
   },
   "userForm": {
     "title": "Nouvelle utilisateur",

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserFormComponent } from '../playlist/dialogComponents/userForm/user-form.component';
 import { Router } from '@angular/router';
+import { UserFormComponent } from '../playlist/dialogComponents/userForm/user-form.component';
+import { DeleteUserComponent } from '../playlist/dialogComponents/deleteUser/delete-user.component';
 
 /**
  * Import Services
@@ -10,7 +11,7 @@ import { ThemeService } from '../services/theme.service';
 import { SaveService } from '../services/save.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
-import {DeleteUserComponent} from '../playlist/dialogComponents/deleteUser/delete-user.component';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-user',
@@ -28,12 +29,16 @@ export class UserComponent implements OnInit {
               private router: Router,
               private themeService: ThemeService,
               private saveService: SaveService,
-              private defaultService: DefaultService) {
+              private defaultService: DefaultService,
+              private languageService: LanguageService) {
   }
 
   ngOnInit(): void {
     this.theme = this.themeService.theme;
     this.notLogging();
+    this.themeService.themeObservable.subscribe(value => {
+      this.theme = value;
+    });
     setTimeout(() => {
       this.usersList = this.usersService.listUsers;
     }, 200);
@@ -107,5 +112,23 @@ export class UserComponent implements OnInit {
   notLogging(){
     this.defaultService.setToDefault();
     this.saveService.updateUser();
+  }
+
+  /**
+   * @param value
+   *
+   * Set the theme according with the choice of the user
+   */
+  setTheme(value){
+    this.themeService.emitTheme(value);
+  }
+
+  /**
+   * @param value
+   *
+   * Set the language according with the choice of the user
+   */
+  setLanguage(value){
+    this.languageService.switchLanguage(value);
   }
 }
