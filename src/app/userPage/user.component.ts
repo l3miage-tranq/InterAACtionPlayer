@@ -76,6 +76,7 @@ export class UserComponent implements OnInit {
     const dialogDeleteUser = this.dialog.open(DeleteUserComponent);
     dialogDeleteUser.afterClosed().subscribe(() => {
       if (this.usersService.wantDeleteUser){
+        this.usersService.wantDeleteUser = false;
         this.usersList = this.usersService.deleteUser(user);
         this.saveService.updateListUsers();
         this.saveService.deleteUser(user.id);

@@ -28,8 +28,6 @@ export class DefaultService {
     this.dwellTimeService.dwellTimeValue = 1000;
     this.dwellTimeService.dwellTimeSpinnerOutsideBtn = true;
     this.dwellTimeService.diskProgress = true;
-    this.languageService.switchLanguage('en');
-    this.themeService.emitTheme("inverted");
     this.alertService.doNotShowAgain = false;
     this.playlistService.playList = [];
     this.playlistService.mapPlaylist = new Map();
