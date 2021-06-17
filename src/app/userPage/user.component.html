@@ -1,5 +1,10 @@
 <div [ngClass]="theme" class="ui secondary menu">
   <div class="right menu">
+    <a class="ui item" (click)="goEdit()"
+       matTooltip="{{'user.editBtn' | translate}}"
+       matTooltipPosition="before">
+      <i class="edit icon"></i>
+    </a>
     <a class="ui item" (click)="setTheme('')"
        matTooltip="{{'user.sun' | translate}}"
        matTooltipPosition="before">
@@ -54,7 +59,7 @@
     <br>
     <hr>
     <div class="ui four column grid">
-      <div class="column" *ngFor="let elem of usersList">
+      <div class="column" *ngFor="let elem of usersList; let index = index">
         <div [ngClass]="theme" class="ui card">
           <div class="content">
             <h3 class="ui centered aligned header">
@@ -64,7 +69,10 @@
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
           </div>
-          <button *ngIf="elem.type != 'btnAdd'" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
+          <button *ngIf="showBtn" class="ui right floated tiny blue right labeled icon button" (click)="goModify(elem, index)">
+            {{"user.modify" | translate}}
+          </button>
+          <button *ngIf="showBtn" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
             {{"user.delete" | translate}}
           </button>
         </div>

@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
+/**
+ * Import Components
+ */
 import { UserFormComponent } from '../playlist/dialogComponents/userForm/user-form.component';
 import { DeleteUserComponent } from '../playlist/dialogComponents/deleteUser/delete-user.component';
+import { ModifyUserComponent } from '../playlist/dialogComponents/modifyUser/modify-user.component';
 
 /**
  * Import Services
@@ -23,6 +28,7 @@ export class UserComponent implements OnInit {
   usersList = [];
 
   theme = "";
+  showBtn = false;
 
   constructor(private usersService: UsersService,
               private dialog: MatDialog,
@@ -85,11 +91,30 @@ export class UserComponent implements OnInit {
   }
 
   /**
+   * @param user
+   * @param index
+   *
+   * Allows the user to modify his name or image
+   */
+  goModify(user, index){
+    this.usersService.userToModify = user;
+    const dialogModifyUser = this.dialog.open(ModifyUserComponent);
+    dialogModifyUser.afterClosed().subscribe(() => {
+      if (this.usersService.wantModifyUser){
+        this.usersService.wantModifyUser = false;
+        this.usersList[index] = this.usersService.userToModify;
+        this.usersService.listUsers = this.usersList;
+        this.saveService.updateListUsers();
+      }
+    });
+  }
+
+  /**
    * Allows the user to create a new user account
    */
   addUser(){
-    const dialogUser = this.dialog.open(UserFormComponent);
-    dialogUser.afterClosed().subscribe(() => {
+    const dialogAddUser = this.dialog.open(UserFormComponent);
+    dialogAddUser.afterClosed().subscribe(() => {
       this.usersList = this.usersService.listUsers;
       this.saveService.updateListUsers();
       this.addUserInDatabase();
@@ -131,5 +156,12 @@ export class UserComponent implements OnInit {
    */
   setLanguage(value){
     this.languageService.switchLanguage(value);
+  }
+
+  /**
+   * Allows to display or hide buttons Modify and Delete
+   */
+  goEdit(){
+    this.showBtn = !this.showBtn;
   }
 }

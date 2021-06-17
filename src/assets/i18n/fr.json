@@ -88,6 +88,17 @@
     "yes": "Oui",
     "no": "Non"
   },
+  "modifyUser": {
+    "title": "Modifier l'utilisateur",
+    "name": "Nouveau nom",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Nouvelle image",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Modifer"
+  },
   "importFilePlaylist": {
     "title": "Ajouter un fichier local à la Playlist",
     "type": "Type de fichier",
@@ -149,10 +160,12 @@
     "defaultUser": "Utilisateur par défault",
     "addUser": "Ajouter un utilisateur",
     "delete": "Supprimer",
+    "modify": "Modifier",
     "french": "Français",
     "english": "Anglais",
     "sun": "Thème clair",
-    "moon": "Thème sombre"
+    "moon": "Thème sombre",
+    "editBtn": "Mode édition"
   },
   "userForm": {
     "title": "Nouvelle utilisateur",

@@ -16,6 +16,8 @@ export class UsersService {
   randomId;
   imgChoose;
   wantDeleteUser = false;
+  userToModify;
+  wantModifyUser = false;
 
   constructor() {
   }

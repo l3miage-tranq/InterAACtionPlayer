@@ -86,6 +86,5 @@ export class UserFormComponent implements OnInit {
     }else {
       this.errorNameEmpty = true;
     }
-
   }
 }
