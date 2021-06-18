@@ -71,10 +71,10 @@
                 <div class="description">
                   {{ elem.description?.slice(0,50) }}
                 </div>
-                <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
-                  {{ "playlist.delete" | translate }}
-                </button>
               </div>
+              <button class="ui right floated tiny red right labeled icon button" *ngIf="edit && elem.types != 'btnAdd'" (click)="goDelete(this.elem)">
+                {{ "playlist.delete" | translate }}
+              </button>
             </div>
           </div>
         </div>

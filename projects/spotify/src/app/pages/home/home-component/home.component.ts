@@ -22,7 +22,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getNewReleases();
+    setTimeout(() => {
+      this.getNewReleases();
+    }, 300);
   }
 
   /**

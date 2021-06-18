@@ -386,4 +386,29 @@ export class SaveService {
       alert('Database error: ' + event.target.errorCode);
     };
   }
+
+  getUser(){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Recovery of User
+      const userStore = db.transaction(['user'], 'readwrite').objectStore('user').get(1);
+      userStore.onsuccess = e => {
+        this.userService.setConfiguration(userStore.result);
+      };
+      userStore.onerror = event => {
+        alert('userStore error: ' + event.target.errorCode);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
 }

@@ -111,7 +111,7 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     DeezerSharedModule.forRoot(),
     RouterModule.forRoot([
       {path: 'user', component: UserComponent},
-      {path: 'playlist', canActivate:[AuthguardService], component: PlaylistComponent},
+      {path: 'playlist', component: PlaylistComponent},
       {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},

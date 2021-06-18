@@ -29,6 +29,7 @@ import { NotifierService } from 'angular-notifier';
 import { AudioService } from './services/audio.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
+import { AuthguardService } from '../services/authguard.service';
 
 /**
  * Import Models
@@ -82,6 +83,7 @@ export class PlaylistComponent implements OnInit {
   private audioService: AudioService;
   private defaultService: DefaultService;
   private usersService: UsersService;
+  private authGuardService: AuthguardService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -95,7 +97,8 @@ export class PlaylistComponent implements OnInit {
               globalService: GlobalService,
               audioService: AudioService,
               defaultService: DefaultService,
-              usersService: UsersService) {
+              usersService: UsersService,
+              authGuardService: AuthguardService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -111,6 +114,7 @@ export class PlaylistComponent implements OnInit {
     this.audioService = audioService;
     this.defaultService = defaultService;
     this.usersService = usersService;
+    this.authGuardService = authGuardService;
   }
 
   /**
@@ -121,7 +125,7 @@ export class PlaylistComponent implements OnInit {
    * Then check if the playlist is empty, if it's the case active the edit mode
    */
   ngOnInit(): void {
-    this.saveService.initPlaylist(this.usersService.idUser);
+    this.authGuardService.canAccess();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
     });

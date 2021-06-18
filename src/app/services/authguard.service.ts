@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { UsersService } from './users.service';
+import { SaveService } from './save.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardService implements CanActivate{
+export class AuthguardService{
 
   constructor(private usersService: UsersService,
-              private router: Router) {
+              private router: Router,
+              private saveService: SaveService) {
   }
 
   /**
-   * @param route
-   * @param state
-   *
    * Check if the user is logged, else we return the user on the user page
    */
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.usersService.idUser != "" && this.usersService.typeUser != ""){
-      return true;
-    } else {
-      this.router.navigate(['user']);
-    }
+  canAccess(){
+    this.saveService.getUser();
+    setTimeout(() => {
+      if (this.usersService.idUser != "" && this.usersService.typeUser != ""){
+        this.saveService.initPlaylist(this.usersService.idUser);
+      } else {
+        this.router.navigate(['user']);
+      }
+    },300);
   }
 }

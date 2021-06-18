@@ -40,8 +40,8 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.theme = this.themeService.theme;
     this.notLogging();
+    this.theme = this.themeService.theme;
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
     });
