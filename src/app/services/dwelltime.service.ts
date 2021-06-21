@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class DwelltimeService {
 
   dwellTime: boolean = false;
-  dwellTimeValue = 1000; // In milliseconds
+  dwellTimeValue = 5000; // In milliseconds
   dwellTimeSpinnerOutsideBtn = true;
   diskProgress: boolean = true;
 
