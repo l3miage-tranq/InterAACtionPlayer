@@ -30,6 +30,7 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(private audioService: AudioService) {
     this.volume = audioService.startVolume;
+    this.audioService.audioPlay = false;
   }
 
   /**
