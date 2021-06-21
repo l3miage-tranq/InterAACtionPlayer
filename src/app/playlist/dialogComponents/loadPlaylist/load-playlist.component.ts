@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../alert/alert.component';
 
 /**
  * Import Services
@@ -9,7 +10,6 @@ import { NotifierService } from 'angular-notifier';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from '../../services/alert.service';
-import {AlertComponent} from '../alert/alert.component';
 
 @Component({
   selector: 'app-load-playlist',
@@ -42,6 +42,13 @@ export class LoadPlaylistComponent implements OnInit {
    */
   sendKey(name: string){
     this.getKey = name;
+  }
+
+  /**
+   * Check if the mapPlaylist is empty
+   */
+  isMapEmpty(){
+    return this.mapPlaylist.size == 0;
   }
 
   /**

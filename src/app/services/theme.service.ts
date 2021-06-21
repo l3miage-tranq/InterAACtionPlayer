@@ -10,6 +10,7 @@ export class ThemeService {
 
   /* theme = "" -> light theme / theme = "inverted" -> dark theme */
   public theme = "inverted";
+  public themeBody = "darkMode";
 
   constructor() {
   }

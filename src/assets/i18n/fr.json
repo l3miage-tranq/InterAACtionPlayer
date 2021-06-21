@@ -11,12 +11,12 @@
     "addPlaylist": " ajouté à la Playlist !",
     "savePlaylist": "La Playlist a été sauvegarder !",
     "importPlaylist": "Importation de la Playlist réussi !",
-    "delete": "La Playlist a été effacer !",
     "prefabricatedPlaylist": "La Playlist pré-enregistré à été ajouté !",
     "addAll": "Toutes les musiques ont été ajouté dans la Playlist !",
     "deleteAll": "Toutes les musiques ont été supprimé de la Playlist !",
     "loadPlaylist": "Playlist charger !",
-    "deletePlaylist": "Playlist supprimé !"
+    "deletePlaylist": "Playlist supprimé !",
+    "deleteUser": "Utilisateur supprimé !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -27,7 +27,8 @@
     "editBtn": "Mode édition",
     "settingsBtn": "Paramètres",
     "deleteBtn": "Effacer la Playlist",
-    "loadBtn": "Charger une Playlist"
+    "loadBtn": "Charger une Playlist",
+    "logoutBtn": "Déconnexion"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
@@ -65,7 +66,8 @@
     "cancel": "Annuler",
     "load": "Charger",
     "errorMessage": "Aucune box cocher !",
-    "deleteBtn": "Effacer"
+    "deleteBtn": "Effacer",
+    "empty": "Vide"
   },
   "exportFile": {
     "title": "Exporter la Playlist ?",
@@ -79,6 +81,23 @@
     "text": "Voulez-vous effacer cette Playlist ?",
     "yes": "Oui",
     "no": "Non"
+  },
+  "deleteUser": {
+    "title": "Effacer cette utilisateur ?",
+    "text": "Voulez-vous effacer cette utilisateur ?",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "modifyUser": {
+    "title": "Modifier l'utilisateur",
+    "name": "Nouveau nom",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Nouvelle image",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Modifer"
   },
   "importFilePlaylist": {
     "title": "Ajouter un fichier local à la Playlist",
@@ -119,6 +138,45 @@
     "no" : "Non",
     "yes": "Oui",
     "doNotShowAgain": " Ne plus afficher !"
+  },
+  "chooseType": {
+    "title": "Choisie un multimédia",
+    "prefabricated": "Playlist préfaite"
+  },
+  "chooseImage":{
+    "title": "Choisie une image",
+    "crab": "Choisir le Crabe",
+    "squirrel": "Choisir l'Ecureuil",
+    "hedgehog": "Choisir le Hérisson",
+    "owl": "Choisir le Hibou",
+    "rabbit": "Choisir le Lapin",
+    "astonished": "Choisir la Méduse",
+    "octopus": "Choisir le Poulpe",
+    "fox": "Choisir le Renard",
+    "turtle": "Choisir la Tortue"
+  },
+  "user": {
+    "title": "Page Utilisateur",
+    "defaultUser": "Utilisateur par défault",
+    "addUser": "Ajouter un utilisateur",
+    "delete": "Supprimer",
+    "modify": "Modifier",
+    "french": "Français",
+    "english": "Anglais",
+    "sun": "Thème clair",
+    "moon": "Thème sombre",
+    "editBtn": "Mode édition"
+  },
+  "userForm": {
+    "title": "Nouvelle utilisateur",
+    "name": "Nom de l'utilisateur",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Image de l'utilisateur",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Créer"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"

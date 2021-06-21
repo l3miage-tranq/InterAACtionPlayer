@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
-import {PlaylistService} from '../../services/playlist.service';
 import { MatDialog } from '@angular/material/dialog';
+
+/**
+ * Import Services
+ */
+import { PlaylistService } from '../../services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';

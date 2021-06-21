@@ -42,6 +42,11 @@
            matTooltipPosition="before">
           <i class="cogs icon"></i>
         </a>
+        <a class="ui item" (click)="logout()"
+           matTooltip="{{'playlist.logoutBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="sign out icon"></i>
+        </a>
       </div>
     </div>
     <hr>
@@ -60,18 +65,16 @@
               <div class="content" *ngIf="elem.types != 'btnAdd'">
                 <a class="header">{{ elem.title }}</a>
                 <div class="meta">
-              <span class="date">
-                {{ elem.artists }}
-              </span>
+                  <span class="date">{{ elem.artists }}</span>
                   <span class="ui right floated date">{{ elem.publishedAt | date:'mediumDate' }}</span>
                 </div>
                 <div class="description">
                   {{ elem.description?.slice(0,50) }}
                 </div>
-                <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
-                  {{ "playlist.delete" | translate }}
-                </button>
               </div>
+              <button class="ui right floated tiny red right labeled icon button" *ngIf="edit && elem.types != 'btnAdd'" (click)="goDelete(this.elem)">
+                {{ "playlist.delete" | translate }}
+              </button>
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@
     </div>
     <div class="ui error message">
       <p *ngIf="errorEmptyCheckbox">{{ "loadPlaylist.errorMessage" | translate }}</p>
+      <p *ngIf="isMapEmpty()">{{ "loadPlaylist.empty" | translate }}</p>
     </div>
   </div>
 </div>

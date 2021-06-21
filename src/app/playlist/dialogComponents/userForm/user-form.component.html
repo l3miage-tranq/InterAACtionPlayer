@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>
+  {{"userForm.title" | translate}}
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div class="field required">
+      <label>
+        {{"userForm.name" | translate}}
+      </label>
+      <input type="text" placeholder="Enter your name =D" (keyup)="getNameUser($event)">
+      <div class="ui error message">
+        <p *ngIf="errorNameEmpty">
+          {{"userForm.nameEmpty" | translate}}
+        </p>
+      </div>
+    </div>
+    <div class="field required">
+      <label>
+        {{"userForm.image" | translate}}
+      </label>
+      <div class="ui buttons">
+        <button class="ui button" (click)="inputImg.click()">
+          {{"userForm.importImg" | translate}}
+          <input hidden type="file" accept="image/*" (change)="addImage($event)" #inputImg/>
+        </button>
+        <div class="or" data-text="or"></div>
+        <button class="ui button" tabindex="0" (click)="goChooseImg()">
+          {{"userForm.chooseImg" | translate}}
+        </button>
+      </div>
+      <div class="ui error message">
+        <p *ngIf="errorImgEmpty">
+          {{"userForm.imgEmpty" | translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <img *ngIf="showImgChoose" class="ui centered image" [src]="image" alt="">
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">
+    {{"userForm.cancel" | translate}}
+  </button>
+  <button class="ui button" (click)="submit()">
+    {{"userForm.submit" | translate}}
+  </button>
+</div>
