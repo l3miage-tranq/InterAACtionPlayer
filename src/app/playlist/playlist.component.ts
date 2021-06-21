@@ -36,6 +36,14 @@ import { AuthguardService } from '../services/authguard.service';
  */
 import { Types } from './model/types-interface';
 
+/**
+ * Import functions javascript
+ */
+declare var playDeezer: any;
+declare var pauseDeezer: any;
+declare var increaseVolumeDeezer: any;
+declare var decreaseVolumeDeezer: any;
+
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
@@ -564,6 +572,8 @@ export class PlaylistComponent implements OnInit {
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.playMusic(this.currentElem.id);
+    }else if (this.currentElem.types == "Deezer"){
+      playDeezer();
     }
   }
 
@@ -579,6 +589,8 @@ export class PlaylistComponent implements OnInit {
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.pauseMusic();
+    }else if (this.currentElem.types == "Deezer"){
+      pauseDeezer();
     }
   }
 
@@ -606,6 +618,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      decreaseVolumeDeezer();
     }
   }
 
@@ -633,6 +647,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      increaseVolumeDeezer();
     }
   }
 

@@ -107,13 +107,9 @@
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
-      <iframe *ngIf="currentElem.types == 'Deezer'" id="myDeezerSong" class="ui header"
-              [src]="currentElem.id | dz"
-              [width]="width"
-              [height]="height"
-              allowtransparency="true"
-              allow="encrypted-media">
-      </iframe>
+      <div *ngIf="currentElem.types == 'Deezer'" id="myDeezerSong" class="ui header">
+        <app-deezer-player *ngIf="refresh == false" [id]="currentElem.id"></app-deezer-player>
+      </div>
       <div *ngIf="currentElem.types == 'song'" id="myFileAudio" class="ui header">
         <app-audio-player *ngIf="refresh == false" [elemPlaylist]="currentElem" [src]="getSrcFile()"></app-audio-player>
       </div>

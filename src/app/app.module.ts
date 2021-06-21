@@ -42,7 +42,7 @@ import { ExportfileComponent } from './playlist/dialogComponents/exportFile/expo
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
-import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
+import { AudioPlayerComponent } from './playlist/audioPlayer/filePlayer/audio-player.component';
 import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylist/delete-dialog.component';
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
@@ -53,6 +53,7 @@ import { UserFormComponent } from './playlist/dialogComponents/userForm/user-for
 import { DeleteUserComponent } from './playlist/dialogComponents/deleteUser/delete-user.component';
 import { ChooseImgComponent } from './playlist/dialogComponents/chooseImgUser/choose-img.component';
 import { ModifyUserComponent } from './playlist/dialogComponents/modifyUser/modify-user.component';
+import { DeezerPlayerComponent } from './playlist/audioPlayer/deezerPlayer/deezer-player.component';
 
 /**
  * Import module Sub-Application
@@ -98,7 +99,8 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     UserFormComponent,
     DeleteUserComponent,
     ChooseImgComponent,
-    ModifyUserComponent
+    ModifyUserComponent,
+    DeezerPlayerComponent
   ],
   imports: [
     BrowserModule,
