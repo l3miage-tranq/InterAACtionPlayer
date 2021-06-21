@@ -24,12 +24,12 @@ var startVisualizer = function() {
     capHeight = 2,
     capStyle = '#fff',
     meterNum = 800 / (10 + 2), //count of the meters
-    capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
+    capYPositionArray = []; ////store the vertical position of hte caps for the previous frame
   ctx = canvas.getContext('2d'),
     gradient = ctx.createLinearGradient(0, 0, 0, 300);
-  gradient.addColorStop(1, '#0f0');
-  gradient.addColorStop(0.5, '#ff0');
-  gradient.addColorStop(0, '#f00');
+  for (var i = 0.0; i<=1.0; i = i + 0.1){
+    gradient.addColorStop(i, randomColor());
+  }
   // loop
   function renderFrame() {
     var array = new Uint8Array(analyser.frequencyBinCount);
@@ -56,3 +56,17 @@ var startVisualizer = function() {
   }
   renderFrame();
 };
+
+/**
+ * @returns {string}
+ *
+ * Allows to generate a random color
+ */
+var randomColor = function (){
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i<6; i++){
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
