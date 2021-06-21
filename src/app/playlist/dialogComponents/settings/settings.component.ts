@@ -28,6 +28,8 @@ export class SettingsComponent implements OnInit {
   disableAlertMessage: boolean;
 
   themeLightEnable: boolean = true;
+  themeLightValue = "";
+  themeDarkValue = "";
   themeValue = "";
 
   moreLanguages: boolean = false;
@@ -54,18 +56,29 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.themeLightEnable){
+      this.themeLightValue = "positive";
+    }else {
+      this.themeDarkValue = "positive";
+    }
   }
 
   /**
-   * Actualize themeValue depending on the box checked by the user
+   * Set the theme to light
    */
-  toggleTheme(){
-    this.themeLightEnable = !this.themeLightEnable;
-    if (this.themeLightEnable){
+  toggleThemeLight(){
       this.themeValue = "";
-    }else {
-      this.themeValue = "inverted";
-    }
+      this.themeLightValue = "positive";
+      this.themeDarkValue = "";
+  }
+
+  /**
+   * Set the theme to dark
+   */
+  toggleThemeDark(){
+    this.themeValue = "inverted";
+    this.themeLightValue = "";
+    this.themeDarkValue = "positive";
   }
 
   /**

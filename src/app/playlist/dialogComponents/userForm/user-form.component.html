@@ -23,7 +23,7 @@
           {{"userForm.importImg" | translate}}
           <input hidden type="file" accept="image/*" (change)="addImage($event)" #inputImg/>
         </button>
-        <div class="or" data-text="or"></div>
+        <div class="or" attr.data-text="{{'userForm.or' | translate}}"></div>
         <button class="ui button" tabindex="0" (click)="goChooseImg()">
           {{"userForm.chooseImg" | translate}}
         </button>

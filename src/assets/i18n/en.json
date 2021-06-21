@@ -38,8 +38,6 @@
     "light": "Light",
     "dark": "Dark",
     "languages": "Languages",
-    "yes": "Yes",
-    "no": "No",
     "duration": "Dwell Time duration",
     "cancel": "Cancel",
     "save": "Save",
@@ -49,7 +47,9 @@
     "spinnerOutside": "Outside",
     "alertMessage": "Disable Alert message",
     "diskProgress": "Disk progress",
-    "circleProgress": "Circle progress"
+    "circleProgress": "Circle progress",
+    "or": "or",
+    "enable": "Enable"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",
@@ -176,7 +176,8 @@
     "chooseImg": "Choose",
     "imgEmpty": "Image is empty !",
     "cancel": "Cancel",
-    "submit": "Create"
+    "submit": "Create",
+    "or": "or"
   },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"
