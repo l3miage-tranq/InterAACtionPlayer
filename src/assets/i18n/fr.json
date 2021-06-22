@@ -38,8 +38,6 @@
     "light": "Clair",
     "dark": "Sombre",
     "languages": "Langues",
-    "yes": "Oui",
-    "no": "Non",
     "duration": "Durée du Dwell Time",
     "cancel": "Annuler",
     "save": "Sauvegarder",
@@ -48,8 +46,10 @@
     "spinnerInside": "Intérieur",
     "spinnerOutside": "Extérieur",
     "alertMessage": "Désactiver message d'alert",
-    "diskProgress": "Progression en forme de disque",
-    "circleProgress": "Progression en forme de cercle"
+    "diskProgress": "Disque",
+    "circleProgress": "Cercle",
+    "or": "ou",
+    "enable": "Activer"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",
@@ -120,7 +120,10 @@
     "options": "Options",
     "authorizedSong": "* seulement .mpeg & .wav sont autorisés !",
     "authorizedVideo": "* seulement .mp4 & .webm sont autorisés !",
-    "authorizedFile": "* seulement .json est autorisé !"
+    "authorizedFile": "* seulement .json est autorisé !",
+    "or": "ou",
+    "import": "Importer fichier",
+    "acceptedFile": "Fichier bien reçu"
   },
   "prefabricatedPlaylist": {
     "title": "Playlist pré-enregistré",
@@ -176,7 +179,8 @@
     "chooseImg": "Choisir",
     "imgEmpty": "Image vide !",
     "cancel": "Annuler",
-    "submit": "Créer"
+    "submit": "Créer",
+    "or": "ou"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"

@@ -24,10 +24,14 @@ export class SettingsComponent implements OnInit {
   dwellTimeSpinnerOutsideBtn = true;
 
   diskProgress: boolean;
+  diskValue = "";
+  circleValue = "";
 
   disableAlertMessage: boolean;
 
   themeLightEnable: boolean = true;
+  themeLightValue = "";
+  themeDarkValue = "";
   themeValue = "";
 
   moreLanguages: boolean = false;
@@ -54,18 +58,35 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.themeLightEnable){
+      this.themeLightValue = "positive";
+    }else {
+      this.themeDarkValue = "positive";
+    }
+
+    if (this.diskProgress){
+      this.diskValue = "positive";
+    }else {
+      this.circleValue = "positive";
+    }
   }
 
   /**
-   * Actualize themeValue depending on the box checked by the user
+   * Set the theme to light
    */
-  toggleTheme(){
-    this.themeLightEnable = !this.themeLightEnable;
-    if (this.themeLightEnable){
-      this.themeValue = "";
-    }else {
-      this.themeValue = "inverted";
-    }
+  toggleThemeLight(){
+    this.themeValue = "";
+    this.themeDarkValue = "";
+    this.themeLightValue = "positive";
+  }
+
+  /**
+   * Set the theme to dark
+   */
+  toggleThemeDark(){
+    this.themeValue = "inverted";
+    this.themeLightValue = "";
+    this.themeDarkValue = "positive";
   }
 
   /**
@@ -82,8 +103,26 @@ export class SettingsComponent implements OnInit {
     this.dwellTimeSpinnerOutsideBtn = value;
   }
 
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Disk
+   */
   diskProgressMode(value: boolean){
     this.diskProgress = value;
+    this.diskValue = "positive";
+    this.circleValue = "";
+  }
+
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Circle
+   */
+  circleProgressMode(value: boolean){
+    this.diskProgress = value;
+    this.diskValue = "";
+    this.circleValue = "positive";
   }
 
   /**
