@@ -15,14 +15,15 @@ export class DwelltimeService {
   public dwellTimeSpinnerSize = new Subject<number>();
   public diskProgressObs = new Subject<boolean>();
 
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Allows the user to choose if he want the spinner :
    *  - Outside of the button;
    *  - Or inside the button;
    */
-  getSizeDwellTimeSpinner(){
+  setSizeDwellTimeSpinner(){
     if (this.dwellTimeSpinnerOutsideBtn){
       this.dwellTimeSpinnerSize.next(190);
     }else {
@@ -31,9 +32,20 @@ export class DwelltimeService {
   }
 
   /**
+   * Allows to get the right value for the diameter of the dwellTimeSpinner
+   */
+  getSizeDwellTimeSpinner(){
+    if (this.dwellTimeSpinnerOutsideBtn){
+      return 190;
+    }else {
+      return 150;
+    }
+  }
+
+  /**
    * Update the type of the spinner chooser by the user
    */
-  getDiskProgress(){
+  setDiskProgress(){
     this.diskProgressObs.next(this.diskProgress);
   }
 
