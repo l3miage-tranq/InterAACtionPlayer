@@ -120,7 +120,10 @@
     "options": "Options",
     "authorizedSong": "* only .mpeg & .wav are authorized !",
     "authorizedVideo": "* only .mp4 & .webm are authorized !",
-    "authorizedFile": "* only .json is authorized !"
+    "authorizedFile": "* only .json is authorized !",
+    "or": "or",
+    "import": "Import file",
+    "acceptedFile": "File well received"
   },
   "prefabricatedPlaylist": {
     "title": "Prefabricated Playlist",

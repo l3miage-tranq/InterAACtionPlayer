@@ -29,10 +29,14 @@ export class ImportfileComponent implements OnInit {
   public error = '';
   public optionsPlaylist = "new";
 
+  public acceptedFile = false;
   public errorEmptyFile = false;
   public errorWrongFile = false;
   public errorEmptyTitle = false;
   public errorFileAlreadyInPlaylist = false;
+
+  newPlaylistOption = "positive";
+  mergePlaylistOption = "";
 
   constructor(private dialog: MatDialog,
               private playlistService: PlaylistService,
@@ -111,6 +115,8 @@ export class ImportfileComponent implements OnInit {
    * Then set the alertService
    */
   public newPlaylist(){
+    this.mergePlaylistOption = "";
+    this.newPlaylistOption = "positive";
     this.optionsPlaylist = "new";
     this.alertService.setReplacePlaylist();
   }
@@ -120,6 +126,8 @@ export class ImportfileComponent implements OnInit {
    * Then set the alertService
    */
   public mergePlaylist(){
+    this.newPlaylistOption = "";
+    this.mergePlaylistOption = "positive";
     this.optionsPlaylist = "merge";
     this.alertService.setMergePlaylist();
   }
@@ -138,6 +146,7 @@ export class ImportfileComponent implements OnInit {
       reader.onload = () => {
         this.fileUpload = reader.result;
       };
+      this.acceptedFile = true;
     }else {
       this.fileUpload = event.target.files[0];
       const reader = new FileReader();
@@ -145,6 +154,7 @@ export class ImportfileComponent implements OnInit {
       reader.onload = () => {
         this.fileUpload = reader.result;
       };
+      this.acceptedFile = true;
     }
   }
 
@@ -247,13 +257,16 @@ export class ImportfileComponent implements OnInit {
               });
             }
           }else {
+            this.acceptedFile = false;
             this.errorEmptyTitle = true;
           }
         }
       } else {
+        this.acceptedFile = false;
         this.errorWrongFile = true;
       }
     }else {
+      this.acceptedFile = false;
       this.errorEmptyFile = true;
     }
   }

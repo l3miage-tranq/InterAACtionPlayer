@@ -5,7 +5,12 @@
   <div class="ui form error">
     <div class="field">
       <label>{{ 'exportFile.titleFile' | translate }}</label>
-      <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
+      <div class="ui right labeled input">
+        <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
+        <div class="ui basic label">
+          .json
+        </div>
+      </div>
     </div>
   </div>
 </div>
