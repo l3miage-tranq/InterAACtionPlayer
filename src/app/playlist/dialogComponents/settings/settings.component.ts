@@ -202,8 +202,8 @@ export class SettingsComponent implements OnInit {
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
       this.dwellTimeService.dwellTimeSpinnerOutsideBtn = this.dwellTimeSpinnerOutsideBtn;
-      this.dwellTimeService.getSizeDwellTimeSpinner();
-      this.dwellTimeService.getDiskProgress();
+      this.dwellTimeService.setSizeDwellTimeSpinner();
+      this.dwellTimeService.setDiskProgress();
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
       this.alertService.doNotShowAgain = this.disableAlertMessage;

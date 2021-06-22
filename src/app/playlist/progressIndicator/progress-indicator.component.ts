@@ -15,9 +15,12 @@ export class ProgressIndicatorComponent implements OnInit {
   diameterRoundProgress = 76;
   diskProgress: boolean;
 
-  constructor(private dwellTimeService: DwelltimeService) {}
+  constructor(private dwellTimeService: DwelltimeService) {
+  }
 
   ngOnInit(): void {
+    this.diskProgress = this.dwellTimeService.diskProgress;
+    this.diameterMatProgress = this.dwellTimeService.getSizeDwellTimeSpinner();
     this.dwellTimeService.dwellTimeSpinnerSize.subscribe(value => {
       this.diameterMatProgress = value;
     });
