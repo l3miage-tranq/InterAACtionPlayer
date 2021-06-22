@@ -46,8 +46,8 @@
     "spinnerInside": "Intérieur",
     "spinnerOutside": "Extérieur",
     "alertMessage": "Désactiver message d'alert",
-    "diskProgress": "Progression en forme de disque",
-    "circleProgress": "Progression en forme de cercle",
+    "diskProgress": "Disque",
+    "circleProgress": "Cercle",
     "or": "ou",
     "enable": "Activer"
   },

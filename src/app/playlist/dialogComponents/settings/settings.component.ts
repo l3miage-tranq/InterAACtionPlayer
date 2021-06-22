@@ -24,6 +24,8 @@ export class SettingsComponent implements OnInit {
   dwellTimeSpinnerOutsideBtn = true;
 
   diskProgress: boolean;
+  diskValue = "";
+  circleValue = "";
 
   disableAlertMessage: boolean;
 
@@ -61,15 +63,21 @@ export class SettingsComponent implements OnInit {
     }else {
       this.themeDarkValue = "positive";
     }
+
+    if (this.diskProgress){
+      this.diskValue = "positive";
+    }else {
+      this.circleValue = "positive";
+    }
   }
 
   /**
    * Set the theme to light
    */
   toggleThemeLight(){
-      this.themeValue = "";
-      this.themeLightValue = "positive";
-      this.themeDarkValue = "";
+    this.themeValue = "";
+    this.themeDarkValue = "";
+    this.themeLightValue = "positive";
   }
 
   /**
@@ -95,8 +103,26 @@ export class SettingsComponent implements OnInit {
     this.dwellTimeSpinnerOutsideBtn = value;
   }
 
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Disk
+   */
   diskProgressMode(value: boolean){
     this.diskProgress = value;
+    this.diskValue = "positive";
+    this.circleValue = "";
+  }
+
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Circle
+   */
+  circleProgressMode(value: boolean){
+    this.diskProgress = value;
+    this.diskValue = "";
+    this.circleValue = "positive";
   }
 
   /**

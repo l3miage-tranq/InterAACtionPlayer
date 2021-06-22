@@ -46,8 +46,8 @@
     "spinnerInside": "Inside",
     "spinnerOutside": "Outside",
     "alertMessage": "Disable Alert message",
-    "diskProgress": "Disk progress",
-    "circleProgress": "Circle progress",
+    "diskProgress": "Disk",
+    "circleProgress": "Circle",
     "or": "or",
     "enable": "Enable"
   },
