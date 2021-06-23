@@ -183,12 +183,10 @@ export class SettingsComponent implements OnInit {
   }
 
   /**
-   * @param value
-   *
-   * Get the choose of the user about the type of the progress spinner
+   * Enable or disable to display an alert message
    */
-  displayAlertMessage(value){
-    this.disableAlertMessage = value;
+  displayAlertMessage(){
+    this.disableAlertMessage = !this.disableAlertMessage;
   }
 
   /**

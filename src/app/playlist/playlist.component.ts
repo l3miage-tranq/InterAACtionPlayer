@@ -15,6 +15,7 @@ import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dia
 import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
 import { SavePlaylistComponent } from './dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './dialogComponents/loadPlaylist/load-playlist.component';
+import { AlertComponent } from './dialogComponents/alert/alert.component';
 
 /**
  * Import Services
@@ -30,6 +31,7 @@ import { AudioService } from './services/audio.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
 import { AuthguardService } from '../services/authguard.service';
+import { AlertService } from './services/alert.service';
 
 /**
  * Import Models
@@ -92,6 +94,7 @@ export class PlaylistComponent implements OnInit {
   private defaultService: DefaultService;
   private usersService: UsersService;
   private authGuardService: AuthguardService;
+  private alertService: AlertService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -106,7 +109,8 @@ export class PlaylistComponent implements OnInit {
               audioService: AudioService,
               defaultService: DefaultService,
               usersService: UsersService,
-              authGuardService: AuthguardService) {
+              authGuardService: AuthguardService,
+              alertService: AlertService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -123,6 +127,7 @@ export class PlaylistComponent implements OnInit {
     this.defaultService = defaultService;
     this.usersService = usersService;
     this.authGuardService = authGuardService;
+    this.alertService = alertService;
   }
 
   /**
@@ -315,16 +320,31 @@ export class PlaylistComponent implements OnInit {
    * @param elem -> item of Playlist
    *
    * Delete the item choose by the user of the Playlist
-   * Delete also the button Add to avoid him to be in the upadte Playlist who save the actual Playlist in the database Palylist Store
+   * Delete also the button Add to avoid him to be in the update Playlist who save the actual Playlist in the database Palylist Store
    * Then re add it
    */
   goDelete(elem: Types): void {
-    this.playList = this.playlistService.deleteToPlaylist(elem);
-    this.playList = this.playlistService.deleteBtnAdd();
-    this.saveService.updatePlaylist();
-    setTimeout(() => {
-      this.playlistService.addBtnAdd();
-    }, 100);
+    if (this.alertService.doNotShowAgain) {
+      this.playList = this.playlistService.deleteToPlaylist(elem);
+      this.playList = this.playlistService.deleteBtnAdd();
+      this.saveService.updatePlaylist();
+      setTimeout(() => {
+        this.playlistService.addBtnAdd();
+      }, 100);
+    }else {
+      this.alertService.setDeleteItemPlaylist();
+      const alertDialog = this.dialog.open(AlertComponent);
+      alertDialog.afterClosed().subscribe(() => {
+        if (!this.alertService.alertCancel){
+          this.playList = this.playlistService.deleteToPlaylist(elem);
+          this.playList = this.playlistService.deleteBtnAdd();
+          this.saveService.updatePlaylist();
+          setTimeout(() => {
+            this.playlistService.addBtnAdd();
+          }, 100);
+        }
+      });
+    }
   }
 
   /**

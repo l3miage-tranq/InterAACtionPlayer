@@ -135,9 +135,11 @@
     "titleMerge": "Watch Out, merge Playlist incoming !",
     "titleDelete": "Watch Out, delete Playlist incoming !",
     "titleReplace": "Watch Out, replace Playlist incoming !",
+    "titleItemDelete": "Watch Out, delete Item incoming !",
     "contentMerge": "Are you sure, you want to merge the current Playlist with the one you gave us ?",
     "contentDelete": "Are you sure, you want to delete the current Playlist ?",
     "contentReplace": "Are you sure, you want to replace the current Playlist with the one you gave us ?",
+    "contentItemDelete": "Are you sure, you want to delete this item of the Playlist ?",
     "no" : "No",
     "yes": "Yes",
     "doNotShowAgain": " Do Not Show Again !"

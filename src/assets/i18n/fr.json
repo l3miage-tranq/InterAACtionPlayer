@@ -135,9 +135,11 @@
     "titleMerge": "Attention, fusion de la Playlist demandé !",
     "titleDelete": "Attention, suppression de la Playlist demandé !",
     "titleReplace": "Attention, remplacement de la Playlist demandé !",
+    "titleItemDelete": "Attention, suppression de l'item demandé !",
     "contentMerge": "Êtes-vous sur de vouloir fusionner la Playlist actuelle avec celle que vous nous avez donné ?",
     "contentDelete": "Êtes-vous sur de vouloir supprimer la Playlist actuelle ?",
     "contentReplace": "Êtes-vous sur de vouloir remplacer la Playlist actuelle avec celle que vous nous avez donné ?",
+    "contentItemDelete": "Êtes-vous sur de vouloir supprimer cette item de la Playlist actuelle ?",
     "no" : "Non",
     "yes": "Oui",
     "doNotShowAgain": " Ne plus afficher !"
