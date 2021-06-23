@@ -320,11 +320,12 @@ export class PlaylistComponent implements OnInit {
    * @param elem -> item of Playlist
    *
    * Delete the item choose by the user of the Playlist
-   * Delete also the button Add to avoid him to be in the update Playlist who save the actual Playlist in the database Palylist Store
+   * Delete also the button Add to avoid him to be in the update Playlist who save the actual Playlist in the database Playlist Store
    * Then re add it
    */
   goDelete(elem: Types): void {
     if (this.alertService.doNotShowAgain) {
+      this.isCurrentElem(elem);
       this.playList = this.playlistService.deleteToPlaylist(elem);
       this.playList = this.playlistService.deleteBtnAdd();
       this.saveService.updatePlaylist();
@@ -336,6 +337,7 @@ export class PlaylistComponent implements OnInit {
       const alertDialog = this.dialog.open(AlertComponent);
       alertDialog.afterClosed().subscribe(() => {
         if (!this.alertService.alertCancel){
+          this.isCurrentElem(elem);
           this.playList = this.playlistService.deleteToPlaylist(elem);
           this.playList = this.playlistService.deleteBtnAdd();
           this.saveService.updatePlaylist();
@@ -344,6 +346,17 @@ export class PlaylistComponent implements OnInit {
           }, 100);
         }
       });
+    }
+  }
+
+  /**
+   * @param elem
+   *
+   * Check if the elem we want to delete is the current elem
+   */
+  isCurrentElem(elem){
+    if (elem.id == this.currentElem.id){
+      this.launch = false;
     }
   }
 
