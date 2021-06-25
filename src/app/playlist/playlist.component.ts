@@ -68,6 +68,9 @@ export class PlaylistComponent implements OnInit {
   fullScreen = false;
   disableDragDrop = false;
   theme = "";
+  disableBtnUndo = "disabled";
+  disableBtnRedo = "disabled";
+  index;
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
@@ -141,6 +144,10 @@ export class PlaylistComponent implements OnInit {
     this.authGuardService.canAccess();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
+    });
+    this.playlistService.indexAutoSave.subscribe(value => {
+      this.index = value;
+      this.checkIndex(value);
     });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
@@ -327,7 +334,6 @@ export class PlaylistComponent implements OnInit {
     if (this.alertService.doNotShowAgain) {
       this.isCurrentElem(elem);
       this.playList = this.playlistService.deleteToPlaylist(elem);
-      this.playList = this.playlistService.deleteBtnAdd();
       this.saveService.updatePlaylist();
       setTimeout(() => {
         this.playlistService.addBtnAdd();
@@ -339,7 +345,6 @@ export class PlaylistComponent implements OnInit {
         if (!this.alertService.alertCancel){
           this.isCurrentElem(elem);
           this.playList = this.playlistService.deleteToPlaylist(elem);
-          this.playList = this.playlistService.deleteBtnAdd();
           this.saveService.updatePlaylist();
           setTimeout(() => {
             this.playlistService.addBtnAdd();
@@ -355,8 +360,10 @@ export class PlaylistComponent implements OnInit {
    * Check if the elem we want to delete is the current elem
    */
   isCurrentElem(elem){
-    if (elem.id == this.currentElem.id){
-      this.launch = false;
+    if (this.currentElem != null){
+      if (elem.id == this.currentElem.id){
+        this.launch = false;
+      }
     }
   }
 
@@ -381,6 +388,49 @@ export class PlaylistComponent implements OnInit {
       this.refreshAudioPlayer();
       this.goOnElement();
       this.setDefaultVolume();
+    }
+  }
+
+  /**
+   * Allows to return in back
+   */
+  goUndo(){
+    this.isEditModeActive();
+    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index - 1];
+    this.playList = this.playlistService.playList;
+    this.saveService.updatePlaylist();
+    this.index -= 1;
+    this.checkIndex(this.index);
+  }
+
+  /**
+   * Allows to go forward
+   */
+  goRedo(){
+    this.isEditModeActive();
+    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index + 1];
+    this.playList = this.playlistService.playList;
+    this.saveService.updatePlaylist();
+    this.index += 1;
+    this.checkIndex(this.index);
+  }
+
+  /**
+   * @param value
+   *
+   * Allows to check if the user can go back or forward for avoid to go outside of the limit of the array
+   */
+  checkIndex(value){
+    if (value > 0){
+      this.disableBtnUndo = "";
+    }else {
+      this.disableBtnUndo = "disabled";
+    }
+
+    if (value < (this.playlistService.autoSavePlaylist.length - 1)){
+      this.disableBtnRedo = "";
+    }else {
+      this.disableBtnRedo = "disabled";
     }
   }
 
@@ -749,8 +799,9 @@ export class PlaylistComponent implements OnInit {
    * Then save this Playlist in database
    */
   dragDrop(event: CdkDragDrop<any>){
-      this.playList[event.previousContainer.data.index] = event.container.data.elem;
-      this.playList[event.container.data.index] = event.previousContainer.data.elem;
-      this.saveService.updatePlaylist();
+    this.playList[event.previousContainer.data.index] = event.container.data.elem;
+    this.playList[event.container.data.index] = event.previousContainer.data.elem;
+    this.saveService.updatePlaylist();
+    this.playlistService.addAutoSave();
   }
 }
