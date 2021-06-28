@@ -70,7 +70,7 @@ export class PlaylistComponent implements OnInit {
   theme = "";
   disableBtnUndo = "disabled";
   disableBtnRedo = "disabled";
-  index;
+  index = -1;
 
   idProgressIndicatorBtnNext = "nextProgressSpinner";
   idProgressIndicatorBtnPrevious = "previousProgressSpinner";
@@ -146,8 +146,10 @@ export class PlaylistComponent implements OnInit {
       this.theme = value;
     });
     this.playlistService.indexAutoSave.subscribe(value => {
-      this.index = value;
-      this.checkIndex(value);
+      if (this.index < 3){
+        this.index += value;
+      }
+      this.checkIndex(this.index);
     });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
@@ -396,6 +398,7 @@ export class PlaylistComponent implements OnInit {
    */
   goUndo(){
     this.isEditModeActive();
+    this.launch = false;
     this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index - 1];
     this.playList = this.playlistService.playList;
     this.saveService.updatePlaylist();
@@ -408,6 +411,7 @@ export class PlaylistComponent implements OnInit {
    */
   goRedo(){
     this.isEditModeActive();
+    this.launch = false;
     this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index + 1];
     this.playList = this.playlistService.playList;
     this.saveService.updatePlaylist();
@@ -801,7 +805,8 @@ export class PlaylistComponent implements OnInit {
   dragDrop(event: CdkDragDrop<any>){
     this.playList[event.previousContainer.data.index] = event.container.data.elem;
     this.playList[event.container.data.index] = event.previousContainer.data.elem;
+    this.playlistService.playList = this.playList;
     this.saveService.updatePlaylist();
-    this.playlistService.addAutoSave();
+    this.playlistService.addAutoSave(this.index);
   }
 }

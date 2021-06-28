@@ -151,7 +151,7 @@ export class SaveService {
       const playlistStore = db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').get(idUser);
       playlistStore.onsuccess = e => {
         this.playlistService.playList = playlistStore.result;
-        this.playlistService.addAutoSave();
+        this.playlistService.addAutoSave(-1);
       };
       playlistStore.onerror = event => {
         alert('PlaylistStore error: ' + event.target.errorCode);

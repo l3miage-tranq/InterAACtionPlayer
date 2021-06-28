@@ -342,17 +342,24 @@ export class PlaylistService{
 
   /**
    * Allows to save the last action of the user
-   * I do a tampon variable for cancel the pointer on the array
    */
-  addAutoSave(){
-    let tmp = [];
-    tmp = tmp.concat(this.playList);
-    if (this.autoSavePlaylist.length == 3){
-      this.autoSavePlaylist.shift();
+  addAutoSave(index){
+    let tmp = this.playList.slice();
+    if (index != (this.autoSavePlaylist.length - 1)){
+      console.log('je passe');
+      while (index != (this.autoSavePlaylist.length - 1)){
+        this.autoSavePlaylist.pop();
+      }
       this.autoSavePlaylist.push(tmp);
+    }else if (this.autoSavePlaylist.length == 4){
+      console.log(this.autoSavePlaylist);
+      this.autoSavePlaylist.shift();
+      console.log(this.autoSavePlaylist);
+      this.autoSavePlaylist.push(tmp);
+      console.log(this.autoSavePlaylist);
     }else {
       this.autoSavePlaylist.push(tmp);
     }
-    this.indexAutoSave.next(this.autoSavePlaylist.length - 1);
+    this.indexAutoSave.next(1);
   }
 }
