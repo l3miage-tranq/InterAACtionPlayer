@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Ajv from 'ajv';
+import { Subject } from 'rxjs';
 
 /**
  * Import Models
@@ -12,13 +13,19 @@ import { Video } from '../../../../projects/youtube/src/app/shared/models/search
   providedIn: 'root'
 })
 
-export class PlaylistService {
+export class PlaylistService{
+
+  // Allows to knows at which index we are on the autoSave array
+  public indexAutoSave = new Subject<number>();
 
   // The Playlist that is displayed on the web
   playList: Types[] = [];
 
   // A map who contains all the playlist save
   mapPlaylist = new Map();
+
+  // A array who contain a auto save from the playlist (max 3 slots use)
+  autoSavePlaylist = [];
 
   // Schema for the json validator
   schemaPlaylist = {
@@ -160,6 +167,7 @@ export class PlaylistService {
    * Delete the local file, passed in parameter, to the Playlist
    */
   deleteToPlaylist(file: Types){
+    this.deleteBtnAdd();
     return this.playList = this.playList.filter(value => value.title != file.title);
   }
 
@@ -330,5 +338,24 @@ export class PlaylistService {
    */
   playlistNameAlreadyInMap(name: string){
     return this.mapPlaylist.has(name);
+  }
+
+  /**
+   * Allows to save the last action of the user
+   */
+  addAutoSave(index){
+    let tmp = this.playList.slice();
+    if (index != (this.autoSavePlaylist.length - 1)){
+      while (index != (this.autoSavePlaylist.length - 1)){
+        this.autoSavePlaylist.pop();
+      }
+      this.autoSavePlaylist.push(tmp);
+    }else if (this.autoSavePlaylist.length == 4){
+      this.autoSavePlaylist.shift();
+      this.autoSavePlaylist.push(tmp);
+    }else {
+      this.autoSavePlaylist.push(tmp);
+    }
+    this.indexAutoSave.next(1);
   }
 }

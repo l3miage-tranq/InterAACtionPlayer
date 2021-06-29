@@ -28,7 +28,9 @@
     "settingsBtn": "Settings",
     "deleteBtn": "Delete Playlist",
     "loadBtn": "Load a Playlist",
-    "logoutBtn": "Logout"
+    "logoutBtn": "Logout",
+    "back": "Going back",
+    "forward": "Moving forward"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",
