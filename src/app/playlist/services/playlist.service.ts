@@ -346,17 +346,13 @@ export class PlaylistService{
   addAutoSave(index){
     let tmp = this.playList.slice();
     if (index != (this.autoSavePlaylist.length - 1)){
-      console.log('je passe');
       while (index != (this.autoSavePlaylist.length - 1)){
         this.autoSavePlaylist.pop();
       }
       this.autoSavePlaylist.push(tmp);
     }else if (this.autoSavePlaylist.length == 4){
-      console.log(this.autoSavePlaylist);
       this.autoSavePlaylist.shift();
-      console.log(this.autoSavePlaylist);
       this.autoSavePlaylist.push(tmp);
-      console.log(this.autoSavePlaylist);
     }else {
       this.autoSavePlaylist.push(tmp);
     }

@@ -233,6 +233,7 @@ export class PlaylistComponent implements OnInit {
     const loadPlaylist = this.dialog.open(LoadPlaylistComponent);
     loadPlaylist.afterClosed().subscribe( () => {
       this.playList = this.playlistService.playList;
+      this.playlistService.addAutoSave(this.index);
       if (this.isPlaylistEmpty()){
         this.goEdit();
         this.deleteCurrentElement()
@@ -251,6 +252,7 @@ export class PlaylistComponent implements OnInit {
     const importDialog = this.dialog.open(ImportfileComponent);
     importDialog.afterClosed().subscribe(() => {
       this.playList = this.playlistService.playList;
+      this.playlistService.addAutoSave(this.index);
       if (this.isPlaylistEmpty()){
         this.goEdit();
         this.deleteCurrentElement()
@@ -337,6 +339,7 @@ export class PlaylistComponent implements OnInit {
       this.isCurrentElem(elem);
       this.playList = this.playlistService.deleteToPlaylist(elem);
       this.saveService.updatePlaylist();
+      this.playlistService.addAutoSave(this.index);
       setTimeout(() => {
         this.playlistService.addBtnAdd();
       }, 100);
@@ -348,6 +351,7 @@ export class PlaylistComponent implements OnInit {
           this.isCurrentElem(elem);
           this.playList = this.playlistService.deleteToPlaylist(elem);
           this.saveService.updatePlaylist();
+          this.playlistService.addAutoSave(this.index);
           setTimeout(() => {
             this.playlistService.addBtnAdd();
           }, 100);
@@ -399,7 +403,7 @@ export class PlaylistComponent implements OnInit {
   goUndo(){
     this.isEditModeActive();
     this.launch = false;
-    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index - 1];
+    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index - 1].slice();
     this.playList = this.playlistService.playList;
     this.saveService.updatePlaylist();
     this.index -= 1;
@@ -412,7 +416,7 @@ export class PlaylistComponent implements OnInit {
   goRedo(){
     this.isEditModeActive();
     this.launch = false;
-    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index + 1];
+    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index + 1].slice();
     this.playList = this.playlistService.playList;
     this.saveService.updatePlaylist();
     this.index += 1;

@@ -28,7 +28,9 @@
     "settingsBtn": "Paramètres",
     "deleteBtn": "Effacer la Playlist",
     "loadBtn": "Charger une Playlist",
-    "logoutBtn": "Déconnexion"
+    "logoutBtn": "Déconnexion",
+    "back": "Retour arrière",
+    "forward": "Avancer"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",

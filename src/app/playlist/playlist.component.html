@@ -8,12 +8,12 @@
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="left menu">
         <a [ngClass]="disableBtnUndo" class="ui item" (click)="goUndo()"
-           matTooltip="back"
+           matTooltip="{{'playlist.back' | translate}}"
            matTooltipPosition="before">
           <i class="undo icon"></i>
         </a>
         <a [ngClass]="disableBtnRedo" class="ui item" (click)="goRedo()"
-           matTooltip="forward"
+           matTooltip="{{'playlist.forward' | translate}}"
            matTooltipPosition="before">
           <i class="redo icon"></i>
         </a>
