@@ -2,10 +2,6 @@ div h1 span {
   vertical-align: center;
 }
 
-a {
-  margin: 1em 0 1em 0;
-}
-
 span {
   font-weight: bolder;
 }
@@ -92,6 +88,12 @@ iframe{
   position: fixed;
   z-index: 1;
 }
+
+.header {
+  margin: 1em 0 1em 0;
+}
+
+/* ------------------------------ ID ------------------------------------ */
 
 #myFileAudio{
   margin-top: 50px !important;

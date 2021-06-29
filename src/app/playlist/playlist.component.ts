@@ -392,7 +392,7 @@ export class PlaylistComponent implements OnInit {
       this.currentElem = elem;
       this.launch = true;
       this.refreshAudioPlayer();
-      this.goOnElement();
+      this.goOnElement("watchPlace");
       this.setDefaultVolume();
     }
   }
@@ -496,7 +496,7 @@ export class PlaylistComponent implements OnInit {
         elem.classList.remove("fullScreen");
         this.unFixeBtn();
       }
-      this.goOnElement();
+      this.goOnElement("watchPlace");
     }
   }
 
@@ -601,7 +601,7 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
-    this.goOnElement();
+    this.goOnElement("watchPlace");
     this.setDefaultVolume();
     this.refreshAudioPlayer();
   }
@@ -626,7 +626,7 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
-    this.goOnElement();
+    this.goOnElement("watchPlace");
     this.setDefaultVolume();
     this.refreshAudioPlayer();
   }
@@ -644,9 +644,9 @@ export class PlaylistComponent implements OnInit {
   /**
    * When the user choose an element in the Playlist, 500ms after we go on it
    */
-  goOnElement(){
+  goOnElement(id){
     setTimeout( () => {
-      let goTo = document.getElementById("watchPlace");
+      let goTo = document.getElementById(id);
       goTo.scrollIntoView(true);
     }, 500);
   }

@@ -1,4 +1,28 @@
-<div class="ui centered grid">
+<div [ngClass]="theme" class="ui left vertical visible sidebar labeled icon menu">
+  <a class="item" (click)="goOnElement('playlist')">
+    <i class="home icon"></i>
+    Playlist
+  </a>
+  <a class="item">
+    <i class="arrow up icon"></i>
+    Up
+  </a>
+  <a class="item">
+    <i class="arrow down icon"></i>
+    Down
+  </a>
+  <a *ngIf="launch && (currentElem.types == 'Spotify' || currentElem.types == 'Deezer' || currentElem.types == 'song')"
+     class="item" (click)="goOnElement('watchPlace')">
+    <i class="music icon"></i>
+    Music
+  </a>
+  <a *ngIf="launch && (currentElem.types == 'YouTube' || currentElem.types == 'video')"
+     class="item" (click)="goOnElement('watchPlace')">
+    <i class="film icon"></i>
+    Video
+  </a>
+</div>
+<div id="playlist" class="ui centered grid">
   <div class="fourteen wide column">
     <h1 [ngClass]="theme" class="ui centered aligned header">
       <span>
