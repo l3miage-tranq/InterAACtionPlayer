@@ -30,7 +30,12 @@
     "loadBtn": "Load a Playlist",
     "logoutBtn": "Logout",
     "back": "Going back",
-    "forward": "Moving forward"
+    "forward": "Moving forward",
+    "playlist": "Playlist",
+    "up": "Up",
+    "down": "Down",
+    "music": "Music",
+    "video": "Video"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",

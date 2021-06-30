@@ -648,7 +648,7 @@ export class PlaylistComponent implements OnInit {
     setTimeout( () => {
       let goTo = document.getElementById(id);
       goTo.scrollIntoView(true);
-    }, 500);
+    }, 200);
   }
 
   /**

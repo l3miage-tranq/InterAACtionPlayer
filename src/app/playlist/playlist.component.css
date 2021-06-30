@@ -93,7 +93,12 @@ iframe{
   margin: 1em 0 1em 0;
 }
 
-/* ------------------------------ ID ------------------------------------ */
+.ui.labeled.icon.menu .item{
+  height: 25%;
+  padding-top: 120%;
+}
+
+  /* ------------------------------ ID ------------------------------------ */
 
 #myFileAudio{
   margin-top: 50px !important;

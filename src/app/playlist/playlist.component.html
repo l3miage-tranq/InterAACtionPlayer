@@ -1,25 +1,26 @@
-<div *ngIf="launch" [ngClass]="theme" class="ui left vertical visible sidebar labeled icon menu">
+<br>
+<div *ngIf="launch" [ngClass]="theme" class="ui four left vertical visible sidebar labeled icon menu">
   <a class="item" (click)="goOnElement('playlist')">
-    <i class="home icon"></i>
-    Playlist
+    <i class="huge home icon"></i>
+    {{ "playlist.playlist" | translate }}
   </a>
   <a class="item" (click)="goUp()">
     <i class="arrow up icon"></i>
-    Up
+    {{ "playlist.up" | translate }}
   </a>
   <a class="item" (click)="goDown()">
     <i class="arrow down icon"></i>
-    Down
+    {{ "playlist.down" | translate }}
   </a>
   <a *ngIf="launch && (currentElem.types == 'Spotify' || currentElem.types == 'Deezer' || currentElem.types == 'song')"
      class="item" (click)="goOnElement('watchPlace')">
     <i class="music icon"></i>
-    Music
+    {{ "playlist.music" | translate }}
   </a>
   <a *ngIf="launch && (currentElem.types == 'YouTube' || currentElem.types == 'video')"
      class="item" (click)="goOnElement('watchPlace')">
     <i class="film icon"></i>
-    Video
+    {{ "playlist.video" | translate }}
   </a>
 </div>
 <div id="playlist" class="ui centered grid">
