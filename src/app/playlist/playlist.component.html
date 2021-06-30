@@ -1,13 +1,13 @@
-<div [ngClass]="theme" class="ui left vertical visible sidebar labeled icon menu">
+<div *ngIf="launch" [ngClass]="theme" class="ui left vertical visible sidebar labeled icon menu">
   <a class="item" (click)="goOnElement('playlist')">
     <i class="home icon"></i>
     Playlist
   </a>
-  <a class="item">
+  <a class="item" (click)="goUp()">
     <i class="arrow up icon"></i>
     Up
   </a>
-  <a class="item">
+  <a class="item" (click)="goDown()">
     <i class="arrow down icon"></i>
     Down
   </a>

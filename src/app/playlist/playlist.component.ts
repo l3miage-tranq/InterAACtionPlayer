@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import {Router, Scroll} from '@angular/router';
 import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -812,5 +812,19 @@ export class PlaylistComponent implements OnInit {
     this.playlistService.playList = this.playList;
     this.saveService.updatePlaylist();
     this.playlistService.addAutoSave(this.index);
+  }
+
+  /**
+   * Allows to scroll down by 50px
+   */
+  goDown(){
+    document.body.scrollBy(0, 50);
+  }
+
+  /**
+   * Allows to scroll up by 50px
+   */
+  goUp(){
+    document.body.scrollBy(0, -50);
   }
 }
