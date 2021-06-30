@@ -30,7 +30,12 @@
     "loadBtn": "Charger une Playlist",
     "logoutBtn": "Déconnexion",
     "back": "Retour arrière",
-    "forward": "Avancer"
+    "forward": "Avancer",
+    "playlist": "Playlist",
+    "up": "Monter",
+    "down": "Descendre",
+    "music": "Musique",
+    "video": "Vidéo"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
