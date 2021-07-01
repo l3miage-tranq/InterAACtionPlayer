@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import {Router, Scroll} from '@angular/router';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -79,6 +79,7 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnExpand = "expandProgressSpinner";
   idProgressIndicatorBtnMinus = "minusProgressSpinner";
   idProgressIndicatorBtnPlus = "plusProgressSpinner";
+  idProgressIndicatorBtnClose = "closeProgressSpinner";
 
   refresh = false;
 
@@ -826,5 +827,13 @@ export class PlaylistComponent implements OnInit {
    */
   goUp(){
     document.body.scrollBy(0, -50);
+  }
+
+  /**
+   * Check if we need to display the side bar
+   * True if we can scroll
+   */
+  displaySideBar(){
+    return document.body.scrollTop > 0;
   }
 }
