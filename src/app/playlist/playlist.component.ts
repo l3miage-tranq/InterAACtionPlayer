@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import {Router, Scroll} from '@angular/router';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
