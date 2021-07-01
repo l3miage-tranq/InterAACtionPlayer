@@ -828,4 +828,12 @@ export class PlaylistComponent implements OnInit {
   goUp(){
     document.body.scrollBy(0, -50);
   }
+
+  /**
+   * Check if we need to display the side bar
+   * True if we can scroll
+   */
+  displaySideBar(){
+    return document.body.scrollTop > 0;
+  }
 }

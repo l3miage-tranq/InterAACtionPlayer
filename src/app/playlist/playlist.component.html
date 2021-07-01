@@ -1,5 +1,5 @@
 <br>
-<div *ngIf="launch" [ngClass]="theme" class="ui four left vertical visible sidebar labeled icon menu">
+<div *ngIf="displaySideBar()" [ngClass]="theme" class="ui four left vertical visible sidebar labeled icon menu">
   <a class="item" (click)="goOnElement('playlist')">
     <i class="huge home icon"></i>
     {{ "playlist.playlist" | translate }}
