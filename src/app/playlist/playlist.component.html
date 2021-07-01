@@ -117,6 +117,20 @@
       </div>
     </div>
     <hr>
+    <br>
+    <div *ngIf="launch">
+      <div class="btnClose">
+        <button id="closeBtn" class="ui labeled icon button btnCircular"
+                (click)="deleteCurrentElement()"
+                (mouseenter)="showProgressIndicator('closeBtn', idProgressIndicatorBtnClose); showBtn('closeBtn')"
+                (mouseleave)="hideProgressIndicator('closeBtn', idProgressIndicatorBtnClose); hideBtn('closeBtn')">
+          <div class="btnIcon">
+            <i class="massive close icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnClose" [spinnerValue]="spinnerValue"></app-progress-indicator>
+        </button>
+      </div>
+    </div>
     <div *ngIf="launch" class="ui three column grid centered">
       <div class="btnVideo right aligned">
         <button id="previousBtn" class="ui labeled icon button btnCircular"

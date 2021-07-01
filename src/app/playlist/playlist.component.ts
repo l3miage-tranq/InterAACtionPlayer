@@ -79,6 +79,7 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnExpand = "expandProgressSpinner";
   idProgressIndicatorBtnMinus = "minusProgressSpinner";
   idProgressIndicatorBtnPlus = "plusProgressSpinner";
+  idProgressIndicatorBtnClose = "closeProgressSpinner";
 
   refresh = false;
 
