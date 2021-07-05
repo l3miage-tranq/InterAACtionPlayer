@@ -854,6 +854,6 @@ export class PlaylistComponent implements OnInit {
    * True if we can scroll
    */
   displaySideBar(){
-    return document.body.scrollTop > 0;
+    return document.body.scrollHeight > document.body.offsetHeight;
   }
 }
