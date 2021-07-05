@@ -72,14 +72,34 @@ export class PlaylistComponent implements OnInit {
   disableBtnRedo = "disabled";
   index = -1;
 
-  idProgressIndicatorBtnNext = "nextProgressSpinner";
-  idProgressIndicatorBtnPrevious = "previousProgressSpinner";
-  idProgressIndicatorBtnPlay = "playProgressSpinner";
-  idProgressIndicatorBtnPause= "pauseProgressSpinner";
-  idProgressIndicatorBtnExpand = "expandProgressSpinner";
-  idProgressIndicatorBtnMinus = "minusProgressSpinner";
-  idProgressIndicatorBtnPlus = "plusProgressSpinner";
-  idProgressIndicatorBtnClose = "closeProgressSpinner";
+  btnType: number = 1;
+  idProgressIndicatorBtnNext = "btnNextProgressSpinner";
+  idProgressIndicatorBtnPrevious = "btnPreviousProgressSpinner";
+  idProgressIndicatorBtnPlay = "btnPlayProgressSpinner";
+  idProgressIndicatorBtnPause= "btnPauseProgressSpinner";
+  idProgressIndicatorBtnExpand = "btnExpandProgressSpinner";
+  idProgressIndicatorBtnMinus = "btnMinusProgressSpinner";
+  idProgressIndicatorBtnPlus = "btnPlusProgressSpinner";
+  idProgressIndicatorBtnClose = "btnCloseProgressSpinner";
+
+  sideIconType: number = 2;
+  idProgressIndicatorSideIconPlaylist = "sideIconPlaylistProgressSpinner";
+  idProgressIndicatorSideIconUp = "sideIconUpProgressSpinner";
+  idProgressIndicatorSideIconDown = "sideIconDownProgressSpinner";
+  idProgressIndicatorSideIconMusic= "sideIconMusicProgressSpinner";
+  idProgressIndicatorSideIconVideo = "sideIconVideoProgressSpinner";
+
+  iconType: number = 5;
+  idProgressIndicatorIconSave= "iconSaveProgressSpinner";
+  idProgressIndicatorIconLoad= "iconLoadProgressSpinner";
+  idProgressIndicatorIconDelete= "iconDeleteProgressSpinner";
+  idProgressIndicatorIconExport= "iconExportProgressSpinner";
+  idProgressIndicatorIconImport= "iconImportProgressSpinner";
+  idProgressIndicatorIconEdit= "iconEditProgressSpinner";
+  idProgressIndicatorIconSettings= "iconSettingsProgressSpinner";
+  idProgressIndicatorIconLogout= "iconLogoutProgressSpinner";
+  idProgressIndicatorIconUndo = "iconUndoProgressSpinner";
+  idProgressIndicatorIconRedo = "iconRedoProgressSpinner";
 
   refresh = false;
 
