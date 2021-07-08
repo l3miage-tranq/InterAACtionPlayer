@@ -13,7 +13,7 @@ img.active {
 .container {
   position: relative;
   display: inline-block;
-  width: 50%;
+  width: 25%;
 }
 
 .image {
