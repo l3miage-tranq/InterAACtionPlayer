@@ -18,6 +18,10 @@ iframe{
   margin-bottom: 10px;
 }
 
+figcaption{
+  color: white;
+}
+
 /* -------------------------- CLASS --------------------------------- */
 
 .btnVideo{
@@ -96,6 +100,14 @@ iframe{
 .ui.labeled.icon.menu .item{
   height: 25%;
   padding-top: 120%;
+}
+
+.darkMode{
+  color: white;
+}
+
+.lightMode{
+  color: black;
 }
 
   /* ------------------------------ ID ------------------------------------ */

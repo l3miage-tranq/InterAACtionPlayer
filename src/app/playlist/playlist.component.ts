@@ -68,6 +68,7 @@ export class PlaylistComponent implements OnInit {
   fullScreen = false;
   disableDragDrop = false;
   theme = "";
+  textColor = "";
   disableBtnUndo = "disabled";
   disableBtnRedo = "disabled";
   index = -1;
@@ -145,6 +146,7 @@ export class PlaylistComponent implements OnInit {
     this.dwelltimeService = dwelltimeService;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
+    this.textColor = this.themeService.themeBody;
     this.translate = translate;
     this.globalService = globalService;
     this.audioService = audioService;
@@ -165,6 +167,11 @@ export class PlaylistComponent implements OnInit {
     this.authGuardService.canAccess();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
+      if (value == "inverted"){
+        this.textColor = "darkMode";
+      }else {
+        this.textColor = "lightMode";
+      }
     });
     this.playlistService.indexAutoSave.subscribe(value => {
       if (this.index < 3){
