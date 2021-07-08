@@ -609,6 +609,7 @@ export class PlaylistComponent implements OnInit {
    */
   goNext() {
     this.exitFullScreen();
+    this.isEditModeActive();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
@@ -634,6 +635,7 @@ export class PlaylistComponent implements OnInit {
    */
   goPrevious() {
     this.exitFullScreen();
+    this.isEditModeActive();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
