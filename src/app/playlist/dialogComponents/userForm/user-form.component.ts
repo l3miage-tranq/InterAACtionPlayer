@@ -45,9 +45,9 @@ export class UserFormComponent implements OnInit {
     reader.readAsDataURL(image)
     reader.onload = () => {
      this.image = reader.result;
+     this.usersService.imgChoose = this.image;
+     this.showImgChoose = true;
     }
-    this.usersService.imgChoose = this.image;
-    this.showImgChoose = true;
   }
 
   /**
