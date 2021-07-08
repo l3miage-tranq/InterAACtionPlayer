@@ -11,11 +11,11 @@ import { ChooseImgComponent } from '../chooseImgUser/choose-img.component';
 })
 export class ModifyUserComponent implements OnInit {
 
+  userToModify = this.usersService.userToModify;
   name = "";
   errorNameEmpty = false;
-  image = null;
+  image = this.userToModify.thumbnail;
   errorImgEmpty = false;
-  showImgChoose = false;
 
   constructor(private translate: TranslateService,
               private dialog: MatDialog,
@@ -47,7 +47,6 @@ export class ModifyUserComponent implements OnInit {
       this.image = reader.result;
     }
     this.usersService.imgChoose = this.image;
-    this.showImgChoose = true;
   }
 
   /**
@@ -57,9 +56,6 @@ export class ModifyUserComponent implements OnInit {
     const chooseImgDialog = this.dialog.open(ChooseImgComponent, {height: '100%'});
     chooseImgDialog.afterClosed().subscribe(() => {
       this.image = this.usersService.imgChoose;
-      if (this.image != null){
-        this.showImgChoose = true;
-      }
     });
   }
 
