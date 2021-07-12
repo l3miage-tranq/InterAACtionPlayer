@@ -26,6 +26,7 @@
     "importBtn": "Import File",
     "editBtn": "Edit mode",
     "settingsBtn": "Settings",
+    "userBtn": "Account Login",
     "deleteBtn": "Delete Playlist",
     "loadBtn": "Load a Playlist",
     "logoutBtn": "Logout",

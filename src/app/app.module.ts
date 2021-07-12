@@ -54,6 +54,7 @@ import { DeleteUserComponent } from './playlist/dialogComponents/deleteUser/dele
 import { ChooseImgComponent } from './playlist/dialogComponents/chooseImgUser/choose-img.component';
 import { ModifyUserComponent } from './playlist/dialogComponents/modifyUser/modify-user.component';
 import { DeezerPlayerComponent } from './playlist/audioPlayer/deezerPlayer/deezer-player.component';
+import { AccountsComponent } from './playlist/dialogComponents/accounts/accounts.component';
 
 /**
  * Import module Sub-Application
@@ -100,7 +101,8 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     DeleteUserComponent,
     ChooseImgComponent,
     ModifyUserComponent,
-    DeezerPlayerComponent
+    DeezerPlayerComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-
 import { SavePlaylistComponent } from './dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './dialogComponents/loadPlaylist/load-playlist.component';
 import { AlertComponent } from './dialogComponents/alert/alert.component';
+import { AccountsComponent } from './dialogComponents/accounts/accounts.component';
 
 /**
  * Import Services
@@ -91,14 +92,15 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorSideIconVideo = "sideIconVideoProgressSpinner";
 
   iconType: number = 5;
-  idProgressIndicatorIconSave= "iconSaveProgressSpinner";
-  idProgressIndicatorIconLoad= "iconLoadProgressSpinner";
-  idProgressIndicatorIconDelete= "iconDeleteProgressSpinner";
-  idProgressIndicatorIconExport= "iconExportProgressSpinner";
-  idProgressIndicatorIconImport= "iconImportProgressSpinner";
-  idProgressIndicatorIconEdit= "iconEditProgressSpinner";
+  idProgressIndicatorIconSave = "iconSaveProgressSpinner";
+  idProgressIndicatorIconLoad = "iconLoadProgressSpinner";
+  idProgressIndicatorIconDelete = "iconDeleteProgressSpinner";
+  idProgressIndicatorIconExport = "iconExportProgressSpinner";
+  idProgressIndicatorIconImport = "iconImportProgressSpinner";
+  idProgressIndicatorIconEdit = "iconEditProgressSpinner";
   idProgressIndicatorIconSettings= "iconSettingsProgressSpinner";
-  idProgressIndicatorIconLogout= "iconLogoutProgressSpinner";
+  idProgressIndicatorIconUser = "iconUserProgressSpinner";
+  idProgressIndicatorIconLogout = "iconLogoutProgressSpinner";
   idProgressIndicatorIconUndo = "iconUndoProgressSpinner";
   idProgressIndicatorIconRedo = "iconRedoProgressSpinner";
 
@@ -312,6 +314,21 @@ export class PlaylistComponent implements OnInit {
     this.isEditModeActive();
     const settingsDialog = this.dialog.open(SettingsComponent);
     settingsDialog.afterClosed().subscribe( () => {
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+      }
+    });
+  }
+
+  /**
+   * If edit mode is On, disable it and open AccountsComponent
+   * Then check if the playlist is empty
+   * If it's the case then enable edit mode
+   */
+  openAccounts(){
+    this.isEditModeActive();
+    const accountsDialog = this.dialog.open(AccountsComponent);
+    accountsDialog.afterClosed().subscribe( () => {
       if (this.isPlaylistEmpty()){
         this.goEdit();
       }
