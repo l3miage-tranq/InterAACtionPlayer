@@ -58,6 +58,15 @@ export class ModifyUserComponent implements OnInit {
   }
 
   /**
+   * Check if the name is empty
+   */
+  isNameEmpty(){
+    if (this.name == ""){
+      this.name = this.userToModify.name;
+    }
+  }
+
+  /**
    * If the user cancel then close the DialogComponent
    */
   public goCancel(){
@@ -68,6 +77,7 @@ export class ModifyUserComponent implements OnInit {
    * If the new name and the new image is not empty, then modify the user
    * */
   submit(){
+    this.isNameEmpty();
     this.usersService.wantModifyUser = true;
     this.usersService.userToModify.name = this.name;
     this.usersService.userToModify.thumbnail = this.image;
