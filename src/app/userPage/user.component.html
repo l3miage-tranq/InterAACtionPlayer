@@ -1,6 +1,6 @@
 <div [ngClass]="theme" class="ui secondary menu">
   <div class="right menu">
-    <a class="ui item" (click)="goEdit()"
+    <a [ngClass]="disableEditBtn" class="ui item" (click)="goEdit()"
        matTooltip="{{'user.editBtn' | translate}}"
        matTooltipPosition="before">
       <i class="edit icon"></i>

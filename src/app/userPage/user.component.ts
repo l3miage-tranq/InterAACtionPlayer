@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
 
   theme = "";
   showBtn = false;
+  disableEditBtn = "";
 
   constructor(private usersService: UsersService,
               private dialog: MatDialog,
@@ -47,6 +48,7 @@ export class UserComponent implements OnInit {
     });
     setTimeout(() => {
       this.usersList = this.usersService.listUsers;
+      this.isListUserEmpty();
     }, 200);
   }
 
@@ -86,6 +88,7 @@ export class UserComponent implements OnInit {
         this.usersList = this.usersService.deleteUser(user);
         this.saveService.updateListUsers();
         this.saveService.deleteUser(user.id);
+        this.isListUserEmpty();
       }
     });
   }
@@ -130,6 +133,7 @@ export class UserComponent implements OnInit {
     this.saveService.updatePlaylist();
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
+    this.isListUserEmpty();
   }
 
   /**
@@ -163,5 +167,18 @@ export class UserComponent implements OnInit {
    */
   goEdit(){
     this.showBtn = !this.showBtn;
+  }
+
+  /**
+   * Check if user list is empty
+   * Then disable the edit button if it's true
+   */
+  isListUserEmpty(){
+    if (this.usersList.length == 0){
+      this.disableEditBtn = "disabled";
+      this.goEdit();
+    }else {
+      this.disableEditBtn = "";
+    }
   }
 }
