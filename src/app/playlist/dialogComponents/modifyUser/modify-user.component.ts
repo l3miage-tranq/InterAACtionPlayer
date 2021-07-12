@@ -12,10 +12,8 @@ import { ChooseImgComponent } from '../chooseImgUser/choose-img.component';
 export class ModifyUserComponent implements OnInit {
 
   userToModify = this.usersService.userToModify;
-  name = "";
-  errorNameEmpty = false;
+  name = this.userToModify.name;
   image = this.userToModify.thumbnail;
-  errorImgEmpty = false;
 
   constructor(private translate: TranslateService,
               private dialog: MatDialog,
@@ -45,8 +43,8 @@ export class ModifyUserComponent implements OnInit {
     reader.readAsDataURL(image)
     reader.onload = () => {
       this.image = reader.result;
+      this.usersService.imgChoose = this.image;
     }
-    this.usersService.imgChoose = this.image;
   }
 
   /**
@@ -70,19 +68,9 @@ export class ModifyUserComponent implements OnInit {
    * If the new name and the new image is not empty, then modify the user
    * */
   submit(){
-    if (this.name != ""){
-      this.errorNameEmpty = false;
-      if (this.image != null){
-        this.errorImgEmpty = false;
-        this.usersService.wantModifyUser = true;
-        this.usersService.userToModify.name = this.name;
-        this.usersService.userToModify.thumbnail = this.image;
-        this.dialog.closeAll();
-      } else {
-        this.errorImgEmpty = true;
-      }
-    }else {
-      this.errorNameEmpty = true;
-    }
+    this.usersService.wantModifyUser = true;
+    this.usersService.userToModify.name = this.name;
+    this.usersService.userToModify.thumbnail = this.image;
+    this.dialog.closeAll();
   }
 }

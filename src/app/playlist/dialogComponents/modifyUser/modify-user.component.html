@@ -8,11 +8,6 @@
         {{"modifyUser.name" | translate}}
       </label>
       <input type="text" placeholder="{{userToModify.name}}" (keyup)="getNewNameUser($event)">
-      <div class="ui error message">
-        <p *ngIf="errorNameEmpty">
-          {{"modifyUser.nameEmpty" | translate}}
-        </p>
-      </div>
     </div>
     <div class="field required">
       <label>
@@ -27,11 +22,6 @@
         <button class="ui button" tabindex="0" (click)="goChooseNewImg()">
           {{"modifyUser.chooseImg" | translate}}
         </button>
-      </div>
-      <div class="ui error message">
-        <p *ngIf="errorImgEmpty">
-          {{"modifyUser.imgEmpty" | translate}}
-        </p>
       </div>
     </div>
   </div>
