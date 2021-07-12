@@ -38,6 +38,8 @@ export class SettingsComponent implements OnInit {
   usedLanguage = "";
 
   error: boolean = false;
+  stateValueDwellTime = "";
+  stateValueAlertMessage = "";
 
   constructor(private dwellTimeService: DwelltimeService,
               private dialog: MatDialog,
@@ -69,6 +71,9 @@ export class SettingsComponent implements OnInit {
     }else {
       this.circleValue = "positive";
     }
+
+    this.isDwellTimeEnable();
+    this.isAlertMessageEnable();
   }
 
   /**
@@ -94,6 +99,7 @@ export class SettingsComponent implements OnInit {
    */
   dwellTime(){
     this.dwellTimeEnable = !this.dwellTimeEnable;
+    this.isDwellTimeEnable();
   }
 
   /**
@@ -187,6 +193,29 @@ export class SettingsComponent implements OnInit {
    */
   displayAlertMessage(){
     this.disableAlertMessage = !this.disableAlertMessage;
+    this.isAlertMessageEnable();
+  }
+
+  /**
+   *
+   */
+  isDwellTimeEnable(){
+    if (this.dwellTimeEnable){
+      this.stateValueDwellTime = 'settingsPlaylist.enable';
+    }else {
+      this.stateValueDwellTime = 'settingsPlaylist.disable';
+    }
+  }
+
+  /**
+   *
+   */
+  isAlertMessageEnable(){
+    if (this.disableAlertMessage){
+      this.stateValueAlertMessage = 'settingsPlaylist.yes';
+    }else {
+      this.stateValueAlertMessage = 'settingsPlaylist.no';
+    }
   }
 
   /**
