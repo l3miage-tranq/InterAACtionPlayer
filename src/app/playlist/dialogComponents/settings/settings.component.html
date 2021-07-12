@@ -41,7 +41,7 @@
         <div class="field">
           <div class="ui toggle checkbox">
             <input type="checkbox" name="dwellTime" [checked]="dwellTimeEnable" (click)="dwellTime()">
-            <label>{{ 'settingsPlaylist.enable' | translate }}</label>
+            <label>{{ stateValueDwellTime | translate }}</label>
           </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
       <div class="field">
         <div class="ui toggle checkbox">
           <input type="checkbox" name="alertMessage" [checked]="disableAlertMessage" (click)="displayAlertMessage()">
-          <label>{{ 'settingsPlaylist.enable' | translate }}</label>
+          <label>{{ stateValueAlertMessage | translate }}</label>
         </div>
       </div>
     </div>

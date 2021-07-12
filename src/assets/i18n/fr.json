@@ -56,7 +56,10 @@
     "diskProgress": "Disque",
     "circleProgress": "Cercle",
     "or": "ou",
-    "enable": "Activer"
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "yes": "Oui",
+    "no": "Non"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",
