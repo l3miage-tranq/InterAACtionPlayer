@@ -1,19 +1,20 @@
-/**
- * Allows to initialise Deezer
- */
-function initDeezer(){
-  initDZ();
-}
-
 var track = [];
 
 /**
- * Allows to initialize Deezer audio player
+ * Allows to initialize sdk Deezer
  */
-var initDZ = function (){
+function initDeezer(){
   DZ.init({
     appId : '479942',
     channelUrl : 'http://localhost:4200',
+  });
+}
+
+/**
+ * Allows to init the Deezer audio player
+ */
+function initDZPlayer(){
+  DZ.init({
     player: {
       container: 'deezerSong',
       width: 500,
@@ -24,7 +25,7 @@ var initDZ = function (){
         playTracks();
       }
     }
-  });
+  })
 }
 
 /**
@@ -68,4 +69,28 @@ function decreaseVolumeDeezer(){
  */
 function setTrack(trackId){
   track.push(trackId);
+}
+
+/**
+ * Allows to login the user on Deezer
+ */
+function loginDeezer(){
+  DZ.login(function(response){}, {perms: 'basic_access,offline_access'});
+}
+
+/**
+ * Allows to disconnect the user to Deezer
+ */
+function logoutDeezer(){
+  DZ.logout();
+}
+
+/**
+ * Allows to knows if the user is already login or not
+ */
+function getLoginStatus(){
+  DZ.getLoginStatus(function(response){
+    console.log(response.status);
+    return response.status;
+  });
 }

@@ -42,6 +42,8 @@ import { Types } from './model/types-interface';
 /**
  * Import functions javascript
  */
+declare var initDeezer: any;
+declare var logoutDeezer: any;
 declare var playDeezer: any;
 declare var pauseDeezer: any;
 declare var increaseVolumeDeezer: any;
@@ -167,6 +169,7 @@ export class PlaylistComponent implements OnInit {
    */
   ngOnInit(): void {
     this.authGuardService.canAccess();
+    initDeezer();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
       if (value == "inverted"){
@@ -327,6 +330,7 @@ export class PlaylistComponent implements OnInit {
    */
   openAccounts(){
     this.isEditModeActive();
+    this.deleteCurrentElement();
     const accountsDialog = this.dialog.open(AccountsComponent);
     accountsDialog.afterClosed().subscribe( () => {
       if (this.isPlaylistEmpty()){
@@ -422,6 +426,7 @@ export class PlaylistComponent implements OnInit {
    * Allows the user to logout and return on the user page
    */
   logout(){
+    logoutDeezer();
     this.router.navigate(['user']);
   }
 

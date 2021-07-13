@@ -197,7 +197,7 @@ export class SettingsComponent implements OnInit {
   }
 
   /**
-   *
+   * Set the label DwellTime to enable or disable
    */
   isDwellTimeEnable(){
     if (this.dwellTimeEnable){
@@ -208,7 +208,7 @@ export class SettingsComponent implements OnInit {
   }
 
   /**
-   *
+   * Set the label Alert Message to yes or no
    */
   isAlertMessageEnable(){
     if (this.disableAlertMessage){
