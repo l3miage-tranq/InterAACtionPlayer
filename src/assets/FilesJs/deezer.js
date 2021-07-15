@@ -1,4 +1,5 @@
 var track = [];
+var status;
 
 /**
  * Allows to initialize sdk Deezer
@@ -83,14 +84,4 @@ function loginDeezer(){
  */
 function logoutDeezer(){
   DZ.logout();
-}
-
-/**
- * Allows to knows if the user is already login or not
- */
-function getLoginStatus(){
-  DZ.getLoginStatus(function(response){
-    console.log(response.status);
-    return response.status;
-  });
 }

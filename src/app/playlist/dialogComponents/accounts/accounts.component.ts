@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
  */
 declare var loginDeezer: any;
 declare var logoutDeezer: any;
-declare var getLoginStatus: any;
 
 @Component({
   selector: 'app-accounts',
@@ -15,63 +14,38 @@ declare var getLoginStatus: any;
 })
 export class AccountsComponent implements OnInit {
 
-  nameBtnSpotify : string;
-  checkSpotify : string;
-  connectedOnSpotify : boolean;
-
-  nameBtnDeezer : string;
-  checkDeezer : string;
-  connectedOnDeezer : boolean;
-
   constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.checkStatusSpotify();
-    this.checkStatusDeezer();
   }
 
   /**
-   * Allows the user to login or logout Spotify
+   * Allows the user to login Spotify
    */
-  logSpotify(){
-
-  }
-
-  /**
-   * Allows to know if the user is connected or not on Spotify
-   */
-  checkStatusSpotify(){
+  loginSpotify(){
 
   }
 
   /**
-   * Allows the user to login or logout Deezer
+   * Allows the user to logout Spotify
    */
-  logDeezer(){
-    if (this.connectedOnDeezer){
-      logoutDeezer();
-      this.checkStatusDeezer();
-    }else {
-      loginDeezer();
-      this.checkStatusDeezer();
-    }
+  logoutSpotify(){
+
   }
 
   /**
-   * Allows to know if the user is connected or not on Deezer
+   * Allows the user to login Deezer
    */
-  checkStatusDeezer(){
-    let tmp = getLoginStatus();
-    if (tmp == "notConnected" || tmp == "unknown" || tmp == "not_authorized"){
-      this.connectedOnDeezer = false;
-      this.checkDeezer = "red times icon";
-      this.nameBtnDeezer = "Login Deezer";
-    }else{
-      this.connectedOnDeezer = true;
-      this.checkDeezer = "green check icon";
-      this.nameBtnDeezer = "Logout Deezer";
-    }
+  loginDeezer(){
+    loginDeezer();
+  }
+
+  /**
+   * Allows the user to logout Deezer
+   */
+  logoutDeezer(){
+    logoutDeezer();
   }
 
   /**

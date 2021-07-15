@@ -1,24 +1,24 @@
 <h1 mat-dialog-title>
   Accounts
 </h1>
-<div id="dz-root" mat-dialog-content>
+<div mat-dialog-content>
   <div class="ui form">
     <div class="field">
       <label>
         Spotify Accounts
       </label>
       <div class="field">
-        <button class="ui button">Login Spotify</button>
-        <i class="red times icon"></i>
+        <button class="ui button" (click)="loginSpotify()">Login Spotify</button>
+        <button class="ui button" (click)="logoutSpotify()">Logout Spotify</button>
       </div>
     </div>
     <div class="field">
       <label>
         Deezer Account
-        <i [class]="checkDeezer"></i>
       </label>
       <div class="field">
-        <button class="ui button" (click)="logDeezer()">{{nameBtnDeezer}}</button>
+        <button class="ui button" (click)="loginDeezer()">Login Deezer</button>
+        <button class="ui button" (click)="logoutDeezer()">LogoutDeezer</button>
       </div>
     </div>
   </div>
