@@ -15,6 +15,10 @@ declare var getLoginStatus: any;
 })
 export class AccountsComponent implements OnInit {
 
+  nameBtnSpotify : string;
+  checkSpotify : string;
+  connectedOnSpotify : boolean;
+
   nameBtnDeezer : string;
   checkDeezer : string;
   connectedOnDeezer : boolean;
@@ -23,10 +27,21 @@ export class AccountsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkStatusSpotify();
     this.checkStatusDeezer();
   }
 
+  /**
+   * Allows the user to login or logout Spotify
+   */
   logSpotify(){
+
+  }
+
+  /**
+   * Allows to know if the user is connected or not on Spotify
+   */
+  checkStatusSpotify(){
 
   }
 
@@ -44,10 +59,11 @@ export class AccountsComponent implements OnInit {
   }
 
   /**
-   * Allows to know if the user is connected or not
+   * Allows to know if the user is connected or not on Deezer
    */
   checkStatusDeezer(){
-    if (getLoginStatus() == ("notConnected" || "unknown" || "not_authorized")){
+    let tmp = getLoginStatus();
+    if (tmp == "notConnected" || tmp == "unknown" || tmp == "not_authorized"){
       this.connectedOnDeezer = false;
       this.checkDeezer = "red times icon";
       this.nameBtnDeezer = "Login Deezer";
