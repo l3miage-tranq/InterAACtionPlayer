@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { GlobalService } from '../../../../../projects/spotify/src/app/services/global.service';
 
 /**
  * Import functions javascript
@@ -14,7 +15,7 @@ declare var logoutDeezer: any;
 })
 export class AccountsComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class AccountsComponent implements OnInit {
    * Allows the user to login Spotify
    */
   loginSpotify(){
-
+    this.globalService.getLoginAccountSpotify();
   }
 
   /**
