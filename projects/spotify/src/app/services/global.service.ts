@@ -12,6 +12,9 @@ export class GlobalService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Allows the user to login with his Spotify account
+   */
   public getLoginAccountSpotify(){
     const redirect_uri = 'http://localhost:4200/playlist';
     const scope = 'user-read-private user-read-email';
