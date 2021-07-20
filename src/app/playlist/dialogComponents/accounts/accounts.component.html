@@ -1,29 +1,33 @@
 <h1 mat-dialog-title>
-  Accounts
+  {{ "account.title" | translate}}
 </h1>
 <div mat-dialog-content>
   <div class="ui form">
     <div class="field">
       <label>
-        Spotify Accounts
+        {{ "account.spotify" | translate}}
       </label>
       <div class="field">
-        <button class="ui button" (click)="loginSpotify()">Login Spotify</button>
-        <button class="ui button" (click)="logoutSpotify()">Logout Spotify</button>
+        <button class="ui button" (click)="loginSpotify()">{{ "account.loginSpotify" | translate}}</button>
+      </div>
+      <div class="field">
+        <button class="ui button" (click)="logoutSpotify()">{{ "account.logoutSpotify" | translate}}</button>
       </div>
     </div>
     <div class="field">
       <label>
-        Deezer Account
+        {{ "account.deezer" | translate}}
       </label>
       <div class="field">
-        <button class="ui button" (click)="loginDeezer()">Login Deezer</button>
-        <button class="ui button" (click)="logoutDeezer()">LogoutDeezer</button>
+        <button class="ui button" (click)="loginDeezer()">{{ "account.loginDeezer" | translate}}</button>
+      </div>
+      <div class="field">
+        <button class="ui button" (click)="logoutDeezer()">{{ "account.logoutDeezer" | translate}}</button>
       </div>
     </div>
   </div>
 </div>
 <div mat-dialog-actions>
-  <button class="ui button" (click)="goCancel()">Close</button>
+  <button class="ui button" (click)="goCancel()">{{ "account.close" | translate}}</button>
 </div>
 <notifier-container></notifier-container>

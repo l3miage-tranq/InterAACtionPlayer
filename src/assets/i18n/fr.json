@@ -16,7 +16,9 @@
     "deleteAll": "Toutes les musiques ont été supprimé de la Playlist !",
     "loadPlaylist": "Playlist charger !",
     "deletePlaylist": "Playlist supprimé !",
-    "deleteUser": "Utilisateur supprimé !"
+    "deleteUser": "Utilisateur supprimé !",
+    "logoutSpotify": "Déconnexion de Spotify réussi !",
+    "logoutDeezer": "Déconnexion de Deezer réussi !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -109,6 +111,16 @@
     "imgEmpty": "Image vide !",
     "cancel": "Annuler",
     "submit": "Modifer"
+  },
+  "account": {
+    "title": "Comptes",
+    "spotify": "Compte Spotify",
+    "loginSpotify": "Connexion à Spotify",
+    "logoutSpotify": "Déconnexion de Spotify",
+    "deezer": "Compte Deezer",
+    "loginDeezer": "Connexion à Deezer",
+    "logoutDeezer": "Déconnexion de Deezer",
+    "close": "Fermer"
   },
   "importFilePlaylist": {
     "title": "Ajouter un fichier local à la Playlist",

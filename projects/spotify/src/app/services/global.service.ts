@@ -29,6 +29,13 @@ export class GlobalService {
   }
 
   /**
+   * Allows the user to logout Spotify
+   */
+  public getLogoutAccountSpotify(){
+
+  }
+
+  /**
    * Allows to recover the token that we use for Query request in Spotify Api
    */
   public getToken(){

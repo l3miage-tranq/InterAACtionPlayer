@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from '../../../../../projects/spotify/src/app/services/global.service';
 import { NotifierService } from 'angular-notifier';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Import functions javascript
@@ -18,7 +19,8 @@ export class AccountsComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               private globalService: GlobalService,
-              private notifier: NotifierService) {
+              private notifier: NotifierService,
+              private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class AccountsComponent implements OnInit {
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
     setTimeout(() => {
       spotifyLogoutWindow.close();
-      this.notifier.notify('warning','Logout of Spotify done !');
+      this.notifier.notify('warning',this.translate.instant('notifier.logoutSpotify'));
     }, 2000);
   }
 
@@ -55,7 +57,7 @@ export class AccountsComponent implements OnInit {
    */
   logoutDeezer(){
     logoutDeezer();
-    this.notifier.notify('warning','Logout of Deezer done !');
+    this.notifier.notify('warning',this.translate.instant('notifier.logoutDeezer'));
   }
 
   /**
