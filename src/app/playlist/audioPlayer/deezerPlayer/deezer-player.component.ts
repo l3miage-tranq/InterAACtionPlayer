@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 /**
  * Import functions javascript
  */
-declare var initDeezer: any;
+declare var initDZPlayer: any;
 declare var setTrack: any;
 
 @Component({
@@ -25,7 +25,7 @@ export class DeezerPlayerComponent implements OnInit {
   ngOnInit(): void {
     setTrack(this.id);
     setTimeout(() => {
-      initDeezer();
+      initDZPlayer();
     }, 500);
   }
 }
