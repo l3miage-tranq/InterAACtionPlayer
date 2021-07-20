@@ -32,7 +32,9 @@ export class GlobalService {
    * Allows the user to logout Spotify
    */
   public getLogoutAccountSpotify(){
-
+    const url = 'https://accounts.spotify.com/en/logout';
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout');
+    setTimeout(() => spotifyLogoutWindow.close(), 500);
   }
 
   /**

@@ -37,12 +37,8 @@ export class AccountsComponent implements OnInit {
    * Allows the user to logout Spotify
    */
   logoutSpotify(){
-    const url = 'https://accounts.spotify.com/en/logout';
-    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
-    setTimeout(() => {
-      spotifyLogoutWindow.close();
-      this.notifier.notify('warning',this.translate.instant('notifier.logoutSpotify'));
-    }, 2000);
+    this.globalService.getLogoutAccountSpotify();
+    this.notifier.notify('warning',this.translate.instant('notifier.logoutSpotify'));
   }
 
   /**

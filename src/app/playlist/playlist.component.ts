@@ -427,6 +427,7 @@ export class PlaylistComponent implements OnInit {
    */
   logout(){
     logoutDeezer();
+    this.globalService.getLogoutAccountSpotify();
     this.router.navigate(['user']);
   }
 
