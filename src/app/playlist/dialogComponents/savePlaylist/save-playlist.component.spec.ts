@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SavePlaylistComponent } from './save-playlist.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotifierModule } from 'angular-notifier';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SavePlaylistComponent', () => {
   let component: SavePlaylistComponent;
@@ -8,7 +11,8 @@ describe('SavePlaylistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SavePlaylistComponent ]
+      declarations: [ SavePlaylistComponent ],
+      imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
     })
     .compileComponents();
   });

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteUserComponent } from './delete-user.component';
+import { NotifierModule } from 'angular-notifier';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('DeleteUserComponent', () => {
   let component: DeleteUserComponent;
@@ -8,7 +11,8 @@ describe('DeleteUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteUserComponent ]
+      declarations: [ DeleteUserComponent ],
+      imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
     })
     .compileComponents();
   });

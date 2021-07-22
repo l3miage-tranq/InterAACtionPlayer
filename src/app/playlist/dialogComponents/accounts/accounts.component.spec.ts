@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountsComponent } from './accounts.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GlobalService } from '../../../../../projects/spotify/src/app/services/global.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NotifierModule } from 'angular-notifier';
+import {TranslateModule} from '@ngx-translate/core';
 
 describe('AccountsComponent', () => {
   let component: AccountsComponent;
@@ -8,7 +13,9 @@ describe('AccountsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountsComponent ]
+      declarations: [ AccountsComponent ],
+      imports: [ MatDialogModule, HttpClientModule, NotifierModule, TranslateModule.forRoot() ],
+      providers: [ GlobalService ]
     })
     .compileComponents();
   });
