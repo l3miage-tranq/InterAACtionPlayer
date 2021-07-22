@@ -23,7 +23,6 @@ describe('ModifyUserComponent', () => {
   });
 
   it('should create', () => {
-    component.userToModify.name = "Test";
     expect(component).toBeTruthy();
   });
 });
