@@ -11,7 +11,7 @@ describe('ModifyUserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ModifyUserComponent ],
-      imports: [ MatDialogModule, TranslateModule.forRoot() ]
+      imports: [ MatDialogModule, TranslateModule.forRoot() ],
     })
     .compileComponents();
   });
@@ -23,6 +23,7 @@ describe('ModifyUserComponent', () => {
   });
 
   it('should create', () => {
+    component.userToModify.name = "Test";
     expect(component).toBeTruthy();
   });
 });
