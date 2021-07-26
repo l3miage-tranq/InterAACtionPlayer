@@ -7,6 +7,9 @@ export class GlobalService {
 
   clientId = 'cf0aa060f87b4c6e9edb2a1e067fd86a';
   clientSecret = '5beabd4b8c67453b8770e1fe309a105f';
+  redirectUriHome = "http://localhost:4200/home";
+  redirectUriPlaylist = "http://localhost:4200/playlist";
+
   accessToken = this.getToken().subscribe(data => {this.accessToken = data['access_token'];});
 
   constructor(private http: HttpClient) {
@@ -16,14 +19,13 @@ export class GlobalService {
    * Allows the user to login with his Spotify account
    */
   public getLoginAccountSpotify(){
-    const redirect_uri = 'http://localhost:4200/playlist';
     const scope = 'user-read-private user-read-email';
 
     let url = 'https://accounts.spotify.com/authorize';
     url += '?response_type=token';
     url += '&client_id=' + encodeURIComponent(this.clientId);
     url += '&scope=' + encodeURIComponent(scope);
-    url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+    url += '&redirect_uri=' + encodeURIComponent(this.redirectUriPlaylist);
 
     window.location.href = url;
   }
@@ -58,7 +60,7 @@ export class GlobalService {
   public getLogin(){
     const authorizationLoginUrl = `https://accounts.spotify.com/authorize?`;
     const responseType = 'response_type=code';
-    const redirectUri = 'redirect_uri=http://localhost:4200/home';
+    const redirectUri = 'redirect_uri=' + this.redirectUriHome;
     return this.http.get(authorizationLoginUrl + this.clientId + '&' + responseType + '&' + redirectUri);
   }
 
