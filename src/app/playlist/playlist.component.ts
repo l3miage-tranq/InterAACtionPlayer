@@ -169,7 +169,6 @@ export class PlaylistComponent implements OnInit {
    */
   ngOnInit(): void {
     this.authGuardService.canAccess();
-    initDeezer();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
       if (value == "inverted"){
@@ -186,6 +185,7 @@ export class PlaylistComponent implements OnInit {
     });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
+      initDeezer();
       this.playList = this.playlistService.playList;
       if (this.isPlaylistEmpty()){
         this.goEdit()
