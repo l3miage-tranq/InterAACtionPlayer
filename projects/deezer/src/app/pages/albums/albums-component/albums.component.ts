@@ -20,7 +20,11 @@ export class AlbumsComponent implements OnInit {
 
   theme = "";
   tracks;
+
   album;
+  albumCover;
+  albumTitle;
+  albumType;
 
   constructor(
     private location: Location,
@@ -36,16 +40,57 @@ export class AlbumsComponent implements OnInit {
 
   ngOnInit(): void {
     this.album = this.globalService.albumChoose;
+    this.getAlbumCover();
+    this.getAlbumTitle();
+    this.getAlbumType();
     this.getTracksAlbum();
+  }
+
+  /**
+   * Allows to load the cover of the album choose
+   */
+  getAlbumCover(){
+    try {
+      this.albumCover = this.globalService.albumChoose.cover;
+    }catch (error){
+      console.log("Can't load the cover of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to load the cover of the album choose
+   */
+  getAlbumTitle(){
+    try {
+      this.albumTitle = this.globalService.albumChoose.title;
+    }catch (error){
+      console.log("Can't load the title of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the type of the album choose
+   */
+  getAlbumType(){
+    try {
+      this.albumType = this.globalService.albumChoose.type;
+    }
+    catch (error){
+      console.log("Can't load the type of the album, the error is : " + error);
+    }
   }
 
   /**
    * Get all the track of the album
    */
   getTracksAlbum(){
-    this.globalService.getTracksAlbum(this.globalService.albumChoose.id).subscribe(results => {
-      this.tracks = results;
-    });
+    try {
+      this.globalService.getTracksAlbum(this.globalService.albumChoose.id).subscribe(results => {
+        this.tracks = results;
+      });
+    }catch (error){
+      console.log("Can't load the tracks of the album, the error is : " + error);
+    }
   }
 
   /**

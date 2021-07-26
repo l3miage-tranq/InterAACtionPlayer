@@ -1,8 +1,8 @@
 <div>
   <div [ngClass]="theme" class="ui segment">
-    <img class="ui small centered image" [src]="album.cover" [alt]="album.title">
-    <h6 class="ui centered aligned header">{{ album.type | uppercase}}</h6>
-    <h2 class="ui centered aligned header">{{ album.title }}</h2>
+    <img class="ui small centered image" [src]="albumCover" [alt]="albumTitle">
+    <h6 class="ui centered aligned header">{{ albumType | uppercase}}</h6>
+    <h2 class="ui centered aligned header">{{ albumTitle }}</h2>
     <button class="ui button" (click)="goBack()">
       <i class="left arrow icon"></i>
       {{ "deezerAlbum.back" | translate }}
