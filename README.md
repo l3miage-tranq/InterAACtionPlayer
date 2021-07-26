@@ -13,7 +13,8 @@ Once the project is successfully created, follow the steps below to get an API t
 3. Head over to the API and Services page by clicking on APIs & Services located at the top of the sidebar;  
 4. Click on ENABLE APIs AND SERVICES at the top of the page. You’ll be redirected to a new page. Search for the YouTube Data API and click on the Youtube Data API v3 option. Once again, you’ll be redirected to another page. Click Enable to allow access to that API.  
    
-With that done, just put the key you copy before in the variable API_TOKEN in ProjectMultimedia -> projects -> youtube -> src -> app -> shared -> services -> search.service.ts (line 17).
+Now, just put the key you copy before in the variable API_TOKEN in ProjectMultimedia -> projects -> youtube -> src -> app -> shared -> services -> search.service.ts (line 17).
+With that done, you can use the YouTube API.
 
 ## Spotify API
 
@@ -22,11 +23,12 @@ First, if you don't already have one, you'll need to sign up for a [Spotify acco
 When that's done, head over to the [Spotify dashboard](https://developer.spotify.com/dashboard/applications) page.  
 Once it's done, follow the steps below to set up the API :  
 1. Create an app on the Spotify dashboard;  
-2. Copy the Client ID key and Client Secret key and store their somewhere safe;  
+2. Copy the Client ID key and Client Secret key and store them somewhere safe;  
 3. Click on the Edit Settings button, then write on Website the url where your application run;  
 4. In Edit Settings, create 2 Redirect URIs, your_application_url/home  and your_application_url/playlist (copy that 2 url somewhere);  
 
 Now you can save the settings, and put your key and url in ProjectMultimedia -> projects -> spotify -> src -> app -> services -> global.service.ts (line 8 to 11).
+With that done, you can use the Spotify API.
 
 ## Deezer API
 
@@ -36,8 +38,10 @@ When that's done, head over to the [Deezer developers](https://developers.deezer
 Once it's done, follow the steps below to set up the API :  
 1. Click on the MyApp button, next to your login name;  
 2. Then click on Create a new Application button and enter information like, Name (= ProjectMultimédia), Domain (= url of your application), etc ...  
+3. Copy the AppId and the url of your app and store them somewhere safe;
 
-Whit that done, you can use the Deezer API (The secret key and application ID can be use for some request or features).
+Now, go in ProjectMultimedia -> src -> assets -> FilesJs -> deezer.js and put your appID at line 9 and put your url at line 10.
+With that done, you can use the Deezer API.
 
 ## Development server
 
