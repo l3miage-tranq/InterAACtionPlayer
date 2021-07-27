@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImportfileComponent } from './importfile.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotifierModule } from 'angular-notifier';
+import {TranslateModule} from '@ngx-translate/core';
 
 describe('ImportfileComponent', () => {
   let component: ImportfileComponent;
@@ -8,7 +11,8 @@ describe('ImportfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImportfileComponent ]
+      declarations: [ ImportfileComponent ],
+      imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
     })
     .compileComponents();
   });

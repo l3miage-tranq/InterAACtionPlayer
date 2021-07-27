@@ -11,12 +11,17 @@ import { ThemeService } from '../../../../../../../src/app/services/theme.servic
   styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
-  public artistId: string = '';
-  public artist: any | null = null;
-  public topTracks: any[] = [];
-  public albums: any[] = [];
+
+  artistId: string = '';
+  artist: any | null = null;
+  topTracks: any[] = [];
+  albums: any[] = [];
 
   theme = "";
+
+  artistImage;
+  artistName;
+  artistFollower;
 
   constructor( private activatedRoute: ActivatedRoute, private artistService: ArtistService, private themeService: ThemeService ) {
     this.theme = themeService.theme;
@@ -44,6 +49,9 @@ export class ArtistComponent implements OnInit {
   public getArtist(): void {
     this.artistService.getArtist(this.artistId).subscribe((artist: any) => {
       this.artist = artist;
+      this.artistImage = artist.images;
+      this.artistName = artist.name;
+      this.artistFollower = artist.followers.total;
     });
   }
 

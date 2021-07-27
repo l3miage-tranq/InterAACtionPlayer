@@ -11,9 +11,8 @@ import { ChooseImgComponent } from '../chooseImgUser/choose-img.component';
 })
 export class ModifyUserComponent implements OnInit {
 
-  userToModify = this.usersService.userToModify;
-  name = this.userToModify.name;
-  image = this.userToModify.thumbnail;
+  name = "";
+  image: string | ArrayBuffer = "";
 
   constructor(private translate: TranslateService,
               private dialog: MatDialog,
@@ -21,6 +20,12 @@ export class ModifyUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    try {
+      this.name = this.usersService.userToModify.name;
+      this.image = this.usersService.userToModify.thumbnail;
+    }catch (error){
+      console.log("Can't load the name and/or the thumbnail, the error is : " + error);
+    }
   }
 
   /**
@@ -62,7 +67,7 @@ export class ModifyUserComponent implements OnInit {
    */
   isNameEmpty(){
     if (this.name == ""){
-      this.name = this.userToModify.name;
+      this.name = this.usersService.userToModify.name;
     }
   }
 

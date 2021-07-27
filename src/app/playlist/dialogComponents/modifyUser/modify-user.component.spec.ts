@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModifyUserComponent } from './modify-user.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('ModifyUserComponent', () => {
   let component: ModifyUserComponent;
@@ -8,7 +10,8 @@ describe('ModifyUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModifyUserComponent ]
+      declarations: [ ModifyUserComponent ],
+      imports: [ MatDialogModule, TranslateModule.forRoot() ],
     })
     .compileComponents();
   });

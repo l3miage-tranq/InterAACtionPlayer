@@ -67,13 +67,15 @@ export class AudioPlayerComponent implements OnInit {
     this.addEventPlayPause(this.audioService);
     this.addEventVolume(this.audioService);
 
-    this.playlist = [
-      {
-        title: this.elemPlaylist.title,
-        link: this.src,
-        artist: this.elemPlaylist.artists
-      },
-    ];
+    if (this.elemPlaylist !== undefined){
+      this.playlist = [
+        {
+          title: this.elemPlaylist.title,
+          link: this.src,
+          artist: this.elemPlaylist.artists
+        },
+      ];
+    }
   }
 
   /**

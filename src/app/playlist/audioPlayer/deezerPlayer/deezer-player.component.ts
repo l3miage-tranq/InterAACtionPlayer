@@ -23,8 +23,8 @@ export class DeezerPlayerComponent implements OnInit {
    * Then init deezer audio player
    */
   ngOnInit(): void {
-    setTrack(this.id);
     setTimeout(() => {
+      setTrack(this.id);
       initDZPlayer();
     }, 500);
   }

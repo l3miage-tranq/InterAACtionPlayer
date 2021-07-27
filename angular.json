@@ -319,7 +319,7 @@
               "projects/spotify/src/assets"
             ],
             "styles": [
-              "projects/spotify/src/styles.scss"
+              "projects/spotify/src/styles.css"
             ],
             "scripts": []
           }
