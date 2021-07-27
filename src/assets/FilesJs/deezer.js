@@ -69,7 +69,7 @@ function decreaseVolumeDeezer(){
  * Allows to put the song we want to listen into the playlist
  */
 function setTrack(trackId){
-  track.push(trackId);
+  track[0] = trackId;
 }
 
 /**
