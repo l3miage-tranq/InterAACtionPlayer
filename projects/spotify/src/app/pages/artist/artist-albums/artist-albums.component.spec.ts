@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArtistAlbumsComponent } from './artist-albums.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ArtistAlbumsComponent', () => {
   let component: ArtistAlbumsComponent;
@@ -8,7 +9,8 @@ describe('ArtistAlbumsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArtistAlbumsComponent ]
+      declarations: [ ArtistAlbumsComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   });

@@ -21,11 +21,64 @@ export class NewReleaseItemComponent implements OnInit {
 
   theme = "";
 
+  newReleaseImages;
+  newReleaseName;
+  newReleaseArtistName;
+  newReleaseType;
+
   constructor(private router: Router, private themeService : ThemeService) {
     this.theme = themeService.theme;
   }
 
   ngOnInit(): void {
+    this.getNewReleaseImages();
+    this.getNewReleaseName();
+    this.getNewReleaseArtistName();
+    this.getNewReleaseType();
+  }
+
+  /**
+   * Allows to get the image of the album
+   */
+  getNewReleaseImages(){
+    try {
+      this.newReleaseImages = this.newRelease.images;
+    }catch (error){
+      console.log("Can't get the images of new releases albums, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the name of the album
+   */
+  getNewReleaseName(){
+    try {
+      this.newReleaseArtistName = this.newRelease.artists[0].name;
+    }catch (error){
+      console.log("Can't get the name of the artist, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the name of the artist's album
+   */
+  getNewReleaseArtistName(){
+    try {
+      this.newReleaseName = this.newRelease.name;
+    }catch (error){
+      console.log("Can't get the name of new releases albums, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the type of the album
+   */
+  getNewReleaseType(){
+    try {
+      this.newReleaseType = this.newRelease.type;
+    }catch (error){
+      console.log("Can't get the type of new releases albums, the error is : " + error);
+    }
   }
 
   /**
