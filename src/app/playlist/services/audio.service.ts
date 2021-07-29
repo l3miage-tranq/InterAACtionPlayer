@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Types } from '../model/types-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +8,16 @@ import { Subject } from 'rxjs';
 export class AudioService {
 
   public audioObservable = new Subject<boolean>();
+  public audioPlayedObservable = new Subject<Types>();
   public volumeObservable = new Subject<number>();
+  public unmutePlayerObservable = new Subject<boolean>();
+  public statusSidebarPlayerObservable = new Subject<string>();
 
-  // if audioPlay == true -> audio player plays music else audio player pauses the music
-  audioPlay = false;
+  displaySidebarPlayer = "displayCogBtn";
   displayVolumeSlider = false;
   startVolume = 50; //min = 0 & max = 100
   volume = this.startVolume;
+  onPlay = false;
 
   constructor() {
   }
@@ -54,5 +58,26 @@ export class AudioService {
         this.volumeObservable.next(this.volume);
       }
     }
+  }
+
+  /**
+   * Notifies observers when a new song is launch by the user
+   */
+  emitNewSong(song){
+    this.audioPlayedObservable.next(song);
+  }
+
+  /**
+   * Notifies observers to mute or not the sidebarPlayer
+   */
+  emitUnmutePlayer(value){
+    this.unmutePlayerObservable.next(value);
+  }
+
+  /**
+   * Notifies observers to display or not the sidebarPlayer
+   */
+  emitStatusSidebarPlayer(value){
+    this.statusSidebarPlayerObservable.next(value);
   }
 }

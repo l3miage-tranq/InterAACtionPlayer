@@ -30,7 +30,6 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(private audioService: AudioService) {
     this.volume = audioService.startVolume;
-    this.audioService.audioPlay = false;
   }
 
   /**
@@ -75,6 +74,7 @@ export class AudioPlayerComponent implements OnInit {
           artist: this.elemPlaylist.artists
         },
       ];
+      this.audioService.emitNewSong(this.elemPlaylist);
     }
   }
 
@@ -87,21 +87,9 @@ export class AudioPlayerComponent implements OnInit {
   setVolume(value: number){
     this.volume = value;
     $(document).ready(function(){
-      $("audio").prop("volume", value / 100);
+      $("#audio").prop("volume", value / 100);
     });
     this.audioService.volume = value;
-  }
-
-  /**
-   * @param audioService
-   *
-   * This event listener chek if a "click" event occur
-   * If this is the case, then change the value of audioPlay in audioService
-   */
-  addEventPlayPause(audioService: AudioService){
-    $('.play-pause').on("click", function(){
-      audioService.audioPlay = !audioService.audioPlay;
-    });
   }
 
   /**
@@ -119,11 +107,29 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   /**
+   * @param audioService
+   *
+   * This event listener check if 'click' occur on the play-pause button on the audio player
+   * Then set the boolean to true or false if the music is playing or not
+   */
+  addEventPlayPause(audioService: AudioService){
+    $('.play-pause').on("click", function(){
+      if (audioService.onPlay){
+        $("audio").trigger('pause');
+        audioService.onPlay = false;
+      }else {
+        $("audio").trigger('play');
+        audioService.onPlay = true;
+      }
+    });
+  }
+
+  /**
    * Allows to initialise the visualizer
    */
   initVisualizer(){
     $(document).ready(function(){
-      $("audio").attr('id', 'audio');
+      $("audio:first").attr('id', 'audio');
       initVisualizer();
     });
   }

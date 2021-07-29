@@ -1,0 +1,22 @@
+.hideCogBtn{
+  display: none;
+}
+
+.disableSidebarPlayer{
+  display: none;
+}
+
+.btnIcon{
+  transform: translateX(-66%);
+}
+
+.btnCircular{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transition: opacity 5s;
+}
+
+.centerAudio{
+  text-align: center;
+}

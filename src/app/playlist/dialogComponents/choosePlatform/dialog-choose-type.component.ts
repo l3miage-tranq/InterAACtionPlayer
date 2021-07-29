@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PlaylistService } from '../../services/playlist.service';
 import { PrefabricatedPlaylistComponent } from '../prefabricatedPlaylist/prefabricated-playlist.component';
+import { AudioService } from '../../services/audio.service';
 
 @Component({
   selector: 'app-dialog-choose-type',
@@ -16,11 +17,13 @@ export class DialogChooseTypeComponent implements OnInit {
   private router: Router;
   private dialog: MatDialog;
   private playlistService: PlaylistService;
+  private audioService: AudioService;
 
-  constructor(router: Router, dialog: MatDialog, playlistService: PlaylistService) {
+  constructor(router: Router, dialog: MatDialog, playlistService: PlaylistService, audioService: AudioService) {
     this.router = router;
     this.dialog = dialog;
     this.playlistService = playlistService;
+    this.audioService = audioService;
   }
 
   ngOnInit(): void {
@@ -31,27 +34,33 @@ export class DialogChooseTypeComponent implements OnInit {
    * Close all DialogComponents then on the web page Youtube
    */
   goYoutube(): void {
+    this.audioService.emitUnmutePlayer(true);
     this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/youtube']);
+    this.audioService.emitStatusSidebarPlayer("");
   }
 
   /**
    * Close all DialogComponents then on the web page Spotify
    */
   goSpotify() {
+    this.audioService.emitUnmutePlayer(true);
     this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/spotify']);
+    this.audioService.emitStatusSidebarPlayer("");
   }
 
   /**
    * Close all DialogComponents then on the web page Deezer
    */
   goDeezer(){
+    this.audioService.emitUnmutePlayer(true);
     this.playlistService.addBtnAddInEmptyPlaylist = false;
     this.dialog.closeAll();
     this.router.navigate(['/deezer']);
+    this.audioService.emitStatusSidebarPlayer("");
   }
 
   /**

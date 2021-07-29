@@ -183,7 +183,7 @@ export class PlaylistComponent implements OnInit {
       }
       this.checkIndex(this.index);
     });
-    new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
+    new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService, this.audioService);
     setTimeout(() => {
       initDeezer();
       this.playList = this.playlistService.playList;
@@ -445,6 +445,8 @@ export class PlaylistComponent implements OnInit {
       this.refreshAudioPlayer();
       this.goOnElement("watchPlace");
       this.setDefaultVolume();
+      this.audioService.emitStatusSidebarPlayer("hideCogBtn");
+      this.audioService.emitUnmutePlayer(false);
     }
   }
 
@@ -710,8 +712,8 @@ export class PlaylistComponent implements OnInit {
   goPlay(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.play();
-    }else if (this.currentElem.types == 'song' && !this.audioService.audioPlay){
-      $('.play-pause').trigger('click');
+    }else if (this.currentElem.types == 'song'){
+      $("audio").trigger('play');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
@@ -727,8 +729,8 @@ export class PlaylistComponent implements OnInit {
   goPause(){
     if (this.currentElem.types == 'video'){
       this.myvideo.nativeElement.pause();
-    }else if (this.currentElem.types == 'song' && this.audioService.audioPlay){
-      $('.play-pause').trigger('click');
+    }else if (this.currentElem.types == 'song'){
+      $("audio").trigger('pause');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
