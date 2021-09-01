@@ -1,38 +1,48 @@
-<div [ngClass]="display">
+<div [ngClass]="display" class="sidebar">
   <button class="ui labeled icon button btnCircular" (click)="showHideSidebarPlayer()">
     <div class="btnIcon">
       <i class="massive cog icon"></i>
     </div>
   </button>
-</div>
-<div [ngClass]="displaySidebarPlayer" class="ui visible horizontal bottom sidebar">
-  <div class="centerAudio">
-    <audio id="sidebarPlayer" controls [src]="songToPlay"></audio>
+  <div [ngClass]="displaySidebarPlayer"> <!-- class="ui visible horizontal bottom sidebar" -->
+    <div *ngIf="elemType == 'song'" class="centerElem">
+      <audio id="sidebarPlayer" controls [src]="elemToPlay"></audio>
+    </div>
+    <div *ngIf="elemType == 'YouTube'" class="centerElem">
+      <iframe class="ui header centerElem"
+              [width]= "widthYoutubePlayer"
+              [height]= "heightYoutubePlayer"
+              [src]="elemPlaylist.id | yt"
+              allowtransparency="true"
+              allow="autoplay">
+      </iframe>
+    </div>
+    <div class="six ui buttons">
+      <button class="ui labeled icon button" (click)="previousElem()">
+        <i class="left chevron icon"></i>
+        Previous
+      </button>
+      <button class="ui button" (click)="play()">
+        Play
+        <i class="play icon"></i>
+      </button>
+      <button class="ui button" (click)="pause()">
+        Pause
+        <i class="pause icon"></i>
+      </button>
+      <button class="ui button" (click)="volumeDown()">
+        Volume
+        <i class="minus icon"></i>
+      </button>
+      <button class="ui button" (click)="volumeUp()">
+        Volume
+        <i class="plus icon"></i>
+      </button>
+      <button class="ui right labeled icon button" (click)="nextElem()">
+        Next
+        <i class="right chevron icon"></i>
+      </button>
+    </div>
   </div>
-  <div class="six ui buttons">
-    <button class="ui labeled icon button" (click)="previousSong()">
-      <i class="left chevron icon"></i>
-      Previous
-    </button>
-    <button class="ui button" (click)="play()">
-      Play
-      <i class="play icon"></i>
-    </button>
-    <button class="ui button" (click)="pause()">
-      Pause
-      <i class="pause icon"></i>
-    </button>
-    <button class="ui button" (click)="volumeDown()">
-      Volume
-      <i class="minus icon"></i>
-    </button>
-    <button class="ui button" (click)="volumeUp()">
-      Volume
-      <i class="plus icon"></i>
-    </button>
-    <button class="ui right labeled icon button" (click)="nextSong()">
-      Next
-      <i class="right chevron icon"></i>
-    </button>
-  </div>
+
 </div>

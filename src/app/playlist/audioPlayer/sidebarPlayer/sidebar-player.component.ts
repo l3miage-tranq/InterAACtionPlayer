@@ -13,9 +13,13 @@ import { Types } from '../../model/types-interface';
 export class SidebarPlayerComponent implements OnInit {
 
   elemPlaylist: Types;
-  songToPlay: SafeResourceUrl = "";
+  elemToPlay: SafeResourceUrl = "";
+  elemType: String = "";
   display = "hideCogBtn";
   displaySidebarPlayer = "disableSidebarPlayer";
+
+  widthYoutubePlayer = 560;
+  heightYoutubePlayer = 315;
 
   constructor(private audioService: AudioService,
               private playlistService: PlaylistService,
@@ -25,7 +29,8 @@ export class SidebarPlayerComponent implements OnInit {
   ngOnInit(): void {
     this.audioService.audioPlayedObservable.subscribe(value => {
       this.elemPlaylist = value;
-      this.songToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(value.id);
+      this.elemType = value.types;
+      this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(value.id);
       this.setVolume(0);
     });
     this.audioService.unmutePlayerObservable.subscribe(value => {
@@ -38,6 +43,8 @@ export class SidebarPlayerComponent implements OnInit {
     this.audioService.statusSidebarPlayerObservable.subscribe(value => {
       if (value == "hideCogBtn"){
         this.displaySidebarPlayer = "disableSidebarPlayer";
+      }else {
+        this.displaySidebarPlayer = "";
       }
       this.display = value;
     });
@@ -94,9 +101,9 @@ export class SidebarPlayerComponent implements OnInit {
   }
 
   /**
-   * Allows to go to the next song of the playlist
+   * Allows to go to the next element of the playlist
    */
-  nextSong(){
+  nextElem(){
     let index = 0;
     let length = this.playlistService.playList.length - 1;
     if (length > 0){
@@ -108,18 +115,19 @@ export class SidebarPlayerComponent implements OnInit {
       }
       if (index <= length){
         this.elemPlaylist = this.playlistService.playList[index];
-        this.songToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[index].id);
+        this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[index].id);
       }else {
         this.elemPlaylist = this.playlistService.playList[0];
-        this.songToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[0].id);
+        this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[0].id);
       }
     }
+    this.elemType = this.elemPlaylist.types;
   }
 
   /**
-   * Allows to go to the previous song of the playlist
+   * Allows to go to the previous element of the playlist
    */
-  previousSong(){
+  previousElem(){
     let index = 0;
     let length = this.playlistService.playList.length - 1;
     if (length > 0){
@@ -131,11 +139,12 @@ export class SidebarPlayerComponent implements OnInit {
       }
       if (index >= 0){
         this.elemPlaylist = this.playlistService.playList[index];
-        this.songToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[index].id);
+        this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[index].id);
       }else {
         this.elemPlaylist = this.playlistService.playList[length];
-        this.songToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[length].id);
+        this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(this.playlistService.playList[length].id);
       }
     }
+    this.elemType = this.elemPlaylist.types;
   }
 }
