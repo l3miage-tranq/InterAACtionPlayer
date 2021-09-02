@@ -9,7 +9,7 @@
       <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>
     <div *ngIf="elemType == 'YouTube'" class="centerElem">
-      <iframe id="sidebarYoutubePlayer" class="ui header centerElem"
+      <iframe id="sidebarYoutubePlayer" class="ui header"
               [width]= "widthYoutubePlayer"
               [height]= "heightYoutubePlayer"
               [src]="elemPlaylist.id | yt"

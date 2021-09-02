@@ -448,8 +448,8 @@ export class PlaylistComponent implements OnInit {
       this.goOnElement("watchPlace");
       this.setDefaultVolume();
       this.audioService.emitStatusSidebarPlayer("hideCogBtn");
-      this.audioService.emitUnmutePlayer(false);
       this.audioService.emitNewSong(this.currentElem);
+      this.audioService.emitUnmutePlayer(false);
     }
   }
 
@@ -718,8 +718,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == 'song'){
       $("audio").trigger('play');
     }else if (this.currentElem.types == 'YouTube'){
-      (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
       (<HTMLIFrameElement> $('#sidebarYoutubePlayer')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.playMusic(this.currentElem.id);
     }else if (this.currentElem.types == "Deezer"){
@@ -763,8 +763,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "YouTube"){
       this.volumeYouTubeVideo = this.volumeYouTubeVideo - 10;
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
-        '*'
+        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*'
       );
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
@@ -792,8 +791,7 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "YouTube"){
       this.volumeYouTubeVideo = this.volumeYouTubeVideo + 10;
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
-        '*'
+        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*'
       );
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;

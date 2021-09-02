@@ -31,7 +31,6 @@ export class SidebarPlayerComponent implements OnInit {
       this.elemPlaylist = value;
       this.elemType = value.types;
       this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(value.id);
-      this.setVolume(0);
     });
     this.audioService.unmutePlayerObservable.subscribe(value => {
       if (value){
@@ -50,6 +49,7 @@ export class SidebarPlayerComponent implements OnInit {
     });
     this.audioService.cancelSongObservable.subscribe(value => {
       this.elemToPlay = value;
+      this.elemType = "";
     });
   }
 
@@ -71,11 +71,12 @@ export class SidebarPlayerComponent implements OnInit {
    */
   setVolume(value){
     if (this.elemType == "song"){
-      $("#sidebarAudioPlayer").prop("volume", value / 100);
+      $(document).ready(function(){
+        $("#sidebarAudioPlayer").prop("volume", value / 100);
+      });
     }else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ value + ']}',
-        '*'
+        '{"event":"command","func":"setVolume","args":['+ value +']}', '*'
       );
     }
   }
