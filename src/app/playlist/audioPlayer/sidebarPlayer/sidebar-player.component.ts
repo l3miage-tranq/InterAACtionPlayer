@@ -48,6 +48,9 @@ export class SidebarPlayerComponent implements OnInit {
       }
       this.display = value;
     });
+    this.audioService.cancelSongObservable.subscribe(value => {
+      this.elemToPlay = value;
+    });
   }
 
   /**
@@ -68,9 +71,9 @@ export class SidebarPlayerComponent implements OnInit {
    */
   setVolume(value){
     if (this.elemType == "song"){
-      $("#sidebarPlayer").prop("volume", value / 100);
+      $("#sidebarAudioPlayer").prop("volume", value / 100);
     }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
         '{"event":"command","func":"setVolume","args":['+ value + ']}',
         '*'
       );
@@ -103,12 +106,12 @@ export class SidebarPlayerComponent implements OnInit {
    * Allows to up the volume of the sidebar player by 10
    */
   volumeUp(){
-    let volume = this.audioService.volume + 10;
+    this.audioService.volume = this.audioService.volume + 10;
     if (this.elemType == "song"){
-      $("#sidebarPlayer").prop("volume", volume / 100);
+      $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ volume + ']}',
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}',
         '*'
       );
     }
@@ -118,12 +121,12 @@ export class SidebarPlayerComponent implements OnInit {
    * Allows to down the volume of the sidebar player by 10
    */
   volumeDown(){
-    let volume = this.audioService.volume - 10;
+    this.audioService.volume = this.audioService.volume - 10;
     if (this.elemType == "song"){
-      $("#sidebarPlayer").prop("volume", volume / 100);
+      $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ volume + ']}',
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}',
         '*'
       );
     }

@@ -429,6 +429,7 @@ export class PlaylistComponent implements OnInit {
     logoutDeezer();
     this.globalService.getLogoutAccountSpotify();
     this.audioService.emitStatusSidebarPlayer("hideCogBtn");
+    this.audioService.emitCancelSong();
     this.router.navigate(['user']);
   }
 

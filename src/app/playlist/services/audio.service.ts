@@ -12,6 +12,7 @@ export class AudioService {
   public volumeObservable = new Subject<number>();
   public unmutePlayerObservable = new Subject<boolean>();
   public statusSidebarPlayerObservable = new Subject<string>();
+  public cancelSongObservable = new Subject<string>();
 
   displaySidebarPlayer = "displayCogBtn";
   displayVolumeSlider = false;
@@ -65,6 +66,13 @@ export class AudioService {
    */
   emitNewSong(song){
     this.audioPlayedObservable.next(song);
+  }
+
+  /**
+   * Notifies observers to cancel the current song in the sidebar player
+   */
+  emitCancelSong(){
+    this.cancelSongObservable.next("");
   }
 
   /**
