@@ -20,9 +20,3 @@
 .centerElem{
   text-align: center;
 }
-
-.sidebar{
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-}

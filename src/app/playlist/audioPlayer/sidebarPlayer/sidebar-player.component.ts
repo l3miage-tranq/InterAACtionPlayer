@@ -67,37 +67,66 @@ export class SidebarPlayerComponent implements OnInit {
    * Set the volume of the sidebar player with the value send
    */
   setVolume(value){
-    $("#sidebarPlayer").prop("volume", value / 100);
+    if (this.elemType == "song"){
+      $("#sidebarPlayer").prop("volume", value / 100);
+    }else if (this.elemType == "YouTube"){
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":['+ value + ']}',
+        '*'
+      );
+    }
   }
 
   /**
    * Put the player in play mode
    */
   play(){
-    $("audio").trigger('play');
+    if (this.elemType == "song") {
+      $("audio").trigger('play');
+    }else if (this.elemType == "YouTube"){
+      (<HTMLIFrameElement> $('#sidebarYoutubePlayer')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
   }
 
   /**
    * Put the player in pause mode
    */
   pause(){
-    $("audio").trigger('pause');
+    if (this.elemType == "song") {
+      $("audio").trigger('pause');
+    }else if (this.elemType == "YouTube"){
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
   }
 
   /**
    * Allows to up the volume of the sidebar player by 10
    */
   volumeUp(){
-    this.audioService.volume = this.audioService.volume + 10;
-    $("#sidebarPlayer").prop("volume", this.audioService.volume / 100);
+    let volume = this.audioService.volume + 10;
+    if (this.elemType == "song"){
+      $("#sidebarPlayer").prop("volume", volume / 100);
+    }else if (this.elemType == "YouTube"){
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":['+ volume + ']}',
+        '*'
+      );
+    }
   }
 
   /**
    * Allows to down the volume of the sidebar player by 10
    */
   volumeDown(){
-    this.audioService.volume = this.audioService.volume - 10;
-    $("#sidebarPlayer").prop("volume", this.audioService.volume / 100);
+    let volume = this.audioService.volume - 10;
+    if (this.elemType == "song"){
+      $("#sidebarPlayer").prop("volume", volume / 100);
+    }else if (this.elemType == "YouTube"){
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
+        '{"event":"command","func":"setVolume","args":['+ volume + ']}',
+        '*'
+      );
+    }
   }
 
   /**

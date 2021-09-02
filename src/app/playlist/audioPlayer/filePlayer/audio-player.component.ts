@@ -74,7 +74,6 @@ export class AudioPlayerComponent implements OnInit {
           artist: this.elemPlaylist.artists
         },
       ];
-      this.audioService.emitNewSong(this.elemPlaylist);
     }
   }
 

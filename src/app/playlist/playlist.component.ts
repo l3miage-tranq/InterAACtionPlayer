@@ -428,6 +428,7 @@ export class PlaylistComponent implements OnInit {
   logout(){
     logoutDeezer();
     this.globalService.getLogoutAccountSpotify();
+    this.audioService.emitStatusSidebarPlayer("hideCogBtn");
     this.router.navigate(['user']);
   }
 
@@ -447,6 +448,7 @@ export class PlaylistComponent implements OnInit {
       this.setDefaultVolume();
       this.audioService.emitStatusSidebarPlayer("hideCogBtn");
       this.audioService.emitUnmutePlayer(false);
+      this.audioService.emitNewSong(this.currentElem);
     }
   }
 
@@ -716,6 +718,7 @@ export class PlaylistComponent implements OnInit {
       $("audio").trigger('play');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      (<HTMLIFrameElement> $('#sidebarYoutubePlayer')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.playMusic(this.currentElem.id);
     }else if (this.currentElem.types == "Deezer"){
@@ -733,6 +736,7 @@ export class PlaylistComponent implements OnInit {
       $("audio").trigger('pause');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.pauseMusic();
     }else if (this.currentElem.types == "Deezer"){

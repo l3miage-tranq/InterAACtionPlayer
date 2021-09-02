@@ -1,15 +1,15 @@
-<div [ngClass]="display" class="sidebar">
+<div *ngIf="elemToPlay != ''" [ngClass]="display" class="sidebar">
   <button class="ui labeled icon button btnCircular" (click)="showHideSidebarPlayer()">
     <div class="btnIcon">
       <i class="massive cog icon"></i>
     </div>
   </button>
-  <div [ngClass]="displaySidebarPlayer"> <!-- class="ui visible horizontal bottom sidebar" -->
+  <div [ngClass]="displaySidebarPlayer" class="ui visible horizontal bottom sidebar">
     <div *ngIf="elemType == 'song'" class="centerElem">
-      <audio id="sidebarPlayer" controls [src]="elemToPlay"></audio>
+      <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>
     <div *ngIf="elemType == 'YouTube'" class="centerElem">
-      <iframe class="ui header centerElem"
+      <iframe id="sidebarYoutubePlayer" class="ui header centerElem"
               [width]= "widthYoutubePlayer"
               [height]= "heightYoutubePlayer"
               [src]="elemPlaylist.id | yt"
@@ -44,5 +44,4 @@
       </button>
     </div>
   </div>
-
 </div>
