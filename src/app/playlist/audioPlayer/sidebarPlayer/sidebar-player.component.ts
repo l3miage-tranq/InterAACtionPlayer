@@ -31,6 +31,7 @@ export class SidebarPlayerComponent implements OnInit {
       this.elemPlaylist = value;
       this.elemType = value.types;
       this.elemToPlay = this.sanitizer.bypassSecurityTrustResourceUrl(value.id);
+      this.setVolume(0);
     });
     this.audioService.unmutePlayerObservable.subscribe(value => {
       if (value){

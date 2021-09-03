@@ -1,14 +1,9 @@
 <div *ngIf="elemToPlay != ''" [ngClass]="display" class="sidebar">
-  <button class="ui labeled icon button btnCircular" (click)="showHideSidebarPlayer()">
-    <div class="btnIcon">
-      <i class="massive cog icon"></i>
-    </div>
-  </button>
-  <div [ngClass]="displaySidebarPlayer" class="ui visible horizontal bottom sidebar">
-    <div *ngIf="elemType == 'song'" class="centerElem">
+  <div class="ui visible horizontal bottom sidebar">
+    <div *ngIf="elemType == 'song'" [ngClass]="displaySidebarPlayer" class="centerElem">
       <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>
-    <div *ngIf="elemType == 'YouTube'" class="centerElem">
+    <div *ngIf="elemType == 'YouTube'" [ngClass]="displaySidebarPlayer" class="centerElem">
       <iframe id="sidebarYoutubePlayer" class="ui header"
               [width]= "widthYoutubePlayer"
               [height]= "heightYoutubePlayer"
@@ -17,7 +12,14 @@
               allow="autoplay">
       </iframe>
     </div>
-    <div class="six ui buttons">
+    <div>
+      <button class="ui right floated labeled icon button btnCircular" (click)="showHideSidebarPlayer()">
+        <div class="btnIcon">
+          <i class="massive cog icon"></i>
+        </div>
+      </button>
+    </div>
+    <div class="six ui massive buttons" [ngClass]="displaySidebarPlayer">
       <button class="ui labeled icon button" (click)="previousElem()">
         <i class="left chevron icon"></i>
         Previous

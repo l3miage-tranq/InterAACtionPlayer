@@ -19,4 +19,5 @@
 
 .centerElem{
   text-align: center;
+  transform: translateY(150px);
 }
