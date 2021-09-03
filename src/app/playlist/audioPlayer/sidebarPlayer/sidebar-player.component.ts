@@ -80,10 +80,6 @@ export class SidebarPlayerComponent implements OnInit {
       $(document).ready(function(){
         $("#sidebarAudioPlayer").prop("volume", value / 100);
       });
-    }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ value +']}', '*'
-      );
     }
   }
 
@@ -117,10 +113,7 @@ export class SidebarPlayerComponent implements OnInit {
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}',
-        '*'
-      );
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}', '*');
     }
   }
 
@@ -132,10 +125,7 @@ export class SidebarPlayerComponent implements OnInit {
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
-      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}',
-        '*'
-      );
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}', '*');
     }
   }
 

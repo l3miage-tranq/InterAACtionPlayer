@@ -719,6 +719,7 @@ export class PlaylistComponent implements OnInit {
       $("audio").trigger('play');
     }else if (this.currentElem.types == 'YouTube'){
       (<HTMLIFrameElement> $('#sidebarYoutubePlayer')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + 0 + ']}', '*');
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.playMusic(this.currentElem.id);
@@ -762,9 +763,7 @@ export class PlaylistComponent implements OnInit {
       this.audioService.emitDecreaseVolume();
     }else if (this.currentElem.types == "YouTube"){
       this.volumeYouTubeVideo = this.volumeYouTubeVideo - 10;
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*'
-      );
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);
@@ -790,9 +789,7 @@ export class PlaylistComponent implements OnInit {
       this.audioService.emitIncreaseVolume();
     }else if (this.currentElem.types == "YouTube"){
       this.volumeYouTubeVideo = this.volumeYouTubeVideo + 10;
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-        '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*'
-      );
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);

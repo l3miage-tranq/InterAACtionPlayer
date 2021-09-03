@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Types } from '../model/types-interface';
+import * as $ from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,7 @@ export class AudioService {
    * Notifies observers to mute or not the sidebarPlayer
    */
   emitUnmutePlayer(value){
+    (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volume + ']}', '*');
     this.unmutePlayerObservable.next(value);
   }
 
