@@ -18,16 +18,7 @@ export class SearchContainerComponent implements OnInit{
   constructor(private searchService: SearchService) {
   }
 
-  /**
-   * Allows to know if we have displayed all the elements
-   * If it's true, then we hide the "More Video" button
-   */
   ngOnInit() {
-    this.searchService.nbDisplayElem.subscribe(value => {
-      if (value > 50){
-       this.moreVideo = false;
-      }
-    });
   }
 
   /**
@@ -63,12 +54,5 @@ export class SearchContainerComponent implements OnInit{
         this.loading = false;
         this.moreVideo = true;
       });
-  }
-
-  /**
-   * Allows to the user to display more videos
-   */
-  increaseVideoDisplay(){
-    this.searchService.emitIncreaseNbDisplayValue();
   }
 }

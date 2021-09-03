@@ -19,7 +19,6 @@ import { SearchService } from '../../../shared/services/search.service';
 export class SearchListComponent implements OnInit {
 
   theme = "";
-  nbDisplayValue;
 
   @Input() videos: Video[];
   private notifier: NotifierService;
@@ -42,16 +41,9 @@ export class SearchListComponent implements OnInit {
     this.theme = this.themeService.theme;
     this.translate = translate;
     this.searchService = searchService;
-    this.nbDisplayValue = searchService.nbDisplayDefault;
   }
 
-  /**
-   * Subscribe to the nbDisplayElem for know how much video we need to display
-   */
   ngOnInit(): void {
-    this.searchService.nbDisplayElem.subscribe(value => {
-      this.nbDisplayValue = value;
-    })
   }
 
   /**

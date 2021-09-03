@@ -1,9 +1,9 @@
 <div *ngIf="elemToPlay != ''" [ngClass]="display" class="sidebar">
   <div class="ui visible horizontal bottom sidebar" [style]="styleSidebarPlayer">
-    <div *ngIf="elemType == 'song'" [ngClass]="displaySidebarPlayer" class="centerElem">
+    <div *ngIf="elemType == 'song'" [ngClass]="displaySidebarPlayer" class="centerElemMusic">
       <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>
-    <div *ngIf="elemType == 'YouTube'" [ngClass]="displaySidebarPlayer" class="centerElem">
+    <div *ngIf="elemType == 'YouTube'" [ngClass]="displaySidebarPlayer" class="centerElemYoutube">
       <iframe id="sidebarYoutubePlayer" class="ui header"
               [width]= "widthYoutubePlayer"
               [height]= "heightYoutubePlayer"
