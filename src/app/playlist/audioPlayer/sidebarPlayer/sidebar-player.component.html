@@ -22,26 +22,26 @@
     <div class="six ui massive buttons" [ngClass]="displaySidebarPlayer">
       <button class="ui labeled icon button" (click)="previousElem()">
         <i class="left chevron icon"></i>
-        Previous
+        {{ "sidebarPlayer.previous" | translate }}
       </button>
       <button class="ui button" (click)="play()">
-        Play
+        {{ "sidebarPlayer.play" | translate }}
         <i class="play icon"></i>
       </button>
       <button class="ui button" (click)="pause()">
-        Pause
+        {{ "sidebarPlayer.pause" | translate }}
         <i class="pause icon"></i>
       </button>
       <button class="ui button" (click)="volumeDown()">
-        Volume
+        {{ "sidebarPlayer.volume" | translate }}
         <i class="minus icon"></i>
       </button>
       <button class="ui button" (click)="volumeUp()">
-        Volume
+        {{ "sidebarPlayer.volume" | translate }}
         <i class="plus icon"></i>
       </button>
       <button class="ui right labeled icon button" (click)="nextElem()">
-        Next
+        {{ "sidebarPlayer.next" | translate }}
         <i class="right chevron icon"></i>
       </button>
     </div>

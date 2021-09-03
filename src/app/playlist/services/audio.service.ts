@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -80,7 +81,11 @@ export class AudioService {
    * Notifies observers to mute or not the sidebarPlayer
    */
   emitUnmutePlayer(value){
-    (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volume + ']}', '*');
+    try {
+      (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volume + ']}', '*');
+    }catch(e){
+      //console.log(e);
+    }
     this.unmutePlayerObservable.next(value);
   }
 

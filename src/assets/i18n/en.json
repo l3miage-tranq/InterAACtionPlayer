@@ -207,6 +207,13 @@
     "submit": "Create",
     "or": "or"
   },
+  "sidebarPlayer": {
+    "previous": "Previous",
+    "play": "Play",
+    "pause": "Pause",
+    "volume": "Volume",
+    "next": "Next"
+  },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"
   },
