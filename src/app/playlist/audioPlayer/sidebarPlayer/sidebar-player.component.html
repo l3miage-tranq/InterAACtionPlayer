@@ -1,5 +1,5 @@
 <div *ngIf="elemToPlay != ''" [ngClass]="display" class="sidebar">
-  <div class="ui visible horizontal bottom sidebar">
+  <div class="ui visible horizontal bottom sidebar" [style]="styleSidebarPlayer">
     <div *ngIf="elemType == 'song'" [ngClass]="displaySidebarPlayer" class="centerElem">
       <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>

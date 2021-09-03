@@ -17,6 +17,7 @@ export class SidebarPlayerComponent implements OnInit {
   elemType: String = "";
   display = "hideCogBtn";
   displaySidebarPlayer = "disableSidebarPlayer";
+  styleSidebarPlayer = "";
 
   widthYoutubePlayer = 560;
   heightYoutubePlayer = 315;
@@ -43,8 +44,10 @@ export class SidebarPlayerComponent implements OnInit {
     this.audioService.statusSidebarPlayerObservable.subscribe(value => {
       if (value == "hideCogBtn"){
         this.displaySidebarPlayer = "disableSidebarPlayer";
+        this.styleSidebarPlayer = "width: 150px !important; margin-left: 90% !important;";
       }else {
         this.displaySidebarPlayer = "";
+        this.styleSidebarPlayer = "";
       }
       this.display = value;
     });
@@ -60,8 +63,10 @@ export class SidebarPlayerComponent implements OnInit {
   showHideSidebarPlayer(){
     if (this.displaySidebarPlayer == ""){
       this.displaySidebarPlayer = "disableSidebarPlayer";
+      this.styleSidebarPlayer = "width: 150px !important; margin-left: 90% !important;";
     }else {
       this.displaySidebarPlayer = "";
+      this.styleSidebarPlayer = "";
     }
   }
 
