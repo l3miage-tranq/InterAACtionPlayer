@@ -198,16 +198,16 @@
         </button>
       </div>
       <iframe *ngIf="currentElem.types == 'YouTube'" id="myYoutubeVideo" class="ui header"
-              [width]="width"
-              [height]="height"
+              [width]="widthIframe"
+              [height]="heightIframe"
               [src]="currentElem.id | yt"
               allowtransparency="true"
               allow="autoplay">
       </iframe>
       <iframe *ngIf="currentElem.types == 'Spotify'" id="mySpotifySong" class="ui header"
               [src]="currentElem.id | uri"
-              [width]="width"
-              [height]="height"
+              [width]="widthIframe"
+              [height]="heightIframe"
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
@@ -222,8 +222,8 @@
           <figcaption [ngClass]="textColor">{{ currentElem.title }}</figcaption>
           <video controls
                  preload="metadata"
-                 [width]="width"
-                 [height]="height"
+                 [width]="widthIframe"
+                 [height]="heightIframe"
                  id="myVideo" class="" #myVideo>
             <source [src]="getSrcFile()">
           </video>

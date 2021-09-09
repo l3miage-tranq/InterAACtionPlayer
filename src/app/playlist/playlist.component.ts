@@ -58,10 +58,8 @@ export class PlaylistComponent implements OnInit {
 
   @ViewChild('myVideo') myvideo: ElementRef;
 
-  width = 560;
-  height = 315;
-  volumeYouTubeVideo = 50;
-  volumeSpotifyMusic = 50;
+  widthIframe = 560;
+  heightIframe = 315;
 
   edit = false;
   launch = false;
@@ -506,14 +504,14 @@ export class PlaylistComponent implements OnInit {
       $(document).ready( () => {
         setTimeout( () => {
           (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage(
-            '{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}',
+            '{"event":"command","func":"setVolume","args":[' + this.audioService.volume + ']}',
             '*'
           );
         }, 500);
       });
 
     }else if (this.currentElem.types == "Spotify"){
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalService.setVolume(this.audioService.volume);
     }
   }
 
@@ -750,25 +748,15 @@ export class PlaylistComponent implements OnInit {
    * Allow the user to decrease the volume of the current video/music
    */
   goDecreaseVolume(){
-    let newVolume = 0;
-    if (this.currentElem.types == "video" && this.myvideo.nativeElement.volume > 0){
-      newVolume = this.myvideo.nativeElement.volume - 0.1;
-      if (newVolume < 0){
-        newVolume = 0
-        this.myvideo.nativeElement.volume = newVolume;
-      }else {
-        this.myvideo.nativeElement.volume = newVolume;
-      }
-    }else if (this.currentElem.types == "song"){
-      this.audioService.emitDecreaseVolume();
+    this.audioService.emitDecreaseVolume();
+    if (this.currentElem.types == "video"){
+      this.myvideo.nativeElement.volume = this.audioService.volume/100; //For video the value of volume is between 0 and 1
     }else if (this.currentElem.types == "YouTube"){
-      this.volumeYouTubeVideo = this.volumeYouTubeVideo - 10;
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*');
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.audioService.volume + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalService.setVolume(this.audioService.volume);
     }else if (this.currentElem.types == "Deezer"){
-      decreaseVolumeDeezer();
+      decreaseVolumeDeezer(this.audioService.volume);
     }
   }
 
@@ -776,25 +764,15 @@ export class PlaylistComponent implements OnInit {
    * Allow the user to increase the volume of the current video/music
    */
   goIncreaseVolume(){
-    let newVolume = 0;
-    if (this.currentElem.types == "video" && this.myvideo.nativeElement.volume < 1){
-      newVolume = this.myvideo.nativeElement.volume + 0.1;
-      if (newVolume > 1){
-        newVolume = 1
-        this.myvideo.nativeElement.volume = newVolume;
-      }else {
-        this.myvideo.nativeElement.volume = newVolume;
-      }
-    }else if (this.currentElem.types == "song"){
-      this.audioService.emitIncreaseVolume();
+    this.audioService.emitIncreaseVolume();
+    if (this.currentElem.types == "video"){
+      this.myvideo.nativeElement.volume = this.audioService.volume/100; //For video the value of volume is between 0 and 1
     }else if (this.currentElem.types == "YouTube"){
-      this.volumeYouTubeVideo = this.volumeYouTubeVideo + 10;
-      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.volumeYouTubeVideo + ']}', '*');
+      (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.audioService.volume + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
-      this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
-      this.globalService.setVolume(this.volumeSpotifyMusic);
+      this.globalService.setVolume(this.audioService.volume);
     }else if (this.currentElem.types == "Deezer"){
-      increaseVolumeDeezer();
+      increaseVolumeDeezer(this.audioService.volume);
     }
   }
 

@@ -26,10 +26,10 @@ export class AudioPlayerComponent implements OnInit {
   displayVolumeControls = true;
   displayRepeatControls = false;
   disablePositionSlider = false;
-  volume = 50;
+  volume;
 
   constructor(private audioService: AudioService) {
-    this.volume = audioService.startVolume;
+    this.volume = audioService.volume;
   }
 
   /**

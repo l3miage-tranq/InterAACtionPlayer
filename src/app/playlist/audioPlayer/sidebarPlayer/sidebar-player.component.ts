@@ -109,7 +109,7 @@ export class SidebarPlayerComponent implements OnInit {
    * Allows to up the volume of the sidebar player by 10
    */
   volumeUp(){
-    this.audioService.volume = this.audioService.volume + 10;
+    this.audioService.emitIncreaseVolume();
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
@@ -121,7 +121,7 @@ export class SidebarPlayerComponent implements OnInit {
    * Allows to down the volume of the sidebar player by 10
    */
   volumeDown(){
-    this.audioService.volume = this.audioService.volume - 10;
+    this.audioService.emitDecreaseVolume();
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){

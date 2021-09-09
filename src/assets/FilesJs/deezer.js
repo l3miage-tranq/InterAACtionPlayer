@@ -54,15 +54,15 @@ function pauseDeezer(){
 /**
  * Allows to increase the volume of Deezer audio player
  */
-function increaseVolumeDeezer(){
-  DZ.player.setVolume(DZ.player.getVolume() + 10);
+function increaseVolumeDeezer(value){
+  DZ.player.setVolume(value);
 }
 
 /**
  * Allows to decrease the volume of Deezer audio player
  */
-function decreaseVolumeDeezer(){
-  DZ.player.setVolume(DZ.player.getVolume() - 10);
+function decreaseVolumeDeezer(value){
+  DZ.player.setVolume(value);
 }
 
 /**

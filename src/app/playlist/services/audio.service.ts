@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Types } from '../model/types-interface';
 import * as $ from 'jquery';
-import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,7 @@ export class AudioService {
 
   displaySidebarPlayer = "displayCogBtn";
   displayVolumeSlider = false;
-  startVolume = 50; //min = 0 & max = 100
-  volume = this.startVolume;
+  volume = 50; //min = 0 & max = 100
   onPlay = false;
 
   constructor() {
@@ -38,7 +36,7 @@ export class AudioService {
    */
   emitDecreaseVolume(){
     if (this.volume > 0){
-      this.volume = this.volume - 5;
+      this.volume = this.volume - 10;
       if (this.volume < 0){
         this.volume = 0;
         this.volumeObservable.next(this.volume);
@@ -53,7 +51,7 @@ export class AudioService {
    */
   emitIncreaseVolume(){
     if (this.volume < 100){
-      this.volume = this.volume + 5;
+      this.volume = this.volume + 10;
       if (this.volume > 100){
         this.volume = 100;
         this.volumeObservable.next(this.volume);
