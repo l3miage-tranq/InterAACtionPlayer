@@ -3,14 +3,23 @@
     <div *ngIf="elemType == 'song'" [ngClass]="displaySidebarPlayer" class="centerElemMusic">
       <audio id="sidebarAudioPlayer" controls [src]="elemToPlay"></audio>
     </div>
-    <div *ngIf="elemType == 'YouTube'" [ngClass]="displaySidebarPlayer" class="centerElemYoutube">
+    <div *ngIf="elemType == 'YouTube'" [ngClass]="displaySidebarPlayer" class="centerElemVideo">
       <iframe id="sidebarYoutubePlayer" class="ui header"
-              [width]= "widthYoutubePlayer"
-              [height]= "heightYoutubePlayer"
+              [width]= "widthVideoPlayer"
+              [height]= "heightVideoPlayer"
               [src]="elemPlaylist.id | yt"
               allowtransparency="true"
               allow="autoplay">
       </iframe>
+    </div>
+    <div *ngIf="elemType == 'video'" [ngClass]="displaySidebarPlayer" class="centerElemVideo">
+      <video controls
+             preload="auto"
+             [width]="widthVideoPlayer"
+             [height]="heightVideoPlayer"
+             id="mySideVideo">
+        <source [src]="elemToPlay">
+      </video>
     </div>
     <div>
       <button class="ui right floated labeled icon button btnCircular buttonPosition" (click)="showHideSidebarPlayer()">

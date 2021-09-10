@@ -221,10 +221,10 @@
         <figure>
           <figcaption [ngClass]="textColor">{{ currentElem.title }}</figcaption>
           <video controls
-                 preload="metadata"
+                 preload="auto"
                  [width]="widthIframe"
                  [height]="heightIframe"
-                 id="myVideo" class="" #myVideo>
+                 id="myVideo">
             <source [src]="getSrcFile()">
           </video>
           <figcaption [ngClass]="textColor">{{ currentElem.artists }}</figcaption>

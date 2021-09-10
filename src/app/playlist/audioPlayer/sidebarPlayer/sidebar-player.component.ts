@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { AudioService } from '../../services/audio.service';
 import * as $ from 'jquery';
 import { PlaylistService } from '../../services/playlist.service';
@@ -19,8 +19,8 @@ export class SidebarPlayerComponent implements OnInit {
   displaySidebarPlayer = "disableSidebarPlayer";
   styleSidebarPlayer = "";
 
-  widthYoutubePlayer = 560;
-  heightYoutubePlayer = 315;
+  widthVideoPlayer = 560;
+  heightVideoPlayer = 315;
 
   constructor(private audioService: AudioService,
               private playlistService: PlaylistService,
@@ -75,12 +75,16 @@ export class SidebarPlayerComponent implements OnInit {
    *
    * Set the volume of the sidebar player with the value send
    */
-  setVolume(value){
+   setVolume(value){
     if (this.elemType == "song"){
       $(document).ready(function(){
         $("#sidebarAudioPlayer").prop("volume", value / 100);
       });
-    }else if (this.elemType == "YouTube"){
+    }else if (this.elemType == "video"){
+      $(document).ready(function(){
+        $("#mySideVideo").prop("volume", value / 100);
+      });
+    } else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ value + ']}', '*');
     }
   }
@@ -91,6 +95,8 @@ export class SidebarPlayerComponent implements OnInit {
   play(){
     if (this.elemType == "song") {
       $("audio").trigger('play');
+    }else if (this.elemType == "video"){
+      $("video").trigger('play');
     }else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $('#sidebarYoutubePlayer')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}', '*');
@@ -103,6 +109,8 @@ export class SidebarPlayerComponent implements OnInit {
   pause(){
     if (this.elemType == "song") {
       $("audio").trigger('pause');
+    }else if (this.elemType == "video"){
+      $("video").trigger('pause');
     }else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }
@@ -115,6 +123,8 @@ export class SidebarPlayerComponent implements OnInit {
     this.audioService.emitIncreaseVolume();
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
+    }else if (this.elemType == "video"){
+      $("#mySideVideo").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}', '*');
     }
@@ -127,6 +137,8 @@ export class SidebarPlayerComponent implements OnInit {
     this.audioService.emitDecreaseVolume();
     if (this.elemType == "song"){
       $("#sidebarAudioPlayer").prop("volume", this.audioService.volume / 100);
+    }else if (this.elemType == "video"){
+      $("#mySideVideo").prop("volume", this.audioService.volume / 100);
     }else if (this.elemType == "YouTube"){
       (<HTMLIFrameElement> $("#sidebarYoutubePlayer")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":['+ this.audioService.volume + ']}', '*');
     }

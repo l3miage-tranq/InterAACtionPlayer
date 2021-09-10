@@ -56,8 +56,6 @@ declare var decreaseVolumeDeezer: any;
 })
 export class PlaylistComponent implements OnInit {
 
-  @ViewChild('myVideo') myvideo: ElementRef;
-
   widthIframe = 560;
   heightIframe = 315;
 
@@ -712,7 +710,8 @@ export class PlaylistComponent implements OnInit {
    */
   goPlay(){
     if (this.currentElem.types == 'video'){
-      this.myvideo.nativeElement.play();
+      $("video").trigger('play');
+      $("#mySideVideo").prop("volume", 0);
     }else if (this.currentElem.types == 'song'){
       $("audio").trigger('play');
     }else if (this.currentElem.types == 'YouTube'){
@@ -731,7 +730,7 @@ export class PlaylistComponent implements OnInit {
    */
   goPause(){
     if (this.currentElem.types == 'video'){
-      this.myvideo.nativeElement.pause();
+      $("video").trigger('pause');
     }else if (this.currentElem.types == 'song'){
       $("audio").trigger('pause');
     }else if (this.currentElem.types == 'YouTube'){
@@ -750,7 +749,7 @@ export class PlaylistComponent implements OnInit {
   goDecreaseVolume(){
     this.audioService.emitDecreaseVolume();
     if (this.currentElem.types == "video"){
-      this.myvideo.nativeElement.volume = this.audioService.volume/100; //For video the value of volume is between 0 and 1
+      $("#myVideo").prop("volume", this.audioService.volume / 100); //For video the value of volume is between 0 and 1
     }else if (this.currentElem.types == "YouTube"){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.audioService.volume + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
@@ -766,7 +765,7 @@ export class PlaylistComponent implements OnInit {
   goIncreaseVolume(){
     this.audioService.emitIncreaseVolume();
     if (this.currentElem.types == "video"){
-      this.myvideo.nativeElement.volume = this.audioService.volume/100; //For video the value of volume is between 0 and 1
+      $("#myVideo").prop("volume", this.audioService.volume / 100); //For video the value of volume is between 0 and 1
     }else if (this.currentElem.types == "YouTube"){
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"setVolume","args":[' + this.audioService.volume + ']}', '*');
     }else if (this.currentElem.types == "Spotify"){
