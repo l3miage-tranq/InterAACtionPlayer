@@ -63,7 +63,7 @@ export class SidebarPlayerComponent implements OnInit {
   showHideSidebarPlayer(){
     if (this.displaySidebarPlayer == ""){
       this.displaySidebarPlayer = "disableSidebarPlayer";
-      this.styleSidebarPlayer = "width: 150px !important; margin-left: 91% !important;";
+      this.styleSidebarPlayer = "width: 150px !important; margin-left: 91% !important; margin-bottom: 1% !important";
     }else {
       this.displaySidebarPlayer = "";
       this.styleSidebarPlayer = "";
