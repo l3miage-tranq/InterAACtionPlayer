@@ -1,7 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Import for notification */
-@import "~angular-notifier/styles";
-
-/* Import for DialogComponents */
-@import "~@angular/material/prebuilt-themes/purple-green.css";
