@@ -1,0 +1,23 @@
+.idea
+target
+*.iml
+*.ipr
+*.iws
+/bin/
+.project
+.classpath
+.settings
+gazeplay/*.log.*
+cache
+gazeplay/nbactions.xml
+*.DS_Store
+gazeplay.log.*
+.DS_Store
+
+.gradle/
+build
+out
+
+# gh-pages
+_site
+gradle*
