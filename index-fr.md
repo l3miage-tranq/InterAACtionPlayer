@@ -13,5 +13,5 @@ excerpt: >
   Description de GazeMediaPlayer  <br />
 ---
 
-## Pourquoi GazeMediaPlayer
+## Pourquoi GazeMedia Player ?
 

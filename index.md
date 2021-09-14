@@ -10,8 +10,7 @@ header:
     - label: "<i class='fas fa-hand-point-up'></i> Try now"
       url: https://github.com/InteraactionGroup/ProjectMultimedia
 excerpt: >
-  GazeMediaPlayer description
- <br />
+  GazeMediaPlayer description <br />
 ---
 
-## Why AugCom?
+## Why GazeMedia Player?
