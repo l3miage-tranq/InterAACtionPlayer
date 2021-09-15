@@ -215,7 +215,39 @@ Ils permettent soit :
 
 ### Rechercher une vidéo
 
-### Ajouter/Supprimer la vidéo de la playlist
+Pour rechercher un vidéo YouTube, il suffit d'écrire ce que l'on cherche dans la barre de recherche.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/barreRechercheYoutube.png" alt="Barre de recherche Youtube" %}
+
+Dans l'exemple ci-dessous, je recherche des vidéos Youtube de "Pokora".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleBarreRechercheYoutube.png" alt="Exemple barre de recherche Youtube remplie" %}
+
+Après quelques secondes, voici ce que j'obtient :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleRechercheYoutube.png" alt="Exemple résultat de recherche Youtube" %}
+
+Cette liste de vidéos lié à notre recherche peut afficher jusqu'à 50 vidéos par recherche.
+
+### Ajouter une vidéo à la playlist
+
+Pour ajouter une vidéo YouTube dans notre playlist, il suffit de cliquer sur le bandeau vert "Ajouter à la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonAjouterVideoYoutube.png" alt="Bouton pour ajouter la vidéo YouTube à notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient rouge et une notification apparaît nous indiquant que la vidéo a bien été ajouter à notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationVideoAjouter.png" alt="Notification d'ajout d'une vidéo YouTube" %}
+
+### Supprimer une vidéo de la playlist
+
+Pour supprimer une vidéo YouTube de notre playlist, il suffit de cliquer sur le bandeau rouge "Supprimer de la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonSupprimerVideoYoutube.png" alt="Bouton pour supprimer la vidéo YouTube de notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notification apparaît nous indiquant que la vidéo a bien été supprimer de notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationVideoSupprimer.png" alt="Notification de suppression d'une vidéo YouTube" %}
 
 ## Spotify
 
@@ -227,7 +259,9 @@ Ils permettent soit :
 
 ### Liste des musiques d'un album
 
-### Ajouter/Supprimer la musique de la playlist
+### Ajouter une musique à la playlist
+
+### Supprimer la musique de la playlist
 
 ## Deezer
 
@@ -238,5 +272,3 @@ Ils permettent soit :
 ### Liste des musiques d'un album
 
 ### Ajouter/Supprimer la musique de la playlist
-
-## Les notifications
