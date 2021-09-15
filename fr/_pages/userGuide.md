@@ -288,7 +288,7 @@ Voila ce que j'obtient :
 
 ### Liste des albums d'un artist
 
-Pour avoir la liste des albums d'un artist, il faut clique l'artist que l'on a rechercher.<br>
+Pour avoir la liste des albums d'un artist, il faut cliquer sur l'artist que l'on a recherché.<br>
 Dans l'exemple ci-dessous, je veux les albums de "Pokora" donc je clique sur l'artist "Pokora.
 
 {% include figure image_path="/assets/imagesUserGuide/fr/exempleClickArtistSpotify.png" alt="Exemple d'un click sur un artist" %}
@@ -307,7 +307,7 @@ Cette page contient :
 
 ### Liste des musiques d'un album
 
-Pour avoir la des musiques d'un album, il faut cliquer sur l'album dont on veut les musique.<br>
+Pour avoir les musiques d'un album, il faut cliquer sur l'album dont on veut les musique.<br>
 Dans l'exemple ci-dessous, je veux les musiques de l'album "Pyramide" de "Pokora" donc je clique sur l'album.
 
 {% include figure image_path="/assets/imagesUserGuide/fr/exempleClickAlbumSpotify.png" alt="Exemple d'un click sur un album" %}
@@ -344,16 +344,92 @@ Pour supprimer une musique Spotify de notre playlist, il suffit de cliquer sur l
 
 Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notification apparaît nous indiquant que la musique a bien été supprimer de notre playlist.
 
-{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueSupprimer.png" alt="Notification de suppression d'une vidéo YouTube" %}
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueSupprimer.png" alt="Notification de suppression de la musique" %}
 
 ## Deezer
 
+### Page d'accueil
+
+Lorsque l'on arrive sur la page Deezer, on obtient sa :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageAccueilDeezer.png" alt="Page d'accueil de Deezer" %}
+
+Cette page contient :
+
+* Une barre de recherche
+* Un menu vertical en haut à gauche permettant :
+  * De retourner à l'accueil
+  * De retourner à la playlist
+
+Le menu vertical suis l'utilisateur et sera disponible sur n'importe quelle page Spotify.
+
 ### Rechercher un artist
+
+Pour avoir son artist, il faut juste l'écrire dans la barre de recherche. <br>
+Dans l'exemple ci-dessous, je cherche l'artist "Pokora".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleRechercheArtistDeezer.png" alt="Exemple d'une recherche d'un artist sur Deezer" %}
+
+Voila ce que j'obtient :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleListArtistDeezer.png" alt="Exemple d'une recherche d'un artist sur Deezer" %}
 
 ### Liste des albums d'un artist
 
+Pour avoir la liste des albums d'un artist, il faut cliquer sur l'artist que l'on a recherché.<br>
+Dans l'exemple ci-dessous, je veux les albums de "Pokora" donc je clique sur l'artist "Pokora.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleClickArtistDeezer.png" alt="Exemple d'un click sur un artist" %}
+
+Après avoir cliquer sur l'artist, on arrive sur cette page :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageArtistDeezer.png" alt="Exemple d'une liste d'album d'un artist" %}
+
+Cette page contient :
+
+* L'image de l'artist
+* Son nom
+* Son nombre d'abonnés
+* Un bouton permettant de retourner sur la page de recherche
+* La liste de ces albums disponible sur Deezer
+
 ### Liste des musiques d'un album
+
+Pour avoir les musiques d'un album, il faut cliquer sur l'album dont on veut les musique.<br>
+Dans l'exemple ci-dessous, je veux les musiques de l'album "Pyramide" de "Pokora" donc je clique sur l'album.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleClickAlbumDeezer.png" alt="Exemple d'un click sur un album" %}
+
+Après avoir cliquer sur l'artist, on arrive sur cette page :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageListMusiquesDeezer.png" alt="Page de la liste des musiques d'un album" %}
+
+Cette page contient :
+
+* L'image de l'album
+* Son nom
+* Un bouton permettant de retourner sur la page de l'artist de cette album
+* Un bouton permettant d'ajouter toutes les musiques de l'album à la playlist
+* Un bouton permettant de supprimer toutes les musiques de l'album de la playlist
+* Un lecteur audio pour chaques musiques
+* Un bouton a côté de chaques musiques permettant d'ajouter ou supprimer la musique de la playlist
 
 ### Ajouter une musique à la playlist
 
+Pour ajouter une musique Deezer dans notre playlist, il suffit de cliquer sur le bandeau vert "Ajouter à la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonAjouterMusiqueDeezer.png" alt="Bouton pour ajouter la musique Deezer à notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient rouge et une notification apparaît nous indiquant que la musique a bien été ajouter à notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueAjouter.png" alt="Notification d'ajout d'une musique" %}
+
 ### Supprimer la musique de la playlist
+
+Pour supprimer une musique Deezer de notre playlist, il suffit de cliquer sur le bandeau rouge "Supprimer de la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonSupprimerMusiqueDeezer.png" alt="Bouton pour supprimer la musique Spotify de notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notification apparaît nous indiquant que la musique a bien été supprimer de notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueSupprimer.png" alt="Notification de suppression de la musique" %}
