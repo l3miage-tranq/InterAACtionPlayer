@@ -253,15 +253,98 @@ Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notifica
 
 ### Page d'accueil
 
+Lorsque l'on arrive sur la page Spotify, on obtient sa :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageAccueilSpotify.png" alt="Page d'accueil de Spotify" %}
+
+Cette page contient :
+
+* Une liste des dernières musiques sorties sur Spotify
+* Un menu vertical en haut à gauche permettant :
+  * De retourner à l'accueil
+  * D'accèder a la barre de recherche de musique sur Spotify
+  * De retourner à la playlist
+
+Le menu vertical suis l'utilisateur et sera disponible sur n'importe quelle page Spotify.
+
 ### Rechercher un artist
+
+Pour faire une recherche d'artist sur Spotify, il faut pour commencer cliquer sur le bouton "Recherche" dans le menu vertical en haut à gauche.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonRechercheSpotify.png" alt="Bouton Recherche" %}
+
+Ensuite on arrive sur la page de recherche Spotify qui ressemble à sa :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageRechercheSpotify.png" alt="Bouton Recherche" %}
+
+Pour avoir son artist, il faut juste l'écrire dans la barre de recherche. <br>
+Dans l'exemple ci-dessous, je cherche l'artist "Pokora".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleRechercheArtistSpotify.png" alt="Exemple d'une recherche d'un artist sur Spotify" %}
+
+Voila ce que j'obtient :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleListArtistSpotify.png" alt="Exemple d'une recherche d'un artist sur Spotify" %}
 
 ### Liste des albums d'un artist
 
+Pour avoir la liste des albums d'un artist, il faut clique l'artist que l'on a rechercher.<br>
+Dans l'exemple ci-dessous, je veux les albums de "Pokora" donc je clique sur l'artist "Pokora.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleClickArtistSpotify.png" alt="Exemple d'un click sur un artist" %}
+
+Après avoir cliquer sur l'artist, on arrive sur cette page :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageArtistSpotify.png" alt="Exemple d'une liste d'album d'un artist" %}
+
+Cette page contient :
+
+* L'image de l'artist
+* Son nom
+* Son nombre d'abonnés
+* Un bouton permettant de retourner sur la page de recherche
+* La liste de ces albums disponible sur Spotify
+
 ### Liste des musiques d'un album
+
+Pour avoir la des musiques d'un album, il faut cliquer sur l'album dont on veut les musique.<br>
+Dans l'exemple ci-dessous, je veux les musiques de l'album "Pyramide" de "Pokora" donc je clique sur l'album.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleClickAlbumSpotify.png" alt="Exemple d'un click sur un album" %}
+
+Après avoir cliquer sur l'artist, on arrive sur cette page :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/pageListMusiquesSpotify.png" alt="Page de la liste des musiques d'un album" %}
+
+Cette page contient :
+
+* L'image de l'album
+* Son nom
+* Un bouton permettant de retourner sur la page de l'artist de cette album
+* Un bouton permettant d'ajouter toutes les musiques de l'album à la playlist
+* Un bouton permettant de supprimer toutes les musiques de l'album de la playlist
+* Un lecteur audio pour chaques musiques
+* Un bouton a côté de chaques musiques permettant d'ajouter ou supprimer la musique de la playlist
 
 ### Ajouter une musique à la playlist
 
+Pour ajouter une musique Spotify dans notre playlist, il suffit de cliquer sur le bandeau vert "Ajouter à la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonAjouterMusiqueSpotify.png" alt="Bouton pour ajouter la musique Spotify à notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient rouge et une notification apparaît nous indiquant que la musique a bien été ajouter à notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueAjouter.png" alt="Notification d'ajout d'une musique" %}
+
 ### Supprimer la musique de la playlist
+
+Pour supprimer une musique Spotify de notre playlist, il suffit de cliquer sur le bandeau rouge "Supprimer de la Playlist".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/boutonSupprimerMusiqueSpotify.png" alt="Bouton pour supprimer la musique Spotify de notre playlist" %}
+
+Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notification apparaît nous indiquant que la musique a bien été supprimer de notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/exempleNotificationMusiqueSupprimer.png" alt="Notification de suppression d'une vidéo YouTube" %}
 
 ## Deezer
 
@@ -271,4 +354,6 @@ Une fois que l'on a cliquer sur le bouton, celui-ci devient vert et une notifica
 
 ### Liste des musiques d'un album
 
-### Ajouter/Supprimer la musique de la playlist
+### Ajouter une musique à la playlist
+
+### Supprimer la musique de la playlist
