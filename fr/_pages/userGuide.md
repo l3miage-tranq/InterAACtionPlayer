@@ -139,11 +139,19 @@ Ils permettent soit :
 
 ## Page de la playlist
 
+{% include figure image_path="/assets/imagesUserGuide/fr/pagePlaylist.png" alt="La page de la playlist" caption="Page de connexion de GazeMedia Player quand celle-ci est vide." %}
+
 ### Barre de menu horizontal
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylist.png" alt="La barre de menu de la page playlist" caption="La barre de menu de la page Playlist qui donne accès à plein de fonctionnalité." %}
 
 #### Bouton 'Sauvegarder sa playlist'
 
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSave.png" alt="Le bouton sauvegarder" %}
+
 #### Bouton 'Charger une playlist'
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLoad.png" alt="Le bouton charger" %}
 
 ##### Choisir sa playlist
 
@@ -151,9 +159,15 @@ Ils permettent soit :
 
 #### Bouton 'Supprimer sa playlist'
 
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" %}
+
 #### Bouton 'Exporter sa playlist'
 
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnExport.png" alt="Le bouton exporter" %}
+
 #### Bouton 'Importer un fichier'
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnImport.png" alt="Le bouton importer" %}
 
 ##### Importer une musique
 
@@ -163,7 +177,11 @@ Ils permettent soit :
 
 #### Bouton 'Mode édition'
 
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnEdit.png" alt="Le bouton édition" %}
+
 #### Bouton 'Paramètres'
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSettings.png" alt="Le bouton paramètre" %}
 
 ##### Choisir le thème
 
@@ -179,13 +197,15 @@ Ils permettent soit :
 
 #### Bouton 'Comptes'
 
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnAccount.png" alt="Le bouton comptes" %}
+
 ##### Compte Spotify
 
 ##### Compte Deezer
 
 #### Bouton 'Déconnexion'
 
-#### Bouton 'Retour avant/arrière'
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLogout.png" alt="Le bouton déconnexion" %}
 
 ### Barre de menu vertical
 
