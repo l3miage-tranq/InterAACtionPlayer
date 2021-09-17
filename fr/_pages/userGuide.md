@@ -147,7 +147,7 @@ Ils permettent soit :
 
 #### Bouton 'Sauvegarder sa playlist'
 
-Pour sauvegarder sa playlist, il suffit de cliquer sur le bouton en forme de disquette:
+Pour sauvegarder sa playlist, il suffit de cliquer sur le bouton avec l'icône de disquette:
 
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSave.png" alt="Le bouton sauvegarder" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
 
@@ -169,7 +169,7 @@ Une fois votre nom mis et que vous valider la sauvegarde, une notification appar
 
 #### Bouton 'Charger une playlist'
 
-Pour charger sa playlist, il suffit de cliquer sur le bouton en forme de dossier:
+Pour charger sa playlist, il suffit de cliquer sur le bouton avec l'icône de dossier:
 
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLoad.png" alt="Le bouton charger" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
 
@@ -183,7 +183,7 @@ Si jamais vous ouvrez la fenêtre de chargement de playlist alors que vous en av
 
 ##### Choisir sa playlist
 
-Pour choisir sa playlist, il suffit de cliquer sur le fond a gauche de la playlist que vous vous charger.
+Pour choisir sa playlist, il suffit de cliquer sur le rond a gauche de la playlist que vous vous charger.
 
 * manque image
 
@@ -212,7 +212,15 @@ Une fois que la suppression d'une playlist et faite, une notification apparaît 
 
 #### Bouton 'Supprimer sa playlist'
  
-{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" %}
+Pour supprimer sa playlist, il suffit de cliquer sur le bouton avec une icône de poubelle.
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
+
+Une fenêtre va s'ouvrir vous demandant si vous êtes sur de vouloir supprimer la playlist actuelle.
+
+* manque image
+
+Une fois la suppression confirmer, une notification apparaîtra annonçant que la suppression à bien eu lieu.
 
 #### Bouton 'Exporter sa playlist'
 
