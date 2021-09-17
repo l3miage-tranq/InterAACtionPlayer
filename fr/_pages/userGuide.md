@@ -245,9 +245,19 @@ De plus, une notification apparaît pour dire que la playlist a bien été expor
 
 #### Bouton 'Importer un fichier'
 
+Pour importer sa playlist, il suffit de cliquer sur le bouton avec une icône de flèche vers le bas.
+
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnImport.png" alt="Le bouton importer" %}
 
+Une fenêtre va s'ouvrir nous demandant quel type de fichier on souhaite importer (par défaut c'est sur musique).
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportChoix.png" alt="Les choix possibles pour l'importation" %}
+
 ##### Importer une musique
+
+Pour importer une musique, il faut déjà choisir le type "musique" (par défaut c'est le cas)
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportChoixMusique.png" alt="Choix musique" %}
 
 ##### Importer une vidéo
 
