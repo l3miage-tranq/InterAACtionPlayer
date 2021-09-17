@@ -153,19 +153,19 @@ Pour sauvegarder sa playlist, il suffit de cliquer sur le bouton avec l'icône d
 
 Une fenêtre va s'ouvrir vous demandant quelle nom vous voulez donner à votre playlist que vous allez sauvegarder.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreSauvegarde.png" alt="La fenêtre de sauvegarde" %}
 
 Par exemple, je souhaite sauvegarder ma playlist actuelle avec comme nom "Exemple".
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreSauvegardeExemple.png" alt="La fenêtre de sauvegarde rempli" %}
 
 Si jamais vous essayer de sauvegarder votre playlist sans mettre de nom une erreur apparaîtra vous expliquant qu'il manque le nom.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreSauvegardeErreur.png" alt="Erreur de la fenêtre sauvegarder" %}
 
 Une fois votre nom mis et que vous valider la sauvegarde, une notification apparaîtra vous indiquant que votre playlist à bien été sauvegarder.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreSauvegardeNotification.png" alt="Notification de sauvegarde" %}
 
 #### Bouton 'Charger une playlist'
 
@@ -173,58 +173,75 @@ Pour charger sa playlist, il suffit de cliquer sur le bouton avec l'icône de do
 
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLoad.png" alt="Le bouton charger" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
 
-Une fenêtre va s'ouvrir et vous afficher toutes les playlists que vous avez sauvegarder.
+Une fenêtre va s'ouvrir et nous afficher toutes les playlists que nous avons sauvegarder.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargement.png" alt="La fenêtre de chargement" %}
 
 Si jamais vous ouvrez la fenêtre de chargement de playlist alors que vous en avez sauvegarder aucune, vous obtiendrez un message d'erreur vous indiquant que votre liste de playlist est vide.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementVide.png" alt="Fenêtre de chargement vide" %}
 
 ##### Choisir sa playlist
 
 Pour choisir sa playlist, il suffit de cliquer sur le rond a gauche de la playlist que vous vous charger.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementChoisir.png" alt="Le choix dans une fenêtre de chargement" %}
 
 Si vous essayer de charger une playlist sans en sélectionner une une message d'erreur apparaîtra vous indiquant qu' il faut sélectionner une playlist.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementErreur.png" alt="Erreur fenêtre chargement" %}
 
 Une fois votre playlist choisie et que vous valider le chargement, une notification apparaîtra vous indiquant que votre playlist à bien été chargé.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementNotification.png" alt="Notification chargement d'une playlist" %}
 
 ##### L'icône en forme de gomme bleu
 
 L'icône "gomme bleu" à droite des vidéos permet de supprimer la playlist de la liste des playlist sauvegarder.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementSupprimer.png" alt="Bouton supprimer playlist sauvegardé" %}
 
-Dans l'exemple ci-dessous, je souhaite supprimer la playlist "A_Suprimer".<br>
+Dans l'exemple ci-dessous, je souhaite supprimer la playlist "MaPlaylist".<br>
 Je clique donc sur sa "gomme bleu" à sa droite et j obtiens :
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementExempleSuppression.png" alt="Exemple d'une suppression d'une playlist" %}
 
 Une fois que la suppression d'une playlist et faite, une notification apparaît nous indiquant que la playlist a bien été supprimer.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementNotificationSuppression.png" alt="Notification suppression d'une playlist sauvegarder" %}
 
-#### Bouton 'Supprimer sa playlist'
+#### Bouton 'Supprimer sa playlist actuelle'
  
-Pour supprimer sa playlist, il suffit de cliquer sur le bouton avec une icône de poubelle.
+Pour supprimer sa playlist actuelle, il suffit de cliquer sur le bouton avec une icône de poubelle.
 
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
 
-Une fenêtre va s'ouvrir vous demandant si vous êtes sur de vouloir supprimer la playlist actuelle.
+Une fenêtre va s'ouvrir nous demandant si on est sur de vouloir supprimer la playlist actuelle.
 
-* manque image
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreSupprimer.png" alt="La fenetre supprimer" %}
 
 Une fois la suppression confirmer, une notification apparaîtra annonçant que la suppression à bien eu lieu.
 
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreChargementNotificationSuppression.png" alt="La notification de suppression de la playlist actuelle" %}
+
 #### Bouton 'Exporter sa playlist'
 
+Pour exporter sa playlist, il suffit de cliquer sur le bouton avec une icône de flèche vers le haut.
+
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnExport.png" alt="Le bouton exporter" %}
+
+Une fenêtre va s'ouvrir nous demandant le nom à donner pour le fichier au format Json, qui contient la playlist actuelle, que l'on va reçevoir.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreExport.png" alt="Fenêtre exportation de la playlist" %}
+
+Dans l'exemple ci-dessous, je vais exporter ma playlist en lui donnant le nom "PlaylistExporter".<br>
+Voilà ce que j'obtiens :
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreExportFichier.png" alt="Exemple d'un fichier expoter" %}
+
+De plus, une notification apparaît pour dire que la playlist a bien été exporter.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreExportNotification.png" alt="Notification pour l'export d'une playlist" %}
 
 #### Bouton 'Importer un fichier'
 
