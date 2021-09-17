@@ -147,18 +147,58 @@ Ils permettent soit :
 
 #### Bouton 'Sauvegarder sa playlist'
 
-{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSave.png" alt="Le bouton sauvegarder" %}
+Pour sauvegarder sa playlist, il suffit de cliquer sur le bouton en forme de disquette:
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSave.png" alt="Le bouton sauvegarder" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
+
+Une fenêtre va s'ouvrir vous demandant quelle nom vous voulez donner à votre playlist que vous allez sauvegarder.
+
+* manque image
+
+Par exemple, je souhaite sauvegarder ma playlist actuelle avec comme nom "Exemple".
+
+* manque image
+
+Si jamais vous essayer de sauvegarder votre playlist sans mettre de nom une erreur apparaîtra vous expliquant qu'il manque le nom.
+
+* manque image
+
+Une fois votre nom mis et que vous valider la sauvegarde, une notification apparaîtra vous indiquant que votre playlist à bien été sauvegarder.
+
+* manque image
 
 #### Bouton 'Charger une playlist'
 
-{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLoad.png" alt="Le bouton charger" %}
+Pour charger sa playlist, il suffit de cliquer sur le bouton en forme de dossier:
+
+{% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnLoad.png" alt="Le bouton charger" caption="Pour information, si on laisse la souris sur le bouton son nom apparaîtra." %}
+
+Une fenêtre va s'ouvrir et vous afficher toutes les playlists que vous avez sauvegarder.
+
+* manque image
+
+Si jamais vous ouvrez la fenêtre de chargement de playlist alors que vous en avez sauvegarder aucune, vous obtiendrez un message d'erreur vous indiquant que votre liste de playlist est vide.
+
+* manque image
 
 ##### Choisir sa playlist
+
+Pour choisir sa playlist, il suffit de cliquer sur le fond a gauche de la playlist que vous vous charger.
+
+* manque image
+
+Si vous essayer de charger une playlist sans en sélectionner une une message d'erreur apparaîtra vous indiquant qu' il faut sélectionner une playlist.
+
+* manque image
+
+Une fois votre playlist choisie et que vous valider le chargement, une notification apparaîtra vous indiquant que votre playlist à bien été chargé.
+
+* manque image
 
 ##### L'icône en forme de gomme bleu
 
 #### Bouton 'Supprimer sa playlist'
-
+ 
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" %}
 
 #### Bouton 'Exporter sa playlist'
