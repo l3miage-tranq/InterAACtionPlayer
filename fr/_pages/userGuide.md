@@ -197,6 +197,19 @@ Une fois votre playlist choisie et que vous valider le chargement, une notificat
 
 ##### L'icône en forme de gomme bleu
 
+L'icône "gomme bleu" à droite des vidéos permet de supprimer la playlist de la liste des playlist sauvegarder.
+
+* manque image
+
+Dans l'exemple ci-dessous, je souhaite supprimer la playlist "A_Suprimer".<br>
+Je clique donc sur sa "gomme bleu" à sa droite et j obtiens :
+
+* manque image
+
+Une fois que la suppression d'une playlist et faite, une notification apparaît nous indiquant que la playlist a bien été supprimer.
+
+* manque image
+
 #### Bouton 'Supprimer sa playlist'
  
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnDelete.png" alt="Le bouton supprimer" %}
