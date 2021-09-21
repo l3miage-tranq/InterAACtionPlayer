@@ -255,17 +255,88 @@ Une fenêtre va s'ouvrir nous demandant quel type de fichier on souhaite importe
 
 ##### Importer une musique
 
-Pour importer une musique, il faut déjà choisir le type "musique" (par défaut c'est le cas)
+Pour importer une musique, il faut choisir le type "Musique" (par défaut c'est le cas).
 
 {% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportChoixMusique.png" alt="Choix musique" %}
 
+Ensuite, il faut :
+
+* écrire un nom pour la musique que l'on souhaite importer (obligatoire)
+* écrire l'artiste de la musique (pas obligatoire)
+* donner le fichier musical (obligatoire)
+
+Dans l'exemple ci-dessous, je souhaite importer une musique qui ce nomme "Crush Crush Crush" de "Paramore".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportExempleMusique.png" alt="Exemple de la fenêtre d'importation d'une musique remplie" %}
+
+Une fois que tout est bien remplie et que l'on valide, une notification apparaît nous indiquant que la musique a bien été ajouté à notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportMusiqueNotification.png" alt="Notification importation d'une musique" %}
+
 ##### Importer une vidéo
+
+Pour importer une musique, il faut choisir le type "Vidéo" (par défaut c'est "Musique").
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportChoixVideo.png" alt="Choix video" %}
+
+Ensuite, il faut :
+
+* écrire un nom pour la vidéo que l'on souhaite importer (obligatoire)
+* écrire l'artiste de la vidéo (pas obligatoire)
+* donner le fichier vidéo (obligatoire)
+
+Dans l'exemple ci-dessous, je souhaite importer une vidéo qui ce nomme "Si on disait" de "Pokora".
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportExempleVideo.png" alt="Exemple de la fenêtre d'importation de vidéo remplie" %}
+
+Une fois que tout est bien remplie et que l'on valide, une notification apparaît nous indiquant que la vidéo a bien été ajouté à notre playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImporVideotNotification.png" alt="Notification importation d'une vidéo" %}
 
 ##### Importer une playlist
 
+Pour importer une playlist, il faut choisir le type "Fichier" (par défaut c'est "Musique").
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportChoixFichier.png" alt="Choix video" %}
+
+Ensuite, il faut :
+
+* choisir une option parmis les deux (obligatoire et par défaut "nouvelle playlist)
+  * "nouvelle playlist" = remplace la playlist actuelle par celle donner
+  * "fusionner playlist" = fusionne la playlist actuelle avec celle donner
+* donner le fichier playlist (obligatoire)
+
+Une fois que tout est bien remplie et que l'on valide, une notification apparaît nous indiquant que la playlist a bien été importer.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreImportFichiertNotification.png" alt="Notification importation d'une playlist" %}
+
 #### Bouton 'Mode édition'
 
+Pour passer ou sortir du mode édition, il suffit de cliquer sur le bouton avec une icône de crayon.
+
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnEdit.png" alt="Le bouton édition" %}
+
+En mode édition, un bouton "+" apparaît dans la playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/btnPlusEditMode.png" alt="Le bouton + du mode édition" %}
+
+Ce bouton, lorsque l'on clique dessus, ouvre une fenêtre permettant de choisir vers quelless plateforme on souhaite se diriger afin d'ajouter une vidéo ou musique à notre playlist.<br>
+Les plateformes disponibles sont :
+
+* YouTube
+* Spotify
+* Deezer
+* un dossier contenant des playlists préfabriquées
+
+{% include figure image_path="/assets/imagesUserGuide/fenetrePlateformes.png" alt="La fenêtres des plateformes" %}
+
+De plus en mode édition, sous les vidéos ou musique de notre playlist, un bandeau rouge apparaît permettant de supprimé uniquement la vidéo ou musique de la playlist.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/modeEditionBandeauSuppression.png" alt="Bandeau supprimer vidéo ou musique de la playlist en mode édition" %}
+
+Pour finir, on a des notifications qui apparaîssent pour nous dire si oui ou non on est en mode édition.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/modeEditionNotification.png" alt="Notifications du mode édition" %}
 
 #### Bouton 'Paramètres'
 
