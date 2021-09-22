@@ -340,7 +340,16 @@ Pour finir, on a des notifications qui apparaîssent pour nous dire si oui ou no
 
 #### Bouton 'Paramètres'
 
+Pour accèder au paramètre, il suffit de cliquer sur le bouton avec une icône d'engrenage.
+
 {% include figure image_path="/assets/imagesUserGuide/menuBarPlaylistBtnSettings.png" alt="Le bouton paramètre" %}
+
+Une fenêtre va s'ouvrir nous montrant toutes les options modifiables :
+
+* Le thème
+* La langue
+* Le dwelltime
+* les messages d'alertes
 
 ##### Choisir le thème
 
