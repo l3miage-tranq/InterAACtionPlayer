@@ -351,7 +351,21 @@ Une fenêtre va s'ouvrir nous montrant toutes les options modifiables :
 * Le dwelltime
 * les messages d'alertes
 
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreParametres.png" alt="La fenêtre des paramètres" %}
+
 ##### Choisir le thème
+
+Dans la fenêtre des paramètres, on peut choisir quelle thème on veut :
+
+* Clair
+* Sombre
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreParametresTheme.png" alt="Le thème dans la fenêtre des paramètres" %}
+
+Une fois le thème choisie (celui en vert), on clique sur sauvegarder et le thème du site change en thème "clair". <br>
+De plus une notification apparaît pour nous signaler que les paramètres ont changés.
+
+{% include figure image_path="/assets/imagesUserGuide/fr/fenetreParametresNotification.png" alt="La Notification des paramètres" %}
 
 ##### Choisir la langue
 
