@@ -28,6 +28,7 @@ export class SavePlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.saveKnowPlaylist();
   }
 
   /**
@@ -70,6 +71,14 @@ export class SavePlaylistComponent implements OnInit {
     }else {
       this.errorNameEmpty = true;
     }
+  }
 
+  saveKnowPlaylist(){
+    if (this.playlistService.nameActualPlaylist != ""){
+      this.playlistService.addMapPlaylist(this.playlistService.nameActualPlaylist);
+      this.saveService.updateMapPlaylist();
+      this.dialog.closeAll();
+      this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
+    }
   }
 }

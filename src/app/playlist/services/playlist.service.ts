@@ -45,6 +45,9 @@ export class PlaylistService{
     "additionalProperties": false
   }
 
+  // Allows to knows the name of the actual playlist
+  nameActualPlaylist = "";
+
   // A boolean to know if we need to add the btn Add in the playlist if she is empty
   addBtnAddInEmptyPlaylist: boolean = true;
 
@@ -320,6 +323,7 @@ export class PlaylistService{
    */
   addMapPlaylist(name: string){
     this.mapPlaylist.set(name, this.playList);
+    this.nameActualPlaylist = name;
   }
 
   /**
