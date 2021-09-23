@@ -679,4 +679,16 @@ export class PlaylistComponent implements OnInit {
       this.playList[event.container.data.index] = event.previousContainer.data.elem;
       this.saveService.updatePlaylist();
   }
+
+  getBrightnessOfAFSRLogo() {
+  return (this.theme =='') ? '1' : '10';
+  }
+
+  getBrightnessOfInterAACtionBoxAFSRLogo() {
+    return (this.theme =='') ? '0.2' : '1';
+  }
+
+  getColorOfTitle(){
+    return (this.theme =='') ? '#81197f' : 'white';
+  }
 }
