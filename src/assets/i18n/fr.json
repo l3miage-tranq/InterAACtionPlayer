@@ -87,7 +87,8 @@
     "titleFile": "Titre du fichier",
     "defaultTitleFile": "Par défaut titre = Playlist",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "empty": "La playlist est vide !"
   },
   "deletePlaylist": {
     "title": "Effacer la Playlist",

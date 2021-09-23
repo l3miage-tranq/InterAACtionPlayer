@@ -16,6 +16,7 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class ExportfileComponent implements OnInit {
 
+  playlistEmpty = false;
   defaultTitleFile = "Playlist"
   titleFile = "";
 
@@ -26,6 +27,7 @@ export class ExportfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playlistEmpty = this.playlistService.playList.length == 0;
   }
 
   /**

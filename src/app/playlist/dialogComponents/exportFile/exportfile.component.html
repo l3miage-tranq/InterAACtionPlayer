@@ -3,7 +3,7 @@
 </h1>
 <div mat-dialog-content>
   <div class="ui form error">
-    <div class="field">
+    <div *ngIf="!playlistEmpty" class="field">
       <label>{{ 'exportFile.titleFile' | translate }}</label>
       <div class="ui right labeled input">
         <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
@@ -11,6 +11,9 @@
           .json
         </div>
       </div>
+    </div>
+    <div class="ui error message">
+      <p *ngIf="playlistEmpty">{{ "exportFile.empty" | translate }}</p>
     </div>
   </div>
 </div>
