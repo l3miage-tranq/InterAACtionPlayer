@@ -1,10 +1,15 @@
 <div class="ui centered grid">
   <div class="fourteen wide column">
-    <h1 [ngClass]="theme" class="ui centered aligned header">
+    <div class="titleHeader">
+    <h1 [ngClass]="theme" class="ui centered aligned header pageTitle" [ngStyle]="{'color': this.getColorOfTitle()}">
       <span>
         {{ "playlist.title" | translate }}
       </span>
     </h1>
+      <a class="imageAFSR" href="https://afsr.fr/"
+           [ngStyle]="{ 'background-image': 'url(assets/Logo-AFSR.png)','filter' : 'brightness('+this.getBrightnessOfAFSRLogo()+')' }">
+      </a>
+    </div>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="right menu">
         <a class="ui item" (click)="openSave()"
@@ -185,6 +190,9 @@
         </button>
       </div>
     </div>
+    <a class="imageInterAACtionBoxAFSR" href="https://interaactionbox.afsr.fr/"
+       [ngStyle]="{ 'background-image': 'url(assets/Logo_InterAACtionbox-AFSR.png)','filter' : 'brightness('+this.getBrightnessOfInterAACtionBoxAFSRLogo()+')' }">
+    </a>
   </div>
 </div>
 <notifier-container id="watchPlace"></notifier-container>
