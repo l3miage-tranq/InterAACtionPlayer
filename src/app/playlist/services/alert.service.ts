@@ -43,7 +43,15 @@ export class AlertService {
    */
   setReplacePlaylist(){
     this.alertTitle = "alert.titleReplace";
-    this.alertContent = "alert.contentReplace"
+    this.alertContent = "alert.contentReplace";
+  }
+
+  /**
+   * Allows to set the title and content of the alert message -> New playlist request
+   */
+  setNewPlaylist(){
+    this.alertTitle = "alert.titleNewPlaylist";
+    this.alertContent = "alert.contentNewPlaylist";
   }
 
   /**

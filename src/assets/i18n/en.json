@@ -18,7 +18,8 @@
     "deletePlaylist": "Playlist deleted !",
     "deleteUser": "User deleted !",
     "logoutSpotify": "Logout of Spotify done !",
-    "logoutDeezer": "Logout of Deezer done !"
+    "logoutDeezer": "Logout of Deezer done !",
+    "newPlaylist": "New playlist created !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -32,13 +33,12 @@
     "deleteBtn": "Delete Playlist",
     "loadBtn": "Load a Playlist",
     "logoutBtn": "Logout",
-    "back": "Going back",
-    "forward": "Moving forward",
     "playlist": "Playlist",
     "up": "Up",
     "down": "Down",
     "music": "Music",
-    "video": "Video"
+    "video": "Video",
+    "new" : "New playlist"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",
@@ -159,10 +159,12 @@
     "titleDelete": "Watch Out, delete Playlist incoming !",
     "titleReplace": "Watch Out, replace Playlist incoming !",
     "titleItemDelete": "Watch Out, delete Item incoming !",
+    "titleNewPlaylist": "Watch Out, start a new playlist incoming !",
     "contentMerge": "Are you sure, you want to merge the current Playlist with the one you gave us ?",
     "contentDelete": "Are you sure, you want to delete the current Playlist ?",
     "contentReplace": "Are you sure, you want to replace the current Playlist with the one you gave us ?",
     "contentItemDelete": "Are you sure, you want to delete this item of the Playlist ?",
+    "contentNewPlaylist": "Are you sure, you want to start a new playlist ?",
     "no" : "No",
     "yes": "Yes",
     "doNotShowAgain": " Do Not Show Again !"

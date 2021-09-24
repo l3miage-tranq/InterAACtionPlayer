@@ -74,7 +74,7 @@ export class SavePlaylistComponent implements OnInit {
   }
 
   saveKnowPlaylist(){
-    if (this.playlistService.nameActualPlaylist != ""){
+    if (this.playlistService.nameActualPlaylist != "" && this.playlistService.playlistNameAlreadyInMap(this.playlistService.nameActualPlaylist)){
       this.playlistService.addMapPlaylist(this.playlistService.nameActualPlaylist);
       this.saveService.updateMapPlaylist();
       this.dialog.closeAll();
