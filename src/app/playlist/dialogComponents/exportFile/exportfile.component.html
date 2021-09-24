@@ -19,6 +19,6 @@
 </div>
 <div mat-dialog-actions>
   <button class="ui button" (click)="goCancel()">{{ "exportFile.no" | translate }}</button>
-  <button class="ui button" (click)="submit()">{{ "exportFile.yes" | translate }}</button>
+  <button class="ui button" [ngClass]="disabledButton" (click)="submit()">{{ "exportFile.yes" | translate }}</button>
 </div>
 <notifier-container></notifier-container>
