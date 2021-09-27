@@ -17,6 +17,8 @@ import { SaveService } from '../../../services/save.service';
 export class SavePlaylistComponent implements OnInit {
 
   name = "";
+  disabledButton = "";
+  playlistEmpty = false;
   errorNameAlreadyUse = false;
   errorNameEmpty = false;
 
@@ -28,6 +30,8 @@ export class SavePlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playlistEmpty = this.playlistService.playList.length == 0;
+    this.enableButtonSave();
   }
 
   /**
@@ -70,6 +74,11 @@ export class SavePlaylistComponent implements OnInit {
     }else {
       this.errorNameEmpty = true;
     }
+  }
 
+  enableButtonSave(){
+    if (this.playlistEmpty){
+      this.disabledButton = "disabled";
+    }
   }
 }
