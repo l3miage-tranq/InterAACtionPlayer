@@ -62,7 +62,9 @@ export class SavePlaylistComponent implements OnInit {
       if (!this.playlistService.playlistNameAlreadyInMap(this.name)){
         this.errorNameAlreadyUse = false;
         this.playlistService.addMapPlaylist(this.name);
+        this.playlistService.nameActualPlaylist = this.name;
         this.saveService.updateMapPlaylist();
+        this.saveService.updatePlaylistName();
         this.dialog.closeAll();
         this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
       }else{

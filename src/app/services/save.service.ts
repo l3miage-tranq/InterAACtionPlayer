@@ -15,7 +15,7 @@ import { UsersService } from './users.service';
 })
 export class SaveService {
 
-  version = 3;
+  version = 8;
 
   openRequest;
   playlistService: PlaylistService;
@@ -59,6 +59,13 @@ export class SaveService {
         db.createObjectStore('Playlist', {autoIncrement: true});
         const playlistStore = transaction.objectStore('Playlist');
         playlistStore.add(this.playlistService.playList);
+      }
+
+      // Creation of PlaylistName Store if this one does not exist
+      if (!db.objectStoreNames.contains("PlaylistName")) {
+        db.createObjectStore('PlaylistName', {autoIncrement: true});
+        const playlistStore = transaction.objectStore('PlaylistName');
+        playlistStore.add(this.playlistService.nameActualPlaylist);
       }
 
       // Creation of Theme Store if this one does not exist
@@ -156,6 +163,15 @@ export class SaveService {
         alert('PlaylistStore error: ' + event.target.errorCode);
       };
 
+      // Recovery of the recorded Playlist name
+      const playlistNameStore = db.transaction(['PlaylistName'], 'readwrite').objectStore('PlaylistName').get(idUser);
+      playlistNameStore.onsuccess = e => {
+        this.playlistService.nameActualPlaylist = playlistNameStore.result;
+      };
+      playlistNameStore.onerror = event => {
+        alert('playlistNameStore error: ' + event.target.errorCode);
+      };
+
       // Recovery of the recorded Theme
       const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(idUser);
       themeStore.onsuccess = e => {
@@ -226,6 +242,35 @@ export class SaveService {
       const storePlaylistRequest = playlistObjectStore.get(this.userService.idUser);
       storePlaylistRequest.onsuccess = () => {
         playlistObjectStore.put(this.playlistService.playList, this.userService.idUser);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+
+    this.updatePlaylistName();
+  }
+
+  /**
+   * Allows to save the Playlist in the database
+   */
+  updatePlaylistName(){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Update PlaylistName Store
+      const playlistNameStore = db.transaction(['PlaylistName'], 'readwrite');
+      const playlistNameObjectStore = playlistNameStore.objectStore('PlaylistName');
+      const storePlaylistNameRequest = playlistNameObjectStore.get(this.userService.idUser);
+      storePlaylistNameRequest.onsuccess = () => {
+        playlistNameObjectStore.put(this.playlistService.nameActualPlaylist, this.userService.idUser);
       };
     }
 

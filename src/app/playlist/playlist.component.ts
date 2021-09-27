@@ -253,7 +253,7 @@ export class PlaylistComponent implements OnInit {
       this.playList = this.playlistService.playList;
       this.playlistService.nameActualPlaylist = "";
       this.saveService.updatePlaylist();
-      this.notifier.notify('warning', this.translate.instant('notifier.nwPlaylist'));
+      this.notifier.notify('warning', this.translate.instant('notifier.newPlaylist'));
       this.goEdit();
     }
   }
