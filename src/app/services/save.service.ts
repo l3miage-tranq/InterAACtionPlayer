@@ -9,6 +9,7 @@ import { LanguageService } from './language.service';
 import { DwelltimeService } from './dwelltime.service';
 import { AlertService } from '../playlist/services/alert.service';
 import { UsersService } from './users.service';
+import {Types} from "../playlist/model/types-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,14 @@ export class SaveService {
   dwellTimeService: DwelltimeService;
   alertService: AlertService;
   userService: UsersService;
+
+  //Informations of user
+  playlistUser;
+  themeUser;
+  languageUser;
+  dwellTimeUser;
+  alertMessageUser;
+  mapPlaylistUser;
 
   constructor(playlistService: PlaylistService,
               themeService: ThemeService,
@@ -341,6 +350,9 @@ export class SaveService {
     };
   }
 
+  /**
+   * Allows to save the list of user in the database
+   */
   updateListUsers(){
 
     // Opening of the database
@@ -365,6 +377,11 @@ export class SaveService {
     };
   }
 
+  /**
+   * @param user
+   *
+   * Allows to delete the user passed in parameter of the database
+   */
   deleteUser(user){
 
     // Opening of the database
@@ -388,6 +405,9 @@ export class SaveService {
     };
   }
 
+  /**
+   * Allows to get the user in databse
+   */
   getUser(){
 
     // Opening of the database
@@ -406,6 +426,79 @@ export class SaveService {
         alert('userStore error: ' + event.target.errorCode);
       };
     }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
+
+  /**
+   *
+   */
+  getAllInformationsUser(userId){
+
+    // Opening of the Database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Recovery of the recorded Playlist
+      const playlistStore = db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').get(userId);
+      playlistStore.onsuccess = e => {
+        this.playlistUser = playlistStore.result;
+      };
+      playlistStore.onerror = event => {
+        alert('PlaylistStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Theme
+      const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(userId);
+      themeStore.onsuccess = e => {
+        this.themeUser = themeStore.result;
+      };
+      themeStore.onerror = event => {
+        alert('ThemeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Language
+      const languageStore = db.transaction(['Language'], 'readwrite').objectStore('Language').get(userId);
+      languageStore.onsuccess = e => {
+        this.languageUser = languageStore.result;
+      };
+      languageStore.onerror = event => {
+        alert('LanguageStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded DwellTime
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').get(userId);
+      dwellTimeStore.onsuccess = e => {
+        this.dwellTimeUser = dwellTimeStore.result;
+      };
+      dwellTimeStore.onerror = event => {
+        alert('DwellTimeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Alert Message
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').get(userId);
+      alertMessageStore.onsuccess = e => {
+        this.alertMessageUser = alertMessageStore.result;
+      };
+      alertMessageStore.onerror = event => {
+        alert('alertMessageStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded mapPlaylist
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(userId);
+      mapPlaylistStore.onsuccess = e => {
+        this.mapPlaylistUser = mapPlaylistStore.result;
+      };
+      mapPlaylistStore.onerror = event => {
+        alert('mapPlaylistStore error: ' + event.target.errorCode);
+      };
+    };
 
     // Error open Database
     this.openRequest.onerror = event => {

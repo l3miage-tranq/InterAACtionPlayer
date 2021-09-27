@@ -113,6 +113,16 @@ export class UserComponent implements OnInit {
   }
 
   /**
+   * Allows to export the account selected
+   */
+  goExport(user){
+    this.saveService.getAllInformationsUser(user.id);
+    setTimeout(() => {
+      console.log(this.saveService.playlistUser, this.saveService.themeUser, this.saveService.languageUser, this.saveService.dwellTimeUser, this.saveService.alertMessageUser, this.saveService.mapPlaylistUser);
+    }, 1000);
+  }
+
+  /**
    * Allows the user to create a new user account
    */
   addUser(){

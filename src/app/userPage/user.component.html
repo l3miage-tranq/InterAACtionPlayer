@@ -75,6 +75,9 @@
           <button *ngIf="showBtn" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
             {{"user.delete" | translate}}
           </button>
+          <button *ngIf="showBtn" class="ui right floated tiny green right labeled icon button" (click)="goExport(elem)">
+            {{"user.export" | translate}}
+          </button>
         </div>
       </div>
     </div>
