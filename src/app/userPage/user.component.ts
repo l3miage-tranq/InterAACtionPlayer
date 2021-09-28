@@ -18,6 +18,7 @@ import { SaveService } from '../services/save.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
 import { LanguageService } from '../services/language.service';
+import {ImportuserComponent} from "../playlist/dialogComponents/importUser/importuser.component";
 
 @Component({
   selector: 'app-user',
@@ -110,6 +111,18 @@ export class UserComponent implements OnInit {
         this.usersList[index] = this.usersService.userToModify;
         this.usersService.listUsers = this.usersList;
         this.saveService.updateListUsers();
+      }
+    });
+  }
+
+  /**
+   * Allows the user to import a account
+   */
+  goImport(){
+    const dialogImportUser = this.dialog.open(ImportuserComponent);
+    dialogImportUser.afterClosed().subscribe(() => {
+      if (this.usersService.wantImportUser){
+        this.usersService.wantImportUser = false;
       }
     });
   }

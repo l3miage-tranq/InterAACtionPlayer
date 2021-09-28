@@ -187,6 +187,7 @@
     "title": "User Page",
     "defaultUser": "Default User",
     "addUser": "Add New User",
+    "importUser": "Import User",
     "delete": "Delete",
     "modify": "Modify",
     "export": "Export",
@@ -207,6 +208,17 @@
     "cancel": "Cancel",
     "submit": "Create",
     "or": "or"
+  },
+  "importUser": {
+    "title": "Import account",
+    "file": "File",
+    "import": ".json",
+    "acceptedFile": "File well received !",
+    "errorWrongFile": "Error, bad file !",
+    "errorEmptyFile": "Error, no file !",
+    "errorFileAlreadyInUserList" : "Error, account already present !",
+    "cancel": "Cancel",
+    "add": "Add"
   },
   "youtubeSearchContainer": {
     "noVideo": "No video found !"

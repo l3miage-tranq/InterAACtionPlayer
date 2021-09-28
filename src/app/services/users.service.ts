@@ -18,6 +18,7 @@ export class UsersService {
   wantDeleteUser = false;
   userToModify;
   wantModifyUser = false;
+  wantImportUser = false;
 
   constructor() {
   }

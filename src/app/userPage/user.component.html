@@ -55,6 +55,16 @@
           </h2>
         </div>
       </div>
+      <div [ngClass]="theme" class="ui card" (click)="goImport()">
+        <div class="image">
+          <img src="./assets/importUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            {{"user.importUser" | translate}}
+          </h2>
+        </div>
+      </div>
     </div>
     <br>
     <hr>
