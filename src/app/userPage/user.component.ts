@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import exportFromJSON from 'export-from-json';
 
 /**
  * Import Components
@@ -30,6 +31,7 @@ export class UserComponent implements OnInit {
   theme = "";
   showBtn = false;
   disableEditBtn = "";
+  loading = "";
 
   constructor(private usersService: UsersService,
               private dialog: MatDialog,
@@ -116,9 +118,24 @@ export class UserComponent implements OnInit {
    * Allows to export the account selected
    */
   goExport(user){
+    this.loading = "loading disabled"
     this.saveService.getAllInformationsUser(user.id);
     setTimeout(() => {
-      console.log(this.saveService.playlistUser, this.saveService.themeUser, this.saveService.languageUser, this.saveService.dwellTimeUser, this.saveService.alertMessageUser, this.saveService.mapPlaylistUser);
+      exportFromJSON({
+        data: [
+          user,
+          this.saveService.playlistUser,
+          this.saveService.themeUser,
+          this.saveService.languageUser,
+          this.saveService.dwellTimeUser,
+          this.saveService.alertMessageUser,
+          this.saveService.mapPlaylistUser
+        ],
+        fields: {} ,
+        fileName: user.name,
+        exportType: exportFromJSON.types.json
+      });
+      this.loading = "";
     }, 1000);
   }
 

@@ -69,13 +69,13 @@
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
           </div>
-          <button *ngIf="showBtn" class="ui right floated tiny blue right labeled icon button" (click)="goModify(elem, index)">
+          <button *ngIf="showBtn" class="ui centered blue medium button" (click)="goModify(elem, index)">
             {{"user.modify" | translate}}
           </button>
-          <button *ngIf="showBtn" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
+          <button *ngIf="showBtn" class="ui centered red medium button" (click)="goDelete(elem)">
             {{"user.delete" | translate}}
           </button>
-          <button *ngIf="showBtn" class="ui right floated tiny green right labeled icon button" (click)="goExport(elem)">
+          <button *ngIf="showBtn" [ngClass]="loading" class="ui centered green medium button" (click)="goExport(elem)">
             {{"user.export" | translate}}
           </button>
         </div>
