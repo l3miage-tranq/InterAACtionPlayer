@@ -29,6 +29,7 @@ export class ImportfileComponent implements OnInit {
   public error = '';
   public optionsPlaylist = "new";
 
+  public extension = "audio/wav, audio/mpeg";
   public acceptedFile = false;
   public errorEmptyFile = false;
   public errorWrongFile = false;
@@ -61,6 +62,7 @@ export class ImportfileComponent implements OnInit {
       this.titleFile = "importFilePlaylist.titleSong";
       this.artistFile = "importFilePlaylist.artistSong";
       this.authorizedExtension = "importFilePlaylist.authorizedSong";
+      this.extension = "audio/wav, audio/mpeg";
     }
   }
 
@@ -75,6 +77,7 @@ export class ImportfileComponent implements OnInit {
       this.titleFile = "importFilePlaylist.titleVideo";
       this.artistFile = "importFilePlaylist.artistVideo";
       this.authorizedExtension = "importFilePlaylist.authorizedVideo";
+      this.extension = "video/mp4, video/webm";
     }
   }
 
@@ -87,6 +90,7 @@ export class ImportfileComponent implements OnInit {
     if (this.typeFile != "file"){
       this.typeFile = "file";
       this.authorizedExtension = "importFilePlaylist.authorizedFile";
+      this.extension = ".AACPlayer";
     }
   }
 
@@ -188,7 +192,7 @@ export class ImportfileComponent implements OnInit {
    */
   public jsonIsValid(){
     if (this.typeFile == 'file'){
-      if (this.nameFileUpload.split('.').pop() == "json"){
+      if (this.nameFileUpload.split('.').pop() == "AACPlayer"){
         return this.playlistService.checkFileForPlaylist(JSON.parse(this.fileUpload));
       }else {
         return false;

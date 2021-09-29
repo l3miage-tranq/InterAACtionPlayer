@@ -144,7 +144,7 @@
     "options": "Options",
     "authorizedSong": "* seulement .mpeg & .wav sont autorisés !",
     "authorizedVideo": "* seulement .mp4 & .webm sont autorisés !",
-    "authorizedFile": "* seulement .json est autorisé !",
+    "authorizedFile": "* seulement .AACPlayer est autorisé !",
     "or": "ou",
     "import": "Importer fichier",
     "acceptedFile": "Fichier bien reçu"
