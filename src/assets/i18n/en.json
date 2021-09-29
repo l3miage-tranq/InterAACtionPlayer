@@ -212,7 +212,8 @@
   "importUser": {
     "title": "Import account",
     "file": "File",
-    "import": ".json",
+    "import": "File user",
+    "authorizedExtension": "* only .AACPlayer is authorized !",
     "acceptedFile": "File well received !",
     "errorWrongFile": "Error, bad file !",
     "errorEmptyFile": "Error, no file !",

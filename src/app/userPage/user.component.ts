@@ -134,6 +134,10 @@ export class UserComponent implements OnInit {
     this.loading = "loading disabled"
     this.saveService.getAllInformationsUser(user.id);
     setTimeout(() => {
+      const mapPlaylist = [];
+      this.saveService.mapPlaylistUser.forEach((key, value) => {
+        mapPlaylist.push(key, value);
+      })
       exportFromJSON({
         data: [
           user,
@@ -142,8 +146,9 @@ export class UserComponent implements OnInit {
           this.saveService.languageUser,
           this.saveService.dwellTimeUser,
           this.saveService.alertMessageUser,
-          this.saveService.mapPlaylistUser
+          mapPlaylist
         ],
+        extension: "AACPlayer",
         fields: {} ,
         fileName: user.name,
         exportType: exportFromJSON.types.json

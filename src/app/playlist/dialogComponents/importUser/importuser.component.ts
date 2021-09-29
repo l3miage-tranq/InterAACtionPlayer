@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {UsersService} from "../../../services/users.service";
 
 /**
  * Import Services
@@ -21,7 +22,8 @@ export class ImportuserComponent implements OnInit {
   errorWrongFile = false;
   errorUserAlreadyInPlaylist = false;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private usersService: UsersService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -43,17 +45,21 @@ export class ImportuserComponent implements OnInit {
   /**
    * Check if the Json file is a right file
    * Get the name of the file, split it from the point
-   * Then get the last value of the split (= extension of the file) and check if this value == json
+   * Then get the last value of the split (= extension of the file) and check if this value == AACPlayer
    * After check if the json file contains the right schema
    */
   public jsonIsValid() {
-      return this.nameFileUpload.split('.').pop() == "json";
+    if (this.nameFileUpload.split('.').pop() == "AACPlayer"){
+      return this.usersService.checkFileForUser(JSON.parse(this.fileUpload));
+    }else {
+      return false;
+    }
   }
 
   submit(){
     if (this.fileUpload != null){
       if (this.jsonIsValid()){
-
+        console.log("accepted");
       }else {
         this.acceptedFile = false;
         this.errorWrongFile = true;
