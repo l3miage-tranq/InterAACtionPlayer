@@ -86,6 +86,7 @@
     "title": "Exporter la Playlist ?",
     "titleFile": "Titre du fichier",
     "defaultTitleFile": "Par défaut titre = Playlist",
+    "errorWrongName": "Le nom ne peut pas contenir de '.'",
     "yes": "Oui",
     "no": "Non"
   },
