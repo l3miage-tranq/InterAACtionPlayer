@@ -72,8 +72,6 @@ export class PlaylistComponent implements OnInit {
   disableDragDrop = false;
   theme = "";
   textColor = "";
-  disableBtnUndo = "disabled";
-  disableBtnRedo = "disabled";
   index = -1;
 
   btnType: number = 1;
@@ -103,8 +101,7 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorIconSettings= "iconSettingsProgressSpinner";
   idProgressIndicatorIconUser = "iconUserProgressSpinner";
   idProgressIndicatorIconLogout = "iconLogoutProgressSpinner";
-  idProgressIndicatorIconUndo = "iconUndoProgressSpinner";
-  idProgressIndicatorIconRedo = "iconRedoProgressSpinner";
+  idProgressIndicatorIconNew = "iconNewProgressSpinner";
 
   refresh = false;
 
@@ -177,12 +174,6 @@ export class PlaylistComponent implements OnInit {
         this.textColor = "lightMode";
       }
     });
-    this.playlistService.indexAutoSave.subscribe(value => {
-      if (this.index < 3){
-        this.index += value;
-      }
-      this.checkIndex(this.index);
-    });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
       initDeezer();
@@ -240,6 +231,34 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
+   * Allows to start a new playlist
+   */
+  newPlaylist(){
+    this.isEditModeActive();
+    if (this.alertService.doNotShowAgain == false){
+      this.alertService.setNewPlaylist();
+      const newPlaylist = this.dialog.open(AlertComponent);
+      newPlaylist.afterClosed().subscribe(() => {
+        if (this.alertService.alertCancel == false){
+          this.playlistService.playList = [];
+          this.playList = this.playlistService.playList;
+          this.playlistService.nameActualPlaylist = "";
+          this.saveService.updatePlaylist();
+          this.notifier.notify('warning', this.translate.instant('notifier.newPlaylist'));
+          this.goEdit();
+        }
+      });
+    }else {
+      this.playlistService.playList = [];
+      this.playList = this.playlistService.playList;
+      this.playlistService.nameActualPlaylist = "";
+      this.saveService.updatePlaylist();
+      this.notifier.notify('warning', this.translate.instant('notifier.newPlaylist'));
+      this.goEdit();
+    }
+  }
+
+  /**
    * If edit mode is On, disable it and open SavePlaylistComponent
    * Then when SaveDialog is close we check if the playlist is empty
    * If it's the case then enable edit mode & delete current music/video
@@ -250,9 +269,9 @@ export class PlaylistComponent implements OnInit {
     savePlaylist.afterClosed().subscribe(() => {
       if (this.isPlaylistEmpty()){
         this.goEdit();
-        this.deleteCurrentElement()
+        this.deleteCurrentElement();
       }
-    })
+    });
   }
 
   /**
@@ -266,7 +285,6 @@ export class PlaylistComponent implements OnInit {
     const loadPlaylist = this.dialog.open(LoadPlaylistComponent);
     loadPlaylist.afterClosed().subscribe( () => {
       this.playList = this.playlistService.playList;
-      this.playlistService.addAutoSave(this.index);
       if (this.isPlaylistEmpty()){
         this.goEdit();
         this.deleteCurrentElement()
@@ -285,7 +303,6 @@ export class PlaylistComponent implements OnInit {
     const importDialog = this.dialog.open(ImportfileComponent);
     importDialog.afterClosed().subscribe(() => {
       this.playList = this.playlistService.playList;
-      this.playlistService.addAutoSave(this.index);
       if (this.isPlaylistEmpty()){
         this.goEdit();
         this.deleteCurrentElement()
@@ -388,7 +405,6 @@ export class PlaylistComponent implements OnInit {
       this.isCurrentElem(elem);
       this.playList = this.playlistService.deleteToPlaylist(elem);
       this.saveService.updatePlaylist();
-      this.playlistService.addAutoSave(this.index);
       setTimeout(() => {
         this.playlistService.addBtnAdd();
       }, 100);
@@ -400,7 +416,6 @@ export class PlaylistComponent implements OnInit {
           this.isCurrentElem(elem);
           this.playList = this.playlistService.deleteToPlaylist(elem);
           this.saveService.updatePlaylist();
-          this.playlistService.addAutoSave(this.index);
           setTimeout(() => {
             this.playlistService.addBtnAdd();
           }, 100);
@@ -445,51 +460,6 @@ export class PlaylistComponent implements OnInit {
       this.refreshAudioPlayer();
       this.goOnElement("watchPlace");
       this.setDefaultVolume();
-    }
-  }
-
-  /**
-   * Allows to return in back
-   */
-  goUndo(){
-    this.isEditModeActive();
-    this.launch = false;
-    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index - 1].slice();
-    this.playList = this.playlistService.playList;
-    this.saveService.updatePlaylist();
-    this.index -= 1;
-    this.checkIndex(this.index);
-  }
-
-  /**
-   * Allows to go forward
-   */
-  goRedo(){
-    this.isEditModeActive();
-    this.launch = false;
-    this.playlistService.playList = this.playlistService.autoSavePlaylist[this.index + 1].slice();
-    this.playList = this.playlistService.playList;
-    this.saveService.updatePlaylist();
-    this.index += 1;
-    this.checkIndex(this.index);
-  }
-
-  /**
-   * @param value
-   *
-   * Allows to check if the user can go back or forward for avoid to go outside of the limit of the array
-   */
-  checkIndex(value){
-    if (value > 0){
-      this.disableBtnUndo = "";
-    }else {
-      this.disableBtnUndo = "disabled";
-    }
-
-    if (value < (this.playlistService.autoSavePlaylist.length - 1)){
-      this.disableBtnRedo = "";
-    }else {
-      this.disableBtnRedo = "disabled";
     }
   }
 
@@ -864,7 +834,6 @@ export class PlaylistComponent implements OnInit {
     this.playList[event.container.data.index] = event.previousContainer.data.elem;
     this.playlistService.playList = this.playList;
     this.saveService.updatePlaylist();
-    this.playlistService.addAutoSave(this.index);
   }
 
   /**

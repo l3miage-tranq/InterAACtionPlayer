@@ -63,7 +63,6 @@ export class LoadPlaylistComponent implements OnInit {
     if (this.alertService.doNotShowAgain){
       const elem = document.getElementById(name);
       elem.style.display = "none";
-
       this.playlistService.deleteMapPlaylist(name);
       this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
       this.saveService.updateMapPlaylist();
@@ -100,6 +99,7 @@ export class LoadPlaylistComponent implements OnInit {
     }else {
       this.errorEmptyCheckbox = false;
       this.playlistService.playList = this.mapPlaylist.get(this.getKey);
+      this.playlistService.nameActualPlaylist = this.getKey;
       this.dialog.closeAll();
       this.notifier.notify('warning', this.translate.instant('notifier.loadPlaylist'));
       this.saveService.updatePlaylist();
