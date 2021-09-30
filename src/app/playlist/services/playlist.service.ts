@@ -15,17 +15,11 @@ import { Video } from '../../../../projects/youtube/src/app/shared/models/search
 
 export class PlaylistService{
 
-  // Allows to knows at which index we are on the autoSave array
-  public indexAutoSave = new Subject<number>();
-
   // The Playlist that is displayed on the web
   playList: Types[] = [];
 
   // A map who contains all the playlist save
   mapPlaylist = new Map();
-
-  // A array who contain a auto save from the playlist (max 3 slots use)
-  autoSavePlaylist = [];
 
   // Schema for the json validator
   schemaPlaylist = {
@@ -44,6 +38,9 @@ export class PlaylistService{
     "required": ["types", "id", "artists", "title", "publishedAt", "description", "thumbnail"],
     "additionalProperties": false
   }
+
+  // Allows to knows the name of the actual playlist
+  nameActualPlaylist = "";
 
   // A boolean to know if we need to add the btn Add in the playlist if she is empty
   addBtnAddInEmptyPlaylist: boolean = true;
@@ -320,6 +317,7 @@ export class PlaylistService{
    */
   addMapPlaylist(name: string){
     this.mapPlaylist.set(name, this.playList);
+    this.nameActualPlaylist = name;
   }
 
   /**
@@ -338,24 +336,5 @@ export class PlaylistService{
    */
   playlistNameAlreadyInMap(name: string){
     return this.mapPlaylist.has(name);
-  }
-
-  /**
-   * Allows to save the last action of the user
-   */
-  addAutoSave(index){
-    let tmp = this.playList.slice();
-    if (index != (this.autoSavePlaylist.length - 1)){
-      while (index != (this.autoSavePlaylist.length - 1)){
-        this.autoSavePlaylist.pop();
-      }
-      this.autoSavePlaylist.push(tmp);
-    }else if (this.autoSavePlaylist.length == 4){
-      this.autoSavePlaylist.shift();
-      this.autoSavePlaylist.push(tmp);
-    }else {
-      this.autoSavePlaylist.push(tmp);
-    }
-    this.indexAutoSave.next(1);
   }
 }

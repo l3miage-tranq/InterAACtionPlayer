@@ -48,21 +48,13 @@
     </h1>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="left menu">
-        <a id="undoIcon" [ngClass]="disableBtnUndo" class="ui item" (click)="goUndo()"
-           (mouseenter)="showProgressIndicator('undoIcon', idProgressIndicatorIconUndo); showBtn('undoIcon')"
-           (mouseleave)="hideProgressIndicator('undoIcon', idProgressIndicatorIconUndo); hideBtn('undoIcon')"
-           matTooltip="{{'playlist.back' | translate}}"
+        <a id="newIcon" class="ui item" (click)="newPlaylist()"
+           (mouseenter)="showProgressIndicator('newIcon', idProgressIndicatorIconNew); showBtn('newIcon')"
+           (mouseleave)="hideProgressIndicator('newIcon', idProgressIndicatorIconNew); hideBtn('newIcon')"
+           matTooltip="{{'playlist.new' | translate}}"
            matTooltipPosition="before">
-          <i class="undo icon"></i>
-          <app-progress-indicator [id]="idProgressIndicatorIconUndo" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
-        </a>
-        <a id="redoIcon" [ngClass]="disableBtnRedo" class="ui item" (click)="goRedo()"
-           (mouseenter)="showProgressIndicator('redoIcon', idProgressIndicatorIconRedo); showBtn('redoIcon')"
-           (mouseleave)="hideProgressIndicator('redoIcon', idProgressIndicatorIconRedo); hideBtn('redoIcon')"
-           matTooltip="{{'playlist.forward' | translate}}"
-           matTooltipPosition="before">
-          <i class="redo icon"></i>
-          <app-progress-indicator [id]="idProgressIndicatorIconRedo" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+          <i class="plus icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconNew" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
       </div>
       <div class="right menu">
