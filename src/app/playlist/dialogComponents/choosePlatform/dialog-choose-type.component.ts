@@ -11,8 +11,6 @@ import { PrefabricatedPlaylistComponent } from '../prefabricatedPlaylist/prefabr
 })
 export class DialogChooseTypeComponent implements OnInit {
 
-  playlistEmpty = false;
-
   private router: Router;
   private dialog: MatDialog;
   private playlistService: PlaylistService;
@@ -24,7 +22,6 @@ export class DialogChooseTypeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playlistEmpty = this.playlistService.playList.length == 0;
   }
 
   /**

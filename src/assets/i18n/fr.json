@@ -18,7 +18,8 @@
     "deletePlaylist": "Playlist supprimé !",
     "deleteUser": "Utilisateur supprimé !",
     "logoutSpotify": "Déconnexion de Spotify réussi !",
-    "logoutDeezer": "Déconnexion de Deezer réussi !"
+    "logoutDeezer": "Déconnexion de Deezer réussi !",
+    "newPlaylist": "Nouvelle playlist crée !"
   },
   "playlist": {
     "title": "GazeMedia Player",
@@ -32,13 +33,12 @@
     "deleteBtn": "Effacer la Playlist",
     "loadBtn": "Charger une Playlist",
     "logoutBtn": "Déconnexion",
-    "back": "Retour arrière",
-    "forward": "Avancer",
     "playlist": "Playlist",
     "up": "Monter",
     "down": "Descendre",
     "music": "Musique",
-    "video": "Vidéo"
+    "video": "Vidéo",
+    "new" : "Nouvelle playlist"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
@@ -88,7 +88,8 @@
     "titleFile": "Titre du fichier",
     "defaultTitleFile": "Par défaut titre = Playlist",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "empty": "La playlist est vide !"
   },
   "deletePlaylist": {
     "title": "Effacer la Playlist",
@@ -160,10 +161,12 @@
     "titleDelete": "Attention, suppression de la Playlist demandé !",
     "titleReplace": "Attention, remplacement de la Playlist demandé !",
     "titleItemDelete": "Attention, suppression de l'item demandé !",
+    "titleNewPlaylist": "Attention, commencer une nouvelle playlist demandé !",
     "contentMerge": "Êtes-vous sur de vouloir fusionner la Playlist actuelle avec celle que vous nous avez donné ?",
     "contentDelete": "Êtes-vous sur de vouloir supprimer la Playlist actuelle ?",
     "contentReplace": "Êtes-vous sur de vouloir remplacer la Playlist actuelle avec celle que vous nous avez donné ?",
     "contentItemDelete": "Êtes-vous sur de vouloir supprimer cette item de la Playlist actuelle ?",
+    "contentNewPlaylist": "Êtes-vous sur de vouloir commencer une nouvelle playlist ?",
     "no" : "Non",
     "yes": "Oui",
     "doNotShowAgain": " Ne plus afficher !"

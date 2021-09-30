@@ -30,6 +30,7 @@ export class SavePlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.saveKnowPlaylist();
     this.playlistEmpty = this.playlistService.playList.length == 0;
     this.enableButtonSave();
   }
@@ -65,7 +66,9 @@ export class SavePlaylistComponent implements OnInit {
       if (!this.playlistService.playlistNameAlreadyInMap(this.name)){
         this.errorNameAlreadyUse = false;
         this.playlistService.addMapPlaylist(this.name);
+        this.playlistService.nameActualPlaylist = this.name;
         this.saveService.updateMapPlaylist();
+        this.saveService.updatePlaylistName();
         this.dialog.closeAll();
         this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
       }else{
@@ -73,6 +76,15 @@ export class SavePlaylistComponent implements OnInit {
       }
     }else {
       this.errorNameEmpty = true;
+    }
+  }
+
+  saveKnowPlaylist() {
+    if (this.playlistService.nameActualPlaylist != "" && this.playlistService.playlistNameAlreadyInMap(this.playlistService.nameActualPlaylist)) {
+      this.playlistService.addMapPlaylist(this.playlistService.nameActualPlaylist);
+      this.saveService.updateMapPlaylist();
+      this.dialog.closeAll();
+      this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
     }
   }
 
