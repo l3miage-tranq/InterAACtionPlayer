@@ -70,6 +70,7 @@
     "defaultTitleFile": "Choisie ton nom =D !",
     "errorNameAlreadyUse": "Nom déjà utilisé !",
     "errorNameEmpty": "Nom nécessaire pour la sauvegarde !",
+    "errorPlaylistEmpty": "Playlist vide !",
     "yes": "Oui",
     "no": "Non"
   },

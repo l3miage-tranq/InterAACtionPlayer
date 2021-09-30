@@ -17,6 +17,8 @@ import { SaveService } from '../../../services/save.service';
 export class SavePlaylistComponent implements OnInit {
 
   name = "";
+  disabledButton = "";
+  playlistEmpty = false;
   errorNameAlreadyUse = false;
   errorNameEmpty = false;
 
@@ -29,6 +31,8 @@ export class SavePlaylistComponent implements OnInit {
 
   ngOnInit(): void {
     this.saveKnowPlaylist();
+    this.playlistEmpty = this.playlistService.playList.length == 0;
+    this.enableButtonSave();
   }
 
   /**
@@ -75,12 +79,18 @@ export class SavePlaylistComponent implements OnInit {
     }
   }
 
-  saveKnowPlaylist(){
-    if (this.playlistService.nameActualPlaylist != "" && this.playlistService.playlistNameAlreadyInMap(this.playlistService.nameActualPlaylist)){
+  saveKnowPlaylist() {
+    if (this.playlistService.nameActualPlaylist != "" && this.playlistService.playlistNameAlreadyInMap(this.playlistService.nameActualPlaylist)) {
       this.playlistService.addMapPlaylist(this.playlistService.nameActualPlaylist);
       this.saveService.updateMapPlaylist();
       this.dialog.closeAll();
       this.notifier.notify('warning', this.translate.instant('notifier.savePlaylist'));
+    }
+  }
+
+  enableButtonSave(){
+    if (this.playlistEmpty){
+      this.disabledButton = "disabled";
     }
   }
 }
