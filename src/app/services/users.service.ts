@@ -256,4 +256,14 @@ export class UsersService {
       return false;
     }
   }
+
+  userAlreadyInTheList(userId){
+    let find = false;
+    for (let i = 0; i < this.listUsers.length; i++){
+      if (this.listUsers[i].id == userId){
+        find = true;
+      }
+    }
+    return find;
+  }
 }

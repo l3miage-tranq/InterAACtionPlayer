@@ -131,7 +131,7 @@ export class UserComponent implements OnInit {
    * Allows to export the account selected
    */
   goExport(user){
-    this.loading = "loading disabled"
+    this.loading = "loading disabled";
     this.saveService.getAllInformationsUser(user.id);
     setTimeout(() => {
       const mapPlaylist = [];

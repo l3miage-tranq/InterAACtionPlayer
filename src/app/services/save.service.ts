@@ -505,4 +505,79 @@ export class SaveService {
       alert('Database error: ' + event.target.errorCode);
     };
   }
+
+  /**
+   * Allows to add in the database the user imported
+   */
+  addImportUser(user, playlist, theme, language, dwellTime, alertMessage, mapPlaylist){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Update User Store
+      const listUsersStore = db.transaction(['listUsers'], 'readwrite');
+      const listUsersObjectStore = listUsersStore.objectStore('listUsers');
+      const storeListUsersRequest = listUsersObjectStore.get(1);
+      storeListUsersRequest.onsuccess = () => {
+        listUsersObjectStore.put(this.userService.listUsers, 1);
+      };
+
+      // Update Playlist Store
+      const playlistStore = db.transaction(['Playlist'], 'readwrite');
+      const playlistObjectStore = playlistStore.objectStore('Playlist');
+      const storePlaylistRequest = playlistObjectStore.get(user.id);
+      storePlaylistRequest.onsuccess = () => {
+        playlistObjectStore.put(playlist, user.id);
+      };
+
+      // Update Theme Store
+      const themeStore = db.transaction(['Theme'], 'readwrite');
+      const themeObjectStore = themeStore.objectStore('Theme');
+      const storeThemeRequest = themeObjectStore.get(user.id);
+      storeThemeRequest.onsuccess = () => {
+        themeObjectStore.put(theme, user.id);
+      };
+
+      // Update Language Store
+      const languageStore = db.transaction(['Language'], 'readwrite');
+      const languageObjectStore = languageStore.objectStore('Language');
+      const storeLanguageRequest = languageObjectStore.get(user.id);
+      storeLanguageRequest.onsuccess = () => {
+        languageObjectStore.put(language, user.id);
+      };
+
+      // Update DwellTime Store
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite');
+      const dwellTimeObjectStore = dwellTimeStore.objectStore('DwellTime');
+      const storeDwellTimeRequest = dwellTimeObjectStore.get(user.id);
+      storeDwellTimeRequest.onsuccess = () => {
+        dwellTimeObjectStore.put(dwellTime, user.id);
+      };
+
+      // Update Alert Message Store
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite');
+      const alertMessageObjectStore = alertMessageStore.objectStore('alertMessage');
+      const storeAlertMessageRequest = alertMessageObjectStore.get(user.id);
+      storeAlertMessageRequest.onsuccess = () => {
+        alertMessageObjectStore.put(alertMessage, user.id);
+      };
+
+      // Update mapPlaylist Store
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite');
+      const mapPlaylistObjectStore = mapPlaylistStore.objectStore('mapPlaylist');
+      const storeMapPlaylistRequest = mapPlaylistObjectStore.get(user.id);
+      storeMapPlaylistRequest.onsuccess = () => {
+        mapPlaylistObjectStore.put(mapPlaylist, user.id);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {UsersService} from "../../../services/users.service";
 
 /**
  * Import Services
  */
-
+import { UsersService } from "../../../services/users.service";
+import { SaveService } from "../../../services/save.service";
 
 @Component({
   selector: 'app-importuser',
@@ -17,12 +17,17 @@ export class ImportuserComponent implements OnInit {
   private fileUpload;
   private nameFileUpload;
 
+  fileUser = [];
+  mapPlaylist = new Map();
+  loading = "";
+
   acceptedFile = false;
   errorEmptyFile = false;
   errorWrongFile = false;
   errorUserAlreadyInPlaylist = false;
 
   constructor(private usersService: UsersService,
+              private saveService: SaveService,
               private dialog: MatDialog) {
   }
 
@@ -40,6 +45,7 @@ export class ImportuserComponent implements OnInit {
     this.acceptedFile = true;
     this.errorEmptyFile = false;
     this.errorWrongFile = false;
+    this.errorUserAlreadyInPlaylist = false;
   }
 
   /**
@@ -56,10 +62,42 @@ export class ImportuserComponent implements OnInit {
     }
   }
 
+  /**
+   * @param playlistMap
+   *
+   * Allows to create a map playlist with the file
+   */
+  createMapPlaylist(playlistMap){
+    for (let i = 0; i < playlistMap.length; i++){
+      this.mapPlaylist.set(playlistMap[i+1], playlistMap[i]);
+      i++;
+    }
+  }
+
   submit(){
     if (this.fileUpload != null){
       if (this.jsonIsValid()){
-        console.log("accepted");
+        this.fileUser.push(JSON.parse(this.fileUpload));
+        if (!this.usersService.userAlreadyInTheList(this.fileUser[0][0].id)){
+          this.loading = "loading disabled";
+          this.usersService.listUsers.push(this.fileUser[0][0]);
+          this.createMapPlaylist(this.fileUser[0][6]);
+          this.saveService.addImportUser(
+            this.fileUser[0][0], //User
+            this.fileUser[0][1], //Playlist
+            this.fileUser[0][2], //Theme
+            this.fileUser[0][3], //Language
+            this.fileUser[0][4], //DwellTime
+            this.fileUser[0][5], //AlertMessage
+            this.mapPlaylist //mapPlaylist
+          );
+          setTimeout(() => {
+            this.dialog.closeAll();
+          }, 2000);
+        }else {
+          this.acceptedFile = false;
+          this.errorUserAlreadyInPlaylist = true
+        }
       }else {
         this.acceptedFile = false;
         this.errorWrongFile = true;
