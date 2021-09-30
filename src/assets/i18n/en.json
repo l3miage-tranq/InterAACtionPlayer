@@ -87,7 +87,8 @@
     "titleFile": "Title File",
     "defaultTitleFile": "By default title = Playlist",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "empty": "Playlist is empty !"
   },
   "deletePlaylist": {
     "title": "Delete Playlist",

@@ -16,8 +16,10 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class ExportfileComponent implements OnInit {
 
+  playlistEmpty = false;
   defaultTitleFile = "Playlist"
   titleFile = "";
+  disabledButton = "";
 
   constructor(private dialog: MatDialog,
               private notifier: NotifierService,
@@ -26,6 +28,8 @@ export class ExportfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playlistEmpty = this.playlistService.playList.length == 0;
+    this.enableButtonExport();
   }
 
   /**
@@ -60,5 +64,15 @@ export class ExportfileComponent implements OnInit {
    */
   public goCancel(){
     this.dialog.closeAll();
+  }
+
+  /**
+   * Check if the current playlist is empty
+   * If it's true then the button to export is disabled
+   */
+  public enableButtonExport(){
+    if (this.playlistEmpty){
+      this.disabledButton = "disabled";
+    }
   }
 }
