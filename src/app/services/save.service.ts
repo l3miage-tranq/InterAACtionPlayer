@@ -28,6 +28,7 @@ export class SaveService {
 
   //Informations of user
   playlistUser;
+  namePlaylistUser;
   themeUser;
   languageUser;
   dwellTimeUser;
@@ -498,6 +499,15 @@ export class SaveService {
         alert('PlaylistStore error: ' + event.target.errorCode);
       };
 
+      // Recovery of the recorded Playlist name
+      const playlistNameStore = db.transaction(['PlaylistName'], 'readwrite').objectStore('PlaylistName').get(userId);
+      playlistNameStore.onsuccess = e => {
+        this.namePlaylistUser = playlistNameStore.result;
+      };
+      playlistNameStore.onerror = event => {
+        alert('playlistNameStore error: ' + event.target.errorCode);
+      };
+
       // Recovery of the recorded Theme
       const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(userId);
       themeStore.onsuccess = e => {
@@ -553,7 +563,7 @@ export class SaveService {
   /**
    * Allows to add in the database the user imported
    */
-  addImportUser(user, playlist, theme, language, dwellTime, alertMessage, mapPlaylist){
+  addImportUser(user, playlist, namePlaylist, theme, language, dwellTime, alertMessage, mapPlaylist){
 
     // Opening of the database
     this.openRequest = indexedDB.open('SavePlaylist', this.version);
@@ -576,6 +586,14 @@ export class SaveService {
       const storePlaylistRequest = playlistObjectStore.get(user.id);
       storePlaylistRequest.onsuccess = () => {
         playlistObjectStore.put(playlist, user.id);
+      };
+
+      // Update PlaylistName Store
+      const playlistNameStore = db.transaction(['PlaylistName'], 'readwrite');
+      const playlistNameObjectStore = playlistNameStore.objectStore('PlaylistName');
+      const storePlaylistNameRequest = playlistNameObjectStore.get(user.id);
+      storePlaylistNameRequest.onsuccess = () => {
+        playlistNameObjectStore.put(namePlaylist, user.id);
       };
 
       // Update Theme Store

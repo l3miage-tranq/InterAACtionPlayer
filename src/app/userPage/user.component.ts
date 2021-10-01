@@ -142,6 +142,7 @@ export class UserComponent implements OnInit {
         data: [
           user,
           this.saveService.playlistUser,
+          this.saveService.namePlaylistUser,
           this.saveService.themeUser,
           this.saveService.languageUser,
           this.saveService.dwellTimeUser,

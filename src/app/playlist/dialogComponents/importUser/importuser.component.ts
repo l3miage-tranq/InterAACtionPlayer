@@ -81,14 +81,15 @@ export class ImportuserComponent implements OnInit {
         if (!this.usersService.userAlreadyInTheList(this.fileUser[0][0].id)){
           this.loading = "loading disabled";
           this.usersService.listUsers.push(this.fileUser[0][0]);
-          this.createMapPlaylist(this.fileUser[0][6]);
+          this.createMapPlaylist(this.fileUser[0][7]);
           this.saveService.addImportUser(
             this.fileUser[0][0], //User
             this.fileUser[0][1], //Playlist
-            this.fileUser[0][2], //Theme
-            this.fileUser[0][3], //Language
-            this.fileUser[0][4], //DwellTime
-            this.fileUser[0][5], //AlertMessage
+            this.fileUser[0][2], //Name playlist
+            this.fileUser[0][3], //Theme
+            this.fileUser[0][4], //Language
+            this.fileUser[0][5], //DwellTime
+            this.fileUser[0][6], //AlertMessage
             this.mapPlaylist //mapPlaylist
           );
           setTimeout(() => {
