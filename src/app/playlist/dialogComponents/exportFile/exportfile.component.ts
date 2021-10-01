@@ -19,6 +19,7 @@ export class ExportfileComponent implements OnInit {
   playlistEmpty = false;
   defaultTitleFile = "Playlist"
   titleFile = "";
+  errorWrongName = false;
   disabledButton = "";
 
   constructor(private dialog: MatDialog,
@@ -36,9 +37,11 @@ export class ExportfileComponent implements OnInit {
    * @param event
    *
    * Allows to get the value given by the user
+   * Check if the word not contains a '.' else we display a error message
    */
   getTitle(event){
     this.titleFile = event.target.value;
+    this.errorWrongName = this.titleFile.includes('.');
   }
 
   /**
@@ -49,14 +52,17 @@ export class ExportfileComponent implements OnInit {
     if (this.titleFile == ""){
       this.titleFile = this.defaultTitleFile;
     }
-    exportFromJSON({
-      data: this.playlistService.playList,
-      fields: {} ,
-      fileName: this.titleFile,
-      exportType: exportFromJSON.types.json
-    });
-    this.dialog.closeAll();
-    this.notifier.notify('warning', this.translate.instant('notifier.exportPlaylist'));
+    if (!this.errorWrongName){
+      exportFromJSON({
+        data: this.playlistService.playList,
+        extension: "AACPlayer",
+        fields: {} ,
+        fileName: this.titleFile,
+        exportType: exportFromJSON.types.json
+      });
+      this.dialog.closeAll();
+      this.notifier.notify('warning', this.translate.instant('notifier.exportPlaylist'));
+    }
   }
 
   /**

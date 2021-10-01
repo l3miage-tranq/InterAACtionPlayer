@@ -8,8 +8,11 @@
       <div class="ui right labeled input">
         <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
         <div class="ui basic label">
-          .json
+          .AACPlayer
         </div>
+      </div>
+      <div class="ui error message">
+        <p *ngIf="errorWrongName">{{ "exportFile.errorWrongName" | translate }}</p>
       </div>
     </div>
     <div class="ui error message">
