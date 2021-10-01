@@ -8,7 +8,7 @@ import { LanguageService } from './services/language.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'ProjectMultimedia';
+  title = 'InterAACtionPlayer';
 
   theme = "";
 

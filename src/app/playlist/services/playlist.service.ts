@@ -137,7 +137,7 @@ export class PlaylistService {
   addBtnAdd(){
     let btnAdd: Types = {
       types: "btnAdd",
-      id: "btnAddToPlaylistProjectMultimedia",
+      id: "btnAddToPlaylistInterAACtionPlayer",
       artists: null,
       title: null,
       publishedAt: null,
