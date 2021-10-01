@@ -213,7 +213,7 @@
     "title": "Importer un compte",
     "file": "Fichier",
     "import": "Fichier utilisateur",
-    "authorizedExtension": "* seulement .AACPlayer est autorisé !",
+    "authorizedExtension": "* seulement .AACPUser est autorisé !",
     "acceptedFile": "Fichier bien reçu !",
     "errorWrongFile": "Erreur, mauvais fichier !",
     "errorEmptyFile": "Erreur, pas de fichier !",
