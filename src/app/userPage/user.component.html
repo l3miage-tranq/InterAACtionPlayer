@@ -55,6 +55,16 @@
           </h2>
         </div>
       </div>
+      <div [ngClass]="theme" class="ui card" (click)="goImport()">
+        <div class="image">
+          <img src="./assets/importUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            {{"user.importUser" | translate}}
+          </h2>
+        </div>
+      </div>
     </div>
     <br>
     <hr>
@@ -69,11 +79,14 @@
           <div class="image">
             <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
           </div>
-          <button *ngIf="showBtn" class="ui right floated tiny blue right labeled icon button" (click)="goModify(elem, index)">
+          <button *ngIf="showBtn" class="ui centered blue medium button" (click)="goModify(elem, index)">
             {{"user.modify" | translate}}
           </button>
-          <button *ngIf="showBtn" class="ui right floated tiny red right labeled icon button" (click)="goDelete(elem)">
+          <button *ngIf="showBtn" class="ui centered red medium button" (click)="goDelete(elem)">
             {{"user.delete" | translate}}
+          </button>
+          <button *ngIf="showBtn" [ngClass]="loading" class="ui centered green medium button" (click)="goExport(elem)">
+            {{"user.export" | translate}}
           </button>
         </div>
       </div>

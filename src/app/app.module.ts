@@ -55,6 +55,7 @@ import { ChooseImgComponent } from './playlist/dialogComponents/chooseImgUser/ch
 import { ModifyUserComponent } from './playlist/dialogComponents/modifyUser/modify-user.component';
 import { DeezerPlayerComponent } from './playlist/audioPlayer/deezerPlayer/deezer-player.component';
 import { AccountsComponent } from './playlist/dialogComponents/accounts/accounts.component';
+import { ImportuserComponent } from './playlist/dialogComponents/importUser/importuser.component';
 
 /**
  * Import module Sub-Application
@@ -102,7 +103,8 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     ChooseImgComponent,
     ModifyUserComponent,
     DeezerPlayerComponent,
-    AccountsComponent
+    AccountsComponent,
+    ImportuserComponent
   ],
   imports: [
     BrowserModule,

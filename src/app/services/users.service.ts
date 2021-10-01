@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import * as Ajv from "ajv";
 
 /**
  * Import model
  */
 import { Users } from '../models/users-interface';
+import { Types } from "../playlist/model/types-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,153 @@ export class UsersService {
   wantDeleteUser = false;
   userToModify;
   wantModifyUser = false;
+  wantImportUser = false;
+
+  // Schema for json validator
+  schemaUser = {
+    "type": "array",
+    "items": [
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id",
+          "thumbnail"
+        ]
+      },
+      {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "types": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "artists": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "publishedAt": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "types",
+              "id",
+              "artists",
+              "title",
+              "publishedAt",
+              "description",
+              "thumbnail"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "string"
+      },
+      {
+        "type": "string"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "dwellTime": {
+            "type": "boolean"
+          },
+          "dwellTimeValue": {
+            "type": "integer"
+          },
+          "spinnerDwellTimeOutside": {
+            "type": "boolean"
+          },
+          "diskProgress": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dwellTime",
+          "dwellTimeValue",
+          "spinnerDwellTimeOutside",
+          "diskProgress"
+        ]
+      },
+      {
+        "type": "boolean"
+      },
+      {
+        "type": "array",
+        "items": [
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "properties": {
+                  "types": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "artists": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "publishedAt": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "thumbnail": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "types",
+                  "id",
+                  "artists",
+                  "title",
+                  "publishedAt",
+                  "description",
+                  "thumbnail"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
 
   constructor() {
   }
@@ -89,5 +238,32 @@ export class UsersService {
   setConfiguration(config){
     this.typeUser = config.typeUser;
     this.idUser = config.idUser;
+  }
+
+  /**
+   * @param jsonFile
+   *
+   * Test the json file send by the user with Ajv (a json validator)
+   * He use my schema to check if the json file has the good schema
+   */
+  checkFileForUser(jsonFile: any){
+    const ajv = new Ajv();
+    const valid = ajv.validate(this.schemaUser, jsonFile);
+    if (valid){
+      return true;
+    }else {
+      console.log(ajv.errorsText(ajv.errors));
+      return false;
+    }
+  }
+
+  userAlreadyInTheList(userId){
+    let find = false;
+    for (let i = 0; i < this.listUsers.length; i++){
+      if (this.listUsers[i].id == userId){
+        find = true;
+      }
+    }
+    return find;
   }
 }

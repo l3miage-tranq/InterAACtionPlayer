@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import exportFromJSON from 'export-from-json';
 
 /**
  * Import Components
@@ -17,6 +18,7 @@ import { SaveService } from '../services/save.service';
 import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
 import { LanguageService } from '../services/language.service';
+import {ImportuserComponent} from "../playlist/dialogComponents/importUser/importuser.component";
 
 @Component({
   selector: 'app-user',
@@ -30,6 +32,7 @@ export class UserComponent implements OnInit {
   theme = "";
   showBtn = false;
   disableEditBtn = "";
+  loading = "";
 
   constructor(private usersService: UsersService,
               private dialog: MatDialog,
@@ -110,6 +113,48 @@ export class UserComponent implements OnInit {
         this.saveService.updateListUsers();
       }
     });
+  }
+
+  /**
+   * Allows the user to import a account
+   */
+  goImport(){
+    const dialogImportUser = this.dialog.open(ImportuserComponent);
+    dialogImportUser.afterClosed().subscribe(() => {
+      if (this.usersService.wantImportUser){
+        this.usersService.wantImportUser = false;
+      }
+    });
+  }
+
+  /**
+   * Allows to export the account selected
+   */
+  goExport(user){
+    this.loading = "loading disabled";
+    this.saveService.getAllInformationsUser(user.id);
+    setTimeout(() => {
+      const mapPlaylist = [];
+      this.saveService.mapPlaylistUser.forEach((key, value) => {
+        mapPlaylist.push(key, value);
+      })
+      exportFromJSON({
+        data: [
+          user,
+          this.saveService.playlistUser,
+          this.saveService.themeUser,
+          this.saveService.languageUser,
+          this.saveService.dwellTimeUser,
+          this.saveService.alertMessageUser,
+          mapPlaylist
+        ],
+        extension: "AACPUser",
+        fields: {} ,
+        fileName: user.name,
+        exportType: exportFromJSON.types.json
+      });
+      this.loading = "";
+    }, 1000);
   }
 
   /**
