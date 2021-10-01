@@ -55,7 +55,7 @@ export class ImportuserComponent implements OnInit {
    * After check if the json file contains the right schema
    */
   public jsonIsValid() {
-    if (this.nameFileUpload.split('.').pop() == "AACPlayer"){
+    if (this.nameFileUpload.split('.').pop() == "AACPUser"){
       return this.usersService.checkFileForUser(JSON.parse(this.fileUpload));
     }else {
       return false;

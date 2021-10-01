@@ -8,7 +8,7 @@
       <button class="ui right labeled icon button" (click)="inputImport.click()">
         <i class="right file icon"></i>
         {{ "importUser.import" | translate }}
-        <input hidden type="file" accept=".AACPlayer" (change)="addFile($event)" #inputImport/>
+        <input hidden type="file" accept=".AACPUser" (change)="addFile($event)" #inputImport/>
       </button>
       <label>{{ "importUser.authorizedExtension" | translate }}</label>
       <div *ngIf="acceptedFile" class="ui positive message">

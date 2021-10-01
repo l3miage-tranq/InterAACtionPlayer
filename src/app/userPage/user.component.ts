@@ -148,7 +148,7 @@ export class UserComponent implements OnInit {
           this.saveService.alertMessageUser,
           mapPlaylist
         ],
-        extension: "AACPlayer",
+        extension: "AACPUser",
         fields: {} ,
         fileName: user.name,
         exportType: exportFromJSON.types.json

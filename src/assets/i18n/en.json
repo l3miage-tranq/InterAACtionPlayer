@@ -213,7 +213,7 @@
     "title": "Import account",
     "file": "File",
     "import": "File user",
-    "authorizedExtension": "* only .AACPlayer is authorized !",
+    "authorizedExtension": "* only .AACPUser is authorized !",
     "acceptedFile": "File well received !",
     "errorWrongFile": "Error, bad file !",
     "errorEmptyFile": "Error, no file !",
