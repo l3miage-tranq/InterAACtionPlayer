@@ -55,7 +55,7 @@ export class ExportfileComponent implements OnInit {
     if (!this.errorWrongName){
       exportFromJSON({
         data: this.playlistService.playList,
-        extension: "AACPlayer",
+        extension: "AACPPlaylist",
         fields: {} ,
         fileName: this.titleFile,
         exportType: exportFromJSON.types.json

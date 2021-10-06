@@ -90,7 +90,7 @@ export class ImportfileComponent implements OnInit {
     if (this.typeFile != "file"){
       this.typeFile = "file";
       this.authorizedExtension = "importFilePlaylist.authorizedFile";
-      this.extension = ".AACPlayer";
+      this.extension = ".AACPPlaylist";
     }
   }
 
@@ -192,7 +192,7 @@ export class ImportfileComponent implements OnInit {
    */
   public jsonIsValid(){
     if (this.typeFile == 'file'){
-      if (this.nameFileUpload.split('.').pop() == "AACPlayer"){
+      if (this.nameFileUpload.split('.').pop() == "AACPPlaylist"){
         return this.playlistService.checkFileForPlaylist(JSON.parse(this.fileUpload));
       }else {
         return false;

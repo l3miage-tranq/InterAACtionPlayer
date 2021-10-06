@@ -51,7 +51,7 @@ export class ImportuserComponent implements OnInit {
   /**
    * Check if the Json file is a right file
    * Get the name of the file, split it from the point
-   * Then get the last value of the split (= extension of the file) and check if this value == AACPlayer
+   * Then get the last value of the split (= extension of the file) and check if this value == AACPUser
    * After check if the json file contains the right schema
    */
   public jsonIsValid() {
