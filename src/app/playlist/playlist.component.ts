@@ -15,6 +15,8 @@ import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dia
 import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
 import { SavePlaylistComponent } from './dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './dialogComponents/loadPlaylist/load-playlist.component';
+import { AlertComponent } from './dialogComponents/alert/alert.component';
+import { AccountsComponent } from './dialogComponents/accounts/accounts.component';
 
 /**
  * Import Services
@@ -27,11 +29,25 @@ import { SaveService } from '../services/save.service';
 import { PlaylistService } from './services/playlist.service';
 import { NotifierService } from 'angular-notifier';
 import { AudioService } from './services/audio.service';
+import { DefaultService } from '../services/default.service';
+import { UsersService } from '../services/users.service';
+import { AuthguardService } from '../services/authguard.service';
+import { AlertService } from './services/alert.service';
 
 /**
  * Import Models
  */
 import { Types } from './model/types-interface';
+
+/**
+ * Import functions javascript
+ */
+declare var initDeezer: any;
+declare var logoutDeezer: any;
+declare var playDeezer: any;
+declare var pauseDeezer: any;
+declare var increaseVolumeDeezer: any;
+declare var decreaseVolumeDeezer: any;
 
 @Component({
   selector: 'app-playlist',
@@ -55,12 +71,37 @@ export class PlaylistComponent implements OnInit {
   fullScreen = false;
   disableDragDrop = false;
   theme = "";
+  textColor = "";
+  index = -1;
 
-  idProgressIndicatorBtnNext = "nextProgressSpinner";
-  idProgressIndicatorBtnPrevious = "previousProgressSpinner";
-  idProgressIndicatorBtnPlay = "playProgressSpinner";
-  idProgressIndicatorBtnPause= "pauseProgressSpinner";
-  idProgressIndicatorBtnExpand = "expandProgressSpinner";
+  btnType: number = 1;
+  idProgressIndicatorBtnNext = "btnNextProgressSpinner";
+  idProgressIndicatorBtnPrevious = "btnPreviousProgressSpinner";
+  idProgressIndicatorBtnPlay = "btnPlayProgressSpinner";
+  idProgressIndicatorBtnPause= "btnPauseProgressSpinner";
+  idProgressIndicatorBtnExpand = "btnExpandProgressSpinner";
+  idProgressIndicatorBtnMinus = "btnMinusProgressSpinner";
+  idProgressIndicatorBtnPlus = "btnPlusProgressSpinner";
+  idProgressIndicatorBtnClose = "btnCloseProgressSpinner";
+
+  sideIconType: number = 2;
+  idProgressIndicatorSideIconPlaylist = "sideIconPlaylistProgressSpinner";
+  idProgressIndicatorSideIconUp = "sideIconUpProgressSpinner";
+  idProgressIndicatorSideIconDown = "sideIconDownProgressSpinner";
+  idProgressIndicatorSideIconMusic= "sideIconMusicProgressSpinner";
+  idProgressIndicatorSideIconVideo = "sideIconVideoProgressSpinner";
+
+  iconType: number = 5;
+  idProgressIndicatorIconSave = "iconSaveProgressSpinner";
+  idProgressIndicatorIconLoad = "iconLoadProgressSpinner";
+  idProgressIndicatorIconDelete = "iconDeleteProgressSpinner";
+  idProgressIndicatorIconExport = "iconExportProgressSpinner";
+  idProgressIndicatorIconImport = "iconImportProgressSpinner";
+  idProgressIndicatorIconEdit = "iconEditProgressSpinner";
+  idProgressIndicatorIconSettings= "iconSettingsProgressSpinner";
+  idProgressIndicatorIconUser = "iconUserProgressSpinner";
+  idProgressIndicatorIconLogout = "iconLogoutProgressSpinner";
+  idProgressIndicatorIconNew = "iconNewProgressSpinner";
 
   refresh = false;
 
@@ -76,6 +117,10 @@ export class PlaylistComponent implements OnInit {
   private translate: TranslateService;
   private globalService: GlobalService;
   private audioService: AudioService;
+  private defaultService: DefaultService;
+  private usersService: UsersService;
+  private authGuardService: AuthguardService;
+  private alertService: AlertService;
 
   constructor(notifier: NotifierService,
               sanitizer: DomSanitizer,
@@ -87,7 +132,11 @@ export class PlaylistComponent implements OnInit {
               themeService: ThemeService,
               translate: TranslateService,
               globalService: GlobalService,
-              audioService: AudioService) {
+              audioService: AudioService,
+              defaultService: DefaultService,
+              usersService: UsersService,
+              authGuardService: AuthguardService,
+              alertService: AlertService) {
     this.notifier = notifier;
     this.sanitizer = sanitizer;
     this.dialog = dialog;
@@ -98,23 +147,36 @@ export class PlaylistComponent implements OnInit {
     this.dwelltimeService = dwelltimeService;
     this.themeService = themeService;
     this.theme = this.themeService.theme;
+    this.textColor = this.themeService.themeBody;
     this.translate = translate;
     this.globalService = globalService;
     this.audioService = audioService;
+    this.defaultService = defaultService;
+    this.usersService = usersService;
+    this.authGuardService = authGuardService;
+    this.alertService = alertService;
   }
 
   /**
+   * Initialize the playlist with the id of the current user
    * Allows to know if the theme value has changed
    * Initialize DialogChooseTypeComponent
    * Allows time (500ms) to load the playlist from the database
    * Then check if the playlist is empty, if it's the case active the edit mode
    */
   ngOnInit(): void {
+    this.authGuardService.canAccess();
     this.themeService.themeObservable.subscribe(value => {
       this.theme = value;
-    })
+      if (value == "inverted"){
+        this.textColor = "darkMode";
+      }else {
+        this.textColor = "lightMode";
+      }
+    });
     new DialogChooseTypeComponent(this.router, this.dialog, this.playlistService);
     setTimeout(() => {
+      initDeezer();
       this.playList = this.playlistService.playList;
       if (this.isPlaylistEmpty()){
         this.goEdit()
@@ -163,6 +225,36 @@ export class PlaylistComponent implements OnInit {
           this.goEdit();
         }
       });
+    }else {
+      this.goLaunch(elem);
+    }
+  }
+
+  /**
+   * Allows to start a new playlist
+   */
+  newPlaylist(){
+    this.isEditModeActive();
+    if (this.alertService.doNotShowAgain == false){
+      this.alertService.setNewPlaylist();
+      const newPlaylist = this.dialog.open(AlertComponent);
+      newPlaylist.afterClosed().subscribe(() => {
+        if (this.alertService.alertCancel == false){
+          this.playlistService.playList = [];
+          this.playList = this.playlistService.playList;
+          this.playlistService.nameActualPlaylist = "";
+          this.saveService.updatePlaylist();
+          this.notifier.notify('warning', this.translate.instant('notifier.newPlaylist'));
+          this.goEdit();
+        }
+      });
+    }else {
+      this.playlistService.playList = [];
+      this.playList = this.playlistService.playList;
+      this.playlistService.nameActualPlaylist = "";
+      this.saveService.updatePlaylist();
+      this.notifier.notify('warning', this.translate.instant('notifier.newPlaylist'));
+      this.goEdit();
     }
   }
 
@@ -177,9 +269,9 @@ export class PlaylistComponent implements OnInit {
     savePlaylist.afterClosed().subscribe(() => {
       if (this.isPlaylistEmpty()){
         this.goEdit();
-        this.deleteCurrentElement()
+        this.deleteCurrentElement();
       }
-    })
+    });
   }
 
   /**
@@ -249,6 +341,22 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
+   * If edit mode is On, disable it and open AccountsComponent
+   * Then check if the playlist is empty
+   * If it's the case then enable edit mode
+   */
+  openAccounts(){
+    this.isEditModeActive();
+    this.deleteCurrentElement();
+    const accountsDialog = this.dialog.open(AccountsComponent);
+    accountsDialog.afterClosed().subscribe( () => {
+      if (this.isPlaylistEmpty()){
+        this.goEdit();
+      }
+    });
+  }
+
+  /**
    * If edit mode is On, close it and open DeleteDialogComponent
    * Then when deleteDialog is close refresh the playlist with an empty playlist
    * Then check if the playlist is empty
@@ -289,16 +397,53 @@ export class PlaylistComponent implements OnInit {
    * @param elem -> item of Playlist
    *
    * Delete the item choose by the user of the Playlist
-   * Delete also the button Add to avoid him to be in the upadte Playlist who save the actual Playlist in the database Palylist Store
+   * Delete also the button Add to avoid him to be in the update Playlist who save the actual Playlist in the database Playlist Store
    * Then re add it
    */
   goDelete(elem: Types): void {
-    this.playList = this.playlistService.deleteToPlaylist(elem);
-    this.playList = this.playlistService.deleteBtnAdd();
-    this.saveService.updatePlaylist();
-    setTimeout(() => {
-      this.playlistService.addBtnAdd();
-    }, 100);
+    if (this.alertService.doNotShowAgain) {
+      this.isCurrentElem(elem);
+      this.playList = this.playlistService.deleteToPlaylist(elem);
+      this.saveService.updatePlaylist();
+      setTimeout(() => {
+        this.playlistService.addBtnAdd();
+      }, 100);
+    }else {
+      this.alertService.setDeleteItemPlaylist();
+      const alertDialog = this.dialog.open(AlertComponent);
+      alertDialog.afterClosed().subscribe(() => {
+        if (!this.alertService.alertCancel){
+          this.isCurrentElem(elem);
+          this.playList = this.playlistService.deleteToPlaylist(elem);
+          this.saveService.updatePlaylist();
+          setTimeout(() => {
+            this.playlistService.addBtnAdd();
+          }, 100);
+        }
+      });
+    }
+  }
+
+  /**
+   * @param elem
+   *
+   * Check if the elem we want to delete is the current elem
+   */
+  isCurrentElem(elem){
+    if (this.currentElem != null){
+      if (elem.id == this.currentElem.id){
+        this.launch = false;
+      }
+    }
+  }
+
+  /**
+   * Allows the user to logout and return on the user page
+   */
+  logout(){
+    logoutDeezer();
+    this.globalService.getLogoutAccountSpotify();
+    this.router.navigate(['user']);
   }
 
   /**
@@ -313,7 +458,7 @@ export class PlaylistComponent implements OnInit {
       this.currentElem = elem;
       this.launch = true;
       this.refreshAudioPlayer();
-      this.goOnElement();
+      this.goOnElement("watchPlace");
       this.setDefaultVolume();
     }
   }
@@ -372,7 +517,7 @@ export class PlaylistComponent implements OnInit {
         elem.classList.remove("fullScreen");
         this.unFixeBtn();
       }
-      this.goOnElement();
+      this.goOnElement("watchPlace");
     }
   }
 
@@ -464,6 +609,7 @@ export class PlaylistComponent implements OnInit {
    */
   goNext() {
     this.exitFullScreen();
+    this.isEditModeActive();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
@@ -477,7 +623,7 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
-    this.goOnElement();
+    this.goOnElement("watchPlace");
     this.setDefaultVolume();
     this.refreshAudioPlayer();
   }
@@ -489,6 +635,7 @@ export class PlaylistComponent implements OnInit {
    */
   goPrevious() {
     this.exitFullScreen();
+    this.isEditModeActive();
     if (this.playList.length > 1){
       for (let i = 0; i < this.playList.length; i++ ){
         if (this.currentElem.id == this.playList[i].id){
@@ -502,7 +649,7 @@ export class PlaylistComponent implements OnInit {
         }
       }
     }
-    this.goOnElement();
+    this.goOnElement("watchPlace");
     this.setDefaultVolume();
     this.refreshAudioPlayer();
   }
@@ -520,11 +667,11 @@ export class PlaylistComponent implements OnInit {
   /**
    * When the user choose an element in the Playlist, 500ms after we go on it
    */
-  goOnElement(){
+  goOnElement(id){
     setTimeout( () => {
-      let goTo = document.getElementById("watchPlace");
+      let goTo = document.getElementById(id);
       goTo.scrollIntoView(true);
-    }, 500);
+    }, 200);
   }
 
   /**
@@ -539,6 +686,8 @@ export class PlaylistComponent implements OnInit {
       (<HTMLIFrameElement> $('#myYoutubeVideo')[0]).contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.playMusic(this.currentElem.id);
+    }else if (this.currentElem.types == "Deezer"){
+      playDeezer();
     }
   }
 
@@ -554,6 +703,8 @@ export class PlaylistComponent implements OnInit {
       (<HTMLIFrameElement> $("#myYoutubeVideo")[0]).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }else if (this.currentElem.types == "Spotify"){
       this.globalService.pauseMusic();
+    }else if (this.currentElem.types == "Deezer"){
+      pauseDeezer();
     }
   }
 
@@ -581,6 +732,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic - 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      decreaseVolumeDeezer();
     }
   }
 
@@ -608,6 +761,8 @@ export class PlaylistComponent implements OnInit {
     }else if (this.currentElem.types == "Spotify"){
       this.volumeSpotifyMusic = this.volumeSpotifyMusic + 10;
       this.globalService.setVolume(this.volumeSpotifyMusic);
+    }else if (this.currentElem.types == "Deezer"){
+      increaseVolumeDeezer();
     }
   }
 
@@ -675,8 +830,31 @@ export class PlaylistComponent implements OnInit {
    * Then save this Playlist in database
    */
   dragDrop(event: CdkDragDrop<any>){
-      this.playList[event.previousContainer.data.index] = event.container.data.elem;
-      this.playList[event.container.data.index] = event.previousContainer.data.elem;
-      this.saveService.updatePlaylist();
+    this.playList[event.previousContainer.data.index] = event.container.data.elem;
+    this.playList[event.container.data.index] = event.previousContainer.data.elem;
+    this.playlistService.playList = this.playList;
+    this.saveService.updatePlaylist();
+  }
+
+  /**
+   * Allows to scroll down by 50px
+   */
+  goDown(){
+    document.body.scrollBy(0, 50);
+  }
+
+  /**
+   * Allows to scroll up by 50px
+   */
+  goUp(){
+    document.body.scrollBy(0, -50);
+  }
+
+  /**
+   * Check if we need to display the side bar
+   * True if we can scroll
+   */
+  displaySideBar(){
+    return document.body.scrollHeight > document.body.offsetHeight;
   }
 }

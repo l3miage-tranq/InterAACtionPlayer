@@ -16,8 +16,11 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class ExportfileComponent implements OnInit {
 
+  playlistEmpty = false;
   defaultTitleFile = "Playlist"
   titleFile = "";
+  errorWrongName = false;
+  disabledButton = "";
 
   constructor(private dialog: MatDialog,
               private notifier: NotifierService,
@@ -26,15 +29,19 @@ export class ExportfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playlistEmpty = this.playlistService.playList.length == 0;
+    this.enableButtonExport();
   }
 
   /**
    * @param event
    *
    * Allows to get the value given by the user
+   * Check if the word not contains a '.' else we display a error message
    */
   getTitle(event){
     this.titleFile = event.target.value;
+    this.errorWrongName = this.titleFile.includes('.');
   }
 
   /**
@@ -45,14 +52,17 @@ export class ExportfileComponent implements OnInit {
     if (this.titleFile == ""){
       this.titleFile = this.defaultTitleFile;
     }
-    exportFromJSON({
-      data: this.playlistService.playList,
-      fields: {} ,
-      fileName: this.titleFile,
-      exportType: exportFromJSON.types.json
-    });
-    this.dialog.closeAll();
-    this.notifier.notify('warning', this.translate.instant('notifier.exportPlaylist'));
+    if (!this.errorWrongName){
+      exportFromJSON({
+        data: this.playlistService.playList,
+        extension: "AACPPlaylist",
+        fields: {} ,
+        fileName: this.titleFile,
+        exportType: exportFromJSON.types.json
+      });
+      this.dialog.closeAll();
+      this.notifier.notify('warning', this.translate.instant('notifier.exportPlaylist'));
+    }
   }
 
   /**
@@ -60,5 +70,15 @@ export class ExportfileComponent implements OnInit {
    */
   public goCancel(){
     this.dialog.closeAll();
+  }
+
+  /**
+   * Check if the current playlist is empty
+   * If it's true then the button to export is disabled
+   */
+  public enableButtonExport(){
+    if (this.playlistEmpty){
+      this.disabledButton = "disabled";
+    }
   }
 }

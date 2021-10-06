@@ -13,7 +13,11 @@ export class ArtistsComponent implements OnInit {
   theme = "";
 
   artist;
+  artistName;
+  artistNbAlbums;
+  artistNbFan;
   albums;
+  picture;
 
   constructor(private themeService: ThemeService,
               private globalService: GlobalService,
@@ -32,6 +36,10 @@ export class ArtistsComponent implements OnInit {
   getArtistInfo(){
     this.globalService.getArtist(this.globalService.idArtistChoose).subscribe(results => {
       this.artist = results;
+      this.artistName = results.name;
+      this.artistNbAlbums = results.nb_album;
+      this.artistNbFan = results.nb_fan;
+      this.picture = results.picture;
     });
   }
 

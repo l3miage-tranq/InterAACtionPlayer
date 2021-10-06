@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Ajv from 'ajv';
+import { Subject } from 'rxjs';
 
 /**
  * Import Models
@@ -12,7 +13,7 @@ import { Video } from '../../../../projects/youtube/src/app/shared/models/search
   providedIn: 'root'
 })
 
-export class PlaylistService {
+export class PlaylistService{
 
   // The Playlist that is displayed on the web
   playList: Types[] = [];
@@ -37,6 +38,9 @@ export class PlaylistService {
     "required": ["types", "id", "artists", "title", "publishedAt", "description", "thumbnail"],
     "additionalProperties": false
   }
+
+  // Allows to knows the name of the actual playlist
+  nameActualPlaylist = "";
 
   // A boolean to know if we need to add the btn Add in the playlist if she is empty
   addBtnAddInEmptyPlaylist: boolean = true;
@@ -160,6 +164,7 @@ export class PlaylistService {
    * Delete the local file, passed in parameter, to the Playlist
    */
   deleteToPlaylist(file: Types){
+    this.deleteBtnAdd();
     return this.playList = this.playList.filter(value => value.title != file.title);
   }
 
@@ -261,6 +266,7 @@ export class PlaylistService {
    */
   newPlaylist(jsonFile: any){
     this.playList = jsonFile;
+    this.nameActualPlaylist = "";
   }
 
   /**
@@ -312,6 +318,7 @@ export class PlaylistService {
    */
   addMapPlaylist(name: string){
     this.mapPlaylist.set(name, this.playList);
+    this.nameActualPlaylist = name;
   }
 
   /**

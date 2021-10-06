@@ -3,7 +3,7 @@
 </h1>
 <div mat-dialog-content>
   <div class="ui form error">
-    <div class="field required">
+    <div *ngIf="!disabledButton" class="field required">
       <label>{{ 'savePlaylist.titleFile' | translate }}</label>
       <input type="text" placeholder="{{ 'savePlaylist.defaultTitleFile' | translate }}" (keyup)="getNamePlaylist($event)">
       <div class="ui error message">
@@ -11,10 +11,13 @@
         <p *ngIf="errorNameEmpty">{{ "savePlaylist.errorNameEmpty" | translate }}</p>
       </div>
     </div>
+    <div *ngIf="disabledButton" class="ui error message">
+      <p>{{ "savePlaylist.errorPlaylistEmpty" | translate }}</p>
+    </div>
   </div>
 </div>
 <div mat-dialog-actions>
   <button class="ui button" (click)="goCancel()">{{ "savePlaylist.no" | translate }}</button>
-  <button class="ui button" (click)="submit()">{{ "savePlaylist.yes" | translate }}</button>
+  <button [ngClass]="disabledButton" class="ui button" (click)="submit()">{{ "savePlaylist.yes" | translate }}</button>
 </div>
 <notifier-container></notifier-container>

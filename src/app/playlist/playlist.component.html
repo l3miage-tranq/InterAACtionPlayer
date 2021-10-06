@@ -1,4 +1,45 @@
-<div class="ui centered grid">
+<div id="dz-root"></div>
+<br>
+<div *ngIf="displaySideBar() && !fullScreen" [ngClass]="theme" class="ui four left vertical visible sidebar labeled icon menu">
+  <a id="playlistSideIcon" class="item" (click)="goOnElement('playlist')"
+     (mouseenter)="showProgressIndicator('playlistSideIcon', idProgressIndicatorSideIconPlaylist); showBtn('playlistSideIcon')"
+     (mouseleave)="hideProgressIndicator('playlistSideIcon', idProgressIndicatorSideIconPlaylist); hideBtn('playlistSideIcon')">
+    <i class="huge home icon"></i>
+    <app-progress-indicator [id]="idProgressIndicatorSideIconPlaylist" [spinnerValue]="spinnerValue" [type]="sideIconType"></app-progress-indicator>
+    {{ "playlist.playlist" | translate }}
+  </a>
+  <a id="upSideIcon" class="item" (click)="goUp()"
+     (mouseenter)="showProgressIndicator('upSideIcon', idProgressIndicatorSideIconUp); showBtn('upSideIcon')"
+     (mouseleave)="hideProgressIndicator('upSideIcon', idProgressIndicatorSideIconUp); hideBtn('upSideIcon')">
+    <i class="arrow up icon"></i>
+    <app-progress-indicator [id]="idProgressIndicatorSideIconUp" [spinnerValue]="spinnerValue" [type]="sideIconType"></app-progress-indicator>
+    {{ "playlist.up" | translate }}
+  </a>
+  <a id="downSideIcon" class="item" (click)="goDown()"
+     (mouseenter)="showProgressIndicator('downSideIcon', idProgressIndicatorSideIconDown); showBtn('downSideIcon')"
+     (mouseleave)="hideProgressIndicator('downSideIcon', idProgressIndicatorSideIconDown); hideBtn('downSideIcon')">
+    <i class="arrow down icon"></i>
+    <app-progress-indicator [id]="idProgressIndicatorSideIconDown" [spinnerValue]="spinnerValue" [type]="sideIconType"></app-progress-indicator>
+    {{ "playlist.down" | translate }}
+  </a>
+  <a *ngIf="launch && (currentElem.types == 'Spotify' || currentElem.types == 'Deezer' || currentElem.types == 'song')"
+     id="musicSideIcon" class="item" (click)="goOnElement('watchPlace')"
+     (mouseenter)="showProgressIndicator('musicSideIcon', idProgressIndicatorSideIconMusic); showBtn('musicSideIcon')"
+     (mouseleave)="hideProgressIndicator('musicSideIcon', idProgressIndicatorSideIconMusic); hideBtn('musicSideIcon')">
+    <i class="music icon"></i>
+    <app-progress-indicator [id]="idProgressIndicatorSideIconMusic" [spinnerValue]="spinnerValue" [type]="sideIconType"></app-progress-indicator>
+    {{ "playlist.music" | translate }}
+  </a>
+  <a *ngIf="launch && (currentElem.types == 'YouTube' || currentElem.types == 'video')"
+     id="videoSideIcon" class="item" (click)="goOnElement('watchPlace')"
+     (mouseenter)="showProgressIndicator('videoSideIcon', idProgressIndicatorSideIconVideo); showBtn('videoSideIcon')"
+     (mouseleave)="hideProgressIndicator('videoSideIcon', idProgressIndicatorSideIconVideo); hideBtn('videoSideIcon')">
+    <i class="film icon"></i>
+    <app-progress-indicator [id]="idProgressIndicatorSideIconVideo" [spinnerValue]="spinnerValue" [type]="sideIconType"></app-progress-indicator>
+    {{ "playlist.video" | translate }}
+  </a>
+</div>
+<div id="playlist" class="ui centered grid">
   <div class="fourteen wide column">
     <h1 [ngClass]="theme" class="ui centered aligned header">
       <span>
@@ -6,41 +47,88 @@
       </span>
     </h1>
     <div [ngClass]="theme" class="ui secondary menu">
+      <div class="left menu">
+        <a id="newIcon" class="ui item" (click)="newPlaylist()"
+           (mouseenter)="showProgressIndicator('newIcon', idProgressIndicatorIconNew); showBtn('newIcon')"
+           (mouseleave)="hideProgressIndicator('newIcon', idProgressIndicatorIconNew); hideBtn('newIcon')"
+           matTooltip="{{'playlist.new' | translate}}"
+           matTooltipPosition="before">
+          <i class="plus icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconNew" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+        </a>
+      </div>
       <div class="right menu">
-        <a class="ui item" (click)="openSave()"
+        <a id="saveIcon" class="item" (click)="openSave()"
+           (mouseenter)="showProgressIndicator('saveIcon', idProgressIndicatorIconSave); showBtn('saveIcon')"
+           (mouseleave)="hideProgressIndicator('saveIcon', idProgressIndicatorIconSave); hideBtn('saveIcon')"
            matTooltip="{{'playlist.saveBtn' | translate}}"
            matTooltipPosition="before">
           <i class="save icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconSave" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="openLoad()"
+        <a id="loadIcon" class="item" (click)="openLoad()"
+           (mouseenter)="showProgressIndicator('loadIcon', idProgressIndicatorIconLoad); showBtn('loadIcon')"
+           (mouseleave)="hideProgressIndicator('loadIcon', idProgressIndicatorIconLoad); hideBtn('loadIcon')"
            matTooltip="{{'playlist.loadBtn' | translate}}"
            matTooltipPosition="before">
           <i class="folder open icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconLoad" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="openDelete()"
+        <a id="deleteIcon" class="item" (click)="openDelete()"
+           (mouseenter)="showProgressIndicator('deleteIcon', idProgressIndicatorIconDelete); showBtn('deleteIcon')"
+           (mouseleave)="hideProgressIndicator('deleteIcon', idProgressIndicatorIconDelete); hideBtn('deleteIcon')"
            matTooltip="{{'playlist.deleteBtn' | translate}}"
            matTooltipPosition="before">
           <i class="trash alternate icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconDelete" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="openExport()"
+        <a id="exportIcon" class="item" (click)="openExport()"
+           (mouseenter)="showProgressIndicator('exportIcon', idProgressIndicatorIconExport); showBtn('exportIcon')"
+           (mouseleave)="hideProgressIndicator('exportIcon', idProgressIndicatorIconExport); hideBtn('exportIcon')"
            matTooltip="{{'playlist.exportBtn' | translate}}"
            matTooltipPosition="before">
           <i class="upload icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconExport" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="openImport()"
+        <a id="importIcon" class="item" (click)="openImport()"
+           (mouseenter)="showProgressIndicator('importIcon', idProgressIndicatorIconImport); showBtn('importIcon')"
+           (mouseleave)="hideProgressIndicator('importIcon', idProgressIndicatorIconImport); hideBtn('importIcon')"
            matTooltip="{{'playlist.importBtn' | translate}}"
            matTooltipPosition="before">
           <i class="download icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconImport" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="goEdit()"
+        <a id="editIcon" class="item" (click)="goEdit()"
+           (mouseenter)="showProgressIndicator('editIcon', idProgressIndicatorIconEdit); showBtn('editIcon')"
+           (mouseleave)="hideProgressIndicator('editIcon', idProgressIndicatorIconEdit); hideBtn('editIcon')"
            matTooltip="{{'playlist.editBtn' | translate}}"
            matTooltipPosition="before">
           <i class="edit icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconEdit" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a class="ui item" (click)="openSettings()"
+        <a id="settingsIcon" class="item" (click)="openSettings()"
+           (mouseenter)="showProgressIndicator('settingsIcon', idProgressIndicatorIconSettings); showBtn('settingsIcon')"
+           (mouseleave)="hideProgressIndicator('settingsIcon', idProgressIndicatorIconSettings); hideBtn('settingsIcon')"
            matTooltip="{{'playlist.settingsBtn' | translate}}"
            matTooltipPosition="before">
           <i class="cogs icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconSettings" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+        </a>
+        <a id="userIcon" class="item" (click)="openAccounts()"
+           (mouseenter)="showProgressIndicator('userIcon', idProgressIndicatorIconUser); showBtn('userIcon')"
+           (mouseleave)="hideProgressIndicator('userIcon', idProgressIndicatorIconUser); hideBtn('userIcon')"
+           matTooltip="{{'playlist.userBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="user icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconUser" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+        </a>
+        <a id="logoutIcon" class="item" (click)="logout()"
+           (mouseenter)="showProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); showBtn('logoutIcon')"
+           (mouseleave)="hideProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); hideBtn('logoutIcon')"
+           matTooltip="{{'playlist.logoutBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="sign out icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconLogout" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
       </div>
     </div>
@@ -49,34 +137,46 @@
       <div class="column" *ngFor="let elem of playList; let index = index; let isLast = last;">
         <div cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="{elem:elem, index:index}" (cdkDropListDropped)="dragDrop($event)">
           <div cdkDrag [cdkDragDisabled]="disableDragDrop">
-            <div [id]="elem.id" [ngClass]="theme" class="ui card" (click)="goLaunch(this.elem)"
-                                                (mouseenter)="showProgressIndicator(elem.id, index)"
-                                                (mouseleave)="hideProgressIndicator(elem.id, index)">
-              <div class="image">
-                <img [src]="elem.thumbnail" alt="" (click)="openDialog(this.elem)">
+            <div [ngClass]="theme" class="ui card">
+              <div class="image" [id]="elem.id" (click)="openDialog(this.elem)"
+                   (mouseenter)="showProgressIndicator(elem.id, index)"
+                   (mouseleave)="hideProgressIndicator(elem.id, index)">
+                <img [src]="elem.thumbnail" alt="">
+                <app-progress-indicator [id]="index" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
               </div>
-              <app-progress-indicator [id]="index" [spinnerValue]="spinnerValue"></app-progress-indicator>
               <div class="content" *ngIf="elem.types != 'btnAdd'">
                 <a class="header">{{ elem.title }}</a>
                 <div class="meta">
-              <span class="date">
-                {{ elem.artists }}
-              </span>
+                  <span class="date">{{ elem.artists }}</span>
                   <span class="ui right floated date">{{ elem.publishedAt | date:'mediumDate' }}</span>
                 </div>
                 <div class="description">
                   {{ elem.description?.slice(0,50) }}
                 </div>
-                <button class="ui right floated tiny red right labeled icon button" *ngIf="edit" (click)="goDelete(this.elem)">
-                  {{ "playlist.delete" | translate }}
-                </button>
               </div>
+              <button class="ui right floated tiny red right labeled icon button" *ngIf="edit && elem.types != 'btnAdd'" (click)="goDelete(this.elem)">
+                {{ "playlist.delete" | translate }}
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
     <hr>
+    <br>
+    <div *ngIf="launch">
+      <div class="btnClose">
+        <button id="closeBtn" class="ui labeled icon button btnCircular"
+                (click)="deleteCurrentElement()"
+                (mouseenter)="showProgressIndicator('closeBtn', idProgressIndicatorBtnClose); showBtn('closeBtn')"
+                (mouseleave)="hideProgressIndicator('closeBtn', idProgressIndicatorBtnClose); hideBtn('closeBtn')">
+          <div class="btnIcon">
+            <i class="massive close icon"></i>
+          </div>
+          <app-progress-indicator [id]="idProgressIndicatorBtnClose" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
+        </button>
+      </div>
+    </div>
     <div *ngIf="launch" class="ui three column grid centered">
       <div class="btnVideo right aligned">
         <button id="previousBtn" class="ui labeled icon button btnCircular"
@@ -86,7 +186,7 @@
           <div class="btnIcon">
             <i class="massive left arrow icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPrevious" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
       </div>
       <iframe *ngIf="currentElem.types == 'YouTube'" id="myYoutubeVideo" class="ui header"
@@ -103,19 +203,15 @@
               allowtransparency="true"
               allow="encrypted-media">
       </iframe>
-      <iframe *ngIf="currentElem.types == 'Deezer'" id="myDeezerSong" class="ui header"
-              [src]="currentElem.id | dz"
-              [width]="width"
-              [height]="height"
-              allowtransparency="true"
-              allow="encrypted-media">
-      </iframe>
+      <div *ngIf="currentElem.types == 'Deezer'" id="myDeezerSong" class="ui header">
+        <app-deezer-player *ngIf="refresh == false" [id]="currentElem.id"></app-deezer-player>
+      </div>
       <div *ngIf="currentElem.types == 'song'" id="myFileAudio" class="ui header">
         <app-audio-player *ngIf="refresh == false" [elemPlaylist]="currentElem" [src]="getSrcFile()"></app-audio-player>
       </div>
       <div *ngIf="currentElem.types == 'video'" class="ui header">
         <figure>
-          <figcaption>{{ currentElem.title }}</figcaption>
+          <figcaption [ngClass]="textColor">{{ currentElem.title }}</figcaption>
           <video controls
                  preload="metadata"
                  [width]="width"
@@ -123,7 +219,7 @@
                  id="myVideo" class="" #myVideo>
             <source [src]="getSrcFile()">
           </video>
-          <figcaption>{{ currentElem.artists }}</figcaption>
+          <figcaption [ngClass]="textColor">{{ currentElem.artists }}</figcaption>
         </figure>
       </div>
       <div class="btnVideo left aligned">
@@ -134,7 +230,7 @@
           <div class="btnIcon">
             <i class="massive right arrow icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnNext" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnNext" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
       </div>
       <div class=" row aligned">
@@ -145,7 +241,7 @@
           <div class="btnIcon">
             <i class="massive play icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnPlay" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPlay" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
         <button id="pauseBtn" class="ui labeled icon button btnCircular"
                 (click)="goPause()"
@@ -154,25 +250,25 @@
           <div class="btnIcon">
             <i class="massive pause icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
         <button id="minusBtn" class="ui labeled icon button btnCircular"
                 (click)="goDecreaseVolume()"
-                (mouseenter)="showProgressIndicator('minusBtn', idProgressIndicatorBtnPause); showBtn('minusBtn')"
-                (mouseleave)="hideProgressIndicator('minusBtn', idProgressIndicatorBtnPause); hideBtn('minusBtn')">
+                (mouseenter)="showProgressIndicator('minusBtn', idProgressIndicatorBtnMinus); showBtn('minusBtn')"
+                (mouseleave)="hideProgressIndicator('minusBtn', idProgressIndicatorBtnMinus); hideBtn('minusBtn')">
           <div class="btnIcon">
             <i class="massive minus icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnMinus" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
         <button id="plusBtn" class="ui labeled icon button btnCircular"
                 (click)="goIncreaseVolume()"
-                (mouseenter)="showProgressIndicator('plusBtn', idProgressIndicatorBtnPause); showBtn('plusBtn')"
-                (mouseleave)="hideProgressIndicator('plusBtn', idProgressIndicatorBtnPause); hideBtn('plusBtn')">
+                (mouseenter)="showProgressIndicator('plusBtn', idProgressIndicatorBtnPlus); showBtn('plusBtn')"
+                (mouseleave)="hideProgressIndicator('plusBtn', idProgressIndicatorBtnPlus); hideBtn('plusBtn')">
           <div class="btnIcon">
             <i class="massive plus icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnPause" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnPlus" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
         <button *ngIf="(currentElem.types == 'video' || currentElem.types == 'YouTube')" id="screenBtn" class="ui labeled icon button btnCircular"
                 (click)="goFullScreen()"
@@ -181,7 +277,7 @@
           <div class="btnIcon">
             <i id="screenIcon" class="massive expand icon"></i>
           </div>
-          <app-progress-indicator [id]="idProgressIndicatorBtnExpand" [spinnerValue]="spinnerValue"></app-progress-indicator>
+          <app-progress-indicator [id]="idProgressIndicatorBtnExpand" [spinnerValue]="spinnerValue" [type]="btnType"></app-progress-indicator>
         </button>
       </div>
     </div>

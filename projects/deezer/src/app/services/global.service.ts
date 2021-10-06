@@ -19,7 +19,6 @@ export class GlobalService {
 
   private artistUrl: string;
   private albumsUrl: string;
-  private albumUrl: string;
   private tracksUrl: string;
 
   public idArtistChoose;

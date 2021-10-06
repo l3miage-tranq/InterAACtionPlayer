@@ -1,8 +1,8 @@
 <div>
   <div [ngClass]="theme" class="ui segment">
-    <img class="ui small centered image" [src]="album.images | errorImage" [alt]="album.name">
-    <h6 class="ui centered aligned header">{{ album.type | uppercase}}</h6>
-    <h2 class="ui centered aligned header">{{ album.name }}</h2>
+    <img class="ui small centered image" [src]="albumImage | errorImage" [alt]="albumName">
+    <h6 class="ui centered aligned header">{{ albumType| uppercase}}</h6>
+    <h2 class="ui centered aligned header">{{ albumName }}</h2>
     <button class="ui button" (click)="goBack()">
       <i class="left arrow icon"></i>
       {{ "spotifyAlbum.back" | translate }}
@@ -10,14 +10,14 @@
     <button class="ui button" (click)="addAllToPlaylist(album)">{{ "spotifyAlbum.btnAddAll" | translate }}</button>
     <button class="ui button" (click)="deleteAllToPlaylist(album)">{{ "spotifyAlbum.btnDeleteAll" | translate }}</button>
   </div>
-  <div *ngFor="let nbTrack of album.tracks.items; let i = index">
-    <iframe [src]="album.tracks.items[i].uri | uri" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <button *ngIf="!songAlreadyAddToPlaylist(album.tracks.items[i])"
-            class="right attached ui green button alignement" (click)="addToPlaylist(album.tracks.items[i], album.images[0])">
+  <div *ngFor="let nbTrack of albumNbTracks; let index = index">
+    <iframe [src]="getTrackUri(index) | uri" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <button *ngIf="!songAlreadyAddToPlaylist(getTrackItem(index))"
+            class="right attached ui green button alignement" (click)="addToPlaylist(getTrackItem(index), getTrackImage())">
       {{ "spotifyAlbum.add" | translate }}
     </button>
-    <button *ngIf="songAlreadyAddToPlaylist(this.album.tracks.items[i])"
-            class="right attached ui red button alignement" (click)="deleteToPlaylist(album.tracks.items[i])">
+    <button *ngIf="songAlreadyAddToPlaylist(getTrackItem(index))"
+            class="right attached ui red button alignement" (click)="deleteToPlaylist(getTrackItem(index))">
       {{ "spotifyAlbum.delete" | translate }}
     </button>
   </div>

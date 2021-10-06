@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Video } from '../../../shared/models/search.interface'
+
+/**
+ * Import Services
+ */
 import { PlaylistService } from '../../../../../../../src/app/playlist/services/playlist.service';
 import { NotifierService } from "angular-notifier";
 import { SaveService } from '../../../../../../../src/app/services/save.service';

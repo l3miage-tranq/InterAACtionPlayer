@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from '../alert/alert.component';
 
 /**
  * Import Services
@@ -9,7 +10,6 @@ import { NotifierService } from 'angular-notifier';
 import { SaveService } from '../../../services/save.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from '../../services/alert.service';
-import {AlertComponent} from '../alert/alert.component';
 
 @Component({
   selector: 'app-load-playlist',
@@ -45,6 +45,13 @@ export class LoadPlaylistComponent implements OnInit {
   }
 
   /**
+   * Check if the mapPlaylist is empty
+   */
+  isMapEmpty(){
+    return this.mapPlaylist.size == 0;
+  }
+
+  /**
    * @param name
    *
    * Get the element that have the same id as the name send in parameter
@@ -56,7 +63,6 @@ export class LoadPlaylistComponent implements OnInit {
     if (this.alertService.doNotShowAgain){
       const elem = document.getElementById(name);
       elem.style.display = "none";
-
       this.playlistService.deleteMapPlaylist(name);
       this.notifier.notify('warning', this.translate.instant('notifier.deletePlaylist'));
       this.saveService.updateMapPlaylist();
@@ -93,6 +99,7 @@ export class LoadPlaylistComponent implements OnInit {
     }else {
       this.errorEmptyCheckbox = false;
       this.playlistService.playList = this.mapPlaylist.get(this.getKey);
+      this.playlistService.nameActualPlaylist = this.getKey;
       this.dialog.closeAll();
       this.notifier.notify('warning', this.translate.instant('notifier.loadPlaylist'));
       this.saveService.updatePlaylist();

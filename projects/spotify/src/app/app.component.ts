@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {GlobalService} from './services/global.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { GlobalService } from './services/global.service';
+import { Router } from '@angular/router';
+import { AuthguardService } from '../../../../src/app/services/authguard.service';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,19 @@ import {Router} from '@angular/router';
 export class AppComponent implements  OnInit{
   title = 'spotify';
 
-  constructor(private globalService: GlobalService, private router: Router) {
+  constructor(private globalService: GlobalService,
+              private router: Router,
+              private authGuardService: AuthguardService) {
   }
 
   /**
    * Initialize token for the Spotify Api
-   * When the token is initialize, 500ms after we go to the spotify/home web page
+   * Check if the user is logged
+   * When the token is initialize, 300ms after we go to the spotify/home web page
    */
   ngOnInit(): void {
     this.globalService.accessToken;
-    setTimeout(() => this.router.navigate(['/spotify/home']) ,500 );
+    this.authGuardService.canAccess();
+    this.router.navigate(['/spotify/home']);
   }
 }

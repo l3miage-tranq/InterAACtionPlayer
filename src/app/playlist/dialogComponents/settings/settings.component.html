@@ -7,22 +7,11 @@
       <label>
         {{ 'settingsPlaylist.themes' | translate }}
       </label>
-      <div class="inline fields">
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="theme" [checked]="themeLightEnable" (click)="toggleTheme()">
-            <label>
-              {{ 'settingsPlaylist.light' | translate }}
-            </label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="theme" [checked]="!themeLightEnable" (click)="toggleTheme()">
-            <label>
-              {{ 'settingsPlaylist.dark' | translate }}
-            </label>
-          </div>
+      <div class="field">
+        <div class="ui buttons">
+          <button [ngClass]="themeLightValue" class="ui button" (click)="toggleThemeLight()">{{ 'settingsPlaylist.light' | translate }}</button>
+          <div class="or" attr.data-text="{{'settingsPlaylist.or' | translate }}"></div>
+          <button [ngClass]="themeDarkValue" class="ui button" (click)="toggleThemeDark()">{{ 'settingsPlaylist.dark' | translate }}</button>
         </div>
       </div>
     </div>
@@ -49,30 +38,23 @@
       <label>
         {{ 'settingsPlaylist.dwellTime' | translate }}
       </label>
-      <div class="inline fields">
         <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="dwellTime" [checked]="!dwellTimeEnable" (click)="dwellTime()">
-            <label>
-              {{ 'settingsPlaylist.no' | translate }}
-            </label>
+          <div class="ui toggle checkbox">
+            <input type="checkbox" name="dwellTime" [checked]="dwellTimeEnable" (click)="dwellTime()">
+            <label>{{ stateValueDwellTime | translate }}</label>
           </div>
         </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="dwellTime" [checked]="dwellTimeEnable" (click)="dwellTime()">
-            <label>
-              {{ 'settingsPlaylist.yes' | translate }}
-            </label>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="field">
       <label>
         {{ 'settingsPlaylist.duration' | translate }}
       </label>
-      <input type="number" step="0.5" value="{{ dwellTimeValue / 1000.0 }}" (change)="getValue($event)">
+      <div class="ui right labeled input">
+        <input type="number" step="0.5" value="{{ dwellTimeValue / 1000.0 }}" (change)="getValue($event)">
+        <div class="ui basic label">
+          sec
+        </div>
+      </div>
       <div class="ui error message">
         <p *ngIf="error">Minimum = 1 !</p>
       </div>
@@ -81,9 +63,16 @@
       <label>
         {{ 'settingsPlaylist.dwellTimeForm' | translate }}
       </label>
-      <div class="inline fields">
+      <div class="field">
+        <div class="ui buttons">
+          <button [ngClass]="diskValue" class="ui button" (click)="diskProgressMode(true)">{{ 'settingsPlaylist.diskProgress' | translate }}</button>
+          <div class="or" attr.data-text="{{'settingsPlaylist.or' | translate }}"></div>
+          <button [ngClass]="circleValue" class="ui button" (click)="circleProgressMode(false)">{{ 'settingsPlaylist.circleProgress' | translate }}</button>
+        </div>
+      </div>
+      <div *ngIf="!diskProgress" class="inline fields">
         <div class="field">
-          <div class="ui checkbox">
+          <div class="ui radio checkbox">
             <input type="radio" name="dwellTimeShape" [checked]="!dwellTimeSpinnerOutsideBtn" (click)="dwellTimeShape(false)">
             <label>
               {{ 'settingsPlaylist.spinnerInside' | translate }}
@@ -91,7 +80,7 @@
           </div>
         </div>
         <div class="field">
-          <div class="ui checkbox">
+          <div class="ui radio checkbox">
             <input type="radio" name="dwellTimeShape" [checked]="dwellTimeSpinnerOutsideBtn" (click)="dwellTimeShape(true)">
             <label>
               {{ 'settingsPlaylist.spinnerOutside' | translate }}
@@ -104,22 +93,10 @@
       <label>
         {{ 'settingsPlaylist.alertMessage' | translate }}
       </label>
-      <div class="inline fields">
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="alertMessage" [checked]="disableAlertMessage" (click)="displayAlertMessage(true)">
-            <label>
-              {{ 'settingsPlaylist.yes' | translate }}
-            </label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="radio" name="alertMessage" [checked]="!disableAlertMessage" (click)="displayAlertMessage(false)">
-            <label>
-              {{ 'settingsPlaylist.no' | translate }}
-            </label>
-          </div>
+      <div class="field">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" name="alertMessage" [checked]="disableAlertMessage" (click)="displayAlertMessage()">
+          <label>{{ stateValueAlertMessage | translate }}</label>
         </div>
       </div>
     </div>

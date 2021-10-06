@@ -31,11 +31,27 @@ export class AlertService {
   }
 
   /**
+   * Allows to set the title and content of the alert message -> Delete item in playlist request
+   */
+  setDeleteItemPlaylist(){
+    this.alertTitle = "alert.titleItemDelete";
+    this.alertContent = "alert.contentItemDelete";
+  }
+
+  /**
    * Allows to set the title and content of the alert message -> Replace request
    */
   setReplacePlaylist(){
     this.alertTitle = "alert.titleReplace";
-    this.alertContent = "alert.contentReplace"
+    this.alertContent = "alert.contentReplace";
+  }
+
+  /**
+   * Allows to set the title and content of the alert message -> New playlist request
+   */
+  setNewPlaylist(){
+    this.alertTitle = "alert.titleNewPlaylist";
+    this.alertContent = "alert.contentNewPlaylist";
   }
 
   /**

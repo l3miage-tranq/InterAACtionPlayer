@@ -28,6 +28,12 @@ export class AlbumComponent implements OnInit {
 
   theme = "";
 
+  albumImage;
+  albumType;
+  albumName;
+  albumTrack;
+  albumNbTracks;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private albumService: AlbumService,
@@ -61,7 +67,100 @@ export class AlbumComponent implements OnInit {
   public getAlbum(): void {
     this.albumService.getAlbum(this.albumId).subscribe((album: APIAlbums) => {
       this.album = album;
+      this.getAlbumImage();
+      this.getAlbumName();
+      this.getAlbumType();
+      this.getAlbumTrack();
+      this.getAlbumNbTracks();
     });
+  }
+
+  /**
+   * Allows to get the image of the album
+   */
+  public getAlbumImage(){
+    try {
+      this.albumImage = this.album.images;
+    }catch (error){
+      console.log("Can't load the image of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the type of the album
+   */
+  public getAlbumType(){
+    try {
+      this.albumType = this.album.type;
+    }catch (error){
+      console.log("Can't load the type of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the name of the album
+   */
+  public getAlbumName(){
+    try {
+      this.albumName = this.album.name;
+    }catch (error){
+      console.log("Can't load the name of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the tracks of the album
+   */
+  public getAlbumTrack(){
+    try {
+      this.albumTrack = this.album.tracks;
+    }catch (error){
+      console.log("Can't load the tracks of the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the number of tracks in the album
+   */
+  public getAlbumNbTracks(){
+    try {
+      this.albumNbTracks = this.album.tracks.items;
+    }catch (error){
+      console.log("Can't find the number of tracks in the album, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the uri of the track
+   */
+  getTrackUri(index){
+    try {
+      return this.album.tracks.items[index].uri;
+    }catch (error){
+      console.log("Can't get the uri of the track, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the image of the track
+   */
+  getTrackImage(){
+    try {
+      return this.album.images[0];
+    }catch (error){
+      console.log("Can't get the image of the track, the error is : " + error);
+    }
+  }
+
+  /**
+   * Allows to get the item of the track
+   */
+  getTrackItem(index){
+    try {
+      return this.album.tracks.items[index];
+    }catch (error){
+      console.log("Can't get the item of the track, the error is : " + error);
+    }
   }
 
   /**

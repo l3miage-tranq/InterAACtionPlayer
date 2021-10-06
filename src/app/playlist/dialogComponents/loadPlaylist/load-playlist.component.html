@@ -9,7 +9,7 @@
       </label>
       <div class="field" *ngFor="let elem of mapPlaylist | mapPipe">
         <div [id]="elem.value" class="field">
-          <div class="ui checkbox">
+          <div class="ui radio checkbox">
             <input type="radio" name="playlist" (click)="sendKey(elem.value)">
             <label>
               {{ elem.value }}
@@ -24,6 +24,7 @@
       </div>
     </div>
     <div class="ui error message">
+      <p *ngIf="isMapEmpty()">{{ "loadPlaylist.empty" | translate }}</p>
       <p *ngIf="errorEmptyCheckbox">{{ "loadPlaylist.errorMessage" | translate }}</p>
     </div>
   </div>

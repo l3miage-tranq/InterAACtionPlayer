@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
-import { Types } from '../model/types-interface';
+import { Types } from '../../model/types-interface';
 import * as $ from 'jquery';
-import { AudioService } from '../services/audio.service';
+import { AudioService } from '../../services/audio.service';
 
 declare var initVisualizer: any; //function in the javascript file
 
@@ -30,6 +30,7 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(private audioService: AudioService) {
     this.volume = audioService.startVolume;
+    this.audioService.audioPlay = false;
   }
 
   /**
@@ -66,13 +67,15 @@ export class AudioPlayerComponent implements OnInit {
     this.addEventPlayPause(this.audioService);
     this.addEventVolume(this.audioService);
 
-    this.playlist = [
-      {
-        title: this.elemPlaylist.title,
-        link: this.src,
-        artist: this.elemPlaylist.artists
-      },
-    ];
+    if (this.elemPlaylist !== undefined){
+      this.playlist = [
+        {
+          title: this.elemPlaylist.title,
+          link: this.src,
+          artist: this.elemPlaylist.artists
+        },
+      ];
+    }
   }
 
   /**

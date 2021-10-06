@@ -1,8 +1,8 @@
 <div>
-  <img class="ui small centered circular image" [src]="artist.picture" [alt]="artist.name">
-  <h2 [ngClass]="theme" class="ui center aligned header">{{ artist.name }}</h2>
-  <h3 [ngClass]="theme" class="ui center aligned header">{{ artist.nb_album }} {{ 'deezerArtist.albums' | translate }}</h3>
-  <h3 [ngClass]="theme" class="ui center aligned header">{{ artist.nb_fan }} {{ 'deezerArtist.followers' | translate }}</h3>
+  <img class="ui small centered circular image" [src]="picture" [alt]="artistName">
+  <h2 [ngClass]="theme" class="ui center aligned header">{{ artistName }}</h2>
+  <h3 [ngClass]="theme" class="ui center aligned header">{{ artistNbAlbums }} {{ 'deezerArtist.albums' | translate }}</h3>
+  <h3 [ngClass]="theme" class="ui center aligned header">{{ artistNbFan }} {{ 'deezerArtist.followers' | translate }}</h3>
   <button class="ui button" [routerLink]="['/deezer/search']">
     <i class="left arrow icon"></i>
     {{ "deezerArtist.back" | translate }}

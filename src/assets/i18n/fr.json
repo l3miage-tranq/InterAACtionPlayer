@@ -11,12 +11,15 @@
     "addPlaylist": " ajouté à la Playlist !",
     "savePlaylist": "La Playlist a été sauvegarder !",
     "importPlaylist": "Importation de la Playlist réussi !",
-    "delete": "La Playlist a été effacer !",
     "prefabricatedPlaylist": "La Playlist pré-enregistré à été ajouté !",
     "addAll": "Toutes les musiques ont été ajouté dans la Playlist !",
     "deleteAll": "Toutes les musiques ont été supprimé de la Playlist !",
     "loadPlaylist": "Playlist charger !",
-    "deletePlaylist": "Playlist supprimé !"
+    "deletePlaylist": "Playlist supprimé !",
+    "deleteUser": "Utilisateur supprimé !",
+    "logoutSpotify": "Déconnexion de Spotify réussi !",
+    "logoutDeezer": "Déconnexion de Deezer réussi !",
+    "newPlaylist": "Nouvelle playlist crée !"
   },
   "playlist": {
     "title": "InterAACtion Player",
@@ -26,8 +29,16 @@
     "importBtn": "Importer un fichier",
     "editBtn": "Mode édition",
     "settingsBtn": "Paramètres",
+    "userBtn": "Connexion des comptes",
     "deleteBtn": "Effacer la Playlist",
-    "loadBtn": "Charger une Playlist"
+    "loadBtn": "Charger une Playlist",
+    "logoutBtn": "Déconnexion",
+    "playlist": "Playlist",
+    "up": "Monter",
+    "down": "Descendre",
+    "music": "Musique",
+    "video": "Vidéo",
+    "new" : "Nouvelle playlist"
   },
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
@@ -37,8 +48,6 @@
     "light": "Clair",
     "dark": "Sombre",
     "languages": "Langues",
-    "yes": "Oui",
-    "no": "Non",
     "duration": "Durée du Dwell Time",
     "cancel": "Annuler",
     "save": "Sauvegarder",
@@ -46,7 +55,14 @@
     "french-language": "Français",
     "spinnerInside": "Intérieur",
     "spinnerOutside": "Extérieur",
-    "alertMessage": "Désactiver message d'alert"
+    "alertMessage": "Désactiver message d'alert",
+    "diskProgress": "Disque",
+    "circleProgress": "Cercle",
+    "or": "ou",
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "yes": "Oui",
+    "no": "Non"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",
@@ -54,6 +70,7 @@
     "defaultTitleFile": "Choisie ton nom =D !",
     "errorNameAlreadyUse": "Nom déjà utilisé !",
     "errorNameEmpty": "Nom nécessaire pour la sauvegarde !",
+    "errorPlaylistEmpty": "Playlist vide !",
     "yes": "Oui",
     "no": "Non"
   },
@@ -63,20 +80,50 @@
     "cancel": "Annuler",
     "load": "Charger",
     "errorMessage": "Aucune box cocher !",
-    "deleteBtn": "Effacer"
+    "deleteBtn": "Effacer",
+    "empty": "Vide"
   },
   "exportFile": {
     "title": "Exporter la Playlist ?",
     "titleFile": "Titre du fichier",
     "defaultTitleFile": "Par défaut titre = Playlist",
+    "errorWrongName": "Le nom ne peut pas contenir de '.'",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "empty": "La playlist est vide !"
   },
   "deletePlaylist": {
     "title": "Effacer la Playlist",
     "text": "Voulez-vous effacer cette Playlist ?",
     "yes": "Oui",
     "no": "Non"
+  },
+  "deleteUser": {
+    "title": "Effacer cette utilisateur ?",
+    "text": "Voulez-vous effacer cette utilisateur ?",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "modifyUser": {
+    "title": "Modifier l'utilisateur",
+    "name": "Nouveau nom",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Nouvelle image",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Modifer"
+  },
+  "account": {
+    "title": "Comptes",
+    "spotify": "Compte Spotify",
+    "loginSpotify": "Connexion à Spotify",
+    "logoutSpotify": "Déconnexion de Spotify",
+    "deezer": "Compte Deezer",
+    "loginDeezer": "Connexion à Deezer",
+    "logoutDeezer": "Déconnexion de Deezer",
+    "close": "Fermer"
   },
   "importFilePlaylist": {
     "title": "Ajouter un fichier local à la Playlist",
@@ -99,7 +146,10 @@
     "options": "Options",
     "authorizedSong": "* seulement .mpeg & .wav sont autorisés !",
     "authorizedVideo": "* seulement .mp4 & .webm sont autorisés !",
-    "authorizedFile": "* seulement .json est autorisé !"
+    "authorizedFile": "* seulement .AACPPlaylist est autorisé !",
+    "or": "ou",
+    "import": "Importer fichier",
+    "acceptedFile": "Fichier bien reçu"
   },
   "prefabricatedPlaylist": {
     "title": "Playlist pré-enregistré",
@@ -111,12 +161,70 @@
     "titleMerge": "Attention, fusion de la Playlist demandé !",
     "titleDelete": "Attention, suppression de la Playlist demandé !",
     "titleReplace": "Attention, remplacement de la Playlist demandé !",
+    "titleItemDelete": "Attention, suppression de l'item demandé !",
+    "titleNewPlaylist": "Attention, commencer une nouvelle playlist demandé !",
     "contentMerge": "Êtes-vous sur de vouloir fusionner la Playlist actuelle avec celle que vous nous avez donné ?",
     "contentDelete": "Êtes-vous sur de vouloir supprimer la Playlist actuelle ?",
     "contentReplace": "Êtes-vous sur de vouloir remplacer la Playlist actuelle avec celle que vous nous avez donné ?",
+    "contentItemDelete": "Êtes-vous sur de vouloir supprimer cette item de la Playlist actuelle ?",
+    "contentNewPlaylist": "Êtes-vous sur de vouloir commencer une nouvelle playlist ?",
     "no" : "Non",
     "yes": "Oui",
     "doNotShowAgain": " Ne plus afficher !"
+  },
+  "chooseType": {
+    "title": "Choisie un multimédia",
+    "prefabricated": "Playlist préfaite"
+  },
+  "chooseImage":{
+    "title": "Choisie une image",
+    "crab": "Choisir le Crabe",
+    "squirrel": "Choisir l'Ecureuil",
+    "hedgehog": "Choisir le Hérisson",
+    "owl": "Choisir le Hibou",
+    "rabbit": "Choisir le Lapin",
+    "astonished": "Choisir la Méduse",
+    "octopus": "Choisir le Poulpe",
+    "fox": "Choisir le Renard",
+    "turtle": "Choisir la Tortue"
+  },
+  "user": {
+    "title": "Page Utilisateur",
+    "defaultUser": "Utilisateur par défault",
+    "addUser": "Ajouter un utilisateur",
+    "importUser": "Importer un utilisateur",
+    "delete": "Supprimer",
+    "modify": "Modifier",
+    "export": "Exporter",
+    "french": "Français",
+    "english": "Anglais",
+    "sun": "Thème clair",
+    "moon": "Thème sombre",
+    "editBtn": "Mode édition"
+  },
+  "userForm": {
+    "title": "Nouvelle utilisateur",
+    "name": "Nom de l'utilisateur",
+    "nameEmpty": "Le nom est vide !",
+    "image": "Image de l'utilisateur",
+    "importImg": "Importer",
+    "chooseImg": "Choisir",
+    "imgEmpty": "Image vide !",
+    "cancel": "Annuler",
+    "submit": "Créer",
+    "or": "ou"
+  },
+  "importUser": {
+    "title": "Importer un compte",
+    "file": "Fichier",
+    "import": "Fichier utilisateur",
+    "authorizedExtension": "* seulement .AACPUser est autorisé !",
+    "acceptedFile": "Fichier bien reçu !",
+    "errorWrongFile": "Erreur, mauvais fichier !",
+    "errorEmptyFile": "Erreur, pas de fichier !",
+    "errorFileAlreadyInUserList" : "Erreur, compte déjà présent !",
+    "cancel": "Annuler",
+    "add": "Ajouter"
   },
   "youtubeSearchContainer": {
     "noVideo": "Pas de vidéo trouvé !"

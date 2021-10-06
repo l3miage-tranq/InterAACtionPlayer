@@ -29,10 +29,15 @@ export class ImportfileComponent implements OnInit {
   public error = '';
   public optionsPlaylist = "new";
 
+  public extension = "audio/wav, audio/mpeg";
+  public acceptedFile = false;
   public errorEmptyFile = false;
   public errorWrongFile = false;
   public errorEmptyTitle = false;
   public errorFileAlreadyInPlaylist = false;
+
+  newPlaylistOption = "positive";
+  mergePlaylistOption = "";
 
   constructor(private dialog: MatDialog,
               private playlistService: PlaylistService,
@@ -57,6 +62,7 @@ export class ImportfileComponent implements OnInit {
       this.titleFile = "importFilePlaylist.titleSong";
       this.artistFile = "importFilePlaylist.artistSong";
       this.authorizedExtension = "importFilePlaylist.authorizedSong";
+      this.extension = "audio/wav, audio/mpeg";
     }
   }
 
@@ -71,6 +77,7 @@ export class ImportfileComponent implements OnInit {
       this.titleFile = "importFilePlaylist.titleVideo";
       this.artistFile = "importFilePlaylist.artistVideo";
       this.authorizedExtension = "importFilePlaylist.authorizedVideo";
+      this.extension = "video/mp4, video/webm";
     }
   }
 
@@ -83,6 +90,7 @@ export class ImportfileComponent implements OnInit {
     if (this.typeFile != "file"){
       this.typeFile = "file";
       this.authorizedExtension = "importFilePlaylist.authorizedFile";
+      this.extension = ".AACPPlaylist";
     }
   }
 
@@ -111,6 +119,8 @@ export class ImportfileComponent implements OnInit {
    * Then set the alertService
    */
   public newPlaylist(){
+    this.mergePlaylistOption = "";
+    this.newPlaylistOption = "positive";
     this.optionsPlaylist = "new";
     this.alertService.setReplacePlaylist();
   }
@@ -120,6 +130,8 @@ export class ImportfileComponent implements OnInit {
    * Then set the alertService
    */
   public mergePlaylist(){
+    this.newPlaylistOption = "";
+    this.mergePlaylistOption = "positive";
     this.optionsPlaylist = "merge";
     this.alertService.setMergePlaylist();
   }
@@ -138,6 +150,7 @@ export class ImportfileComponent implements OnInit {
       reader.onload = () => {
         this.fileUpload = reader.result;
       };
+      this.acceptedFile = true;
     }else {
       this.fileUpload = event.target.files[0];
       const reader = new FileReader();
@@ -145,6 +158,7 @@ export class ImportfileComponent implements OnInit {
       reader.onload = () => {
         this.fileUpload = reader.result;
       };
+      this.acceptedFile = true;
     }
   }
 
@@ -178,7 +192,7 @@ export class ImportfileComponent implements OnInit {
    */
   public jsonIsValid(){
     if (this.typeFile == 'file'){
-      if (this.nameFileUpload.split('.').pop() == "json"){
+      if (this.nameFileUpload.split('.').pop() == "AACPPlaylist"){
         return this.playlistService.checkFileForPlaylist(JSON.parse(this.fileUpload));
       }else {
         return false;
@@ -247,13 +261,16 @@ export class ImportfileComponent implements OnInit {
               });
             }
           }else {
+            this.acceptedFile = false;
             this.errorEmptyTitle = true;
           }
         }
       } else {
+        this.acceptedFile = false;
         this.errorWrongFile = true;
       }
     }else {
+      this.acceptedFile = false;
       this.errorEmptyFile = true;
     }
   }

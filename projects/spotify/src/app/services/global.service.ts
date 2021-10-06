@@ -5,36 +5,37 @@ import * as $ from 'jquery';
 @Injectable()
 export class GlobalService {
 
+  clientId = 'cf0aa060f87b4c6e9edb2a1e067fd86a';
+  clientSecret = '5beabd4b8c67453b8770e1fe309a105f';
+  redirectUriHome = "http://localhost:4200/home";
+  redirectUriPlaylist = "http://localhost:4200/playlist";
+
+  accessToken = this.getToken().subscribe(data => {this.accessToken = data['access_token'];});
+
   constructor(private http: HttpClient) {
   }
 
-  clientId = 'cf0aa060f87b4c6e9edb2a1e067fd86a';
-  clientSecret = '5beabd4b8c67453b8770e1fe309a105f';
-  accessToken = this.getToken().subscribe(data => {this.accessToken = data['access_token'];});
-  accessCode = this.getLoginAccountSpotify().subscribe( data => {
-    this.accessCode = data['code'];
-  });
-  accessTokenLogin = this.getTokenWithCode(this.accessCode).subscribe(data => {this.accessTokenLogin = data['access_token']});
-
+  /**
+   * Allows the user to login with his Spotify account
+   */
   public getLoginAccountSpotify(){
-    const authorizationLoginUrl = `https://accounts.spotify.com/authorize?`;
-    const clientId = 'client_id=' + this.clientId;
-    const responseType = 'response_type=code';
-    const redirectUri = 'redirect_uri=http://localhost:4200/playlist';
-    const scope = 'scope=user-modify-playback-state';
-    return this.http.get(authorizationLoginUrl + clientId + '&' + responseType + '&' + redirectUri + '&' + scope, {responseType: 'text'});
+    const scope = 'user-read-private user-read-email';
+
+    let url = 'https://accounts.spotify.com/authorize';
+    url += '?response_type=token';
+    url += '&client_id=' + encodeURIComponent(this.clientId);
+    url += '&scope=' + encodeURIComponent(scope);
+    url += '&redirect_uri=' + encodeURIComponent(this.redirectUriPlaylist);
+
+    window.location.href = url;
   }
 
-  public getTokenWithCode(code){
-    const authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
-    const body = 'grant_type=authorization_code&code=' + code + '&redirect_uri=http://localhost:4200/playlist';
-    return this.http.post(authorizationTokenUrl, body, {
-      headers: new HttpHeaders({
-        Authorization:
-          'Basic  ' + btoa(this.clientId + ':' + this.clientSecret),
-        'Content-Type': 'application/x-www-form-urlencoded;',
-      }),
-    });
+  /**
+   * Allows the user to logout Spotify
+   */
+  public getLogoutAccountSpotify(){
+    const spotifyLogoutWindow = window.open('https://accounts.spotify.com/en/logout', "spotifyLogoutWindow", "top=10000, left=10000, innerWidth=100, innerHeight=100" );
+    setTimeout(() => spotifyLogoutWindow.close(), 500);
   }
 
   /**
@@ -58,7 +59,7 @@ export class GlobalService {
   public getLogin(){
     const authorizationLoginUrl = `https://accounts.spotify.com/authorize?`;
     const responseType = 'response_type=code';
-    const redirectUri = 'redirect_uri=http://localhost:4200/home';
+    const redirectUri = 'redirect_uri=' + this.redirectUriHome;
     return this.http.get(authorizationLoginUrl + this.clientId + '&' + responseType + '&' + redirectUri);
   }
 
@@ -93,7 +94,7 @@ export class GlobalService {
       url: 'https://api.spotify.com/v1/me/player/play',
       type: 'PUT',
       headers: {
-        'Authorization': 'Bearer ' + this.accessTokenLogin
+        'Authorization': 'Bearer ' + this.accessToken
       },
       dataType: "json",
       contentType: "application/json",
@@ -111,7 +112,7 @@ export class GlobalService {
       url: 'https://api.spotify.com/v1/me/player/pause',
       type: 'PUT',
       headers: {
-        'Authorization': 'Bearer ' + this.accessTokenLogin
+        'Authorization': 'Bearer ' + this.accessToken
       }
     });
   }
@@ -126,7 +127,7 @@ export class GlobalService {
       url: 'https://api.spotify.com/v1/me/player/play',
       type: 'PUT',
       headers: {
-        'Authorization': 'Bearer ' + this.accessTokenLogin
+        'Authorization': 'Bearer ' + this.accessToken
       },
       dataType: "json",
       contentType: "application/json",

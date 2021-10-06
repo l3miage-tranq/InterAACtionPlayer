@@ -12,6 +12,8 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { AuthguardService } from './services/authguard.service';
 
 /**
  * Custom angular notifier options
@@ -40,12 +42,20 @@ import { ExportfileComponent } from './playlist/dialogComponents/exportFile/expo
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
-import { AudioPlayerComponent } from './playlist/audioPlayer/audio-player.component';
+import { AudioPlayerComponent } from './playlist/audioPlayer/filePlayer/audio-player.component';
 import { DeleteDialogComponent } from './playlist/dialogComponents/deletePlaylist/delete-dialog.component';
 import { PrefabricatedPlaylistComponent } from './playlist/dialogComponents/prefabricatedPlaylist/prefabricated-playlist.component';
 import { SavePlaylistComponent } from './playlist/dialogComponents/savePlaylist/save-playlist.component';
 import { LoadPlaylistComponent } from './playlist/dialogComponents/loadPlaylist/load-playlist.component';
 import { AlertComponent } from './playlist/dialogComponents/alert/alert.component';
+import { UserComponent } from './userPage/user.component';
+import { UserFormComponent } from './playlist/dialogComponents/userForm/user-form.component';
+import { DeleteUserComponent } from './playlist/dialogComponents/deleteUser/delete-user.component';
+import { ChooseImgComponent } from './playlist/dialogComponents/chooseImgUser/choose-img.component';
+import { ModifyUserComponent } from './playlist/dialogComponents/modifyUser/modify-user.component';
+import { DeezerPlayerComponent } from './playlist/audioPlayer/deezerPlayer/deezer-player.component';
+import { AccountsComponent } from './playlist/dialogComponents/accounts/accounts.component';
+import { ImportuserComponent } from './playlist/dialogComponents/importUser/importuser.component';
 
 /**
  * Import module Sub-Application
@@ -86,40 +96,50 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
     SavePlaylistComponent,
     LoadPlaylistComponent,
     MapPipe,
-    AlertComponent
+    AlertComponent,
+    UserComponent,
+    UserFormComponent,
+    DeleteUserComponent,
+    ChooseImgComponent,
+    ModifyUserComponent,
+    DeezerPlayerComponent,
+    AccountsComponent,
+    ImportuserComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        NotifierModule.withConfig(customNotifierOptions),
-        MatDialogModule,
-        RouterModule,
-        YoutubeSharedModule.forRoot(),
-        SpotifySharedModule.forRoot(),
-        DeezerSharedModule.forRoot(),
-        RouterModule.forRoot([
-            {path: 'playlist', component: PlaylistComponent},
-            {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
-            {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
-            {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
-            {path: '', redirectTo: 'playlist', pathMatch: 'full'},
-        ]),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient],
-            }
-        }),
-        PipesModule,
-        PipeModule,
-        FormsModule,
-        MatProgressSpinnerModule,
-        DragDropModule,
-        NgxAudioPlayerModule,
-        MatTooltipModule,
-        MatSliderModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    NotifierModule.withConfig(customNotifierOptions),
+    MatDialogModule,
+    RouterModule,
+    YoutubeSharedModule.forRoot(),
+    SpotifySharedModule.forRoot(),
+    DeezerSharedModule.forRoot(),
+    RouterModule.forRoot([
+      {path: 'user', component: UserComponent},
+      {path: 'playlist', component: PlaylistComponent},
+      {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+      {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+      {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
+      {path: '', redirectTo: 'user', pathMatch: 'full'},
+    ]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
+      }
+    }),
+    PipesModule,
+    PipeModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+    DragDropModule,
+    NgxAudioPlayerModule,
+    MatTooltipModule,
+    MatSliderModule,
+    RoundProgressModule,
+  ],
   providers: [
     PlaylistService
   ],

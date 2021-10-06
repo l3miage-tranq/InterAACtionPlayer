@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewReleaseItemComponent } from './new-release-item.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ErrorImagePipe } from '../../../pipes/error-image.pipe';
 
 describe('NewReleaseItemComponent', () => {
   let component: NewReleaseItemComponent;
@@ -8,7 +10,8 @@ describe('NewReleaseItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewReleaseItemComponent ]
+      declarations: [ NewReleaseItemComponent, ErrorImagePipe ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   });

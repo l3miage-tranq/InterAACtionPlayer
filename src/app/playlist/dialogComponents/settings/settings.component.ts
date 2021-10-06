@@ -23,15 +23,23 @@ export class SettingsComponent implements OnInit {
   dwellTimeValue: number;
   dwellTimeSpinnerOutsideBtn = true;
 
+  diskProgress: boolean;
+  diskValue = "";
+  circleValue = "";
+
   disableAlertMessage: boolean;
 
   themeLightEnable: boolean = true;
+  themeLightValue = "";
+  themeDarkValue = "";
   themeValue = "";
 
   moreLanguages: boolean = false;
   usedLanguage = "";
 
   error: boolean = false;
+  stateValueDwellTime = "";
+  stateValueAlertMessage = "";
 
   constructor(private dwellTimeService: DwelltimeService,
               private dialog: MatDialog,
@@ -48,21 +56,42 @@ export class SettingsComponent implements OnInit {
     this.usedLanguage = this.language.activeLanguage;
     this.dwellTimeSpinnerOutsideBtn = this.dwellTimeService.dwellTimeSpinnerOutsideBtn;
     this.disableAlertMessage = this.alertService.doNotShowAgain;
+    this.diskProgress = this.dwellTimeService.diskProgress;
   }
 
   ngOnInit(): void {
+    if (this.themeLightEnable){
+      this.themeLightValue = "positive";
+    }else {
+      this.themeDarkValue = "positive";
+    }
+
+    if (this.diskProgress){
+      this.diskValue = "positive";
+    }else {
+      this.circleValue = "positive";
+    }
+
+    this.isDwellTimeEnable();
+    this.isAlertMessageEnable();
   }
 
   /**
-   * Actualize themeValue depending on the box checked by the user
+   * Set the theme to light
    */
-  toggleTheme(){
-    this.themeLightEnable = !this.themeLightEnable;
-    if (this.themeLightEnable){
-      this.themeValue = "";
-    }else {
-      this.themeValue = "inverted";
-    }
+  toggleThemeLight(){
+    this.themeValue = "";
+    this.themeDarkValue = "";
+    this.themeLightValue = "positive";
+  }
+
+  /**
+   * Set the theme to dark
+   */
+  toggleThemeDark(){
+    this.themeValue = "inverted";
+    this.themeLightValue = "";
+    this.themeDarkValue = "positive";
   }
 
   /**
@@ -70,6 +99,7 @@ export class SettingsComponent implements OnInit {
    */
   dwellTime(){
     this.dwellTimeEnable = !this.dwellTimeEnable;
+    this.isDwellTimeEnable();
   }
 
   /**
@@ -77,6 +107,28 @@ export class SettingsComponent implements OnInit {
    */
   dwellTimeShape(value: boolean){
     this.dwellTimeSpinnerOutsideBtn = value;
+  }
+
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Disk
+   */
+  diskProgressMode(value: boolean){
+    this.diskProgress = value;
+    this.diskValue = "positive";
+    this.circleValue = "";
+  }
+
+  /**
+   * @param value
+   *
+   * Set the mode use for DwellTime = Circle
+   */
+  circleProgressMode(value: boolean){
+    this.diskProgress = value;
+    this.diskValue = "";
+    this.circleValue = "positive";
   }
 
   /**
@@ -136,8 +188,34 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  displayAlertMessage(value){
-    this.disableAlertMessage = value;
+  /**
+   * Enable or disable to display an alert message
+   */
+  displayAlertMessage(){
+    this.disableAlertMessage = !this.disableAlertMessage;
+    this.isAlertMessageEnable();
+  }
+
+  /**
+   * Set the label DwellTime to enable or disable
+   */
+  isDwellTimeEnable(){
+    if (this.dwellTimeEnable){
+      this.stateValueDwellTime = 'settingsPlaylist.enable';
+    }else {
+      this.stateValueDwellTime = 'settingsPlaylist.disable';
+    }
+  }
+
+  /**
+   * Set the label Alert Message to yes or no
+   */
+  isAlertMessageEnable(){
+    if (this.disableAlertMessage){
+      this.stateValueAlertMessage = 'settingsPlaylist.yes';
+    }else {
+      this.stateValueAlertMessage = 'settingsPlaylist.no';
+    }
   }
 
   /**
@@ -147,10 +225,12 @@ export class SettingsComponent implements OnInit {
    */
   submit(){
     if (this.isValid()){
+      this.dwellTimeService.diskProgress = this.diskProgress;
       this.dwellTimeService.dwellTime = this.dwellTimeEnable;
       this.dwellTimeService.dwellTimeValue = this.dwellTimeValue;
       this.dwellTimeService.dwellTimeSpinnerOutsideBtn = this.dwellTimeSpinnerOutsideBtn;
-      this.dwellTimeService.getSizeDwellTimeSpinner();
+      this.dwellTimeService.setSizeDwellTimeSpinner();
+      this.dwellTimeService.setDiskProgress();
       this.themeService.emitTheme(this.themeValue);
       this.language.switchLanguage(this.usedLanguage);
       this.alertService.doNotShowAgain = this.disableAlertMessage;
