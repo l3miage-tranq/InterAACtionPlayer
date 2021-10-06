@@ -266,6 +266,7 @@ export class PlaylistService{
    */
   newPlaylist(jsonFile: any){
     this.playList = jsonFile;
+    this.nameActualPlaylist = "";
   }
 
   /**
