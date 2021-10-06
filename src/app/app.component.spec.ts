@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ProjectMultimedia'`, () => {
+  it(`should have as title 'InterAACtionPlayer'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ProjectMultimedia');
+    expect(app.title).toEqual('InterAACtionPlayer');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ProjectMultimedia app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('InterAACtionPlayer app is running!');
   });
 });
