@@ -17,9 +17,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ProjectMultimedia'`, () => {
+  it(`should have as title 'InterAACtionPlayer'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ProjectMultimedia');
+    expect(app.title).toEqual('InterAACtionPlayer');
   });
 });

@@ -775,7 +775,7 @@ export class PlaylistComponent implements OnInit {
   showProgressIndicator(elemId: string, spinnerId: any) {
     const id = document.getElementById(elemId);
     id.style.opacity = '0.5';
-    if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistProjectMultimedia')){
+    if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistInterAACtionPlayer')){
       const spinner = document.getElementById(String(spinnerId));
       spinner.style.visibility = 'visible';
       this.startInterval(elemId, spinnerId, id);

@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'ProjectMultimedia';
+  title = 'InterAACtionPlayer';
 
   theme = "";
 
