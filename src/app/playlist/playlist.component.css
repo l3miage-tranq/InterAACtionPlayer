@@ -63,9 +63,7 @@ figcaption{
   opacity: 1;
 }
 
-.title{
-  text-align: center;
-}
+
 
 .btnCircular{
   width: 150px;
@@ -93,8 +91,36 @@ figcaption{
   z-index: 1;
 }
 
-.header {
+.imageAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  visibility: visible;
+  display: inline-block;
+  height: 6rem;
+  width: 9rem;
+  margin: 0;
+}
+
+.imageInterAACtionBoxAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 4rem;
+  width: 8rem;
+  margin: 0;
+  float: right;
+}
+
+.header{
   margin: 1em 0 1em 0;
+  display: inline-block;
+}
+
+.pageTitle{
+  text-align: center;
+  margin: 0 50px 0 0;
+  padding-top: 2rem;
 }
 
 .ui.labeled.icon.menu .item{
@@ -110,8 +136,23 @@ figcaption{
   color: black;
 }
 
-  /* ------------------------------ ID ------------------------------------ */
+.titleHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
 
+.topBarAFSRLogo{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+ }
+
+/* ------------------------------ ID ------------------------------------ */
 #myFileAudio{
   margin-top: 50px !important;
 }

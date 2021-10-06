@@ -857,4 +857,16 @@ export class PlaylistComponent implements OnInit {
   displaySideBar(){
     return document.body.scrollHeight > document.body.offsetHeight;
   }
+
+  getBrightnessOfAFSRLogo() {
+  return (this.theme =='') ? '1' : '10';
+  }
+
+  getBrightnessOfInterAACtionBoxAFSRLogo() {
+    return (this.theme =='') ? '0.2' : '1';
+  }
+
+  getColorOfTitle(){
+    return (this.theme =='') ? '#81197f' : 'white';
+  }
 }
