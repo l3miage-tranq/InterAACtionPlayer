@@ -8,10 +8,10 @@ header:
   overlay_image: /assets/images/gazeMediaPlayer.png
   actions:
     - label: "<i class='fas fa-hand-point-up'></i> Essayer maintenant"
-      url: https://github.com/InteraactionGroup/interAACtionPlayer
+      url: https://github.com/InteraactionGroup/InterAACtionPlayer
 excerpt: >
-  Description de interAACtionPlayer  <br />
+  Description de InterAACtionPlayer  <br />
 ---
 
-## Pourquoi interAACtionPlayer ?
+## Pourquoi InterAACtionPlayer ?
 
