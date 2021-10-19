@@ -4,5 +4,4 @@ permalink: /contact/
 layout: single
 ---
 
-__Didier Schwab__: <didier.schwab@univ-grenoble-alpes.fr>  
-__Gazeplay__: <gazeplay.net@gmail.com>
+__Didier Schwab__: <didier.schwab@univ-grenoble-alpes.fr>

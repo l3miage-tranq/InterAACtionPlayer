@@ -14,7 +14,7 @@
       switch (title) {
         case "Share":
           return "Partage";
-        case "User Guide":
+        case "How to use":
           return "Mode d'emploi";
         case "Partners":
           return "Partenaires";
@@ -29,9 +29,9 @@
   function determineHomePage() {
     var current = document.URL;
     if (current.includes("fr")) {
-      return "/AugCom/fr";
+      return "/interAACtionPlayer/fr";
     } else {
-      return "/AugCom/";
+      return "/interAACtionPlayer/";
     }
   }
 </script>
