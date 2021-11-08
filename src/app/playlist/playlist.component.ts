@@ -9,7 +9,6 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
  * Import Components
  */
 import { ExportfileComponent } from './dialogComponents/exportFile/exportfile.component';
-import { SettingsComponent } from './dialogComponents/settings/settings.component';
 import { ImportfileComponent } from './dialogComponents/importFile/importfile.component';
 import { DialogChooseTypeComponent } from './dialogComponents/choosePlatform/dialog-choose-type.component';
 import { DeleteDialogComponent } from './dialogComponents/deletePlaylist/delete-dialog.component';
@@ -33,6 +32,8 @@ import { DefaultService } from '../services/default.service';
 import { UsersService } from '../services/users.service';
 import { AuthguardService } from '../services/authguard.service';
 import { AlertService } from './services/alert.service';
+import { LoginNotificationService } from "./services/login-notification.service";
+import { LanguageService } from "../services/language.service";
 
 /**
  * Import Models
@@ -73,6 +74,13 @@ export class PlaylistComponent implements OnInit {
   theme = "";
   textColor = "";
   index = -1;
+  displayTheSideBar = false;
+
+  statusSpotify = "red";
+  textStatusSpotify = "playlist.logOutSpotify"
+
+  statusDeezer = "red";
+  textStatusDeezer = "playlist.logOutDeezer"
 
   btnType: number = 1;
   idProgressIndicatorBtnNext = "btnNextProgressSpinner";
@@ -85,11 +93,8 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorBtnClose = "btnCloseProgressSpinner";
 
   sideIconType: number = 2;
-  idProgressIndicatorSideIconPlaylist = "sideIconPlaylistProgressSpinner";
   idProgressIndicatorSideIconUp = "sideIconUpProgressSpinner";
   idProgressIndicatorSideIconDown = "sideIconDownProgressSpinner";
-  idProgressIndicatorSideIconMusic= "sideIconMusicProgressSpinner";
-  idProgressIndicatorSideIconVideo = "sideIconVideoProgressSpinner";
 
   iconType: number = 5;
   idProgressIndicatorIconSave = "iconSaveProgressSpinner";
@@ -104,57 +109,27 @@ export class PlaylistComponent implements OnInit {
   idProgressIndicatorIconNew = "iconNewProgressSpinner";
 
   refresh = false;
+  loopProgressIndicator = false;
 
-  private notifier: NotifierService;
-  private sanitizer: DomSanitizer;
-  public dialog: MatDialog;
-  private playlistService: PlaylistService;
   public playList: Types[];
-  private router: Router;
-  private saveService: SaveService;
-  private dwelltimeService: DwelltimeService;
-  private themeService: ThemeService;
-  private translate: TranslateService;
-  private globalService: GlobalService;
-  private audioService: AudioService;
-  private defaultService: DefaultService;
-  private usersService: UsersService;
-  private authGuardService: AuthguardService;
-  private alertService: AlertService;
 
-  constructor(notifier: NotifierService,
-              sanitizer: DomSanitizer,
-              dialog: MatDialog,
-              playlistService: PlaylistService,
-              router: Router,
-              saveService: SaveService,
-              dwelltimeService: DwelltimeService,
-              themeService: ThemeService,
-              translate: TranslateService,
-              globalService: GlobalService,
-              audioService: AudioService,
-              defaultService: DefaultService,
-              usersService: UsersService,
-              authGuardService: AuthguardService,
-              alertService: AlertService) {
-    this.notifier = notifier;
-    this.sanitizer = sanitizer;
-    this.dialog = dialog;
-    this.playlistService = playlistService;
-    this.playList = playlistService.playList;
-    this.router = router;
-    this.saveService = saveService;
-    this.dwelltimeService = dwelltimeService;
-    this.themeService = themeService;
-    this.theme = this.themeService.theme;
-    this.textColor = this.themeService.themeBody;
-    this.translate = translate;
-    this.globalService = globalService;
-    this.audioService = audioService;
-    this.defaultService = defaultService;
-    this.usersService = usersService;
-    this.authGuardService = authGuardService;
-    this.alertService = alertService;
+  constructor(private notifier: NotifierService,
+              private sanitizer: DomSanitizer,
+              private dialog: MatDialog,
+              private playlistService: PlaylistService,
+              private router: Router,
+              private saveService: SaveService,
+              private dwelltimeService: DwelltimeService,
+              private themeService: ThemeService,
+              private translate: TranslateService,
+              private globalService: GlobalService,
+              private audioService: AudioService,
+              private defaultService: DefaultService,
+              private usersService: UsersService,
+              private authGuardService: AuthguardService,
+              private alertService: AlertService,
+              private languageService: LanguageService,
+              private loginNotification: LoginNotificationService) {
   }
 
   /**
@@ -181,7 +156,28 @@ export class PlaylistComponent implements OnInit {
       if (this.isPlaylistEmpty()){
         this.goEdit()
       }
-    },500 );
+    },1000 );
+    this.checkStatus();
+  }
+
+  checkStatus(){
+    this.loginNotification.getStatusDeezer();
+    setTimeout(() => {
+      if (this.loginNotification.logOnSpotify){
+        this.statusSpotify = "green";
+        this.textStatusSpotify = "playlist.logInSpotify"
+      }else {
+        this.statusSpotify = "red";
+        this.textStatusSpotify = "playlist.logOutSpotify"
+      }
+      if (this.loginNotification.logOnDeezer){
+        this.statusDeezer = "green";
+        this.textStatusDeezer = "playlist.logInDeezer"
+      }else {
+        this.statusDeezer = "red";
+        this.textStatusDeezer = "playlist.logOutDeezer"
+      }
+    }, 3000);
   }
 
   /**
@@ -331,13 +327,7 @@ export class PlaylistComponent implements OnInit {
    * If it's the case then enable edit mode
    */
   openSettings(){
-    this.isEditModeActive();
-    const settingsDialog = this.dialog.open(SettingsComponent);
-    settingsDialog.afterClosed().subscribe( () => {
-      if (this.isPlaylistEmpty()){
-        this.goEdit();
-      }
-    });
+    this.router.navigate(['/settings']);
   }
 
   /**
@@ -353,6 +343,7 @@ export class PlaylistComponent implements OnInit {
       if (this.isPlaylistEmpty()){
         this.goEdit();
       }
+      this.checkStatus();
     });
   }
 
@@ -769,16 +760,18 @@ export class PlaylistComponent implements OnInit {
   /**
    * @param elemId -> id of the element containing the spinner
    * @param spinnerId -> id of the spinner selected
+   * @param loop
    *
    * Show the spinner when the user mouseover the element
    */
-  showProgressIndicator(elemId: string, spinnerId: any) {
+  showProgressIndicator(elemId: string, spinnerId: any, loop?: boolean) {
+    clearInterval(this.timeout);
     const id = document.getElementById(elemId);
     id.style.opacity = '0.5';
-    if (this.dwelltimeService.dwellTime && (elemId != 'btnAddToPlaylistInterAACtionPlayer')){
+    if (this.dwelltimeService.dwellTime){
       const spinner = document.getElementById(String(spinnerId));
       spinner.style.visibility = 'visible';
-      this.startInterval(elemId, spinnerId, id);
+      this.startInterval(elemId, spinnerId, id, loop);
     }
   }
 
@@ -790,6 +783,7 @@ export class PlaylistComponent implements OnInit {
    * Delete the current Interval
    */
   hideProgressIndicator(elemId: string, spinnerId: any) {
+    this.loopProgressIndicator = false;
     const card = document.getElementById(elemId);
     const spinner = document.getElementById(String(spinnerId));
     card.style.opacity = '1';
@@ -803,15 +797,25 @@ export class PlaylistComponent implements OnInit {
    * @param elemId -> id of the element containing the spinner
    * @param spinnerId -> id of the spinner selected
    * @param id -> htmlElement
+   * @param loop
    *
    * When the spinner is show, launch an interval
    * When this interval is finish, simulate a user click
    * If the user leave before the end of the interval, the interval timer is reset
    */
-  startInterval(elemId: string, spinnerId: any, id: HTMLElement) {
+  startInterval(elemId: string, spinnerId: any, id: HTMLElement, loop?: boolean) {
+    if (loop != null) {
+      this.loopProgressIndicator = loop;
+    }
     this.spinnerValue = 0;
     this.timeout = setInterval(() => {
-      if (this.spinnerValue == 100){
+      if (this.spinnerValue == 100 && loop){
+        clearInterval(this.timeout);
+        setTimeout( () => {
+          id.click();
+          this.startInterval(elemId, spinnerId, id, loop);
+        }, 500);
+      }else if (this.spinnerValue == 100){
         clearInterval(this.timeout);
         setTimeout( () => {
           this.hideProgressIndicator(elemId, spinnerId);

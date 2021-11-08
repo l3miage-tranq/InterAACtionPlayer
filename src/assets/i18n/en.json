@@ -38,7 +38,11 @@
     "down": "Down",
     "music": "Music",
     "video": "Video",
-    "new" : "New playlist"
+    "new" : "New playlist",
+    "logInSpotify" : "Connected to Spotify",
+    "logOutSpotify" : "Disconnected of Spotify",
+    "logInDeezer" : "Connected to Deezer",
+    "logOutDeezer" : "Disconnected of Deezer"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",

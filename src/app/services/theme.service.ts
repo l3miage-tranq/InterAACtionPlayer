@@ -9,8 +9,8 @@ export class ThemeService {
   public themeObservable = new Subject<string>();
 
   /* theme = "" -> light theme / theme = "inverted" -> dark theme */
-  public theme = "inverted";
-  public themeBody = "darkMode";
+  public theme = "";
+  public themeBody = "";
 
   constructor() {
   }

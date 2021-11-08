@@ -8,7 +8,7 @@ export class GlobalService {
   clientId = 'cf0aa060f87b4c6e9edb2a1e067fd86a';
   clientSecret = '5beabd4b8c67453b8770e1fe309a105f';
   redirectUriHome = "http://localhost:4200/home";
-  redirectUriPlaylist = "http://localhost:4200/playlist";
+  redirectUriPlaylist = "http://localhost:4200/#/playlist";
 
   accessToken = this.getToken().subscribe(data => {this.accessToken = data['access_token'];});
 
