@@ -46,7 +46,8 @@
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",
-    "dwellTimeForm": "DwellTime Shape",
+    "dwellTimeForm": "DwellTime shape",
+    "circleForm": "Circle shape",
     "settings": "Settings",
     "themes": "Theme",
     "light": "Light",
@@ -66,7 +67,8 @@
     "enable": "Enable",
     "disable": "Disable",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "back": "Back to playlist"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",

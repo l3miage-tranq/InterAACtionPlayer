@@ -68,6 +68,7 @@ export class SettingsComponent implements OnInit {
     this.isDiskProgressEnable();
     this.isSpinnerOutsideEnable();
     this.isAlertMessageEnable();
+    this.usedLanguage= this.language.activeLanguage;
   }
 
   /**
@@ -116,6 +117,42 @@ export class SettingsComponent implements OnInit {
   diskProgressMode(value: boolean){
     this.diskProgress = value;
     this.dwellTimeService.diskProgress = value;
+    this.saveService.updateSettings();
+  }
+
+  /**
+   * Show the language currently used in the dropdown menu
+   */
+  setActiveLanguage(){
+    const elem = document.getElementById(this.usedLanguage)
+    elem.classList.add("active");
+    elem.classList.add("langues");
+  }
+
+  /**
+   * Show all languages available
+   */
+  seeLanguages(): void {
+    this.moreLanguages = !this.moreLanguages;
+    setTimeout(() => {
+      this.setActiveLanguage();
+    }, 250);
+  }
+
+  /**
+   * @param language -> the language chosen by the user
+   *
+   * Set the new language chosen by the user
+   */
+  switchLanguage(language: string){
+    const oldElem = document.getElementById(this.usedLanguage);
+    const newElem = document.getElementById(language);
+    oldElem.classList.remove("active");
+    oldElem.classList.remove("langues");
+    newElem.classList.add("active");
+    newElem.classList.add("langues");
+    this.usedLanguage = language;
+    this.language.switchLanguage(language);
     this.saveService.updateSettings();
   }
 

@@ -47,6 +47,7 @@
   "settingsPlaylist": {
     "dwellTime": "Temps de temporisation",
     "dwellTimeForm": "Forme du DwellTime",
+    "circleForm": "Forme du cercle",
     "settings": "Configurations",
     "themes": "Thème",
     "light": "Clair",
@@ -66,7 +67,8 @@
     "enable": "Activer",
     "disable": "Désactiver",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "back": "Retourner à la playlist"
   },
   "savePlaylist": {
     "title": "Sauvegarder la Playlist ?",

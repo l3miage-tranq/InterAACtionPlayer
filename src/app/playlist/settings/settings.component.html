@@ -25,6 +25,24 @@
       </div>
     </div>
     <br>
+    <div class="field">
+      <label [class]="colorText">{{ 'settingsPlaylist.languages' | translate }}</label>
+      <div class="ui vertical fuild tabular menu">
+        <a class="item" [class]="colorText" (click)="seeLanguages()">
+          {{ 'settingsPlaylist.languages' | translate }}
+          <i class="dropdown icon"></i>
+        </a>
+        <a id="en" class="item" [class]="colorText" *ngIf="moreLanguages" (click)="switchLanguage('en')">
+          {{ 'settingsPlaylist.english-language' | translate }}
+          <i class="gb uk flag"></i>
+        </a>
+        <a id="fr" class="item" [class]="colorText" *ngIf="moreLanguages" (click)="switchLanguage('fr')">
+          {{ 'settingsPlaylist.french-language' | translate }}
+          <i class="fr flag"></i>
+        </a>
+      </div>
+    </div>
+    <br>
     <div class="ui form">
       <div class="inline fields">
         <label [class]="colorText">{{ 'settingsPlaylist.dwellTime' | translate }}</label>
@@ -75,7 +93,7 @@
     </div>
     <div *ngIf="!diskProgress" class="ui form">
       <div class="inline fields">
-        <label [class]="colorText">Aucune idée bordel</label>
+        <label [class]="colorText">{{ 'settingsPlaylist.circleForm' | translate }}</label>
         <div class="field">
           <div class="ui radio checkbox">
             <input type="radio" name="dwellTimeShape2" [checked]="btnSpinnerInside" (click)="dwellTimeShape(false)">
