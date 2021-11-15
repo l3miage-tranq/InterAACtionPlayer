@@ -27,7 +27,6 @@ export class SettingsComponent implements OnInit {
   themeLightEnable: boolean = true;
   themeValue = "";
 
-  moreLanguages: boolean = false;
   usedLanguage = "";
 
   btnThemeLight;
@@ -69,6 +68,7 @@ export class SettingsComponent implements OnInit {
     this.isSpinnerOutsideEnable();
     this.isAlertMessageEnable();
     this.usedLanguage= this.language.activeLanguage;
+    this.setActiveLanguage();
   }
 
   /**
@@ -124,19 +124,11 @@ export class SettingsComponent implements OnInit {
    * Show the language currently used in the dropdown menu
    */
   setActiveLanguage(){
-    const elem = document.getElementById(this.usedLanguage)
-    elem.classList.add("active");
-    elem.classList.add("langues");
-  }
-
-  /**
-   * Show all languages available
-   */
-  seeLanguages(): void {
-    this.moreLanguages = !this.moreLanguages;
     setTimeout(() => {
-      this.setActiveLanguage();
-    }, 250);
+      const elem = document.getElementById(this.usedLanguage)
+      elem.classList.add("active");
+      elem.classList.add("langues");
+    }, 500);
   }
 
   /**

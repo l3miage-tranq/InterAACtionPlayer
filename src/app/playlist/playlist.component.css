@@ -63,7 +63,9 @@ figcaption{
   opacity: 1;
 }
 
-
+.centerTitle{
+  text-align: center;
+}
 
 .btnCircular{
   width: 150px;

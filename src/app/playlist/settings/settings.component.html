@@ -28,15 +28,15 @@
     <div class="field">
       <label [class]="colorText">{{ 'settingsPlaylist.languages' | translate }}</label>
       <div class="ui vertical fuild tabular menu">
-        <a class="item" [class]="colorText" (click)="seeLanguages()">
+        <a class="item" [class]="colorText">
           {{ 'settingsPlaylist.languages' | translate }}
           <i class="dropdown icon"></i>
         </a>
-        <a id="en" class="item" [class]="colorText" *ngIf="moreLanguages" (click)="switchLanguage('en')">
+        <a id="en" class="item" [class]="colorText" (click)="switchLanguage('en')">
           {{ 'settingsPlaylist.english-language' | translate }}
           <i class="gb uk flag"></i>
         </a>
-        <a id="fr" class="item" [class]="colorText" *ngIf="moreLanguages" (click)="switchLanguage('fr')">
+        <a id="fr" class="item" [class]="colorText" (click)="switchLanguage('fr')">
           {{ 'settingsPlaylist.french-language' | translate }}
           <i class="fr flag"></i>
         </a>
