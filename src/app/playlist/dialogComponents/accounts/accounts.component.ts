@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from '../../../../../projects/spotify/src/app/services/global.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
+import {LoginNotificationService} from "../../services/login-notification.service";
 
 /**
  * Import functions javascript
@@ -20,7 +21,8 @@ export class AccountsComponent implements OnInit {
   constructor(private dialog: MatDialog,
               private globalService: GlobalService,
               private notifier: NotifierService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private loginNotification: LoginNotificationService) {
   }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class AccountsComponent implements OnInit {
    * Allows the user to logout Spotify
    */
   logoutSpotify(){
+    this.loginNotification.logOnSpotify = false;
     this.globalService.getLogoutAccountSpotify();
     this.notifier.notify('warning',this.translate.instant('notifier.logoutSpotify'));
   }

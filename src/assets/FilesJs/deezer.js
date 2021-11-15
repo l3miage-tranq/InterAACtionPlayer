@@ -85,3 +85,17 @@ function loginDeezer(){
 function logoutDeezer(){
   DZ.logout();
 }
+
+function initStatusDeezer(){
+  DZ.getLoginStatus(function(response) {
+    if (response.authResponse) {
+      status = response.status;
+    } else {
+      status = response.status;
+    }
+  });
+}
+
+function getStatusDeezer(){
+  return status;
+}

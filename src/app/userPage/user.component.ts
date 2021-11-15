@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
     this.saveService.updatePlaylist();
     this.saveService.updateSettings();
     this.saveService.updateMapPlaylist();
-    this.router.navigate(['playlist']);
+    this.router.navigate(['/playlist']);
   }
 
   /**
@@ -74,7 +74,7 @@ export class UserComponent implements OnInit {
     this.usersService.typeUser = "user";
     this.usersService.idUser = id;
     this.saveService.updateUser();
-    this.router.navigate(['playlist']);
+    this.router.navigate(['/playlist']);
   }
 
   /**

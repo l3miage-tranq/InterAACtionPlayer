@@ -38,11 +38,16 @@
     "down": "Down",
     "music": "Music",
     "video": "Video",
-    "new" : "New playlist"
+    "new" : "New playlist",
+    "logInSpotify" : "Connected to Spotify",
+    "logOutSpotify" : "Disconnected of Spotify",
+    "logInDeezer" : "Connected to Deezer",
+    "logOutDeezer" : "Disconnected of Deezer"
   },
   "settingsPlaylist": {
     "dwellTime": "DwellTime",
-    "dwellTimeForm": "DwellTime Shape",
+    "dwellTimeForm": "DwellTime shape",
+    "circleForm": "Circle shape",
     "settings": "Settings",
     "themes": "Theme",
     "light": "Light",
@@ -62,7 +67,8 @@
     "enable": "Enable",
     "disable": "Disable",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "back": "Back to playlist"
   },
   "savePlaylist": {
     "title": "Save Playlist ?",
