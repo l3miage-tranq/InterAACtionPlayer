@@ -63,7 +63,7 @@ figcaption{
   opacity: 1;
 }
 
-.title{
+.centerTitle{
   text-align: center;
 }
 
@@ -71,7 +71,7 @@ figcaption{
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  transition: opacity 5s;
+  transition: opacity 10s;
 }
 
 .btnIcon{
@@ -93,13 +93,41 @@ figcaption{
   z-index: 1;
 }
 
-.header {
+.imageAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  visibility: visible;
+  display: inline-block;
+  height: 6rem;
+  width: 9rem;
+  margin: 0;
+}
+
+.imageInterAACtionBoxAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 4rem;
+  width: 8rem;
+  margin: 0;
+  float: right;
+}
+
+.header{
   margin: 1em 0 1em 0;
+  display: inline-block;
+}
+
+.pageTitle{
+  text-align: center;
+  margin: 0 50px 0 0;
+  padding-top: 2rem;
 }
 
 .ui.labeled.icon.menu .item{
-  height: 25%;
-  padding-top: 120%;
+  height: 50%;
+  padding-top: 250%;
 }
 
 .darkMode{
@@ -110,10 +138,40 @@ figcaption{
   color: black;
 }
 
-  /* ------------------------------ ID ------------------------------------ */
+.noMargin{
+  margin: 0 5px 0 0 !important;
+}
+
+.circular{
+  transform: translateY(7px);
+}
+
+.titleHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.topBarAFSRLogo{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ------------------------------ ID ------------------------------------ */
 
 #myFileAudio{
   margin-top: 50px !important;
+}
+
+#statusLogin{
+  float: right;
+  margin-top: 1%;
+  margin-right: 2%;
 }
 
 /* -------------------------- Drag&Drop --------------------------------- */
