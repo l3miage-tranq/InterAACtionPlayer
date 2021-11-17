@@ -7,7 +7,7 @@ var status;
 function initDeezer(){
   DZ.init({
     appId : '479942',
-    channelUrl : 'http://localhost:4200',
+    channelUrl : 'https://interaactionplayer.imag.fr/stable/',
   });
 }
 
