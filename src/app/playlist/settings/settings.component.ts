@@ -8,6 +8,7 @@ import { LanguageService } from "../../services/language.service";
 import { SaveService } from "../../services/save.service";
 import { TranslateService } from "@ngx-translate/core";
 import { AlertService } from "../services/alert.service";
+import {DefaultService} from "../../services/default.service";
 
 @Component({
   selector: 'app-settings',
@@ -53,7 +54,8 @@ export class SettingsComponent implements OnInit {
               private language: LanguageService,
               private saveService: SaveService,
               private translate: TranslateService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public defaultService: DefaultService) {
   }
 
   ngOnInit(): void {

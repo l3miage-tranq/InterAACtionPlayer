@@ -21,3 +21,9 @@ label ,a{
 #inputDwellTime{
   margin-left: 10px;
 }
+
+.version{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
