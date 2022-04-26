@@ -235,6 +235,79 @@ export class SaveService {
   }
 
   /**
+   * We recovery the recorded elem of playlist in database
+   */
+  initPlaylistAFSR(){
+
+    // Opening of the Database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Recovery of the recorded Playlist
+      const playlistStore = db.transaction(['Playlist'], 'readwrite').objectStore('Playlist').get(this.userService.idUser);
+      playlistStore.onsuccess = e => {
+        this.playlistService.playList = playlistStore.result;
+      };
+      playlistStore.onerror = event => {
+        alert('PlaylistStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Playlist name
+      const playlistNameStore = db.transaction(['PlaylistName'], 'readwrite').objectStore('PlaylistName').get(this.userService.idUser);
+      playlistNameStore.onsuccess = e => {
+        this.playlistService.nameActualPlaylist = playlistNameStore.result;
+      };
+      playlistNameStore.onerror = event => {
+        alert('playlistNameStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Theme
+      const themeStore = db.transaction(['Theme'], 'readwrite').objectStore('Theme').get(this.userService.idUser);
+      themeStore.onsuccess = e => {
+        this.themeService.emitTheme(themeStore.result);
+      };
+      themeStore.onerror = event => {
+        alert('ThemeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded DwellTime
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite').objectStore('DwellTime').get(this.userService.idUser);
+      dwellTimeStore.onsuccess = e => {
+        this.dwellTimeService.setConfiguration(dwellTimeStore.result);
+      };
+      dwellTimeStore.onerror = event => {
+        alert('DwellTimeStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded Alert Message
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite').objectStore('alertMessage').get(this.userService.idUser);
+      alertMessageStore.onsuccess = e => {
+        this.alertService.doNotShowAgain = alertMessageStore.result;
+      };
+      alertMessageStore.onerror = event => {
+        alert('alertMessageStore error: ' + event.target.errorCode);
+      };
+
+      // Recovery of the recorded mapPlaylist
+      const mapPlaylistStore = db.transaction(['mapPlaylist'], 'readwrite').objectStore('mapPlaylist').get(this.userService.idUser);
+      mapPlaylistStore.onsuccess = e => {
+        this.playlistService.mapPlaylist = mapPlaylistStore.result;
+      };
+      mapPlaylistStore.onerror = event => {
+        alert('mapPlaylistStore error: ' + event.target.errorCode);
+      };
+    };
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
+
+  /**
    * Allows to save the Playlist in the database
    */
   updatePlaylist() {
@@ -294,6 +367,57 @@ export class SaveService {
    * Allows to save the Settings in the database
    */
   updateSettings(){
+
+    // Opening of the database
+    this.openRequest = indexedDB.open('SavePlaylist', this.version);
+
+    // Success open Database
+    this.openRequest.onsuccess = event => {
+      const db = event.target.result;
+
+      // Update Theme Store
+      const themeStore = db.transaction(['Theme'], 'readwrite');
+      const themeObjectStore = themeStore.objectStore('Theme');
+      const storeThemeRequest = themeObjectStore.get(this.userService.idUser);
+      storeThemeRequest.onsuccess = () => {
+        themeObjectStore.put(this.themeService.theme, this.userService.idUser);
+      };
+
+      // Update Language Store
+      const languageStore = db.transaction(['Language'], 'readwrite');
+      const languageObjectStore = languageStore.objectStore('Language');
+      const storeLanguageRequest = languageObjectStore.get(this.userService.idUser);
+      storeLanguageRequest.onsuccess = () => {
+        languageObjectStore.put(this.languageService.activeLanguage, this.userService.idUser);
+      };
+
+      // Update DwellTime Store
+      const dwellTimeStore = db.transaction(['DwellTime'], 'readwrite');
+      const dwellTimeObjectStore = dwellTimeStore.objectStore('DwellTime');
+      const storeDwellTimeRequest = dwellTimeObjectStore.get(this.userService.idUser);
+      storeDwellTimeRequest.onsuccess = () => {
+        dwellTimeObjectStore.put(this.dwellTimeService.getConfiguration(), this.userService.idUser);
+      };
+
+      // Update Alert Message Store
+      const alertMessageStore = db.transaction(['alertMessage'], 'readwrite');
+      const alertMessageObjectStore = alertMessageStore.objectStore('alertMessage');
+      const storeAlertMessageRequest = alertMessageObjectStore.get(this.userService.idUser);
+      storeAlertMessageRequest.onsuccess = () => {
+        alertMessageObjectStore.put(this.alertService.doNotShowAgain, this.userService.idUser);
+      };
+    }
+
+    // Error open Database
+    this.openRequest.onerror = event => {
+      alert('Database error: ' + event.target.errorCode);
+    };
+  }
+
+  /**
+   * Allows to save the Settings in the database
+   */
+  updateSettingsAFSR(){
 
     // Opening of the database
     this.openRequest = indexedDB.open('SavePlaylist', this.version);

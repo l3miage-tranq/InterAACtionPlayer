@@ -39,6 +39,8 @@ import { LanguageService } from "../services/language.service";
  * Import Models
  */
 import { Types } from './model/types-interface';
+import {DialogSiteASFRComponent} from "../dialog-site-asfr/dialog-site-asfr.component";
+import {DialogLinkInteraactionboxComponent} from "./dialogComponents/dialog-link-interaactionbox/dialog-link-interaactionbox.component";
 
 /**
  * Import functions javascript
@@ -128,7 +130,7 @@ export class PlaylistComponent implements OnInit {
               private usersService: UsersService,
               private authGuardService: AuthguardService,
               private alertService: AlertService,
-              private languageService: LanguageService,
+              public languageService: LanguageService,
               private loginNotification: LoginNotificationService) {
   }
 
@@ -860,5 +862,30 @@ export class PlaylistComponent implements OnInit {
    */
   displaySideBar(){
     return document.body.scrollHeight > document.body.offsetHeight;
+  }
+  getBrightnessOfAFSRLogo() {
+    return (this.theme =='') ? '1' : '10';
+  }
+
+  getBrightnessOfInterAACtionBoxAFSRLogo() {
+    return (this.theme =='') ? '0.2' : '1';
+  }
+
+  getColorOfTitle(){
+    return (this.theme =='') ? '#81197f' : 'white';
+  }
+
+  openDialogSiteASFR() {
+    this.dialog.open(DialogSiteASFRComponent,{
+      height: '90%',
+      width: '90%'
+    });
+  }
+
+  openDialogSiteInteraactionBox() {
+    this.dialog.open(DialogLinkInteraactionboxComponent,{
+      height: '90%',
+      width: '90%'
+    });
   }
 }

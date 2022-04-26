@@ -29,6 +29,8 @@
     "cors": "^2.8.5",
     "export-from-json": "^1.4.1",
     "jquery": "^3.6.0",
+    "ng-connection-service": "^1.0.4",
+    "ng-speed-test": "^2.2.0",
     "ngx-audio-player": "^11.0.4",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",

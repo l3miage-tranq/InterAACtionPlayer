@@ -23,12 +23,22 @@
 </div>
 <div id="playlist" class="ui centered grid">
   <div class="fourteen wide column">
-    <div class="centerTitle">
+    <div *ngIf="!languageService.AFSR" class="centerTitle">
       <h1 [ngClass]="theme" class="ui centered aligned header">
       <span>
         {{ "playlist.title" | translate }}
       </span>
       </h1>
+    </div>
+    <div *ngIf="languageService.AFSR" class="titleHeader">
+      <h1 [ngClass]="theme" class="ui centered aligned header pageTitle" [ngStyle]="{'color': this.getColorOfTitle()}">
+      <span>
+        {{ "playlist.title" | translate }}
+      </span>
+      </h1>
+      <a class="imageAFSR" (click)="openDialogSiteASFR()"
+         [ngStyle]="{ 'background-image': 'url(assets/Logo-AFSR.png)','filter' : 'brightness('+this.getBrightnessOfAFSRLogo()+')' }">
+      </a>
     </div>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="left menu">
