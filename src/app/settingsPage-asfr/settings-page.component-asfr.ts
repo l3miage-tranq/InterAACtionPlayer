@@ -11,10 +11,10 @@ import {AlertService} from "../playlist/services/alert.service";
 
 @Component({
   selector: 'app-settings-page',
-  templateUrl: './settings-page.component.html',
-  styleUrls: ['./settings-page.component.css']
+  templateUrl: './settings-page.component-asfr.html',
+  styleUrls: ['./settings-page.component-asfr.css']
 })
-export class SettingsPageComponent implements OnInit {
+export class SettingsPageComponentAsfr implements OnInit {
 
   dwellTimeEnable: boolean;
   dwellTimeValue: number;

@@ -82,12 +82,13 @@ import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
 import { SpotifyRedirectComponent } from './spotifyRedirect/spotify-redirect.component';
 import {DialogSiteASFRComponent} from "./dialog-site-asfr/dialog-site-asfr.component";
 import {DialogLinkInteraactionboxComponent} from "./playlist/dialogComponents/dialog-link-interaactionbox/dialog-link-interaactionbox.component";
-import {SettingsPageComponent} from "./settingsPage/settings-page.component";
+import {SettingsPageComponentAsfr} from "./settingsPage-asfr/settings-page.component-asfr";
 import {ErrorPageComponent} from "./errorPage/error-page.component";
 import {LoadingPageComponent} from "./loadingPage/loading-page.component";
 import {LogoutAppComponent} from "./playlist/dialogComponents/logoutApp/logout-app.component";
 import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
 import {SpeedTestModule} from "ng-speed-test";
+import {SettingsPageComponent} from "./playlist/settingsPage/settings-page.component";
 
 @NgModule({
   declarations: [
@@ -96,7 +97,7 @@ import {SpeedTestModule} from "ng-speed-test";
     DialogChooseTypeComponent,
     ImportfileComponent,
     ExportfileComponent,
-    SettingsPageComponent,
+    SettingsPageComponentAsfr,
     ProgressIndicatorComponent,
     AudioPlayerComponent,
     DeleteDialogComponent,
@@ -119,7 +120,8 @@ import {SpeedTestModule} from "ng-speed-test";
     ErrorPageComponent,
     LoadingPageComponent,
     LogoutAppComponent,
-    SettingsComponent
+    SettingsComponent,
+    SettingsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -135,14 +137,14 @@ import {SpeedTestModule} from "ng-speed-test";
       {path: 'user', component: UserComponent},
       {path: 'playlist', component: PlaylistComponent},
       {path: 'access_token', component: SpotifyRedirectComponent},
-      {path: 'settings', component: SettingsPageComponent},
+      {path: 'settings', component: SettingsPageComponentAsfr},
       {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
       //{path: '', redirectTo: 'user', pathMatch: 'full'},
       {path: ':lg/connect/:id', component: LoadingPageComponent},
       {path: ':lg/playlist', component: PlaylistComponent},
-      {path: ':lg/settings', component: SettingsPageComponent},
+      {path: ':lg/settings', component: SettingsPageComponentAsfr},
       {path: ':lg/error', component: ErrorPageComponent},
       {path: ':lg/youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
       {path: ':lg/spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},

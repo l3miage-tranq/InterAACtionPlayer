@@ -327,7 +327,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
-   * If edit mode is On, disable it and open SettingsPageComponent
+   * If edit mode is On, disable it and open SettingsPageComponentAsfr
    * Then check if the playlist is empty
    * If it's the case then enable edit mode
    */
