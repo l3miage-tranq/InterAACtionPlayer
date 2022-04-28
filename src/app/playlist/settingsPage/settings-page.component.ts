@@ -12,10 +12,10 @@ import {DefaultService} from "../../services/default.service";
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  templateUrl: './settings-page.component.html',
+  styleUrls: ['./settings-page.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsPageComponent implements OnInit {
 
   dwellTimeEnable: boolean;
   dwellTimeValue: number;

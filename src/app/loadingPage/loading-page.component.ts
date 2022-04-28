@@ -24,6 +24,7 @@ export class LoadingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.languageService.AFSR = true;
     this.getUser();
     setTimeout(() => {
       this.endLoading();

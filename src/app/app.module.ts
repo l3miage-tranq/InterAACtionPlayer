@@ -39,7 +39,6 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { DialogChooseTypeComponent } from './playlist/dialogComponents/choosePlatform/dialog-choose-type.component';
 import { PlaylistService } from './playlist/services/playlist.service';
 import { ExportfileComponent } from './playlist/dialogComponents/exportFile/exportfile.component';
-import { SettingsComponent} from "./playlist/settings/settings.component";
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import { AudioPlayerComponent } from './playlist/audioPlayer/filePlayer/audio-player.component';
@@ -86,6 +85,9 @@ import {DialogLinkInteraactionboxComponent} from "./playlist/dialogComponents/di
 import {SettingsPageComponent} from "./settingsPage/settings-page.component";
 import {ErrorPageComponent} from "./errorPage/error-page.component";
 import {LoadingPageComponent} from "./loadingPage/loading-page.component";
+import {LogoutAppComponent} from "./playlist/dialogComponents/logoutApp/logout-app.component";
+import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
+import {SpeedTestModule} from "ng-speed-test";
 
 @NgModule({
   declarations: [
@@ -94,7 +96,7 @@ import {LoadingPageComponent} from "./loadingPage/loading-page.component";
     DialogChooseTypeComponent,
     ImportfileComponent,
     ExportfileComponent,
-    SettingsComponent,
+    SettingsPageComponent,
     ProgressIndicatorComponent,
     AudioPlayerComponent,
     DeleteDialogComponent,
@@ -114,12 +116,14 @@ import {LoadingPageComponent} from "./loadingPage/loading-page.component";
     SpotifyRedirectComponent,
     DialogSiteASFRComponent,
     DialogLinkInteraactionboxComponent,
-    SettingsPageComponent,
     ErrorPageComponent,
-    LoadingPageComponent
+    LoadingPageComponent,
+    LogoutAppComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
+    SpeedTestModule,
     BrowserAnimationsModule,
     NotifierModule.withConfig(customNotifierOptions),
     MatDialogModule,
@@ -131,7 +135,7 @@ import {LoadingPageComponent} from "./loadingPage/loading-page.component";
       {path: 'user', component: UserComponent},
       {path: 'playlist', component: PlaylistComponent},
       {path: 'access_token', component: SpotifyRedirectComponent},
-      {path: 'settings', component: SettingsComponent},
+      {path: 'settings', component: SettingsPageComponent},
       {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},

@@ -116,12 +116,20 @@
           <i class="big user icon"></i>
           <app-progress-indicator [id]="idProgressIndicatorIconUser" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a id="logoutIcon" class="item" (click)="logout()"
+        <a *ngIf="!this.languageService.AFSR" id="logoutIcon" class="item" (click)="logout()"
            (mouseenter)="showProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); showBtn('logoutIcon')"
            (mouseleave)="hideProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); hideBtn('logoutIcon')"
            matTooltip="{{'playlist.logoutBtn' | translate}}"
            matTooltipPosition="before">
           <i class="big open door icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconLogout" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+        </a>
+        <a *ngIf="this.languageService.AFSR" id="logoutIconAFSR" class="item" (click)="logoutAFSR()"
+           (mouseenter)="showProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); showBtn('logoutIcon')"
+           (mouseleave)="hideProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); hideBtn('logoutIcon')"
+           matTooltip="{{'playlist.logoutBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="big power off icon"></i>
           <app-progress-indicator [id]="idProgressIndicatorIconLogout" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
       </div>

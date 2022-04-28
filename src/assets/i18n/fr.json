@@ -121,6 +121,12 @@
     "cancel": "Annuler",
     "submit": "Modifer"
   },
+  "logoutApp": {
+    "title": "Quitter InterAACtion Player ?",
+    "text": "Voulez-vous quitter InterAACtion Player et revenir au menu ?",
+    "yes": "Oui",
+    "no": "Non"
+  },
   "account": {
     "title": "Comptes",
     "spotify": "Compte Spotify",
@@ -162,6 +168,16 @@
     "choice": "Liste de Playlist pré-enregistré",
     "cancel": "Annuler",
     "add": "Ajouter"
+  },
+  "error": {
+    "errorTitle": "Erreur connexion internet !",
+    "positiveTitle": "Connexion internet réussie !",
+    "errorMessage": "Il semblerait que vous ne soyez plus connecté à internet !",
+    "positiveMessage": "Vous êtes bien connecté à internet !",
+    "exitApp": "Quitter interAACtion Player",
+    "checkConnexion": "Tester sa connexion",
+    "goPlaylist": "Retourner à sa playlist",
+    "goOfflinePlaylist": "Retourner à sa playlist en hors ligne"
   },
   "alert": {
     "titleMerge": "Attention, fusion de la Playlist demandé !",
@@ -206,7 +222,8 @@
     "english": "Anglais",
     "sun": "Thème clair",
     "moon": "Thème sombre",
-    "editBtn": "Mode édition"
+    "editBtn": "Mode édition",
+    "logoutBtn": "Déconnexion"
   },
   "userForm": {
     "title": "Nouvelle utilisateur",
