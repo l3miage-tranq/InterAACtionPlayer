@@ -15,7 +15,7 @@ import { UsersService } from './users.service';
 })
 export class DefaultService {
 
-  VERSION = "InteraactionPlayer v.2021.11.17";
+  VERSION = "InteraactionPlayer v.2022.05.03";
 
   constructor(private dwellTimeService: DwelltimeService,
               private languageService: LanguageService,
