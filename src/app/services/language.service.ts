@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LanguageService {
 
   public activeLanguage: string = 'fr';
+  public AFSR:boolean = false;
 
   /**
    * @param translate -> Initialize ngx-translate library
@@ -26,5 +27,9 @@ export class LanguageService {
   public switchLanguage(language: string){
     this.activeLanguage = language;
     this.translate.use(language);
+  }
+
+  public getLanguage(){
+    return location.href.substring(24, 26);
   }
 }

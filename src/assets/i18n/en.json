@@ -157,6 +157,16 @@
     "import": "Import file",
     "acceptedFile": "File well received"
   },
+  "error": {
+    "errorTitle": "Internet connection error !",
+    "positiveTitle": "Internet connection successful !",
+    "errorMessage": "It seems that you are no longer connected to internet !",
+    "positiveMessage": "You are well connected to internet !",
+    "exitApp": "Exit interAACtion Player",
+    "checkConnexion": "Check internet connexion",
+    "goPlaylist": "Go to playlist",
+    "goOfflinePlaylist": "Go to playlist in offline"
+  },
   "prefabricatedPlaylist": {
     "title": "Prefabricated Playlist",
     "choice": "List of prefabricated Playlist",
@@ -206,7 +216,8 @@
     "english": "English",
     "sun": "Light theme",
     "moon": "Dark theme",
-    "editBtn": "Edit mode"
+    "editBtn": "Edit mode",
+    "logoutBtn": "Logout"
   },
   "userForm": {
     "title": "New User",

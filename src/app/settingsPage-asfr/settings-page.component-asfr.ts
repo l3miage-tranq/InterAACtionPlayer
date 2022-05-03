@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthguardService } from "../../services/authguard.service";
-import { DwelltimeService } from "../../services/dwelltime.service";
-import { MatDialog } from "@angular/material/dialog";
-import { NotifierService } from "angular-notifier";
-import { ThemeService } from "../../services/theme.service";
-import { LanguageService } from "../../services/language.service";
-import { SaveService } from "../../services/save.service";
-import { TranslateService } from "@ngx-translate/core";
-import { AlertService } from "../services/alert.service";
-import {DefaultService} from "../../services/default.service";
+import { AuthguardService } from "../services/authguard.service";
+import {DwelltimeService} from "../services/dwelltime.service";
+import {MatDialog} from "@angular/material/dialog";
+import {NotifierService} from "angular-notifier";
+import {ThemeService} from "../services/theme.service";
+import {LanguageService} from "../services/language.service";
+import {SaveService} from "../services/save.service";
+import {TranslateService} from "@ngx-translate/core";
+import {AlertService} from "../playlist/services/alert.service";
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  selector: 'app-settings-page',
+  templateUrl: './settings-page.component-asfr.html',
+  styleUrls: ['./settings-page.component-asfr.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsPageComponentAsfr implements OnInit {
 
   dwellTimeEnable: boolean;
   dwellTimeValue: number;
@@ -28,6 +27,7 @@ export class SettingsComponent implements OnInit {
   themeLightEnable: boolean = true;
   themeValue = "";
 
+  moreLanguages: boolean = false;
   usedLanguage = "";
 
   btnThemeLight;
@@ -54,12 +54,10 @@ export class SettingsComponent implements OnInit {
               private language: LanguageService,
               private saveService: SaveService,
               private translate: TranslateService,
-              private alertService: AlertService,
-              public defaultService: DefaultService) {
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
-    this.authGuardService.canAccess();
     setTimeout(() => {
       this.ready = true;
     }, 500);
@@ -69,8 +67,6 @@ export class SettingsComponent implements OnInit {
     this.isDiskProgressEnable();
     this.isSpinnerOutsideEnable();
     this.isAlertMessageEnable();
-    this.usedLanguage= this.language.activeLanguage;
-    this.setActiveLanguage();
   }
 
   /**
@@ -119,34 +115,6 @@ export class SettingsComponent implements OnInit {
   diskProgressMode(value: boolean){
     this.diskProgress = value;
     this.dwellTimeService.diskProgress = value;
-    this.saveService.updateSettings();
-  }
-
-  /**
-   * Show the language currently used in the dropdown menu
-   */
-  setActiveLanguage(){
-    setTimeout(() => {
-      const elem = document.getElementById(this.usedLanguage)
-      elem.classList.add("active");
-      elem.classList.add("langues");
-    }, 500);
-  }
-
-  /**
-   * @param language -> the language chosen by the user
-   *
-   * Set the new language chosen by the user
-   */
-  switchLanguage(language: string){
-    const oldElem = document.getElementById(this.usedLanguage);
-    const newElem = document.getElementById(language);
-    oldElem.classList.remove("active");
-    oldElem.classList.remove("langues");
-    newElem.classList.add("active");
-    newElem.classList.add("langues");
-    this.usedLanguage = language;
-    this.language.switchLanguage(language);
     this.saveService.updateSettings();
   }
 

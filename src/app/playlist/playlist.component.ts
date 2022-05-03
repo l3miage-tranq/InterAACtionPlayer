@@ -39,6 +39,10 @@ import { LanguageService } from "../services/language.service";
  * Import Models
  */
 import { Types } from './model/types-interface';
+import {DialogSiteASFRComponent} from "../dialog-site-asfr/dialog-site-asfr.component";
+import {DialogLinkInteraactionboxComponent} from "./dialogComponents/dialog-link-interaactionbox/dialog-link-interaactionbox.component";
+import {LogoutAppComponent} from "./dialogComponents/logoutApp/logout-app.component";
+import {StatusInternetService} from "../services/status-internet.service";
 
 /**
  * Import functions javascript
@@ -128,8 +132,9 @@ export class PlaylistComponent implements OnInit {
               private usersService: UsersService,
               private authGuardService: AuthguardService,
               private alertService: AlertService,
-              private languageService: LanguageService,
-              private loginNotification: LoginNotificationService) {
+              public languageService: LanguageService,
+              private loginNotification: LoginNotificationService,
+              private statusInternet: StatusInternetService) {
   }
 
   /**
@@ -322,7 +327,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   /**
-   * If edit mode is On, disable it and open SettingsComponent
+   * If edit mode is On, disable it and open SettingsPageComponentAsfr
    * Then check if the playlist is empty
    * If it's the case then enable edit mode
    */
@@ -435,6 +440,17 @@ export class PlaylistComponent implements OnInit {
     logoutDeezer();
     this.globalService.getLogoutAccountSpotify();
     this.router.navigate(['user']);
+  }
+
+  /**
+   * Allows the user to logout and return on the user page
+   */
+  logoutAFSR(){
+    if (this.statusInternet.getStatusInternet()){
+      logoutDeezer();
+      this.globalService.getLogoutAccountSpotify();
+    }
+    this.dialog.open(LogoutAppComponent);
   }
 
   /**
@@ -860,5 +876,30 @@ export class PlaylistComponent implements OnInit {
    */
   displaySideBar(){
     return document.body.scrollHeight > document.body.offsetHeight;
+  }
+  getBrightnessOfAFSRLogo() {
+    return (this.theme =='') ? '1' : '10';
+  }
+
+  getBrightnessOfInterAACtionBoxAFSRLogo() {
+    return (this.theme =='') ? '0.2' : '1';
+  }
+
+  getColorOfTitle(){
+    return (this.theme =='') ? '#81197f' : 'white';
+  }
+
+  openDialogSiteASFR() {
+    this.dialog.open(DialogSiteASFRComponent,{
+      height: '90%',
+      width: '90%'
+    });
+  }
+
+  openDialogSiteInteraactionBox() {
+    this.dialog.open(DialogLinkInteraactionboxComponent,{
+      height: '90%',
+      width: '90%'
+    });
   }
 }

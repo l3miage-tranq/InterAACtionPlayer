@@ -23,12 +23,22 @@
 </div>
 <div id="playlist" class="ui centered grid">
   <div class="fourteen wide column">
-    <div class="centerTitle">
+    <div *ngIf="!languageService.AFSR" class="centerTitle">
       <h1 [ngClass]="theme" class="ui centered aligned header">
       <span>
         {{ "playlist.title" | translate }}
       </span>
       </h1>
+    </div>
+    <div *ngIf="languageService.AFSR" class="titleHeader">
+      <h1 [ngClass]="theme" class="ui centered aligned header pageTitle" [ngStyle]="{'color': this.getColorOfTitle()}">
+      <span>
+        {{ "playlist.title" | translate }}
+      </span>
+      </h1>
+      <a class="imageAFSR" (click)="openDialogSiteASFR()"
+         [ngStyle]="{ 'background-image': 'url(assets/Logo-AFSR.png)','filter' : 'brightness('+this.getBrightnessOfAFSRLogo()+')' }">
+      </a>
     </div>
     <div [ngClass]="theme" class="ui secondary menu">
       <div class="left menu">
@@ -106,12 +116,20 @@
           <i class="big user icon"></i>
           <app-progress-indicator [id]="idProgressIndicatorIconUser" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
-        <a id="logoutIcon" class="item" (click)="logout()"
+        <a *ngIf="!this.languageService.AFSR" id="logoutIcon" class="item" (click)="logout()"
            (mouseenter)="showProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); showBtn('logoutIcon')"
            (mouseleave)="hideProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); hideBtn('logoutIcon')"
            matTooltip="{{'playlist.logoutBtn' | translate}}"
            matTooltipPosition="before">
           <i class="big open door icon"></i>
+          <app-progress-indicator [id]="idProgressIndicatorIconLogout" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
+        </a>
+        <a *ngIf="this.languageService.AFSR" id="logoutIconAFSR" class="item" (click)="logoutAFSR()"
+           (mouseenter)="showProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); showBtn('logoutIcon')"
+           (mouseleave)="hideProgressIndicator('logoutIcon', idProgressIndicatorIconLogout); hideBtn('logoutIcon')"
+           matTooltip="{{'playlist.logoutBtn' | translate}}"
+           matTooltipPosition="before">
+          <i class="big power off icon"></i>
           <app-progress-indicator [id]="idProgressIndicatorIconLogout" [spinnerValue]="spinnerValue" [type]="iconType"></app-progress-indicator>
         </a>
       </div>

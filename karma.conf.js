@@ -5,6 +5,10 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    files: [
+      "src/assets/FilesJs/visualizer.js",
+      "src/assets/FilesJs/deezer.js"
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),

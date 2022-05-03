@@ -39,7 +39,6 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { DialogChooseTypeComponent } from './playlist/dialogComponents/choosePlatform/dialog-choose-type.component';
 import { PlaylistService } from './playlist/services/playlist.service';
 import { ExportfileComponent } from './playlist/dialogComponents/exportFile/exportfile.component';
-import { SettingsComponent} from "./playlist/settings/settings.component";
 import { ProgressIndicatorComponent } from './playlist/progressIndicator/progress-indicator.component';
 import { ImportfileComponent } from './playlist/dialogComponents/importFile/importfile.component';
 import { AudioPlayerComponent } from './playlist/audioPlayer/filePlayer/audio-player.component';
@@ -81,6 +80,15 @@ import { MapPipe } from './playlist/pipe/map.pipe';
 import { PipesModule } from '../../projects/spotify/src/app/pipes/pipes.module';
 import { PipeModule } from '../../projects/deezer/src/app/pipe/pipe.module';
 import { SpotifyRedirectComponent } from './spotifyRedirect/spotify-redirect.component';
+import {DialogSiteASFRComponent} from "./dialog-site-asfr/dialog-site-asfr.component";
+import {DialogLinkInteraactionboxComponent} from "./playlist/dialogComponents/dialog-link-interaactionbox/dialog-link-interaactionbox.component";
+import {SettingsPageComponentAsfr} from "./settingsPage-asfr/settings-page.component-asfr";
+import {ErrorPageComponent} from "./errorPage/error-page.component";
+import {LoadingPageComponent} from "./loadingPage/loading-page.component";
+import {LogoutAppComponent} from "./playlist/dialogComponents/logoutApp/logout-app.component";
+import { SettingsComponent } from './playlist/dialogComponents/settings/settings.component';
+import {SpeedTestModule} from "ng-speed-test";
+import {SettingsPageComponent} from "./playlist/settingsPage/settings-page.component";
 
 @NgModule({
   declarations: [
@@ -89,7 +97,7 @@ import { SpotifyRedirectComponent } from './spotifyRedirect/spotify-redirect.com
     DialogChooseTypeComponent,
     ImportfileComponent,
     ExportfileComponent,
-    SettingsComponent,
+    SettingsPageComponentAsfr,
     ProgressIndicatorComponent,
     AudioPlayerComponent,
     DeleteDialogComponent,
@@ -106,10 +114,18 @@ import { SpotifyRedirectComponent } from './spotifyRedirect/spotify-redirect.com
     DeezerPlayerComponent,
     AccountsComponent,
     ImportuserComponent,
-    SpotifyRedirectComponent
+    SpotifyRedirectComponent,
+    DialogSiteASFRComponent,
+    DialogLinkInteraactionboxComponent,
+    ErrorPageComponent,
+    LoadingPageComponent,
+    LogoutAppComponent,
+    SettingsComponent,
+    SettingsPageComponent
   ],
   imports: [
     BrowserModule,
+    SpeedTestModule,
     BrowserAnimationsModule,
     NotifierModule.withConfig(customNotifierOptions),
     MatDialogModule,
@@ -121,11 +137,20 @@ import { SpotifyRedirectComponent } from './spotifyRedirect/spotify-redirect.com
       {path: 'user', component: UserComponent},
       {path: 'playlist', component: PlaylistComponent},
       {path: 'access_token', component: SpotifyRedirectComponent},
-      {path: 'settings', component: SettingsComponent},
+      {path: 'settings', component: SettingsPageComponentAsfr},
       {path: 'youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
       {path: 'spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
       {path: 'deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
-      {path: '', redirectTo: 'user', pathMatch: 'full'},
+      //{path: '', redirectTo: 'user', pathMatch: 'full'},
+      {path: ':lg/connect/:id', component: LoadingPageComponent},
+      {path: ':lg/playlist', component: PlaylistComponent},
+      {path: ':lg/settings', component: SettingsPageComponentAsfr},
+      {path: ':lg/error', component: ErrorPageComponent},
+      {path: ':lg/youtube', loadChildren: '../../projects/src/app/app.module#YoutubeShareModule'},
+      {path: ':lg/spotify', loadChildren: '../../projects/src/app/app.module#SpotifySharedModule'},
+      {path: ':lg/deezer', loadChildren: '../../projects/src/app/app.module#DeezerSharedModule'},
+      {path: '', component: SpotifyRedirectComponent},
+      {path: '**', component: SpotifyRedirectComponent},
     ], {useHash: true}),
     TranslateModule.forRoot({
       loader: {
