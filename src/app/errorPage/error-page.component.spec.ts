@@ -27,4 +27,37 @@ describe('ErrorPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('checkInternetConnexion:: should check internet connection and set playlist', () => {
+    // @ts-ignore
+    spyOn(component.statusInternetService, 'getStatusInternet').and.returnValue(true);
+    component.checkInternetConnexion();
+    expect(component.noInternet).toBeFalsy();
+    expect(component.playlistButton).toEqual('error.goPlaylist');
+  });
+
+  it('checkInternetConnexion:: should check internet connection and set playlist', () => {
+    // @ts-ignore
+    spyOn(component.statusInternetService, 'getStatusInternet').and.returnValue(false);
+    component.checkInternetConnexion();
+    expect(component.noInternet).toBeTruthy();
+    expect(component.playlistButton).toEqual('error.goOfflinePlaylist');
+  });
+
+  it('exitApp:: should open logout dialog', () => {
+    // @ts-ignore
+    spyOn(component.dialog, 'open');
+    component.exitApp();
+    // @ts-ignore
+    expect(component.dialog.open).toHaveBeenCalled();
+  });
+
+  it('goPlaylist:: should redirect to playlist', () => {
+    // @ts-ignore
+    spyOn(component.router, 'navigate');
+    component.goPlaylist();
+    // @ts-ignore
+    expect(component.router.navigate).toHaveBeenCalled();
+
+  });
 });
