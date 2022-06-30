@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { DeleteUserComponent } from './delete-user.component';
 import { NotifierModule } from 'angular-notifier';
@@ -14,16 +14,31 @@ describe('DeleteUserComponent', () => {
       declarations: [ DeleteUserComponent ],
       imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DeleteUserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // @ts-ignore
+    component.dialog = { closeAll: jasmine.createSpy(), open: jasmine.createSpy() };
   });
 
-  it('should create', () => {
+  it('should create', fakeAsync(() => {
+    fixture.detectChanges();
+    tick(3500);
     expect(component).toBeTruthy();
+  }));
+
+  it('goCancel:: should close all dialog', () => {
+    component.goCancel();
+    // @ts-ignore
+    expect(component.dialog.closeAll).toHaveBeenCalled();
+  });
+
+  it('submit:: should submit close all dialog', () => {
+    component.submit();
+    // @ts-ignore
+    expect(component.dialog.closeAll).toHaveBeenCalled();
   });
 });

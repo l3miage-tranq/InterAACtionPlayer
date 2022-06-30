@@ -10,7 +10,7 @@ describe('DeezerPlayerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DeezerPlayerComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -13,7 +13,7 @@ describe('ChooseImgComponent', () => {
       declarations: [ ChooseImgComponent, TranslatePipe ],
       imports: [ MatDialogModule, TranslateModule.forRoot() ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -24,5 +24,13 @@ describe('ChooseImgComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('chooseImg:: should set chosen image', () => {
+    // @ts-ignore
+    component.userService = { imgChoose: 'xyz' };
+    component.chooseImg('abc');
+    // @ts-ignore
+    expect(component.userService.imgChoose).toBeDefined();
   });
 });
