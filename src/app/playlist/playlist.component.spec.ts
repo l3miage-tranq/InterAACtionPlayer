@@ -20,9 +20,11 @@ declare var pauseDeezer: any;
 declare var increaseVolumeDeezer: any;
 declare var decreaseVolumeDeezer: any;
 
-var count = 1;
+let count = 1;
 class MockThemeService {
+  // tslint:disable-next-line:typedef
   get themeObservable() {
+    // tslint:disable-next-line:triple-equals
     if (count == 1) {
       count++;
       return of('inverted');
@@ -35,6 +37,7 @@ class MockThemeService {
 describe('PlaylistComponent', () => {
   let component: PlaylistComponent;
   let fixture: ComponentFixture<PlaylistComponent>;
+  // tslint:disable-next-line:max-line-length
   const loginNotificationMock = jasmine.createSpyObj('LoginNotificationService', ['getStatusDeezer'], {logOnSpotify: true, logOnDeezer: false});
   let statusInternet;
 
@@ -43,14 +46,15 @@ describe('PlaylistComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PlaylistComponent, ProgressIndicatorComponent ],
       imports: [ MatDialogModule, NotifierModule, RouterTestingModule.withRoutes([
+        // tslint:disable-next-line:max-line-length
         { path: 'user', component: PlaylistComponent}, {path: 'playlist', component: PlaylistComponent}]), TranslateModule.forRoot(), HttpClientModule ],
       providers: [ GlobalService,
-      { provide: StatusInternetService, useValue: statusInternetMock },
-      { provide: LoginNotificationService, useValue: loginNotificationMock },
-      { provide: ThemeService, useClass: MockThemeService }
-     ]
+        { provide: StatusInternetService, useValue: statusInternetMock },
+        { provide: LoginNotificationService, useValue: loginNotificationMock },
+        { provide: ThemeService, useClass: MockThemeService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -89,8 +93,8 @@ describe('PlaylistComponent', () => {
   }));
 
   it('checkStatus:: should check status of spotify and deezer with spotify true', fakeAsync(() => {
-    (Object.getOwnPropertyDescriptor(loginNotificationMock, "logOnSpotify")?.get as jasmine.Spy<() => boolean>).and.returnValue(true);
-    (Object.getOwnPropertyDescriptor(loginNotificationMock, "logOnDeezer")?.get as jasmine.Spy<() => boolean>).and.returnValue(false);
+    (Object.getOwnPropertyDescriptor(loginNotificationMock, 'logOnSpotify')?.get as jasmine.Spy<() => boolean>).and.returnValue(true);
+    (Object.getOwnPropertyDescriptor(loginNotificationMock, 'logOnDeezer')?.get as jasmine.Spy<() => boolean>).and.returnValue(false);
     component.checkStatus();
     tick(3500);
     expect(component.statusSpotify).toEqual('green');
@@ -98,8 +102,8 @@ describe('PlaylistComponent', () => {
   }));
 
   it('checkStatus:: should check status of spotify and deezer with deezer true', fakeAsync(() => {
-    (Object.getOwnPropertyDescriptor(loginNotificationMock, "logOnSpotify")?.get as jasmine.Spy<() => boolean>).and.returnValue(false);
-    (Object.getOwnPropertyDescriptor(loginNotificationMock, "logOnDeezer")?.get as jasmine.Spy<() => boolean>).and.returnValue(true);
+    (Object.getOwnPropertyDescriptor(loginNotificationMock, 'logOnSpotify')?.get as jasmine.Spy<() => boolean>).and.returnValue(false);
+    (Object.getOwnPropertyDescriptor(loginNotificationMock, 'logOnDeezer')?.get as jasmine.Spy<() => boolean>).and.returnValue(true);
     component.checkStatus();
     tick(3500);
     expect(component.statusSpotify).toEqual('red');
@@ -147,7 +151,6 @@ describe('PlaylistComponent', () => {
 
   it('openDialog:: should not go to edit if playlist is not empty', () => {
     spyOn(document, 'getElementById').and.returnValue({scrollIntoView: () => {}} as any);
-    spyOn(component, 'goOnElement');
     spyOn(component, 'goLaunch');
     component.openDialog({types: 'test'} as any);
     expect(component.goLaunch).toHaveBeenCalled();
@@ -906,5 +909,38 @@ describe('PlaylistComponent', () => {
     expect(component.getColorOfTitle()).toEqual('white');
     expect(component.getBrightnessOfInterAACtionBoxAFSRLogo()).toEqual('1');
     expect(component.getBrightnessOfAFSRLogo()).toEqual('10');
+  });
+
+  it('startInterval:: should set loopProgressIndicator to loop if loop is not null', fakeAsync(() => {
+    const elem = { click: () => jasmine.createSpy() } as any;
+    component.startInterval('', '', elem, true);
+    tick(100);
+    spyOn(component, 'startInterval');
+    component.spinnerValue = 100;
+    tick(1000);
+    expect(component.startInterval).toHaveBeenCalled();
+  }));
+
+  it('startInterval:: should set loopProgressIndicator', fakeAsync(() => {
+    const elem = { click: () => jasmine.createSpy() } as any;
+    component.startInterval('', '', elem, false);
+    tick(100);
+    spyOn(component, 'hideProgressIndicator');
+    component.spinnerValue = 100;
+    tick(1000);
+    expect(component.hideProgressIndicator).toHaveBeenCalled();
+  }));
+
+  it('dragDrop:: should handle drag drop event', () => {
+    // @ts-ignore
+    spyOn(component.saveService, 'updatePlaylist');
+    component.playList = [{}, {}] as any;
+    component.dragDrop({
+      previousContainer: { data: { index: 0, elem: 'abc' } },
+      container: { data: { index: 1, elem: 'xyz' } },
+    } as any);
+    // @ts-ignore
+    expect(component.saveService.updatePlaylist).toHaveBeenCalled();
+    expect(component.playList).toEqual(['xyz', 'abc'] as any);
   });
 });

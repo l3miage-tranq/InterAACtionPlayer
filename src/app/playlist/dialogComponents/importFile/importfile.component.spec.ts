@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImportfileComponent } from './importfile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotifierModule } from 'angular-notifier';
 import {TranslateModule} from '@ngx-translate/core';
+import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ImportfileComponent', () => {
   let component: ImportfileComponent;
@@ -12,7 +13,7 @@ describe('ImportfileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ImportfileComponent ],
-      imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
+      imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot(), BrowserAnimationsModule ]
     })
       .compileComponents();
   });
@@ -119,10 +120,10 @@ describe('ImportfileComponent', () => {
 
   it('addFile:: should add file', () => {
     component.typeFile = 'file';
-    spyOn(window, 'FileReader').and.returnValue({ onload: () => { return Promise.resolve() }, readAsText: () => {} } as any);
-    const blob = new Blob([''], { type: "text/html" });
-    blob["lastModifiedDate"] = "";
-    blob["name"] = "filename";
+    spyOn(window, 'FileReader').and.returnValue({ onload: () => Promise.resolve(), readAsText: () => {} } as any);
+    const blob = new Blob([''], { type: 'text/html' });
+    blob['lastModifiedDate'] = '';
+    blob['name'] = 'filename';
     const file = blob as File;
     const files: FileList = {
       0: file,
@@ -170,6 +171,10 @@ describe('ImportfileComponent', () => {
   });
 
   describe('submit', () => {
+    beforeEach(() => {
+      // @ts-ignore
+      component.dialog = { closeAll: jasmine.createSpy(), open: () => ({ afterClosed: () => of(true) })} as any;
+    });
     it('should throw error if file is empty', () => {
       // @ts-ignore
       component.fileUpload = null;
@@ -199,6 +204,126 @@ describe('ImportfileComponent', () => {
       component.submit();
       expect(component.acceptedFile).toBeFalsy();
       expect(component.errorEmptyTitle).toBeTruthy();
+    });
+
+    it('should throw error if file is already in playlist', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'fileAlreadyInPlaylist').and.returnValue(true);
+      component.titleFileInput = 'abc';
+      component.typeFile = 'abc';
+      component.submit();
+      expect(component.errorFileAlreadyInPlaylist).toBeTruthy();
+    });
+
+    it('should accept file if everything is good', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'fileAlreadyInPlaylist').and.returnValue(false);
+      component.titleFileInput = 'abc';
+      component.typeFile = 'abc';
+      component.submit();
+      // @ts-ignore
+      expect(component.dialog.closeAll).toHaveBeenCalled();
+    });
+
+    it('should work if type is file', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      component.typeFile = 'file';
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'newPlaylist');
+      component.titleFileInput = '';
+      component.submit();
+      expect(component.acceptedFile).toBeFalsy();
+      // @ts-ignore
+      expect(component.playlistService.newPlaylist).toHaveBeenCalled();
+    });
+
+
+    it('should work if type is file', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      component.typeFile = 'file';
+      component.optionsPlaylist = 'old';
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'mergePlaylist');
+      component.titleFileInput = '';
+      component.submit();
+      expect(component.acceptedFile).toBeFalsy();
+      // @ts-ignore
+      expect(component.playlistService.mergePlaylist).toHaveBeenCalled();
+    });
+
+    it('should work if type is file', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      component.typeFile = 'file';
+      // @ts-ignore
+      component.alertService.doNotShowAgain = true;
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'newPlaylist');
+      component.titleFileInput = '';
+      component.submit();
+      expect(component.acceptedFile).toBeFalsy();
+      // @ts-ignore
+      expect(component.playlistService.newPlaylist).toHaveBeenCalled();
+    });
+
+
+    it('should work if type is file', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      component.typeFile = 'file';
+      component.optionsPlaylist = 'old';
+      // @ts-ignore
+      component.alertService.doNotShowAgain = true;
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'mergePlaylist');
+      component.titleFileInput = '';
+      component.submit();
+      expect(component.acceptedFile).toBeFalsy();
+      // @ts-ignore
+      expect(component.playlistService.mergePlaylist).toHaveBeenCalled();
+    });
+
+    it('should work if type is file', () => {
+      // @ts-ignore
+      component.fileUpload = true;
+      component.typeFile = 'file';
+      component.optionsPlaylist = 'old';
+      spyOn(component, 'audioIsValid').and.returnValue(false);
+      spyOn(component, 'videoIsValid').and.returnValue(false);
+      spyOn(component, 'jsonIsValid').and.returnValue(true);
+      // @ts-ignore
+      spyOn(component.playlistService, 'mergePlaylist');
+      component.titleFileInput = '';
+      // @ts-ignore
+      component.alertService.alertCancel = true;
+      component.submit();
+      expect(component.acceptedFile).toBeFalsy();
+      // @ts-ignore
+      expect(component.playlistService.mergePlaylist).not.toHaveBeenCalled();
     });
   });
 });

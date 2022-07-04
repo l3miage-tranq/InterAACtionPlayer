@@ -5,9 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ThemeService } from './services/theme.service';
 import { of } from 'rxjs';
 
-var count = 1;
+let count = 1;
+
 class MockThemeService {
+  // tslint:disable-next-line:typedef
   get themeObservable() {
+    // tslint:disable-next-line:triple-equals
     if (count == 1) {
       count++;
       return of('inverted');

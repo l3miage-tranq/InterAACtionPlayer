@@ -4,7 +4,7 @@ import { ErrorPageComponent } from './error-page.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TranslateModule} from '@ngx-translate/core';
-import {SpeedTestModule} from "ng-speed-test";
+import {SpeedTestModule} from 'ng-speed-test';
 
 describe('ErrorPageComponent', () => {
   let component: ErrorPageComponent;
@@ -13,9 +13,9 @@ describe('ErrorPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ErrorPageComponent ],
-      imports:[MatDialogModule, RouterTestingModule, TranslateModule.forRoot(), SpeedTestModule]
+      imports: [MatDialogModule, RouterTestingModule, TranslateModule.forRoot(), SpeedTestModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -28,6 +28,7 @@ describe('ErrorPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // spy upon the getStatusInternet from internet service and after calling the function just check if it is setting values
   it('checkInternetConnexion:: should check internet connection and set playlist', () => {
     // @ts-ignore
     spyOn(component.statusInternetService, 'getStatusInternet').and.returnValue(true);
@@ -36,6 +37,7 @@ describe('ErrorPageComponent', () => {
     expect(component.playlistButton).toEqual('error.goPlaylist');
   });
 
+  // spy upon the getStatusInternet from internet service and after calling the function just check if it is setting values
   it('checkInternetConnexion:: should check internet connection and set playlist', () => {
     // @ts-ignore
     spyOn(component.statusInternetService, 'getStatusInternet').and.returnValue(false);
@@ -44,6 +46,7 @@ describe('ErrorPageComponent', () => {
     expect(component.playlistButton).toEqual('error.goOfflinePlaylist');
   });
 
+  // spy upon the dialog open method and check if it is getting called
   it('exitApp:: should open logout dialog', () => {
     // @ts-ignore
     spyOn(component.dialog, 'open');
@@ -52,6 +55,7 @@ describe('ErrorPageComponent', () => {
     expect(component.dialog.open).toHaveBeenCalled();
   });
 
+  // spy upon the router navigate method and check if it is getting called or not
   it('goPlaylist:: should redirect to playlist', () => {
     // @ts-ignore
     spyOn(component.router, 'navigate');
