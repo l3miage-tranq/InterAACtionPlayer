@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PrefabricatedPlaylistComponent } from './prefabricated-playlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotifierModule } from 'angular-notifier';
@@ -14,7 +13,7 @@ describe('PrefabricatedPlaylistComponent', () => {
       declarations: [ PrefabricatedPlaylistComponent ],
       imports: [ MatDialogModule, NotifierModule, TranslateModule.forRoot() ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -25,5 +24,26 @@ describe('PrefabricatedPlaylistComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('submit:: should submit and close all dialogs', () => {
+    // @ts-ignore
+    component.dialog = { closeAll: jasmine.createSpy(), open: () => ({ afterClosed: () => of(true) })} as any;
+    component.submit();
+    // @ts-ignore
+    expect(component.dialog.closeAll).toHaveBeenCalled();
+  });
+
+  it('goCancel:: should close all dialogs', () => {
+    // @ts-ignore
+    component.dialog = { closeAll: jasmine.createSpy(), open: () => ({ afterClosed: () => of(true) })} as any;
+    component.goCancel();
+    // @ts-ignore
+    expect(component.dialog.closeAll).toHaveBeenCalled();
+  });
+
+  it('choicePrefabricatedPlaylist:: should set file name with extension', () => {
+    component.choicePrefabricatedPlaylist('abc');
+    expect(component.namePrefabricatedPlaylist).toEqual('abc.json');
   });
 });

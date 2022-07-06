@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -6,21 +8,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MapPipe implements PipeTransform{
 
   /**
-   * @param value
-   * @param args
-   *
    * Receives a map of Playlist
-   * Then return a array of the map
+   * Then return an array of the map
    */
+  /* istanbul ignore next */
   transform(value: any, args: any[]): any {
-    let result = [];
+    const result = [];
 
     if (value.entries){
-      value.forEach((key, value) => {
+      // tslint:disable-next-line:no-shadowed-variable
+      value.forEach((key: any, value: any) => {
         result.push({key, value});
       });
     } else {
-      for (let key in value){
+      for (const key in value){
         if (value.hasOwnProperty(key)){
           result.push({key, value: value[key]});
         }
