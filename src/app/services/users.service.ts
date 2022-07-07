@@ -240,6 +240,7 @@ export class UsersService {
     this.idUser = config.idUser;
   }
 
+  /* istanbul ignore next */
   /**
    * @param jsonFile
    *

@@ -300,6 +300,7 @@ export class PlaylistService{
    * Test the json file send by the user with Ajv (a json validator)
    * He use my schema to check if the json file has the good schema
    */
+  /* istanbul ignore next */
   checkFileForPlaylist(jsonFile: any){
     const ajv = new Ajv();
     const valid = ajv.validate(this.schemaPlaylist, jsonFile);

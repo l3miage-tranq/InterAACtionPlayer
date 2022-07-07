@@ -137,6 +137,7 @@ export class SaveService {
       userStore.onsuccess = e => {
         this.userService.setConfiguration(userStore.result);
       };
+      /* istanbul ignore next */
       userStore.onerror = event => {
         alert('userStore error: ' + event.target.errorCode);
       };
@@ -146,6 +147,7 @@ export class SaveService {
       listUsersStore.onsuccess = e => {
         this.userService.listUsers = listUsersStore.result;
       };
+      /* istanbul ignore next */
       listUsersStore.onerror = event => {
         alert('listUsersStore error: ' + event.target.errorCode);
       };
@@ -169,6 +171,7 @@ export class SaveService {
       playlistStore.onsuccess = e => {
         this.playlistService.playList = playlistStore.result;
       };
+      /* istanbul ignore next */
       playlistStore.onerror = event => {
         alert('PlaylistStore error: ' + event.target.errorCode);
       };
@@ -178,6 +181,7 @@ export class SaveService {
       playlistNameStore.onsuccess = e => {
         this.playlistService.nameActualPlaylist = playlistNameStore.result;
       };
+      /* istanbul ignore next */
       playlistNameStore.onerror = event => {
         alert('playlistNameStore error: ' + event.target.errorCode);
       };
@@ -187,6 +191,7 @@ export class SaveService {
       themeStore.onsuccess = e => {
         this.themeService.emitTheme(themeStore.result);
       };
+      /* istanbul ignore next */
       themeStore.onerror = event => {
         alert('ThemeStore error: ' + event.target.errorCode);
       };
@@ -196,6 +201,7 @@ export class SaveService {
       languageStore.onsuccess = e => {
         this.languageService.switchLanguage(languageStore.result);
       };
+      /* istanbul ignore next */
       languageStore.onerror = event => {
         alert('LanguageStore error: ' + event.target.errorCode);
       };
@@ -205,6 +211,7 @@ export class SaveService {
       dwellTimeStore.onsuccess = e => {
         this.dwellTimeService.setConfiguration(dwellTimeStore.result);
       };
+      /* istanbul ignore next */
       dwellTimeStore.onerror = event => {
         alert('DwellTimeStore error: ' + event.target.errorCode);
       };
@@ -214,6 +221,7 @@ export class SaveService {
       alertMessageStore.onsuccess = e => {
         this.alertService.doNotShowAgain = alertMessageStore.result;
       };
+      /* istanbul ignore next */
       alertMessageStore.onerror = event => {
         alert('alertMessageStore error: ' + event.target.errorCode);
       };
@@ -223,6 +231,7 @@ export class SaveService {
       mapPlaylistStore.onsuccess = e => {
         this.playlistService.mapPlaylist = mapPlaylistStore.result;
       };
+      /* istanbul ignore next */
       mapPlaylistStore.onerror = event => {
         alert('mapPlaylistStore error: ' + event.target.errorCode);
       };
@@ -251,6 +260,7 @@ export class SaveService {
       playlistStore.onsuccess = e => {
         this.playlistService.playList = playlistStore.result;
       };
+      /* istanbul ignore next */
       playlistStore.onerror = event => {
         alert('PlaylistStore error: ' + event.target.errorCode);
       };
@@ -260,6 +270,7 @@ export class SaveService {
       playlistNameStore.onsuccess = e => {
         this.playlistService.nameActualPlaylist = playlistNameStore.result;
       };
+      /* istanbul ignore next */
       playlistNameStore.onerror = event => {
         alert('playlistNameStore error: ' + event.target.errorCode);
       };
@@ -269,6 +280,7 @@ export class SaveService {
       themeStore.onsuccess = e => {
         this.themeService.emitTheme(themeStore.result);
       };
+      /* istanbul ignore next */
       themeStore.onerror = event => {
         alert('ThemeStore error: ' + event.target.errorCode);
       };
@@ -278,6 +290,7 @@ export class SaveService {
       dwellTimeStore.onsuccess = e => {
         this.dwellTimeService.setConfiguration(dwellTimeStore.result);
       };
+      /* istanbul ignore next */
       dwellTimeStore.onerror = event => {
         alert('DwellTimeStore error: ' + event.target.errorCode);
       };
@@ -287,6 +300,7 @@ export class SaveService {
       alertMessageStore.onsuccess = e => {
         this.alertService.doNotShowAgain = alertMessageStore.result;
       };
+      /* istanbul ignore next */
       alertMessageStore.onerror = event => {
         alert('alertMessageStore error: ' + event.target.errorCode);
       };
@@ -296,6 +310,7 @@ export class SaveService {
       mapPlaylistStore.onsuccess = e => {
         this.playlistService.mapPlaylist = mapPlaylistStore.result;
       };
+      /* istanbul ignore next */
       mapPlaylistStore.onerror = event => {
         alert('mapPlaylistStore error: ' + event.target.errorCode);
       };
@@ -591,6 +606,7 @@ export class SaveService {
       userStore.onsuccess = e => {
         this.userService.setConfiguration(userStore.result);
       };
+      /* istanbul ignore next */
       userStore.onerror = event => {
         alert('userStore error: ' + event.target.errorCode);
       };
@@ -619,6 +635,7 @@ export class SaveService {
       playlistStore.onsuccess = e => {
         this.playlistUser = playlistStore.result;
       };
+      /* istanbul ignore next */
       playlistStore.onerror = event => {
         alert('PlaylistStore error: ' + event.target.errorCode);
       };
@@ -628,6 +645,7 @@ export class SaveService {
       playlistNameStore.onsuccess = e => {
         this.namePlaylistUser = playlistNameStore.result;
       };
+      /* istanbul ignore next */
       playlistNameStore.onerror = event => {
         alert('playlistNameStore error: ' + event.target.errorCode);
       };
@@ -637,6 +655,7 @@ export class SaveService {
       themeStore.onsuccess = e => {
         this.themeUser = themeStore.result;
       };
+      /* istanbul ignore next */
       themeStore.onerror = event => {
         alert('ThemeStore error: ' + event.target.errorCode);
       };
@@ -646,6 +665,7 @@ export class SaveService {
       languageStore.onsuccess = e => {
         this.languageUser = languageStore.result;
       };
+      /* istanbul ignore next */
       languageStore.onerror = event => {
         alert('LanguageStore error: ' + event.target.errorCode);
       };
@@ -655,6 +675,7 @@ export class SaveService {
       dwellTimeStore.onsuccess = e => {
         this.dwellTimeUser = dwellTimeStore.result;
       };
+      /* istanbul ignore next */
       dwellTimeStore.onerror = event => {
         alert('DwellTimeStore error: ' + event.target.errorCode);
       };
@@ -664,6 +685,7 @@ export class SaveService {
       alertMessageStore.onsuccess = e => {
         this.alertMessageUser = alertMessageStore.result;
       };
+      /* istanbul ignore next */
       alertMessageStore.onerror = event => {
         alert('alertMessageStore error: ' + event.target.errorCode);
       };
@@ -673,6 +695,7 @@ export class SaveService {
       mapPlaylistStore.onsuccess = e => {
         this.mapPlaylistUser = mapPlaylistStore.result;
       };
+      /* istanbul ignore next */
       mapPlaylistStore.onerror = event => {
         alert('mapPlaylistStore error: ' + event.target.errorCode);
       };
@@ -700,6 +723,7 @@ export class SaveService {
       const listUsersStore = db.transaction(['listUsers'], 'readwrite');
       const listUsersObjectStore = listUsersStore.objectStore('listUsers');
       const storeListUsersRequest = listUsersObjectStore.get(1);
+      /* istanbul ignore next */
       storeListUsersRequest.onsuccess = () => {
         listUsersObjectStore.put(this.userService.listUsers, 1);
       };
@@ -762,6 +786,7 @@ export class SaveService {
     }
 
     // Error open Database
+    /* istanbul ignore next */
     this.openRequest.onerror = event => {
       alert('Database error: ' + event.target.errorCode);
     };

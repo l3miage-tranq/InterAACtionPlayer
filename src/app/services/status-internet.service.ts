@@ -10,6 +10,7 @@ export class StatusInternetService {
 
   public statusInternet: boolean = true;
 
+  /* istanbul ignore next */
   constructor(private router: Router,
               private languageService: LanguageService,
               private speedTestService: SpeedTestService) {
@@ -35,6 +36,7 @@ export class StatusInternetService {
     return this.statusInternet;
   }
 
+  /* istanbul ignore next */
   retryInternetStatus(){
     this.speedTestService.getMbps({
       iterations: 1,
