@@ -1,0 +1,7 @@
+<div>
+  <h2>{{ 'spotifyHome.title' | translate }}</h2>
+  <br>
+  <div class="ui four column grid">
+    <app-new-release-item [newRelease]="newRelease" *ngFor="let newRelease of newReleases"></app-new-release-item>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>
+  {{ "exportFile.title" | translate }}
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div *ngIf="!playlistEmpty" class="field">
+      <label>{{ 'exportFile.titleFile' | translate }}</label>
+      <div class="ui right labeled input">
+        <input type="text" placeholder="{{ 'exportFile.defaultTitleFile' | translate }}" (keyup)="getTitle($event)">
+        <div class="ui basic label">
+          .AACPPlaylist
+        </div>
+      </div>
+      <div class="ui error message">
+        <p *ngIf="errorWrongName">{{ "exportFile.errorWrongName" | translate }}</p>
+      </div>
+    </div>
+    <div class="ui error message">
+      <p *ngIf="playlistEmpty">{{ "exportFile.empty" | translate }}</p>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">{{ "exportFile.no" | translate }}</button>
+  <button class="ui button" [ngClass]="disabledButton" (click)="submit()">{{ "exportFile.yes" | translate }}</button>
+</div>
+<notifier-container></notifier-container>

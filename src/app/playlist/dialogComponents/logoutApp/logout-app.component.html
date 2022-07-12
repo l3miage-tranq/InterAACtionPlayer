@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>
+  {{'logoutApp.title' | translate}}
+</h1>
+<div mat-dialog-content>
+  <p>
+    {{'logoutApp.text' | translate}}
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button [ngClass]="security" class="negative ui button" (click)="submit()">{{'logoutApp.yes' | translate}}</button>
+  <button class="ui button" (click)="goCancel()">{{'logoutApp.no' | translate}}</button>
+</div>

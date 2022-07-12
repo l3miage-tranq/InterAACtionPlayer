@@ -1,0 +1,37 @@
+<h1 class="title" mat-dialog-title>
+  {{"chooseType.title" | translate}}
+</h1>
+<div>
+  <div class="container" mat-dialog-actions>
+    <img src="./assets/YouTube.png" alt="YouTube" class="image">
+    <div class="middle">
+      <button class="ui button" (click)="goYoutube()">
+        YouTube
+      </button>
+    </div>
+  </div>
+  <div class="container" mat-dialog-actions>
+    <img src="./assets/Spotify.png" alt="Spotify" class="image">
+    <div class="middle">
+      <button class="ui button" (click)="goSpotify()">
+        Spotify
+      </button>
+    </div>
+  </div>
+  <div class="container" mat-dialog-actions>
+    <img src="./assets/Deezer.jpeg" alt="Deezer" class="image">
+    <div class="middle">
+      <button class="ui button" (click)="goDeezer()">
+        Deezer
+      </button>
+    </div>
+  </div>
+  <div class="container" mat-dialog-actions>
+    <img src="./assets/openFolder.png" alt="Open Folder" class="image">
+    <div class="middle">
+      <button class="ui button" (click)="goPrefabricatedPlaylist()">
+        {{"chooseType.prefabricated" | translate}}
+      </button>
+    </div>
+  </div>
+</div>

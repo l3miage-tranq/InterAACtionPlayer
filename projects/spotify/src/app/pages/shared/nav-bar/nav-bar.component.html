@@ -1,0 +1,18 @@
+<div [ngClass]="theme" class="ui vertical fluid tabular menu">
+  <a class="item">
+    <img class="ui mini spaced image" src="assets/banner-ico.png" alt="logo spotify">
+    Spotify
+  </a>
+  <a class="item" routerLink="home">
+    <i class="home icon"></i>
+    {{ 'spotifyNavbar.home' | translate }}
+  </a>
+  <a class="item" routerLink="search">
+    <i class="search icon"></i>
+    {{ 'spotifyNavbar.search' | translate }}
+  </a>
+  <a class="item" routerLink="/playlist">
+    <i class="arrow left icon"></i>
+    {{ 'spotifyNavbar.playlist' | translate }}
+  </a>
+</div>

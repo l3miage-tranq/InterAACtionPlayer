@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>
+  {{'deleteUser.title' | translate}}
+</h1>
+<div mat-dialog-content>
+  <p>
+    {{'deleteUser.text' | translate}}
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">
+    {{'deleteUser.no' | translate}}
+  </button>
+  <button [ngClass]="security" class="negative ui button" (click)="submit()">
+    {{'deleteUser.yes' | translate}}
+  </button>
+</div>
+<notifier-container></notifier-container>

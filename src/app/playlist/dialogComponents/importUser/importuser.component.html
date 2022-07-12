@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>
+  {{ "importUser.title" | translate }}
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div class="field">
+      <label>{{ "importUser.file" | translate }}</label>
+      <button class="ui right labeled icon button" (click)="inputImport.click()">
+        <i class="right file icon"></i>
+        {{ "importUser.import" | translate }}
+        <input hidden type="file" accept=".AACPUser" (change)="addFile($event)" #inputImport/>
+      </button>
+      <label>{{ "importUser.authorizedExtension" | translate }}</label>
+      <div *ngIf="acceptedFile" class="ui positive message">
+        <p>{{ "importUser.acceptedFile" | translate }}</p>
+      </div>
+      <div class="ui error message">
+        <p *ngIf="errorEmptyFile">{{ "importUser.errorEmptyFile" | translate }}</p>
+        <p *ngIf="errorWrongFile">{{ "importUser.errorWrongFile" | translate }}</p>
+        <p *ngIf="errorUserAlreadyInPlaylist">{{ "importUser.errorFileAlreadyInUserList" | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">{{ "importUser.cancel" | translate }}</button>
+  <button [ngClass]="loading" class="ui button" (click)="submit()">{{ "importUser.add" | translate }}</button>
+</div>

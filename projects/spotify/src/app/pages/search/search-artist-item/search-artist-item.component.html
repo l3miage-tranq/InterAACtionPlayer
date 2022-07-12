@@ -1,0 +1,17 @@
+<div class="column" *ngIf="artist" (click)="navigate(artist)">
+  <div id="space" [ngClass]="theme" class="ui card">
+    <div class="image">
+      <img [src]="artist.images | errorImage" [alt]="artist.name">
+    </div>
+    <div class="content">
+      <a class="header">{{ artist.name }}</a>
+      <div class="meta" *ngFor="let artist of artist.artists">
+        <span>
+          {{ artist.name }}
+        </span>
+        <span class="ui right floated">{{ artist.type | uppercase }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+

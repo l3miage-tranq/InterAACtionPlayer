@@ -1,0 +1,91 @@
+<div [ngClass]="theme" class="ui secondary menu">
+  <div class="right menu">
+    <a class="ui item" (click)="setTheme('')"
+       matTooltip="{{'user.sun' | translate}}"
+       matTooltipPosition="before">
+      <i class="big sun icon"></i>
+    </a>
+    <a class="ui item" (click)="setTheme('inverted')"
+       matTooltip="{{'user.moon' | translate}}"
+       matTooltipPosition="before">
+      <i class="big moon icon"></i>
+    </a>
+    <a class="ui item" (click)="setLanguage('fr')"
+       matTooltip="{{'user.french' | translate}}"
+       matTooltipPosition="before">
+      <i class="big fr flag"></i>
+    </a>
+    <a class="ui item" (click)="setLanguage('en')"
+       matTooltip="{{'user.english' | translate}}"
+       matTooltipPosition="before">
+      <i class="big gb uk flag"></i>
+    </a>
+  </div>
+</div>
+<div class="ui centered grid">
+  <div class="fourteen wide column">
+    <h1 [ngClass]="theme" class="ui centered aligned header">
+      <span>
+        {{"user.title" | translate}}
+      </span>
+    </h1>
+    <div class="ui cards centered">
+      <div [ngClass]="theme" class="ui card" (click)="goPlaylistLikeGuest()">
+        <div class="image">
+          <img src="./assets/DefaultUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            {{"user.defaultUser" | translate}}
+          </h2>
+        </div>
+      </div>
+      <div [ngClass]="theme" class="ui card" (click)="addUser()">
+        <div class="image">
+          <img src="./assets/AddUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            {{"user.addUser" | translate}}
+          </h2>
+        </div>
+      </div>
+      <div [ngClass]="theme" class="ui card" (click)="goImport()">
+        <div class="image">
+          <img src="./assets/importUser.png" alt="">
+        </div>
+        <div class="content">
+          <h2 class="ui centered aligned header">
+            {{"user.importUser" | translate}}
+          </h2>
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <div class="ui four column grid">
+      <div class="column" *ngFor="let elem of usersList; let index = index">
+        <div [ngClass]="theme" class="ui card">
+          <div class="content">
+            <h3 class="ui centered aligned header">
+              {{elem.name}}
+            </h3>
+          </div>
+          <div class="image">
+            <img [src]="elem.thumbnail" alt="" (click)="goPlaylistLikeUser(elem.id)">
+          </div>
+          <button class="ui centered blue medium button" (click)="goModify(elem, index)">
+            {{"user.modify" | translate}}
+          </button>
+          <button class="ui centered red medium button" (click)="goDelete(elem)">
+            {{"user.delete" | translate}}
+          </button>
+          <button [ngClass]="loading" class="ui centered green medium button" (click)="goExport(elem)">
+            {{"user.export" | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

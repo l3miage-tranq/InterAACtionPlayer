@@ -1,0 +1,16 @@
+<div class="column" (click)="navigate(newRelease)">
+  <div id="space" [ngClass]="theme" class="ui card">
+    <div class="image">
+      <img [src]="newReleaseImages | errorImage" alt="newRelease.name">
+    </div>
+    <div class="content">
+      <a class="header">{{ newReleaseName | uppercase}}</a>
+      <div class="meta">
+          <span>
+            {{ newReleaseArtistName }}
+          </span>
+        <span class="ui right floated">{{ newReleaseType | uppercase }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,185 @@
+div h1 span {
+  vertical-align: center;
+}
+
+span {
+  font-weight: bolder;
+}
+
+img:hover {
+  color: white;
+  background-color: #42545c;
+}
+img.active {
+  background-color: black;
+}
+
+iframe{
+  margin-bottom: 10px;
+}
+
+figcaption{
+  color: white;
+}
+
+/* -------------------------- CLASS --------------------------------- */
+
+.btnVideo{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.centerTitle{
+  text-align: center;
+}
+
+.btnCircular{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transition: opacity 10s;
+}
+
+.btnIcon{
+  transform: translateX(-66%);
+}
+
+.fullScreen{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btnFullScreen{
+  position: fixed;
+  z-index: 1;
+}
+
+.imageAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  visibility: visible;
+  display: inline-block;
+  height: 6rem;
+  width: 9rem;
+  margin: 0;
+}
+
+.imageInterAACtionBoxAFSR{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 4rem;
+  width: 8rem;
+  margin: 0;
+  float: right;
+}
+
+.header{
+  margin: 1em 0 1em 0;
+  display: inline-block;
+}
+
+.pageTitle{
+  text-align: center;
+  margin: 0 50px 0 0;
+  padding-top: 2rem;
+}
+
+.ui.labeled.icon.menu .item{
+  height: 50%;
+  padding-top: 250%;
+}
+
+.darkMode{
+  color: white;
+}
+
+.lightMode{
+  color: black;
+}
+
+.noMargin{
+  margin: 0 5px 0 0 !important;
+}
+
+.circular{
+  transform: translateY(7px);
+}
+
+.titleHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.topBarAFSRLogo{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ------------------------------ ID ------------------------------------ */
+
+#myFileAudio{
+  margin-top: 50px !important;
+}
+
+#statusLogin{
+  float: right;
+  margin-top: 1%;
+  margin-right: 2%;
+}
+
+/* -------------------------- Drag&Drop --------------------------------- */
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

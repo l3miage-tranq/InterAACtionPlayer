@@ -1,0 +1,14 @@
+<div [ngClass]="theme" class="ui vertical fluid tabular menu">
+  <a class="item">
+    <img class="ui mini spaced image" src="assets/iconeDeezer.jpeg" alt="logo deezer">
+    Deezer
+  </a>
+  <a class="item" routerLink="search">
+    <i class="home icon"></i>
+    {{ 'deezerNavbar.home' | translate }}
+  </a>
+  <a class="item" routerLink="/playlist">
+    <i class="arrow left icon"></i>
+    {{ 'deezerNavbar.playlist' | translate }}
+  </a>
+</div>

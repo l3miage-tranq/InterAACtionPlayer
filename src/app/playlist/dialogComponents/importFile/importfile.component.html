@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>
+  {{ "importFilePlaylist.title" | translate }}
+</h1>
+<div mat-dialog-content>
+  <div class="ui form error">
+    <div class="field">
+      <label>{{ "importFilePlaylist.type" | translate }}</label>
+      <div class="inline fields">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="type" checked="checked" (click)="getTypeSong()">
+            <label>{{ "importFilePlaylist.song" | translate }}</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="type" (click)="getTypeVideo()">
+            <label>{{ "importFilePlaylist.video" | translate }}</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="type" (click)="getTypeFile()">
+            <label>{{ "importFilePlaylist.file" | translate }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="required field" *ngIf="typeFile != 'file'">
+      <label>{{ titleFile | translate }}</label>
+      <input type="text" placeholder="{{ titleFile | translate }}" (keyup)="getTitle($event)">
+      <div class="ui error message">
+        <p *ngIf="errorEmptyTitle">{{ "importFilePlaylist.errorEmptyTitle" | translate }}</p>
+      </div>
+    </div>
+    <div class="field" *ngIf="typeFile != 'file'">
+      <label>{{ artistFile | translate }}</label>
+      <input type="text" placeholder="{{ artistFile | translate }}" (keyup)="getArtist($event)">
+    </div>
+    <div class="field" *ngIf="typeFile == 'file'">
+      <label>{{ "importFilePlaylist.options" | translate }}</label>
+      <div class="field">
+        <div class="ui buttons">
+          <button [ngClass]="newPlaylistOption" class="ui button" (click)="newPlaylist()">{{ "importFilePlaylist.newPlaylist" | translate }}</button>
+          <div class="or" attr.data-text="{{'importFilePlaylist.or' | translate }}"></div>
+          <button [ngClass]="mergePlaylistOption" class="ui button" (click)="mergePlaylist()">{{ "importFilePlaylist.mergePlaylist" | translate }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="required field">{{ "importFilePlaylist.file" | translate }}</label>
+      <button class="ui right labeled icon button" (click)="inputImport.click()">
+        <i *ngIf="typeFile == 'song'" class="right file audio icon"></i>
+        <i *ngIf="typeFile == 'video'" class="right file video icon"></i>
+        <i *ngIf="typeFile == 'file'" class="right file icon"></i>
+        {{ "importFilePlaylist.import" | translate }}
+        <input hidden type="file" [accept]="extension" (change)="addFile($event)" #inputImport/>
+      </button>
+      <label>{{ authorizedExtension | translate }}</label>
+      <div *ngIf="acceptedFile" class="ui positive message">
+        <p>{{ "importFilePlaylist.acceptedFile" | translate }}</p>
+      </div>
+      <div class="ui error message">
+        <p *ngIf="errorEmptyFile">{{ "importFilePlaylist.errorEmptyFile" | translate }}</p>
+        <p *ngIf="errorWrongFile">{{ "importFilePlaylist.errorWrongFile" | translate }}</p>
+        <p *ngIf="errorFileAlreadyInPlaylist">{{ "importFilePlaylist.errorFileAlreadyInPlaylist" | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="ui button" (click)="goCancel()">{{ "importFilePlaylist.cancel" | translate }}</button>
+  <button class="ui button" (click)="submit()">{{ "importFilePlaylist.add" | translate }}</button>
+</div>
+<notifier-container></notifier-container>

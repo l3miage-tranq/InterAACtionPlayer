@@ -1,0 +1,25 @@
+<div>
+  <div [ngClass]="theme" class="ui segment">
+    <img class="ui small centered image" [src]="albumCover" [alt]="albumTitle">
+    <h6 class="ui centered aligned header">{{ albumType | uppercase}}</h6>
+    <h2 class="ui centered aligned header">{{ albumTitle }}</h2>
+    <button class="ui button" (click)="goBack()">
+      <i class="left arrow icon"></i>
+      {{ "deezerAlbum.back" | translate }}
+    </button>
+    <button class="ui button" (click)="addAllToPlaylist()">{{ "deezerAlbum.btnAddAll" | translate }}</button>
+    <button class="ui button" (click)="deleteAllToPlaylist()">{{ "deezerAlbum.btnDeleteAll" | translate }}</button>
+  </div>
+  <div *ngFor="let nbTrack of tracks">
+    <iframe [src]="nbTrack.id | dz" width="500" height="150" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write"></iframe>
+    <button *ngIf="!songAlreadyAddToPlaylist(nbTrack.id)"
+            class="right attached ui green button alignement" (click)="addToPlaylist(nbTrack)">
+      {{ "deezerAlbum.add" | translate }}
+    </button>
+    <button *ngIf="songAlreadyAddToPlaylist(nbTrack.id)"
+            class="right attached ui red button alignement" (click)="deleteToPlaylist(nbTrack)">
+      {{ "deezerAlbum.delete" | translate }}
+    </button>
+  </div>
+</div>
+<notifier-container></notifier-container>
